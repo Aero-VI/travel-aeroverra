@@ -1,0 +1,2679 @@
+[
+  {
+    "TripId": "spirit-back-to-back-2024",
+    "TripName": "Carnival Spirit Back-to-Back: Panama Canal + Alaska",
+    "IsActiveTravel": true,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "T7G1G3",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Spirit",
+        "RoomType": "Interior (4A)",
+        "Stateroom": "1170",
+        "DeparturePort": {
+          "PortName": "Port Tampa Bay",
+          "City": "Tampa",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2024-04-07T17:00:00-04:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Seattle",
+          "City": "Seattle",
+          "Province": "WA",
+          "CountryCode": "US",
+          "Time": "2024-04-23T07:00:00-07:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "George Town",
+            "City": "Grand Cayman",
+            "Province": null,
+            "CountryCode": "KY",
+            "Date": "2024-04-09"
+          },
+          {
+            "PortName": "Cartagena",
+            "City": "Cartagena",
+            "Province": null,
+            "CountryCode": "CO",
+            "Date": "2024-04-11"
+          },
+          {
+            "PortName": "Panama Canal Transit",
+            "City": "Panama Canal",
+            "Province": null,
+            "CountryCode": "PA",
+            "Date": "2024-04-12"
+          },
+          {
+            "PortName": "Puntarenas",
+            "City": "Puntarenas",
+            "Province": null,
+            "CountryCode": "CR",
+            "Date": "2024-04-14"
+          },
+          {
+            "PortName": "Cabo San Lucas",
+            "City": "Cabo San Lucas",
+            "Province": "BCS",
+            "CountryCode": "MX",
+            "Date": "2024-04-18"
+          }
+        ],
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "W5T1N7",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Spirit",
+        "RoomType": "Interior (4A)",
+        "Stateroom": "1170",
+        "DeparturePort": {
+          "PortName": "Port of Seattle",
+          "City": "Seattle",
+          "Province": "WA",
+          "CountryCode": "US",
+          "Time": "2024-04-23T16:00:00-07:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Seattle",
+          "City": "Seattle",
+          "Province": "WA",
+          "CountryCode": "US",
+          "Time": "2024-05-07T07:00:00-07:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Ketchikan",
+            "City": "Ketchikan",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2024-04-25"
+          },
+          {
+            "PortName": "Juneau",
+            "City": "Juneau",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2024-04-26"
+          },
+          {
+            "PortName": "Skagway",
+            "City": "Skagway",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2024-04-27"
+          },
+          {
+            "PortName": "Icy Strait Point",
+            "City": "Hoonah",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2024-04-28"
+          },
+          {
+            "PortName": "Hubbard Glacier (Scenic Cruising)",
+            "City": "Yakutat Bay",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2024-04-29"
+          },
+          {
+            "PortName": "Valdez",
+            "City": "Valdez",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2024-04-30"
+          },
+          {
+            "PortName": "Seward",
+            "City": "Seward",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2024-05-01"
+          },
+          {
+            "PortName": "Sitka",
+            "City": "Sitka",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2024-05-03"
+          },
+          {
+            "PortName": "Tracy Arm Fjord (Scenic Cruising)",
+            "City": "Tracy Arm",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2024-05-04"
+          },
+          {
+            "PortName": "Victoria",
+            "City": "Victoria",
+            "Province": "BC",
+            "CountryCode": "CA",
+            "Date": "2024-05-06"
+          }
+        ],
+        "Source": "email"
+      }
+    ]
+  },
+  {
+    "TripId": "home-stt-summer-2024",
+    "TripName": "Home in St. Thomas",
+    "IsActiveTravel": false,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "HOME",
+        "DisplayName": "Home Residence",
+        "City": "St. Thomas",
+        "Province": "USVI",
+        "PostalCode": null,
+        "CountryCode": "VI",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2024-05-07",
+        "CheckOutDate": "2024-09-25",
+        "Source": "inferred"
+      }
+    ]
+  },
+  {
+    "TripId": "japan-transpacific-relocation-2024",
+    "TripName": "Japan, Transpacific Cruise & Relocation to Myrtle Beach",
+    "IsActiveTravel": true,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GVWQW5",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Cyril E. King Airport",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2024-09-25T14:49:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2024-09-25T18:34:00-04:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GN4N7O",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2024-09-28T09:55:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Tokyo Haneda Airport",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Code": "HND",
+          "Time": "2024-09-29T13:10:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": "2002",
+        "Operator": "JR Central (SmartEX)",
+        "TrainNumber": "Nozomi 92",
+        "SeatClass": "Green Car",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Kyoto Station",
+          "City": "Kyoto",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2024-10-05T12:45:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Tokyo Station",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2024-10-05T14:57:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": "E06655",
+        "Operator": "JR East (eki-net)",
+        "TrainNumber": "Komachi 11",
+        "SeatClass": "Green Car",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Tokyo Station",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2024-10-06T09:08:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Akita Station",
+          "City": "Akita",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2024-10-06T13:09:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "MEDYIM",
+        "Airline": "Japan Airlines / Singapore Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Akita Airport",
+          "City": "Akita",
+          "Province": null,
+          "CountryCode": "JP",
+          "Code": "AXT",
+          "Time": "2024-10-09T13:00:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Singapore Changi Airport",
+          "City": "Singapore",
+          "Province": null,
+          "CountryCode": "SG",
+          "Code": "SIN",
+          "Time": "2024-10-09T23:05:00+08:00"
+        }
+      },
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "T7C6L7",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Panorama",
+        "RoomType": "Journeys",
+        "Stateroom": null,
+        "Source": "email",
+        "DeparturePort": {
+          "PortName": "Singapore Cruise Centre",
+          "City": "Singapore",
+          "Province": null,
+          "CountryCode": "SG",
+          "Time": "2024-10-12T18:00:00+08:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Long Beach",
+          "City": "Long Beach",
+          "Province": "CA",
+          "CountryCode": "US",
+          "Time": "2024-11-05T09:00:00-08:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Phu My (Ho Chi Minh City)",
+            "City": "Ho Chi Minh City",
+            "Province": null,
+            "CountryCode": "VN",
+            "Date": "2024-10-14"
+          },
+          {
+            "PortName": "Kota Kinabalu",
+            "City": "Kota Kinabalu",
+            "Province": "Sabah",
+            "CountryCode": "MY",
+            "Date": "2024-10-16"
+          },
+          {
+            "PortName": "Manila",
+            "City": "Manila",
+            "Province": null,
+            "CountryCode": "PH",
+            "Date": "2024-10-18"
+          },
+          {
+            "PortName": "Guam",
+            "City": "Hagatna",
+            "Province": null,
+            "CountryCode": "GU",
+            "Date": "2024-10-22"
+          },
+          {
+            "PortName": "Honolulu",
+            "City": "Honolulu",
+            "Province": "HI",
+            "CountryCode": "US",
+            "Date": "2024-10-29"
+          }
+        ]
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "JMNXE3",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Harry Reid Intl Airport",
+          "City": "Las Vegas",
+          "Province": "NV",
+          "CountryCode": "US",
+          "Code": "LAS",
+          "Time": "2024-11-12T14:53:00-08:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach International Airport",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2024-11-12T23:58:00-05:00"
+        }
+      }
+    ]
+  },
+  {
+    "TripId": "home-myr-winter-2024",
+    "TripName": "Home in Myrtle Beach",
+    "IsActiveTravel": false,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "HOME",
+        "DisplayName": "Home Residence",
+        "City": "Myrtle Beach",
+        "Province": "SC",
+        "PostalCode": "29588",
+        "CountryCode": "US",
+        "Address1": "364 Cardita Loop",
+        "Address2": null,
+        "CheckInDate": "2024-11-12",
+        "CheckOutDate": "2025-01-17",
+        "Source": "inferred"
+      }
+    ]
+  },
+  {
+    "TripId": "firenze-mexican-riviera-2025",
+    "TripName": "Carnival Firenze Mexican Riviera",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "W0WF04",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Firenze",
+        "RoomType": "Interior",
+        "Stateroom": "7339",
+        "DeparturePort": {
+          "PortName": "Port of Long Beach",
+          "City": "Long Beach",
+          "Province": "CA",
+          "CountryCode": "US",
+          "Time": "2025-01-18T16:00:00-08:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Long Beach",
+          "City": "Long Beach",
+          "Province": "CA",
+          "CountryCode": "US",
+          "Time": "2025-01-23T08:00:00-08:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Cabo San Lucas",
+            "City": "Cabo San Lucas",
+            "Province": "BCS",
+            "CountryCode": "MX",
+            "Date": "2025-01-20"
+          },
+          {
+            "PortName": "Ensenada",
+            "City": "Ensenada",
+            "Province": "BC",
+            "CountryCode": "MX",
+            "Date": "2025-01-22"
+          }
+        ],
+        "Source": "email"
+      }
+    ]
+  },
+  {
+    "TripId": "home-myr-jan-2025",
+    "TripName": "Home in Myrtle Beach",
+    "IsActiveTravel": false,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "HOME",
+        "DisplayName": "Home Residence",
+        "City": "Myrtle Beach",
+        "Province": "SC",
+        "PostalCode": "29588",
+        "CountryCode": "US",
+        "Address1": "364 Cardita Loop",
+        "Address2": null,
+        "CheckInDate": "2025-01-24",
+        "CheckOutDate": "2025-02-18",
+        "Source": "inferred"
+      }
+    ]
+  },
+  {
+    "TripId": "uk-ireland-france-2025",
+    "TripName": "UK, Ireland & French Alps (7 Weeks)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "45NDHR",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-02-18T18:40:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Denver Intl",
+          "City": "Denver",
+          "Province": "CO",
+          "CountryCode": "US",
+          "Code": "DEN",
+          "Time": "2025-02-18T23:10:00-07:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GXLQ49",
+        "Airline": "Delta / KLM",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Denver Intl",
+          "City": "Denver",
+          "Province": "CO",
+          "CountryCode": "US",
+          "Code": "DEN",
+          "Time": "2025-02-27T11:26:00-07:00"
+        },
+        "Arrival": {
+          "LocationName": "Birmingham Airport",
+          "City": "Birmingham",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Code": "BHX",
+          "Time": "2025-02-28T08:35:00+00:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "PWIWFC",
+        "Airline": "Ryanair",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Newquay Cornwall Airport",
+          "City": "Newquay",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Code": "NQY",
+          "Time": "2025-03-16T13:30:00+00:00"
+        },
+        "Arrival": {
+          "LocationName": "Dublin Airport",
+          "City": "Dublin",
+          "Province": null,
+          "CountryCode": "IE",
+          "Code": "DUB",
+          "Time": "2025-03-16T14:30:00+00:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "BQYCUZ",
+        "Airline": "Ryanair",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Shannon Airport",
+          "City": "Shannon",
+          "Province": null,
+          "CountryCode": "IE",
+          "Code": "SNN",
+          "Time": "2025-03-25T09:40:00+00:00"
+        },
+        "Arrival": {
+          "LocationName": "Edinburgh Airport",
+          "City": "Edinburgh",
+          "Province": null,
+          "CountryCode": "GB",
+          "Code": "EDI",
+          "Time": "2025-03-25T10:55:00+00:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "VNWFYI",
+        "Airline": "Ryanair",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Edinburgh Airport",
+          "City": "Edinburgh",
+          "Province": null,
+          "CountryCode": "GB",
+          "Code": "EDI",
+          "Time": "2025-03-30T18:55:00+01:00"
+        },
+        "Arrival": {
+          "LocationName": "Paris Beauvais Airport",
+          "City": "Paris",
+          "Province": null,
+          "CountryCode": "FR",
+          "Code": "BVA",
+          "Time": "2025-03-30T21:35:00+02:00"
+        }
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": "7M8BYI",
+        "Operator": "SNCF (OUIGO + TER)",
+        "TrainNumber": "OUIGO 7825 / TER 17489",
+        "SeatClass": "2nd Class",
+        "Departure": {
+          "LocationName": "Paris Gare De Lyon",
+          "City": "Paris",
+          "Province": null,
+          "CountryCode": "FR",
+          "Time": "2025-04-05T12:38:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Les Arcs - Draguignan",
+          "City": "Les Arcs",
+          "Province": null,
+          "CountryCode": "FR",
+          "Time": "2025-04-05T00:00:00+02:00"
+        },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": "JZJDMY",
+        "Operator": "SNCF (TER + TGV)",
+        "TrainNumber": "TER 18527 / TGV 9882",
+        "SeatClass": "2nd Class",
+        "Departure": {
+          "LocationName": "Marseille Saint-Charles",
+          "City": "Marseille",
+          "Province": null,
+          "CountryCode": "FR",
+          "Time": "2025-04-05T17:12:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Bourg-Saint-Maurice",
+          "City": "Bourg-Saint-Maurice",
+          "Province": null,
+          "CountryCode": "FR",
+          "Time": "2025-04-05T00:00:00+02:00"
+        },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": "7GTJSB",
+        "Operator": "SNCF (TGV INOUI + TER)",
+        "TrainNumber": "TGV INOUI 6626",
+        "SeatClass": "1st Class (Premiere)",
+        "Departure": {
+          "LocationName": "Bourg-Saint-Maurice",
+          "City": "Bourg-Saint-Maurice",
+          "Province": null,
+          "CountryCode": "FR",
+          "Time": "2025-04-08T12:10:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Paris Gare De Lyon",
+          "City": "Paris",
+          "Province": null,
+          "CountryCode": "FR",
+          "Time": "2025-04-08T00:00:00+02:00"
+        },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "OMDXXD",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Paris CDG Airport",
+          "City": "Paris",
+          "Province": null,
+          "CountryCode": "FR",
+          "Code": "CDG",
+          "Time": "2025-04-12T14:40:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-04-12T23:44:00-04:00"
+        }
+      }
+    ]
+  },
+  {
+    "TripId": "austin-apr-2025",
+    "TripName": "Austin TX (April)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "HX8PZN",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-04-13T18:46:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-04-18T23:51:00-04:00"
+        }
+      }
+    ]
+  },
+  {
+    "TripId": "home-myr-apr-2025b",
+    "TripName": "Home in Myrtle Beach",
+    "IsActiveTravel": false,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "HOME",
+        "DisplayName": "Home Residence",
+        "City": "Myrtle Beach",
+        "Province": "SC",
+        "PostalCode": "29588",
+        "CountryCode": "US",
+        "Address1": "364 Cardita Loop",
+        "Address2": null,
+        "CheckInDate": "2025-04-18",
+        "CheckOutDate": "2025-04-22",
+        "Source": "inferred"
+      }
+    ]
+  },
+  {
+    "TripId": "europe-asia-mega-2025",
+    "TripName": "Transatlantic, Europe, Iceland, Korea, Japan, Philippines & Vietnam (4 Months)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "CM47Q6",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Valor",
+        "RoomType": "Balcony",
+        "Stateroom": "8285",
+        "DeparturePort": {
+          "PortName": "Port of New Orleans",
+          "City": "New Orleans",
+          "Province": "LA",
+          "CountryCode": "US",
+          "Time": "2025-04-24T18:00:00-05:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Barcelona",
+          "City": "Barcelona",
+          "Province": "CT",
+          "CountryCode": "ES",
+          "Time": "2025-05-10T06:00:00+02:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Nassau",
+            "City": "Nassau",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2025-04-27"
+          },
+          {
+            "PortName": "Ponta Delgada",
+            "City": "Ponta Delgada",
+            "Province": "Azores",
+            "CountryCode": "PT",
+            "Date": "2025-05-04"
+          },
+          {
+            "PortName": "Funchal",
+            "City": "Funchal",
+            "Province": "Madeira",
+            "CountryCode": "PT",
+            "Date": "2025-05-06"
+          },
+          {
+            "PortName": "Malaga",
+            "City": "Malaga",
+            "Province": "AN",
+            "CountryCode": "ES",
+            "Date": "2025-05-08"
+          },
+          {
+            "PortName": "Alicante",
+            "City": "Alicante",
+            "Province": "VC",
+            "CountryCode": "ES",
+            "Date": "2025-05-09"
+          }
+        ],
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "NED5XY",
+        "Airline": "Vueling",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Barcelona-El Prat",
+          "City": "Barcelona",
+          "Province": "CT",
+          "CountryCode": "ES",
+          "Code": "BCN",
+          "Time": "2025-05-13T12:15:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Rome Fiumicino",
+          "City": "Rome",
+          "Province": null,
+          "CountryCode": "IT",
+          "Code": "FCO",
+          "Time": "2025-05-13T14:05:00+02:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "ZGCUEI",
+        "Airline": "ITA Airways",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Rome Fiumicino",
+          "City": "Rome",
+          "Province": null,
+          "CountryCode": "IT",
+          "Code": "FCO",
+          "Time": "2025-05-15T10:36:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Bologna Airport",
+          "City": "Bologna",
+          "Province": null,
+          "CountryCode": "IT",
+          "Code": "BLQ",
+          "Time": "2025-05-15T11:30:00+02:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "RVNFNA",
+        "Airline": "Ryanair",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Bologna Airport",
+          "City": "Bologna",
+          "Province": null,
+          "CountryCode": "IT",
+          "Code": "BLQ",
+          "Time": "2025-05-21T19:55:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Berlin Brandenburg",
+          "City": "Berlin",
+          "Province": null,
+          "CountryCode": "DE",
+          "Code": "BER",
+          "Time": "2025-05-21T21:40:00+02:00"
+        }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "545189323",
+        "DisplayName": "Cabinn Metro",
+        "City": "Copenhagen",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "DK",
+        "Address1": "Arne Jacobsens Alle 2",
+        "Address2": null,
+        "CheckInDate": "2025-06-05",
+        "CheckOutDate": "2025-06-07",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "K9MP4BS",
+        "Airline": "easyJet",
+        "Departure": {
+          "LocationName": "Berlin Brandenburg Airport",
+          "City": "Berlin",
+          "Province": null,
+          "CountryCode": "DE",
+          "Code": "BER",
+          "Time": "2025-06-05T00:00:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Copenhagen Airport",
+          "City": "Copenhagen",
+          "Province": null,
+          "CountryCode": "DK",
+          "Code": "CPH",
+          "Time": "2025-06-05T00:00:00+02:00"
+        },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "23831-570077513",
+        "DisplayName": "Copenhagen Downtown Hostel",
+        "City": "Copenhagen",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "DK",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-06-07",
+        "CheckOutDate": "2025-06-09",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "277862-570085259",
+        "DisplayName": "Steel House Copenhagen",
+        "City": "Copenhagen",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "DK",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-06-07",
+        "CheckOutDate": "2025-06-08",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "YSF3XM",
+        "Airline": "Ryanair",
+        "Departure": {
+          "LocationName": "Copenhagen Airport",
+          "City": "Copenhagen",
+          "Province": null,
+          "CountryCode": "DK",
+          "Code": "CPH",
+          "Time": "2025-06-12T11:10:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "London Stansted Airport",
+          "City": "London",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Code": "STN",
+          "Time": "2025-06-12T12:10:00+01:00"
+        },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "K9NF5T2",
+        "Airline": "easyJet",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "London Luton Airport",
+          "City": "London",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Code": "LTN",
+          "Time": "2025-06-17T16:10:00+01:00"
+        },
+        "Arrival": {
+          "LocationName": "Amsterdam Schiphol",
+          "City": "Amsterdam",
+          "Province": null,
+          "CountryCode": "NL",
+          "Code": "AMS",
+          "Time": "2025-06-17T18:20:00+02:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "K9NF6HN",
+        "Airline": "easyJet",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Amsterdam Schiphol",
+          "City": "Amsterdam",
+          "Province": null,
+          "CountryCode": "NL",
+          "Code": "AMS",
+          "Time": "2025-06-19T07:00:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "London Gatwick",
+          "City": "London",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Code": "LGW",
+          "Time": "2025-06-19T07:15:00+01:00"
+        }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "SUPER-RBH",
+        "DisplayName": "Radisson Blu Hotel, London Heathrow",
+        "City": "Hayes",
+        "Province": "ENG",
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-06-28",
+        "CheckOutDate": "2025-06-29",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "FN77C3",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Miracle",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port of Dover",
+          "City": "Dover",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Time": "2025-06-29T16:30:00+01:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Dover",
+          "City": "Dover",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Time": "2025-07-11T05:00:00+01:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Belfast",
+            "City": "Belfast",
+            "Province": null,
+            "CountryCode": "GB",
+            "Date": "2025-07-01"
+          },
+          {
+            "PortName": "Seydisfjordur",
+            "City": "Seydisfjordur",
+            "Province": null,
+            "CountryCode": "IS",
+            "Date": "2025-07-03"
+          },
+          {
+            "PortName": "Akureyri",
+            "City": "Akureyri",
+            "Province": null,
+            "CountryCode": "IS",
+            "Date": "2025-07-04"
+          },
+          {
+            "PortName": "Grundarfjordur",
+            "City": "Grundarfjordur",
+            "Province": null,
+            "CountryCode": "IS",
+            "Date": "2025-07-05"
+          },
+          {
+            "PortName": "Reykjavik",
+            "City": "Reykjavik",
+            "Province": null,
+            "CountryCode": "IS",
+            "Date": "2025-07-06"
+          },
+          {
+            "PortName": "Heimaey, Westman Islands",
+            "City": "Heimaey",
+            "Province": null,
+            "CountryCode": "IS",
+            "Date": "2025-07-07"
+          },
+          {
+            "PortName": "Invergordon",
+            "City": "Invergordon",
+            "Province": "Scotland",
+            "CountryCode": "GB",
+            "Date": "2025-07-09"
+          }
+        ],
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "PXPMJG",
+        "Airline": "China Eastern",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "London Gatwick",
+          "City": "London",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Code": "LGW",
+          "Time": "2025-07-12T18:00:00+01:00"
+        },
+        "Arrival": {
+          "LocationName": "Seoul Incheon Intl",
+          "City": "Seoul",
+          "Province": null,
+          "CountryCode": "KR",
+          "Code": "ICN",
+          "Time": "2025-07-13T17:25:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "1658105453471906",
+        "Airline": "Jeju Air",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Incheon Intl",
+          "City": "Seoul",
+          "Province": null,
+          "CountryCode": "KR",
+          "Code": "ICN",
+          "Time": "2025-07-20T12:40:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Hiroshima Airport",
+          "City": "Hiroshima",
+          "Province": null,
+          "CountryCode": "JP",
+          "Code": "HIJ",
+          "Time": "2025-07-20T14:35:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "3E49EG",
+        "Airline": "ZIPAIR",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Narita Intl",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Code": "NRT",
+          "Time": "2025-08-06T08:55:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Ninoy Aquino Intl",
+          "City": "Manila",
+          "Province": null,
+          "CountryCode": "PH",
+          "Code": "MNL",
+          "Time": "2025-08-06T12:40:00+08:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "NGTYQX",
+        "Airline": "Philippines AirAsia",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Ninoy Aquino Intl",
+          "City": "Manila",
+          "Province": null,
+          "CountryCode": "PH",
+          "Code": "MNL",
+          "Time": "2025-08-08T14:10:00+08:00"
+        },
+        "Arrival": {
+          "LocationName": "Godofredo P. Ramos Airport",
+          "City": "Caticlan/Boracay",
+          "Province": null,
+          "CountryCode": "PH",
+          "Code": "MPH",
+          "Time": "2025-08-08T15:15:00+08:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "ULFY5Q",
+        "Airline": "Cebu Pacific",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Ninoy Aquino Intl",
+          "City": "Manila",
+          "Province": null,
+          "CountryCode": "PH",
+          "Code": "MNL",
+          "Time": "2025-08-23T22:30:00+08:00"
+        },
+        "Arrival": {
+          "LocationName": "Tan Son Nhat Intl",
+          "City": "Ho Chi Minh City",
+          "Province": null,
+          "CountryCode": "VN",
+          "Code": "SGN",
+          "Time": "2025-08-24T00:25:00+07:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GXVGAZ",
+        "Airline": "Delta / Vietnam Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Tan Son Nhat Intl",
+          "City": "Ho Chi Minh City",
+          "Province": null,
+          "CountryCode": "VN",
+          "Code": "SGN",
+          "Time": "2025-08-28T09:15:00+07:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-08-28T23:49:00-04:00"
+        }
+      }
+    ]
+  },
+  {
+    "TripId": "home-myr-sep-2025",
+    "TripName": "Home in Myrtle Beach",
+    "IsActiveTravel": false,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "HOME",
+        "DisplayName": "Home Residence",
+        "City": "Myrtle Beach",
+        "Province": "SC",
+        "PostalCode": "29588",
+        "CountryCode": "US",
+        "Address1": "364 Cardita Loop",
+        "Address2": null,
+        "CheckInDate": "2025-08-28",
+        "CheckOutDate": "2025-09-11",
+        "Source": "inferred"
+      }
+    ]
+  },
+  {
+    "TripId": "mardi-gras-marathon-2025",
+    "TripName": "Transatlantic + Mediterranean + Caribbean Marathon (9 Weeks)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "JH868F",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-09-11T17:20:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Orlando Intl",
+          "City": "Orlando",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "MCO",
+          "Time": "2025-09-11T18:52:00-04:00"
+        }
+      },
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "Z0VR58",
+        "CruiseLine": "Carnival",
+        "Ship": "Mardi Gras",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port Canaveral",
+          "City": "Cape Canaveral",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2025-09-13T17:30:00-04:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Barcelona",
+          "City": "Barcelona",
+          "Province": "CT",
+          "CountryCode": "ES",
+          "Time": "2025-09-27T06:00:00+02:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Celebration Key",
+            "City": "Freeport",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2025-09-14"
+          },
+          {
+            "PortName": "Tenerife",
+            "City": "Santa Cruz de Tenerife",
+            "Province": "Canary Islands",
+            "CountryCode": "ES",
+            "Date": "2025-09-22"
+          },
+          {
+            "PortName": "Cadiz (Seville)",
+            "City": "Cadiz",
+            "Province": "AN",
+            "CountryCode": "ES",
+            "Date": "2025-09-24"
+          },
+          {
+            "PortName": "Malaga",
+            "City": "Malaga",
+            "Province": "AN",
+            "CountryCode": "ES",
+            "Date": "2025-09-25"
+          }
+        ],
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "PK3MVP",
+        "Airline": "Wizz Air",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Barcelona Airport",
+          "City": "Barcelona",
+          "Province": "CT",
+          "CountryCode": "ES",
+          "Code": "BCN",
+          "Time": "2025-09-27T10:00:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Rome Fiumicino",
+          "City": "Rome",
+          "Province": null,
+          "CountryCode": "IT",
+          "Code": "FCO",
+          "Time": "2025-09-27T11:55:00+02:00"
+        }
+      },
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "KX10B3",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Miracle",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port of Civitavecchia",
+          "City": "Civitavecchia (Rome)",
+          "Province": null,
+          "CountryCode": "IT",
+          "Time": "2025-09-27T18:30:00+02:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Civitavecchia",
+          "City": "Civitavecchia (Rome)",
+          "Province": null,
+          "CountryCode": "IT",
+          "Time": "2025-10-06T06:00:00+02:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Kusadasi (Ephesus)",
+            "City": "Kusadasi",
+            "Province": null,
+            "CountryCode": "TR",
+            "Date": "2025-09-30"
+          },
+          {
+            "PortName": "Mykonos",
+            "City": "Mykonos",
+            "Province": null,
+            "CountryCode": "GR",
+            "Date": "2025-10-01"
+          },
+          {
+            "PortName": "Piraeus (Athens)",
+            "City": "Athens",
+            "Province": null,
+            "CountryCode": "GR",
+            "Date": "2025-10-02"
+          },
+          {
+            "PortName": "Katakolon (Olympia)",
+            "City": "Katakolon",
+            "Province": null,
+            "CountryCode": "GR",
+            "Date": "2025-10-03"
+          },
+          {
+            "PortName": "Naples",
+            "City": "Naples",
+            "Province": null,
+            "CountryCode": "IT",
+            "Date": "2025-10-05"
+          }
+        ],
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "LG71Q9",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Miracle",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port of Civitavecchia",
+          "City": "Civitavecchia (Rome)",
+          "Province": null,
+          "CountryCode": "IT",
+          "Time": "2025-10-06T18:30:00+02:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Civitavecchia",
+          "City": "Civitavecchia (Rome)",
+          "Province": null,
+          "CountryCode": "IT",
+          "Time": "2025-10-18T06:00:00+02:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Kusadasi (Ephesus)",
+            "City": "Kusadasi",
+            "Province": null,
+            "CountryCode": "TR",
+            "Date": "2025-10-09"
+          },
+          {
+            "PortName": "Kavala",
+            "City": "Kavala",
+            "Province": null,
+            "CountryCode": "GR",
+            "Date": "2025-10-10"
+          },
+          {
+            "PortName": "Istanbul",
+            "City": "Istanbul",
+            "Province": null,
+            "CountryCode": "TR",
+            "Date": "2025-10-11"
+          },
+          {
+            "PortName": "Mykonos",
+            "City": "Mykonos",
+            "Province": null,
+            "CountryCode": "GR",
+            "Date": "2025-10-13"
+          },
+          {
+            "PortName": "Piraeus (Athens)",
+            "City": "Athens",
+            "Province": null,
+            "CountryCode": "GR",
+            "Date": "2025-10-14"
+          },
+          {
+            "PortName": "Katakolon (Olympia)",
+            "City": "Katakolon",
+            "Province": null,
+            "CountryCode": "GR",
+            "Date": "2025-10-15"
+          },
+          {
+            "PortName": "Naples",
+            "City": "Naples",
+            "Province": null,
+            "CountryCode": "IT",
+            "Date": "2025-10-17"
+          }
+        ],
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "Z0VR92",
+        "CruiseLine": "Carnival",
+        "Ship": "Mardi Gras",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port of Barcelona",
+          "City": "Barcelona",
+          "Province": "CT",
+          "CountryCode": "ES",
+          "Time": "2025-10-16T19:00:00+02:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port Canaveral",
+          "City": "Cape Canaveral",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2025-10-30T08:00:00-04:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Malaga",
+            "City": "Malaga",
+            "Province": "AN",
+            "CountryCode": "ES",
+            "Date": "2025-10-18"
+          },
+          {
+            "PortName": "Cadiz (Seville)",
+            "City": "Cadiz",
+            "Province": "AN",
+            "CountryCode": "ES",
+            "Date": "2025-10-19"
+          },
+          {
+            "PortName": "Tenerife",
+            "City": "Santa Cruz de Tenerife",
+            "Province": "Canary Islands",
+            "CountryCode": "ES",
+            "Date": "2025-10-21"
+          },
+          {
+            "PortName": "Celebration Key",
+            "City": "Freeport",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2025-10-29"
+          }
+        ],
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "GJ85S0",
+        "CruiseLine": "Carnival",
+        "Ship": "Mardi Gras",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port Canaveral",
+          "City": "Cape Canaveral",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2025-10-30T16:30:00-04:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port Canaveral",
+          "City": "Cape Canaveral",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2025-11-08T08:00:00-05:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Charlotte Amalie",
+            "City": "St. Thomas",
+            "Province": "USVI",
+            "CountryCode": "VI",
+            "Date": "2025-11-02"
+          },
+          {
+            "PortName": "Philipsburg",
+            "City": "St. Maarten",
+            "Province": null,
+            "CountryCode": "SX",
+            "Date": "2025-11-03"
+          },
+          {
+            "PortName": "San Juan",
+            "City": "San Juan",
+            "Province": "PR",
+            "CountryCode": "PR",
+            "Date": "2025-11-04"
+          },
+          {
+            "PortName": "Amber Cove",
+            "City": "Puerto Plata",
+            "Province": null,
+            "CountryCode": "DO",
+            "Date": "2025-11-05"
+          },
+          {
+            "PortName": "Celebration Key",
+            "City": "Freeport",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2025-11-07"
+          }
+        ],
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "LK81N1",
+        "CruiseLine": "Carnival",
+        "Ship": "Mardi Gras",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port Canaveral",
+          "City": "Cape Canaveral",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2025-11-08T15:30:00-05:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port Canaveral",
+          "City": "Cape Canaveral",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2025-11-15T08:00:00-05:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Grand Turk",
+            "City": "Grand Turk",
+            "Province": null,
+            "CountryCode": "TC",
+            "Date": "2025-11-10"
+          },
+          {
+            "PortName": "Amber Cove",
+            "City": "Puerto Plata",
+            "Province": null,
+            "CountryCode": "DO",
+            "Date": "2025-11-11"
+          },
+          {
+            "PortName": "Nassau",
+            "City": "Nassau",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2025-11-13"
+          },
+          {
+            "PortName": "Celebration Key",
+            "City": "Freeport",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2025-11-14"
+          }
+        ],
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "LW668A",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Orlando Intl",
+          "City": "Orlando",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "MCO",
+          "Time": "2025-11-15T18:05:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-11-15T19:28:00-05:00"
+        }
+      }
+    ]
+  },
+  {
+    "TripId": "home-myr-nov-2025",
+    "TripName": "Home in Myrtle Beach",
+    "IsActiveTravel": false,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "HOME",
+        "DisplayName": "Home Residence",
+        "City": "Myrtle Beach",
+        "Province": "SC",
+        "PostalCode": "29588",
+        "CountryCode": "US",
+        "Address1": "364 Cardita Loop",
+        "Address2": null,
+        "CheckInDate": "2025-11-15",
+        "CheckOutDate": "2025-12-05",
+        "Source": "inferred"
+      }
+    ]
+  },
+  {
+    "TripId": "austin-dec-2025",
+    "TripName": "Austin TX (December)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "XSJSVH",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-12-05T09:05:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-12-12T13:20:00-05:00"
+        }
+      }
+    ]
+  },
+  {
+    "TripId": "home-myr-dec-2025",
+    "TripName": "Home in Myrtle Beach",
+    "IsActiveTravel": false,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "HOME",
+        "DisplayName": "Home Residence",
+        "City": "Myrtle Beach",
+        "Province": "SC",
+        "PostalCode": "29588",
+        "CountryCode": "US",
+        "Address1": "364 Cardita Loop",
+        "Address2": null,
+        "CheckInDate": "2025-12-12",
+        "CheckOutDate": "2026-01-14",
+        "Source": "inferred"
+      }
+    ]
+  },
+  {
+    "TripId": "australia-japan-2026",
+    "TripName": "Australia, SE Asia & Japan Extended (3.5 Months)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GLA5FD",
+        "Airline": "Delta Air Lines",
+        "Departure": {
+          "LocationName": "Myrtle Beach International Airport",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2026-01-14T00:00:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Brisbane Airport",
+          "City": "Brisbane",
+          "Province": "QLD",
+          "CountryCode": "AU",
+          "Code": "BNE",
+          "Time": "2026-01-16T00:00:00+10:00"
+        },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "JX96T4",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Luminosa",
+        "RoomType": "Interior",
+        "Stateroom": "5225",
+        "DeparturePort": {
+          "PortName": "Port of Brisbane",
+          "City": "Brisbane",
+          "Province": "QLD",
+          "CountryCode": "AU",
+          "Time": "2026-01-18T15:00:00+10:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Brisbane",
+          "City": "Brisbane",
+          "Province": "QLD",
+          "CountryCode": "AU",
+          "Time": "2026-01-25T07:00:00+10:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Airlie Beach",
+            "City": "Airlie Beach",
+            "Province": "QLD",
+            "CountryCode": "AU",
+            "Date": "2026-01-20"
+          },
+          {
+            "PortName": "Cairns",
+            "City": "Cairns",
+            "Province": "QLD",
+            "CountryCode": "AU",
+            "Date": "2026-01-21"
+          },
+          {
+            "PortName": "Port Douglas",
+            "City": "Port Douglas",
+            "Province": "QLD",
+            "CountryCode": "AU",
+            "Date": "2026-01-22"
+          },
+          {
+            "PortName": "Willis Island (Scenic Cruising)",
+            "City": "Willis Island",
+            "Province": "QLD",
+            "CountryCode": "AU",
+            "Date": "2026-01-23"
+          }
+        ],
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "FMM2WV",
+        "Airline": "Qantas",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Brisbane Airport",
+          "City": "Brisbane",
+          "Province": "QLD",
+          "CountryCode": "AU",
+          "Code": "BNE",
+          "Time": "2026-01-26T17:10:00+10:00"
+        },
+        "Arrival": {
+          "LocationName": "Sydney Airport",
+          "City": "Sydney",
+          "Province": "NSW",
+          "CountryCode": "AU",
+          "Code": "SYD",
+          "Time": "2026-01-26T19:45:00+11:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "OLQYFI",
+        "Airline": "Virgin Australia",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Sydney Airport",
+          "City": "Sydney",
+          "Province": "NSW",
+          "CountryCode": "AU",
+          "Code": "SYD",
+          "Time": "2026-02-01T22:10:00+11:00"
+        },
+        "Arrival": {
+          "LocationName": "Brisbane Airport",
+          "City": "Brisbane",
+          "Province": "QLD",
+          "CountryCode": "AU",
+          "Code": "BNE",
+          "Time": "2026-02-01T23:00:00+10:00"
+        }
+      },
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "JX97N6",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Encounter",
+        "RoomType": "Balcony",
+        "Stateroom": "10501",
+        "DeparturePort": {
+          "PortName": "Port of Brisbane",
+          "City": "Brisbane",
+          "Province": "QLD",
+          "CountryCode": "AU",
+          "Time": "2026-02-03T15:00:00+10:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Singapore Cruise Centre",
+          "City": "Singapore",
+          "Province": null,
+          "CountryCode": "SG",
+          "Time": "2026-02-16T04:00:00+08:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Airlie Beach",
+            "City": "Airlie Beach",
+            "Province": "QLD",
+            "CountryCode": "AU",
+            "Date": "2026-02-05"
+          },
+          {
+            "PortName": "Darwin",
+            "City": "Darwin",
+            "Province": "NT",
+            "CountryCode": "AU",
+            "Date": "2026-02-09"
+          },
+          {
+            "PortName": "Benoa (Denpasar)",
+            "City": "Bali",
+            "Province": null,
+            "CountryCode": "ID",
+            "Date": "2026-02-12"
+          },
+          {
+            "PortName": "Lembar",
+            "City": "Lombok",
+            "Province": null,
+            "CountryCode": "ID",
+            "Date": "2026-02-13"
+          }
+        ],
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "S136R3",
+        "Airline": "ZIPAIR",
+        "Departure": {
+          "LocationName": "Singapore Changi Airport",
+          "City": "Singapore",
+          "Province": null,
+          "CountryCode": "SG",
+          "Code": "SIN",
+          "Time": "2026-02-22T00:40:00+08:00"
+        },
+        "Arrival": {
+          "LocationName": "Narita International Airport",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Code": "NRT",
+          "Time": "2026-02-22T08:25:00+09:00"
+        },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "HHUQWS",
+        "Airline": "Delta Air Lines",
+        "Departure": {
+          "LocationName": "Daniel K. Inouye International Airport",
+          "City": "Honolulu",
+          "Province": "HI",
+          "CountryCode": "US",
+          "Code": "HNL",
+          "Time": "2026-03-02T14:20:00-10:00"
+        },
+        "Arrival": {
+          "LocationName": "Tokyo Haneda Airport",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Code": "HND",
+          "Time": "2026-03-03T18:50:00+09:00"
+        },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "452561669",
+        "Airline": "Air Do",
+        "Departure": {
+          "LocationName": "Tokyo Haneda Airport",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Code": "HND",
+          "Time": "2026-03-07T10:15:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "New Chitose Airport",
+          "City": "Sapporo",
+          "Province": "Hokkaido",
+          "CountryCode": "JP",
+          "Code": "CTS",
+          "Time": "2026-03-07T11:45:00+09:00"
+        },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Bus",
+        "BookingNumber": "25X03070732",
+        "Operator": "Hokkaido Resort Liner",
+        "Route": "Route #107",
+        "Departure": {
+          "LocationName": "New Chitose Airport",
+          "City": "Chitose",
+          "Province": "Hokkaido",
+          "CountryCode": "JP",
+          "Time": "2026-03-07T13:50:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Hilton Niseko Village",
+          "City": "Niseko",
+          "Province": "Hokkaido",
+          "CountryCode": "JP",
+          "Time": "2026-03-07T17:10:00+09:00"
+        },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Bus",
+        "BookingNumber": "25X03070732",
+        "Operator": "Hokkaido Resort Liner",
+        "Route": "Route #102",
+        "Departure": {
+          "LocationName": "Hilton Niseko Village",
+          "City": "Niseko",
+          "Province": "Hokkaido",
+          "CountryCode": "JP",
+          "Time": "2026-03-10T07:25:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "New Chitose Airport",
+          "City": "Chitose",
+          "Province": "Hokkaido",
+          "CountryCode": "JP",
+          "Time": "2026-03-10T10:40:00+09:00"
+        },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "452561669",
+        "Airline": "Air Do",
+        "Departure": {
+          "LocationName": "New Chitose Airport",
+          "City": "Sapporo",
+          "Province": "Hokkaido",
+          "CountryCode": "JP",
+          "Code": "CTS",
+          "Time": "2026-03-10T13:30:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Tokyo Haneda Airport",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Code": "HND",
+          "Time": "2026-03-10T15:10:00+09:00"
+        },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "299-821-263-95",
+        "DisplayName": "Daiwa Roynet Hotel D-City Nagoya Fushimi",
+        "City": "Nagoya",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2026-03-26",
+        "CheckOutDate": "2026-03-30",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR Central (Tokaido Shinkansen)",
+        "TrainNumber": "Nozomi (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Tokyo Station",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-03-26T12:49:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Nagoya Station",
+          "City": "Nagoya",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-03-26T14:24:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR Central (Tokaido Shinkansen)",
+        "TrainNumber": "Hikari (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Nagoya Station",
+          "City": "Nagoya",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-03-30T10:41:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Shin-Osaka Station",
+          "City": "Osaka",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-03-30T12:02:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "987175882",
+        "DisplayName": "APA Hotel Himeji-Ekikita",
+        "City": "Himeji",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2026-04-03",
+        "CheckOutDate": "2026-04-04",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR West (Sanyo Shinkansen)",
+        "TrainNumber": "Hikari (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Shin-Osaka Station",
+          "City": "Osaka",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-04-03T12:02:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Himeji Station",
+          "City": "Himeji",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-04-03T12:36:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "987746578",
+        "DisplayName": "APA Hotel Kyoto-Gion",
+        "City": "Kyoto",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2026-04-04",
+        "CheckOutDate": "2026-04-05",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR Central (Tokaido Shinkansen)",
+        "TrainNumber": "Nozomi (confirmed via WiFi)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Shin-Osaka Station",
+          "City": "Osaka",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-04-09T10:35:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Tokyo Station",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-04-09T13:03:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR East (Akita Shinkansen)",
+        "TrainNumber": "Komachi (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Tokyo Station",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-04-09T13:19:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Akita Station",
+          "City": "Akita",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-04-09T17:08:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "1718353536",
+        "DisplayName": "APA Hotel Akita-Ekimae",
+        "City": "Akita",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2026-04-15",
+        "CheckOutDate": "2026-04-16",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "320-868-703-96",
+        "DisplayName": "APA Hotel Akihabara Suehirochoekimae",
+        "City": "Tokyo",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2026-04-21",
+        "CheckOutDate": "2026-04-26",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR East (Akita Shinkansen)",
+        "TrainNumber": "Komachi (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Akita Station",
+          "City": "Akita",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-04-21T14:14:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Tokyo Station",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-04-21T18:01:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "1719240397",
+        "DisplayName": "APA Hotel Kyoto-Eki Higashi",
+        "City": "Kyoto",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2026-04-26",
+        "CheckOutDate": "2026-04-28",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR Central (Tokaido Shinkansen)",
+        "TrainNumber": "Nozomi (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Tokyo Station",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-04-27T11:09:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Kyoto Station",
+          "City": "Kyoto",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-04-27T13:20:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR Central (Tokaido Shinkansen)",
+        "TrainNumber": "Nozomi (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Kyoto Station",
+          "City": "Kyoto",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-05-01T10:02:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Tokyo Station",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-05-01T12:07:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "H7F57O",
+        "Airline": "Delta Air Lines",
+        "FlightNumber": "DL 294",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Tokyo Haneda Airport",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Code": "HND",
+          "Time": "2026-05-03T15:15:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Hartsfield-Jackson Atlanta International Airport",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2026-05-03T14:55:00-04:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "H7F57O",
+        "Airline": "Delta Air Lines",
+        "FlightNumber": "DL 1093",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Hartsfield-Jackson Atlanta International Airport",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2026-05-03T16:55:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach International Airport",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2026-05-03T18:06:00-04:00"
+        }
+      }
+    ]
+  },
+  {
+    "TripId": "home-myr-may-2026",
+    "TripName": "Home in Myrtle Beach",
+    "IsActiveTravel": false,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "HOME",
+        "DisplayName": "Home Residence",
+        "City": "Myrtle Beach",
+        "Province": "SC",
+        "PostalCode": "29588",
+        "CountryCode": "US",
+        "Address1": "364 Cardita Loop",
+        "Address2": null,
+        "CheckInDate": "2026-05-03",
+        "CheckOutDate": "2026-06-05",
+        "Source": "inferred"
+      }
+    ]
+  },
+  {
+    "TripId": "copenhagen-baltic-2026",
+    "TripName": "Copenhagen & Baltic Cruise",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "OVMBNJ",
+        "Airline": "American Airlines",
+        "FlightNumber": "AA 5849",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Myrtle Beach International Airport",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2026-06-05T18:45:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Philadelphia International Airport",
+          "City": "Philadelphia",
+          "Province": "PA",
+          "CountryCode": "US",
+          "Code": "PHL",
+          "Time": "2026-06-05T20:38:00-04:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "OVMBNJ",
+        "Airline": "American Airlines",
+        "FlightNumber": "AA 744",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Philadelphia International Airport",
+          "City": "Philadelphia",
+          "Province": "PA",
+          "CountryCode": "US",
+          "Code": "PHL",
+          "Time": "2026-06-05T21:50:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Copenhagen Airport (Kastrup)",
+          "City": "Copenhagen",
+          "Province": null,
+          "CountryCode": "DK",
+          "Code": "CPH",
+          "Time": "2026-06-06T11:35:00+02:00"
+        }
+      },
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "DXHVVQ",
+        "CruiseLine": "Princess Cruises",
+        "Ship": "Sapphire Princess",
+        "RoomType": "Interior (IF Guarantee)",
+        "Stateroom": "A221",
+        "DeparturePort": {
+          "PortName": "Copenhagen Cruise Port",
+          "City": "Copenhagen",
+          "Province": null,
+          "CountryCode": "DK",
+          "Time": "2026-06-08T18:00:00+02:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Copenhagen Cruise Port",
+          "City": "Copenhagen",
+          "Province": null,
+          "CountryCode": "DK",
+          "Time": "2026-06-20T05:00:00+02:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Oslo",
+            "City": "Oslo",
+            "Province": null,
+            "CountryCode": "NO",
+            "Date": "2026-06-09"
+          },
+          {
+            "PortName": "Skagen",
+            "City": "Skagen",
+            "Province": null,
+            "CountryCode": "DK",
+            "Date": "2026-06-10"
+          },
+          {
+            "PortName": "Bornholm",
+            "City": "Bornholm",
+            "Province": null,
+            "CountryCode": "DK",
+            "Date": "2026-06-11"
+          },
+          {
+            "PortName": "Visby",
+            "City": "Visby",
+            "Province": "Gotland",
+            "CountryCode": "SE",
+            "Date": "2026-06-12"
+          },
+          {
+            "PortName": "Stockholm",
+            "City": "Stockholm",
+            "Province": null,
+            "CountryCode": "SE",
+            "Date": "2026-06-13"
+          },
+          {
+            "PortName": "Helsinki",
+            "City": "Helsinki",
+            "Province": null,
+            "CountryCode": "FI",
+            "Date": "2026-06-14"
+          },
+          {
+            "PortName": "Tallinn",
+            "City": "Tallinn",
+            "Province": null,
+            "CountryCode": "EE",
+            "Date": "2026-06-15"
+          },
+          {
+            "PortName": "Riga",
+            "City": "Riga",
+            "Province": null,
+            "CountryCode": "LV",
+            "Date": "2026-06-16"
+          },
+          {
+            "PortName": "Gdansk (Gdynia)",
+            "City": "Gdynia",
+            "Province": null,
+            "CountryCode": "PL",
+            "Date": "2026-06-18"
+          }
+        ],
+        "Source": "email"
+      }
+    ]
+  },
+  {
+    "TripId": "alaska-journeys-2026",
+    "TripName": "Carnival Miracle Alaska Journeys",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "JP91J2",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Miracle",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port of Seattle",
+          "City": "Seattle",
+          "Province": "WA",
+          "CountryCode": "US",
+          "Time": "2026-09-17T15:30:00-07:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Seattle",
+          "City": "Seattle",
+          "Province": "WA",
+          "CountryCode": "US",
+          "Time": "2026-09-26T07:00:00-07:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Ketchikan",
+            "City": "Ketchikan",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2026-09-19"
+          },
+          {
+            "PortName": "Sitka",
+            "City": "Sitka",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2026-09-20"
+          },
+          {
+            "PortName": "Skagway",
+            "City": "Skagway",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2026-09-21"
+          },
+          {
+            "PortName": "Juneau",
+            "City": "Juneau",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2026-09-22"
+          },
+          {
+            "PortName": "Endicott Arm Fjord (Scenic Cruising)",
+            "City": "Endicott Arm",
+            "Province": "AK",
+            "CountryCode": "US",
+            "Date": "2026-09-23"
+          },
+          {
+            "PortName": "Victoria",
+            "City": "Victoria",
+            "Province": "BC",
+            "CountryCode": "CA",
+            "Date": "2026-09-25"
+          }
+        ],
+        "Source": "email"
+      }
+    ]
+  },
+  {
+    "TripId": "transatlantic-journeys-2026",
+    "TripName": "Carnival Freedom Transatlantic",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "QN82J3",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Freedom",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port of Barcelona",
+          "City": "Barcelona",
+          "Province": "CT",
+          "CountryCode": "ES",
+          "Time": "2026-10-17T17:00:00+02:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port Canaveral",
+          "City": "Cape Canaveral",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2026-10-30T08:00:00-04:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Alicante",
+            "City": "Alicante",
+            "Province": "VC",
+            "CountryCode": "ES",
+            "Date": "2026-10-18"
+          },
+          {
+            "PortName": "Malaga",
+            "City": "Malaga",
+            "Province": "AN",
+            "CountryCode": "ES",
+            "Date": "2026-10-19"
+          },
+          {
+            "PortName": "Gibraltar",
+            "City": "Gibraltar",
+            "Province": null,
+            "CountryCode": "GI",
+            "Date": "2026-10-20"
+          },
+          {
+            "PortName": "Celebration Key",
+            "City": "Freeport",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2026-10-29"
+          }
+        ],
+        "Source": "email"
+      }
+    ]
+  }
+]
