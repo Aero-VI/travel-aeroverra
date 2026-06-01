@@ -1,663 +1,349 @@
-let trips = [];
-let events = [];
+// Travel Verification Tool - app.js
+// Source of truth: data/trips.json and data/events.json
+// DO NOT modify data files. Gap detection is script-side only.
 
-async function init() {
-    const [tripsRes, eventsRes] = await Promise.all([
-        fetch('data/trips.json'),
-        fetch('data/events.json')
-    ]);
-    trips = await tripsRes.json();
-    events = await eventsRes.json();
-    setupNav();
-    renderTimeline();
-    renderTable();
-    renderGaps();
+let tripsData = [];
+let eventsData = [];
+let currentView = 'table';
+
+// Helpers
+const segIcon = t => ({Cruise:'\u{1F6A2}',Flight:'\u2708\uFE0F',Train:'\u{1F686}',Bus:'\u{1F68C}',Accommodation:'\u{1F3E8}'}[t]||'\u{1F4CD}');
+const fmtDate = d => d ? new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
+const fmtShort = d => d ? new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '';
+const fmtTime = d => d ? new Date(d).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}) : '';
+const daysBetween = (a,b) => Math.round((new Date(b)-new Date(a))/(86400000));
+
+function getSegStart(seg) {
+    if (seg.DeparturePort && seg.DeparturePort.Time) return seg.DeparturePort.Time;
+    if (seg.Departure && seg.Departure.Time) return seg.Departure.Time;
+    if (seg.CheckInDate) return seg.CheckInDate;
+    return null;
 }
-
-function setupNav() {
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            btn.classList.add('active');
-            document.getElementById(`${btn.dataset.view}-view`).classList.add('active');
-        });
-    });
+function getSegEnd(seg) {
+    if (seg.ArrivalPort && seg.ArrivalPort.Time) return seg.ArrivalPort.Time;
+    if (seg.Arrival && seg.Arrival.Time) return seg.Arrival.Time;
+    if (seg.CheckOutDate) return seg.CheckOutDate;
+    return null;
 }
-
-// ============ HELPERS ============
-
-function formatDate(isoStr) {
-    if (!isoStr) return '';
-    const d = new Date(isoStr);
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-}
-
-function formatDateShort(isoStr) {
-    if (!isoStr) return '';
-    const d = new Date(isoStr);
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-}
-
-function formatDateTime(isoStr) {
-    if (!isoStr) return '';
-    const d = new Date(isoStr);
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
-}
-
-// Universal getters that handle all segment types
-function getDepTime(seg) {
-    return seg.DeparturePort?.Time || seg.Departure?.Time || seg.CheckInDate || null;
-}
-
-function getArrTime(seg) {
-    return seg.ArrivalPort?.Time || seg.Arrival?.Time || seg.CheckOutDate || null;
-}
-
-function getDepCity(seg) {
+function getSegFrom(seg) {
     if (seg.DeparturePort) return seg.DeparturePort.City || seg.DeparturePort.PortName || '';
     if (seg.Departure) return seg.Departure.City || '';
     if (seg.City) return seg.City;
     return '';
 }
-
-function getArrCity(seg) {
+function getSegTo(seg) {
     if (seg.ArrivalPort) return seg.ArrivalPort.City || seg.ArrivalPort.PortName || '';
     if (seg.Arrival) return seg.Arrival.City || '';
     if (seg.City) return seg.City;
     return '';
 }
-
-function getDepCode(seg) {
-    return seg.DeparturePort?.CountryCode || seg.Departure?.Code || '';
-}
-
-function getArrCode(seg) {
-    return seg.ArrivalPort?.CountryCode || seg.Arrival?.Code || '';
-}
-
-function getDepLocation(seg) {
+function getSegFromFull(seg) {
     if (seg.DeparturePort) {
-        const city = seg.DeparturePort.City || seg.DeparturePort.PortName || '';
-        const cc = seg.DeparturePort.CountryCode || '';
-        return cc ? `${city}, ${cc}` : city;
+        const p = seg.DeparturePort;
+        return `${p.City||p.PortName||''}, ${p.CountryCode||''}`;
     }
     if (seg.Departure) {
-        const city = seg.Departure.City || '';
-        const code = seg.Departure.Code || '';
-        return code ? `${city} (${code})` : city;
+        const d = seg.Departure;
+        return d.Code ? `${d.City} (${d.Code})` : (d.City||'');
     }
-    if (seg.City) {
-        return seg.CountryCode ? `${seg.City}, ${seg.CountryCode}` : seg.City;
-    }
+    if (seg.City) return `${seg.City}, ${seg.CountryCode||''}`;
     return '';
 }
-
-function getArrLocation(seg) {
+function getSegToFull(seg) {
     if (seg.ArrivalPort) {
-        const city = seg.ArrivalPort.City || seg.ArrivalPort.PortName || '';
-        const cc = seg.ArrivalPort.CountryCode || '';
-        return cc ? `${city}, ${cc}` : city;
+        const p = seg.ArrivalPort;
+        return `${p.City||p.PortName||''}, ${p.CountryCode||''}`;
     }
     if (seg.Arrival) {
-        const city = seg.Arrival.City || '';
-        const code = seg.Arrival.Code || '';
-        return code ? `${city} (${code})` : city;
+        const a = seg.Arrival;
+        return a.Code ? `${a.City} (${a.Code})` : (a.City||'');
     }
-    if (seg.City) {
-        return seg.CountryCode ? `${seg.City}, ${seg.CountryCode}` : seg.City;
-    }
+    if (seg.City) return `${seg.City}, ${seg.CountryCode||''}`;
     return '';
 }
-
+function getSegDetail(seg) {
+    switch(seg.SegmentType) {
+        case 'Cruise': return `${seg.CruiseLine||''} ${seg.Ship||''}`.trim();
+        case 'Flight': return `${seg.Airline||''}${seg.FlightNumber ? ' '+seg.FlightNumber : ''}`.trim();
+        case 'Train': return `${seg.Operator||''}${seg.TrainNumber ? ' '+seg.TrainNumber : ''}`.trim();
+        case 'Bus': return `${seg.Operator||''} ${seg.Route||''}`.trim();
+        case 'Accommodation': return seg.DisplayName||seg.City||'';
+        default: return seg.SegmentType||'';
+    }
+}
 function getTripDateRange(trip) {
-    const dates = [];
-    for (const seg of trip.Segments || []) {
-        const dep = getDepTime(seg);
-        const arr = getArrTime(seg);
-        if (dep) dates.push(dep);
-        if (arr) dates.push(arr);
+    let min = null, max = null;
+    for (const seg of trip.Segments||[]) {
+        const s = getSegStart(seg), e = getSegEnd(seg);
+        if (s && (!min || new Date(s) < new Date(min))) min = s;
+        if (e && (!max || new Date(e) > new Date(max))) max = e;
     }
-    if (dates.length === 0) return null;
-    dates.sort();
-    return { start: dates[0], end: dates[dates.length - 1] };
+    return { start: min, end: max };
+}
+function getTripYear(trip) {
+    const { start } = getTripDateRange(trip);
+    return start ? new Date(start).getFullYear() : 'Unknown';
 }
 
-function getSegmentTypes(trip) {
-    const types = new Set();
-    for (const seg of trip.Segments || []) {
-        types.add(seg.SegmentType);
+// Group connected flights (same booking number within a trip) and back-to-back trains
+function groupSegments(segments) {
+    const groups = [];
+    const used = new Set();
+    for (let i = 0; i < segments.length; i++) {
+        if (used.has(i)) continue;
+        const seg = segments[i];
+        if (seg.SegmentType === 'Flight' && seg.BookingNumber) {
+            const connected = [seg];
+            used.add(i);
+            for (let j = i + 1; j < segments.length; j++) {
+                if (used.has(j)) continue;
+                if (segments[j].SegmentType === 'Flight' && segments[j].BookingNumber === seg.BookingNumber) {
+                    connected.push(segments[j]);
+                    used.add(j);
+                }
+            }
+            if (connected.length > 1) {
+                connected.sort((a,b) => new Date(getSegStart(a)||0) - new Date(getSegStart(b)||0));
+                groups.push({ type: 'flight-group', segments: connected, booking: seg.BookingNumber });
+            } else {
+                groups.push({ type: 'single', segment: seg });
+            }
+        } else if (seg.SegmentType === 'Train') {
+            const trainGroup = [seg];
+            used.add(i);
+            let lastEnd = getSegEnd(seg);
+            for (let j = i + 1; j < segments.length; j++) {
+                if (used.has(j)) continue;
+                if (segments[j].SegmentType !== 'Train') break;
+                const nextStart = getSegStart(segments[j]);
+                if (lastEnd && nextStart) {
+                    const gapHours = (new Date(nextStart) - new Date(lastEnd)) / (3600000);
+                    if (gapHours >= 0 && gapHours <= 3) {
+                        trainGroup.push(segments[j]);
+                        used.add(j);
+                        lastEnd = getSegEnd(segments[j]);
+                    } else break;
+                } else break;
+            }
+            if (trainGroup.length > 1) {
+                groups.push({ type: 'train-group', segments: trainGroup });
+            } else {
+                groups.push({ type: 'single', segment: seg });
+            }
+        } else {
+            used.add(i);
+            groups.push({ type: 'single', segment: seg });
+        }
     }
-    return [...types];
+    return groups;
 }
 
-function getTripEvents(tripId) {
-    return events.filter(e => e.TripId === tripId);
-}
-
-function segmentSummary(seg) {
-    const from = getDepCity(seg) || '?';
-    const to = getArrCity(seg) || '?';
-
-    switch (seg.SegmentType) {
-        case 'Cruise': {
-            const ports = (seg.PortsOfCall || []).length;
-            return `${seg.CruiseLine || ''} ${seg.Ship || ''}  -  ${from} \u2192 ${to}${ports ? ` (${ports} ports)` : ''}`;
-        }
-        case 'Flight': {
-            const depCode = seg.Departure?.Code || '';
-            const arrCode = seg.Arrival?.Code || '';
-            const route = depCode && arrCode ? `${depCode} \u2192 ${arrCode}` : `${from} \u2192 ${to}`;
-            return `${seg.Airline || ''} ${seg.FlightNumber || ''}  -  ${route}`.trim();
-        }
-        case 'Train': {
-            return `${seg.Operator || 'Train'} ${seg.TrainNumber || ''}  -  ${from} \u2192 ${to}`.trim();
-        }
-        case 'Bus': {
-            return `${seg.Operator || 'Bus'} ${seg.Route || ''}  -  ${from} \u2192 ${to}`.trim();
-        }
-        case 'Accommodation': {
-            const name = seg.DisplayName || seg.HotelName || seg.PropertyName || 'Accommodation';
-            const city = seg.City || '';
-            return city ? `${name}  -  ${city}` : name;
-        }
-        default:
-            return seg.SegmentType || 'Unknown';
-    }
-}
-
-function segmentDateStr(seg) {
-    const dep = getDepTime(seg);
-    const arr = getArrTime(seg);
-    if (dep && arr) return `${formatDateShort(dep)}  -  ${formatDateShort(arr)}`;
-    if (dep) return formatDateShort(dep);
-    if (arr) return `\u2192 ${formatDateShort(arr)}`;
-    return '';
-}
-
-// Sort segments by departure time
-function sortSegments(segments) {
-    return [...(segments || [])].sort((a, b) => {
-        const aTime = getDepTime(a) || '9999';
-        const bTime = getDepTime(b) || '9999';
-        return new Date(aTime) - new Date(bTime);
-    });
-}
-
-// ============ GAP DETECTION ============
-
-function getGaps(trip) {
+// Detect gaps in data
+function detectGaps() {
     const gaps = [];
-    for (const seg of trip.Segments || []) {
-        // Missing booking number (accommodations with HOME are fine)
-        if (!seg.BookingNumber) {
-            gaps.push({ type: 'missing_booking', segment: seg, trip: trip });
+    for (const trip of tripsData) {
+        const segs = trip.Segments || [];
+        // Missing booking numbers
+        for (const seg of segs) {
+            if (!seg.BookingNumber) {
+                gaps.push({ trip: trip.TripName, tripId: trip.TripId, severity: 'warning',
+                    msg: `Missing booking number: ${segIcon(seg.SegmentType)} ${seg.SegmentType} - ${getSegDetail(seg)} (${getSegFrom(seg)} to ${getSegTo(seg)})` });
+            }
         }
-        // Missing departure time
-        if (!getDepTime(seg)) {
-            gaps.push({ type: 'missing_departure_time', segment: seg, trip: trip });
+        // Inferred segments
+        for (const seg of segs) {
+            if (seg.Source === 'inferred') {
+                gaps.push({ trip: trip.TripName, tripId: trip.TripId, severity: 'info',
+                    msg: `Inferred segment: ${segIcon(seg.SegmentType)} ${seg.SegmentType} - ${getSegDetail(seg)} (${getSegFrom(seg)} to ${getSegTo(seg)})` });
+            }
         }
-        // Missing arrival time
-        if (!getArrTime(seg)) {
-            gaps.push({ type: 'missing_arrival_time', segment: seg, trip: trip });
+        // Time gaps between segments (> 24 hours unaccounted)
+        const sorted = [...segs].filter(s => getSegEnd(s) && getSegStart(s))
+            .sort((a,b) => new Date(getSegEnd(a)) - new Date(getSegEnd(b)));
+        for (let i = 0; i < sorted.length - 1; i++) {
+            const end = getSegEnd(sorted[i]);
+            const nextStart = getSegStart(sorted[i+1]);
+            if (end && nextStart) {
+                const gapDays = daysBetween(end, nextStart);
+                if (gapDays > 1) {
+                    gaps.push({ trip: trip.TripName, tripId: trip.TripId, severity: 'info',
+                        msg: `${gapDays}-day gap between "${getSegDetail(sorted[i])}" ending ${fmtDate(end)} and "${getSegDetail(sorted[i+1])}" starting ${fmtDate(nextStart)}` });
+                }
+            }
         }
-        // Inferred source
-        if (seg.Source === 'inferred') {
-            gaps.push({ type: 'inferred', segment: seg, trip: trip });
-        }
-    }
-
-    // Time gaps between segments
-    const sorted = sortSegments(trip.Segments);
-    for (let i = 0; i < sorted.length - 1; i++) {
-        const end = getArrTime(sorted[i]);
-        const nextStart = getDepTime(sorted[i + 1]);
-        if (end && nextStart) {
-            const gapMs = new Date(nextStart) - new Date(end);
-            const gapDays = Math.round(gapMs / 86400000);
-            if (gapDays > 2) {
-                gaps.push({
-                    type: 'time_gap',
-                    days: gapDays,
-                    afterSeg: sorted[i],
-                    beforeSeg: sorted[i + 1],
-                    trip: trip
-                });
+        // Missing departure/arrival times
+        for (const seg of segs) {
+            if (seg.SegmentType !== 'Accommodation') {
+                if (!getSegStart(seg)) {
+                    gaps.push({ trip: trip.TripName, tripId: trip.TripId, severity: 'warning',
+                        msg: `Missing departure time: ${segIcon(seg.SegmentType)} ${getSegDetail(seg)}` });
+                }
+                if (!getSegEnd(seg)) {
+                    gaps.push({ trip: trip.TripName, tripId: trip.TripId, severity: 'warning',
+                        msg: `Missing arrival time: ${segIcon(seg.SegmentType)} ${getSegDetail(seg)}` });
+                }
             }
         }
     }
-
     return gaps;
 }
 
-// ============ TIMELINE VIEW ============
-
-function renderTimeline() {
-    const container = document.getElementById('timeline-view');
-    let html = '';
-
-    // Group by year
-    const byYear = {};
-    const sortedTrips = [...trips].sort((a, b) => { const aR = getTripDateRange(a); const bR = getTripDateRange(b); return new Date(bR?.start || 0) - new Date(aR?.start || 0); });
-    for (const trip of sortedTrips) {
-        const range = getTripDateRange(trip);
-        const year = range ? new Date(range.start).getFullYear() : 'Unknown';
-        if (!byYear[year]) byYear[year] = [];
-        byYear[year].push(trip);
-    }
-
-    const years = Object.keys(byYear).sort((a, b) => b - a);
-
-    for (const year of years) {
-        html += `<div class="timeline-year"><h2 class="year-label">${year}</h2>`;
-
-        // Sort trips within year by start date
-        byYear[year].sort((a, b) => {
-            const aR = getTripDateRange(a);
-            const bR = getTripDateRange(b);
-            return new Date(bR?.start || 0) - new Date(aR?.start || 0);
-        });
-
-        for (const trip of byYear[year]) {
-            const range = getTripDateRange(trip);
-            const segTypes = getSegmentTypes(trip);
-            const tripEvents = getTripEvents(trip.TripId);
-            const tripGaps = getGaps(trip);
-
-            html += `<div class="timeline-trip">`;
-            html += `<div class="timeline-header" onclick="toggleTrip(this)">`;
-            html += `<span class="arrow">\u25B6</span>`;
-            html += `<span class="trip-name">${trip.TripName}</span>`;
-            html += `<span class="trip-dates">${range ? `${formatDateShort(range.start)}  -  ${formatDateShort(range.end)}` : '<span class="no-dates-tag">No dates</span>'}</span>`;
-            html += `<span class="trip-badges">`;
-            for (const t of segTypes) {
-                html += `<span class="badge badge-${t.toLowerCase()}">${t}</span>`;
-            }
-            if (tripGaps.length > 0) {
-                html += `<span class="badge badge-gap">${tripGaps.length} gap${tripGaps.length > 1 ? 's' : ''}</span>`;
-            }
-            html += `</span>`;
-            html += `</div>`; // header
-
-            html += `<div class="timeline-body">`;
-
-            // Home info
-            if (trip.HomeAtStart || trip.HomeAtEnd) {
-                html += `<div class="home-info">`;
-                if (trip.HomeAtStart) html += `<span>\uD83C\uDFE0 Home at start: <strong>${trip.HomeAtStart}</strong></span>`;
-                if (trip.HomeAtStart && trip.HomeAtEnd) html += ` \u2192 `;
-                if (trip.HomeAtEnd) html += `<span>\uD83C\uDFE0 Home at end: <strong>${trip.HomeAtEnd}</strong></span>`;
-                html += `</div>`;
-            }
-
-            // Segments
-            const sorted = sortSegments(trip.Segments);
-            for (const seg of sorted) {
-                const isGap = !seg.BookingNumber;
-                const isInferred = seg.Source === 'inferred';
-
-                html += `<div class="segment-row${isGap ? ' gap-highlight' : ''}${isInferred ? ' inferred-highlight' : ''}">`;
-                html += `<div class="segment-type ${seg.SegmentType.toLowerCase()}">${seg.SegmentType}</div>`;
-                html += `<div class="segment-detail">`;
-                html += `<div>${segmentSummary(seg)}</div>`;
-
-                // Ports of call for cruises
-                if (seg.SegmentType === 'Cruise' && seg.PortsOfCall && seg.PortsOfCall.length > 0) {
-                    html += `<div class="ports-list">Ports: ${seg.PortsOfCall.map(p => `${p.City || p.PortName}${p.CountryCode ? ' (' + p.CountryCode + ')' : ''}`).join(', ')}</div>`;
-                }
-
-                // Booking info
-                if (seg.BookingNumber) {
-                    html += `<div class="sub">Booking: <strong>${seg.BookingNumber}</strong>`;
-                    if (seg.Stateroom) html += ` | Room: ${seg.Stateroom}`;
-                    if (seg.RoomType) html += ` | ${seg.RoomType}`;
-                    if (seg.SeatClass) html += ` | ${seg.SeatClass}`;
-                    html += `</div>`;
-                } else {
-                    html += `<div class="sub" style="color:var(--gap)">\u26A0 Missing booking number</div>`;
-                }
-
-                // Source badge
-                if (seg.Source) {
-                    const srcColor = seg.Source === 'email' ? 'var(--accommodation)' : seg.Source === 'inferred' ? 'var(--flight)' : 'var(--text-muted)';
-                    html += `<div class="sub">Source: <span style="color:${srcColor}">${seg.Source}</span></div>`;
-                }
-
-                html += `</div>`; // segment-detail
-                html += `<div class="segment-meta">${segmentDateStr(seg)}</div>`;
-                html += `</div>`; // segment-row
-            }
-
-            // Events for this trip
-            if (tripEvents.length > 0) {
-                html += `<div class="events-section">`;
-                html += `<div class="events-label">\uD83D\uDCCC Events</div>`;
-                for (const ev of tripEvents) {
-                    html += `<div class="event-row">`;
-                    html += `<div class="segment-type" style="color:var(--excursion)">${ev.EventType}</div>`;
-                    html += `<div class="segment-detail">${ev.Title}${ev.City ? `  -  ${ev.City}` : ''}${ev.CountryCode ? ` (${ev.CountryCode})` : ''}</div>`;
-                    html += `<div class="segment-meta">${formatDateShort(ev.StartTime)}</div>`;
-                    html += `</div>`;
-                }
-                html += `</div>`;
-            }
-
-            html += `</div>`; // timeline-body
-            html += `</div>`; // timeline-trip
-        }
-
-        html += `</div>`; // timeline-year
-    }
-
-    container.innerHTML = html;
-}
-
-function toggleTrip(header) {
-    header.closest('.timeline-trip').classList.toggle('expanded');
-}
-
-// ============ TABLE VIEW ============
-
-function renderTable() {
-    const container = document.getElementById('table-view');
-    let html = `<div class="table-container"><table>`;
-    html += `<thead><tr>`;
-    html += `<th>Trip</th><th>Type</th><th>Summary</th><th>From</th><th>To</th><th>Departure</th><th>Arrival</th><th>Booking #</th><th>Source</th>`;
-    html += `</tr></thead><tbody>`;
-
-    const sortedTrips = [...trips].sort((a, b) => { const aR = getTripDateRange(a); const bR = getTripDateRange(b); return new Date(bR?.start || 0) - new Date(aR?.start || 0); });
-    for (const trip of sortedTrips) {
-        const range = getTripDateRange(trip);
-        html += `<tr class="trip-group-header"><td colspan="9">${trip.TripName}${range ? ` (${formatDateShort(range.start)}  -  ${formatDateShort(range.end)})` : ''}</td></tr>`;
-
-        const sorted = sortSegments(trip.Segments);
-        for (const seg of sorted) {
-            const isGap = !seg.BookingNumber;
-            const isInferred = seg.Source === 'inferred';
-            html += `<tr class="${isGap ? 'gap-row' : ''} ${isInferred ? 'inferred-row' : ''}">`;
-            html += `<td></td>`;
-            html += `<td><span class="badge badge-${seg.SegmentType.toLowerCase()}">${seg.SegmentType}</span></td>`;
-            html += `<td>${segmentSummary(seg)}</td>`;
-            html += `<td>${getDepLocation(seg)}</td>`;
-            html += `<td>${getArrLocation(seg)}</td>`;
-            html += `<td>${formatDateTime(getDepTime(seg)) || '<span style="color:var(--gap)">MISSING</span>'}</td>`;
-            html += `<td>${formatDateTime(getArrTime(seg)) || '<span style="color:var(--gap)">MISSING</span>'}</td>`;
-            html += `<td>${seg.BookingNumber || '<span style="color:var(--gap)">MISSING</span>'}</td>`;
-            html += `<td>${seg.Source || ''}</td>`;
-            html += `</tr>`;
-
-            // Ports of call sub-rows for cruises
-            if (seg.SegmentType === 'Cruise' && seg.PortsOfCall && seg.PortsOfCall.length > 0) {
-                html += `<tr class="port-row"><td colspan="9"><div class="ports-list"><strong>Ports of Call:</strong> `;
-                html += seg.PortsOfCall.map(p => `${p.City || p.PortName} (${p.CountryCode || '?'}) ${formatDateShort(p.Date)}`).join(' \u2192 ');
-                html += `</div></td></tr>`;
-            }
-        }
-    }
-
-    html += `</tbody></table></div>`;
-    container.innerHTML = html;
-}
-
-// ============ GAPS VIEW ============
-
-function renderGaps() {
-    const container = document.getElementById('gaps-view');
-    let allGaps = [];
-    const sortedTrips = [...trips].sort((a, b) => { const aR = getTripDateRange(a); const bR = getTripDateRange(b); return new Date(bR?.start || 0) - new Date(aR?.start || 0); });
-    for (const trip of sortedTrips) {
-        allGaps.push(...getGaps(trip));
-    }
-
-    const missingBooking = allGaps.filter(g => g.type === 'missing_booking');
-    const missingDep = allGaps.filter(g => g.type === 'missing_departure_time');
-    const missingArr = allGaps.filter(g => g.type === 'missing_arrival_time');
-    const inferred = allGaps.filter(g => g.type === 'inferred');
-    const timeGaps = allGaps.filter(g => g.type === 'time_gap');
-
-    const totalSegments = trips.reduce((a, t) => a + (t.Segments?.length || 0), 0);
-    const emailSegments = trips.reduce((a, t) => a + (t.Segments || []).filter(s => s.Source === 'email').length, 0);
-
-    let html = `<div class="gap-summary">`;
-    html += `<div class="gap-stat"><div class="num">${trips.length}</div><div class="label">Trips</div></div>`;
-    html += `<div class="gap-stat"><div class="num">${totalSegments}</div><div class="label">Segments</div></div>`;
-    html += `<div class="gap-stat"><div class="num">${emailSegments}</div><div class="label">Email Verified</div></div>`;
-    html += `<div class="gap-stat"><div class="num">${events.length}</div><div class="label">Events</div></div>`;
-    html += `<div class="gap-stat${allGaps.length > 0 ? ' warning' : ''}"><div class="num">${allGaps.length}</div><div class="label">Total Gaps</div></div>`;
-    html += `</div>`;
-
-    // Missing booking numbers
-    if (missingBooking.length > 0) {
-        html += `<h3 class="gap-section-title">\u26A0 Missing Booking Numbers (${missingBooking.length})</h3>`;
-        for (const gap of missingBooking) {
-            html += `<div class="gap-card">`;
-            html += `<h3>${gap.segment.SegmentType}: ${segmentSummary(gap.segment)}</h3>`;
-            html += `<p>Trip: ${gap.trip.TripName}</p>`;
-            html += `<p>Dates: ${segmentDateStr(gap.segment)}</p>`;
-            html += `</div>`;
-        }
-    }
-
-    // Inferred segments
-    if (inferred.length > 0) {
-        html += `<h3 class="gap-section-title">\uD83D\uDD2E Inferred Segments (${inferred.length})</h3>`;
-        for (const gap of inferred) {
-            html += `<div class="gap-card">`;
-            html += `<h3>${gap.segment.SegmentType}: ${segmentSummary(gap.segment)}</h3>`;
-            html += `<p>Trip: ${gap.trip.TripName}</p>`;
-            html += `<p>Source marked "inferred" - needs email or manual confirmation</p>`;
-            html += `</div>`;
-        }
-    }
-
-    // Time gaps
-    if (timeGaps.length > 0) {
-        html += `<h3 class="gap-section-title">\u23F0 Time Gaps Between Segments (${timeGaps.length})</h3>`;
-        for (const gap of timeGaps) {
-            html += `<div class="gap-card">`;
-            html += `<h3>${gap.days} day gap</h3>`;
-            html += `<p>After: ${segmentSummary(gap.afterSeg)}</p>`;
-            html += `<p>Before: ${segmentSummary(gap.beforeSeg)}</p>`;
-            html += `<p>Trip: ${gap.trip.TripName}</p>`;
-            html += `</div>`;
-        }
-    }
-
-    // Missing departure times
-    if (missingDep.length > 0) {
-        html += `<h3 class="gap-section-title">\u23F1 Missing Departure Times (${missingDep.length})</h3>`;
-        for (const gap of missingDep) {
-            html += `<div class="gap-card">`;
-            html += `<h3>${gap.segment.SegmentType}: ${segmentSummary(gap.segment)}</h3>`;
-            html += `<p>Trip: ${gap.trip.TripName}</p>`;
-            html += `</div>`;
-        }
-    }
-
-    // Missing arrival times
-    if (missingArr.length > 0) {
-        html += `<h3 class="gap-section-title">\u23F1 Missing Arrival Times (${missingArr.length})</h3>`;
-        for (const gap of missingArr) {
-            html += `<div class="gap-card">`;
-            html += `<h3>${gap.segment.SegmentType}: ${segmentSummary(gap.segment)}</h3>`;
-            html += `<p>Trip: ${gap.trip.TripName}</p>`;
-            html += `</div>`;
-        }
-    }
-
-    if (allGaps.length === 0) {
-        html += `<div style="text-align:center;padding:3rem;color:var(--accommodation);font-size:1.2rem;">\u2705 No gaps detected. All segments have booking numbers and dates.</div>`;
-    }
-
-    container.innerHTML = html;
-}
-
-// Init
-init();
-
-// Render a single segment row (used by both table and connection views)
-function renderSegRow(seg, isLeg) {
-    const isInferred = seg.Source === 'inferred' && seg.BookingNumber !== 'HOME';
-    const isMissing = !seg.BookingNumber && seg.SegmentType !== 'Accommodation';
-    const rowClass = isMissing ? 'gap-row' : isInferred ? 'inferred-row' : '';
-    const indent = isLeg ? ' leg-row' : '';
-
-    let html = `<div class="seg-row ${rowClass}${indent}">`;
-    html += `<div class="seg-date">${fmtShort(getSegStart(seg))}</div>`;
-    html += `<div class="seg-type"><span class="badge badge-${seg.SegmentType.toLowerCase()}">${segIcon(seg.SegmentType)} ${seg.SegmentType}</span></div>`;
-    html += `<div class="seg-detail">${getSegDetail(seg)}</div>`;
-    html += `<div class="seg-from">${getSegFrom(seg)}</div>`;
-    html += `<div class="seg-to">${getSegTo(seg)}</div>`;
-    html += `<div class="seg-source"><span class="badge badge-${seg.Source||'manual'}">${seg.Source||'manual'}</span></div>`;
-    html += `<div class="seg-ref">`;
-    if (seg.BookingNumber) {
-        html += `<span class="booking-ref">${seg.BookingNumber}</span>`;
-    } else if (seg.SegmentType === 'Accommodation') {
-        html += '<span class="text-muted">N/A</span>';
-    } else {
-        html += '<span class="missing-field">MISSING</span>';
-    }
-    html += `</div></div>`;
-    return html;
-}
-
-// Render ports of call
-function renderPorts(ports) {
-    if (!ports || ports.length === 0) return '';
-    let html = '<div class="ports-row"><div class="port-list">';
-    for (const port of ports) {
-        html += `<span class="port-chip"><span class="port-date">${fmtShort(port.Date)}</span>${port.City}, ${port.CountryCode}</span>`;
-    }
-    html += '</div></div>';
-    return html;
-}
-
-// Render connection group (expandable)
-function renderConnection(group) {
-    const first = group.legs[0];
-    const last = group.legs[group.legs.length - 1];
-    const origin = getSegFrom(first);
-    const dest = getSegTo(last);
-    const stops = group.legs.length - 1;
-    const icon = segIcon(group.segmentType);
-    const isInferred = group.legs.some(l => l.Source === 'inferred');
-    const isMissing = group.legs.some(l => !l.BookingNumber);
-    const rowClass = isMissing ? 'gap-row' : isInferred ? 'inferred-row' : '';
-
-    let html = `<div class="connection-group ${rowClass}">`;
-    html += `<div class="connection-header" onclick="this.parentElement.classList.toggle('expanded')">`;
-    html += `<span class="expand-icon">\u25B6</span>`;
-    html += `<div class="seg-date">${fmtShort(getSegStart(first))}</div>`;
-    html += `<div class="seg-type"><span class="badge badge-${group.segmentType.toLowerCase()}">${icon} ${group.segmentType}</span></div>`;
-    html += `<div class="seg-detail">${getSegDetail(first)} + ${stops} connection${stops>1?'s':''}</div>`;
-    html += `<div class="seg-from">${origin}</div>`;
-    html += `<div class="seg-to">${dest}</div>`;
-    html += `<div class="seg-source"><span class="badge badge-${first.Source||'manual'}">${first.Source||'manual'}</span></div>`;
-    html += `<div class="seg-ref">`;
-    const refs = [...new Set(group.legs.map(l => l.BookingNumber).filter(Boolean))];
-    html += refs.length > 0 ? refs.map(r => `<span class="booking-ref">${r}</span>`).join(' ') : '<span class="missing-field">MISSING</span>';
-    html += `</div></div>`;
-
-    html += `<div class="connection-legs">`;
-    for (const leg of group.legs) {
-        html += renderSegRow(leg, true);
-    }
-    html += `</div></div>`;
-    return html;
-}
-
-// Table View
-function renderTable(trips, filter) {
+// ==================== TABLE VIEW ====================
+function renderTableView(trips, events) {
     const wrapper = document.getElementById('table-wrapper');
-    let filtered = [...trips];
-
-    if (filter.year && filter.year !== 'all') filtered = filtered.filter(t => String(getTripYear(t)) === filter.year);
-    if (filter.type && filter.type !== 'all') filtered = filtered.filter(t => (t.Segments||[]).some(s => s.SegmentType === filter.type));
-    if (filter.source && filter.source !== 'all') filtered = filtered.filter(t => (t.Segments||[]).some(s => s.Source === filter.source));
-    if (filter.search) {
-        const q = filter.search.toLowerCase();
-        filtered = filtered.filter(t => {
-            const haystack = [t.TripName, t.TripId, ...(t.Segments||[]).map(s => [getSegDetail(s), getSegFrom(s), getSegTo(s), s.BookingNumber||''].join(' '))].join(' ').toLowerCase();
-            return haystack.includes(q);
-        });
-    }
-    filtered.sort((a,b) => new Date(getTripDateRange(a).start||0) - new Date(getTripDateRange(b).start||0));
-
+    if (!trips.length) { wrapper.innerHTML = '<p class="empty">No trips match filters.</p>'; return; }
     let html = '';
-    for (const trip of filtered) {
+    for (const trip of trips) {
         const range = getTripDateRange(trip);
-        const segTypes = [...new Set((trip.Segments||[]).map(s => s.SegmentType))];
-        const hasInferred = (trip.Segments||[]).some(s => s.Source === 'inferred' && s.BookingNumber !== 'HOME');
-        const hasMissing = (trip.Segments||[]).some(s => !s.BookingNumber && s.SegmentType !== 'Accommodation');
-        const tripClass = hasMissing ? 'has-missing' : hasInferred ? 'has-gaps' : '';
-
-        html += `<div class="trip-group ${tripClass}">`;
-        html += `<div class="trip-header" onclick="this.parentElement.classList.toggle('expanded')">`;
-        html += `<span class="expand-icon">\u25B6</span>`;
-        html += `<span class="trip-title">${trip.TripName}</span>`;
-        html += `<span class="trip-badges">${segTypes.map(t => `<span class="badge badge-${t.toLowerCase()}">${t}</span>`).join('')}`;
-        if (hasInferred) html += `<span class="badge badge-inferred">Inferred</span>`;
-        if (hasMissing) html += `<span class="badge badge-gap">Missing Data</span>`;
-        html += `</span>`;
-        html += `<span class="trip-dates">${fmtShort(range.start)} to ${fmtShort(range.end)}</span>`;
-        html += `</div>`;
-
-        html += `<div class="trip-body">`;
-
-        if (trip.HomeAtStart || trip.HomeAtEnd) {
-            html += `<div class="home-info">`;
-            if (trip.HomeAtStart) html += `Home start: <strong>${trip.HomeAtStart}</strong>`;
-            if (trip.HomeAtStart && trip.HomeAtEnd) html += ` | `;
-            if (trip.HomeAtEnd) html += `Home end: <strong>${trip.HomeAtEnd}</strong>`;
-            html += `</div>`;
-        }
-
-        html += `<div class="seg-grid-header"><div>Date</div><div>Type</div><div>Detail</div><div>From</div><div>To</div><div>Source</div><div>Booking</div></div>`;
-
-        const groups = groupConnections(trip.Segments||[]);
-
+        const segCount = (trip.Segments||[]).length;
+        const tripEvents = events.filter(e => e.TripId === trip.TripId);
+        const groups = groupSegments(trip.Segments || []);
+        html += `<div class="trip-card">
+            <div class="trip-header" onclick="this.parentElement.classList.toggle('expanded')">
+                <div class="trip-title">${trip.TripName}</div>
+                <div class="trip-meta">
+                    <span>${fmtDate(range.start)} - ${fmtDate(range.end)}</span>
+                    <span>${segCount} segment${segCount!==1?'s':''}</span>
+                    ${tripEvents.length ? `<span>${tripEvents.length} event${tripEvents.length!==1?'s':''}</span>` : ''}
+                    <span class="expand-icon">&#9660;</span>
+                </div>
+            </div>
+            <div class="trip-body">
+                <table class="seg-table">
+                    <thead><tr>
+                        <th>Type</th><th>Detail</th><th>From</th><th>To</th>
+                        <th>Depart</th><th>Arrive</th><th>Booking</th><th>Source</th>
+                    </tr></thead>
+                    <tbody>`;
         for (const group of groups) {
-            if (group.type === 'connection') {
-                html += renderConnection(group);
-            } else {
-                const seg = group.seg;
-                // Cruise: make expandable if it has ports
-                if (seg.SegmentType === 'Cruise' && seg.PortsOfCall && seg.PortsOfCall.length > 0) {
-                    html += `<div class="cruise-expandable">`;
-                    html += `<div class="cruise-header" onclick="this.parentElement.classList.toggle('expanded')">`;
-                    html += `<span class="expand-icon">\u25B6</span>`;
-                    html += renderSegRow(seg, false).replace('<div class="seg-row', '<div class="seg-row-inner');
-                    html += `</div>`;
-                    html += `<div class="cruise-ports">`;
-                    html += renderPorts(seg.PortsOfCall);
-                    html += `</div></div>`;
-                } else {
-                    html += renderSegRow(seg, false);
+            if (group.type === 'single') {
+                html += renderSegRow(group.segment);
+            } else if (group.type === 'flight-group') {
+                const first = group.segments[0];
+                const last = group.segments[group.segments.length - 1];
+                const id = 'grp-' + Math.random().toString(36).substr(2, 8);
+                html += `<tr class="group-header" onclick="document.querySelectorAll('.${id}').forEach(r=>r.classList.toggle('show'))">
+                    <td>${segIcon('Flight')} Flight</td>
+                    <td>${first.Airline || ''} (${group.segments.length} legs) <span class="conn-badge">connection</span></td>
+                    <td>${getSegFromFull(first)}</td>
+                    <td>${getSegToFull(last)}</td>
+                    <td>${fmtDate(getSegStart(first))} ${fmtTime(getSegStart(first))}</td>
+                    <td>${fmtDate(getSegEnd(last))} ${fmtTime(getSegEnd(last))}</td>
+                    <td>${group.booking||''}</td>
+                    <td>${first.Source||''}</td>
+                </tr>`;
+                for (const leg of group.segments) {
+                    html += `<tr class="conn-leg ${id}">
+                        <td></td>
+                        <td class="indent">${leg.Airline||''} ${leg.FlightNumber||''} ${leg.SeatClass?'('+leg.SeatClass+')':''}</td>
+                        <td>${getSegFromFull(leg)}</td>
+                        <td>${getSegToFull(leg)}</td>
+                        <td>${fmtDate(getSegStart(leg))} ${fmtTime(getSegStart(leg))}</td>
+                        <td>${fmtDate(getSegEnd(leg))} ${fmtTime(getSegEnd(leg))}</td>
+                        <td>${leg.BookingNumber||''}</td>
+                        <td>${leg.Source||''}</td>
+                    </tr>`;
+                }
+            } else if (group.type === 'train-group') {
+                const first = group.segments[0];
+                const last = group.segments[group.segments.length - 1];
+                const id = 'grp-' + Math.random().toString(36).substr(2, 8);
+                html += `<tr class="group-header" onclick="document.querySelectorAll('.${id}').forEach(r=>r.classList.toggle('show'))">
+                    <td>${segIcon('Train')} Train</td>
+                    <td>${first.Operator||''} (${group.segments.length} legs) <span class="conn-badge">connection</span></td>
+                    <td>${getSegFromFull(first)}</td>
+                    <td>${getSegToFull(last)}</td>
+                    <td>${fmtDate(getSegStart(first))} ${fmtTime(getSegStart(first))}</td>
+                    <td>${fmtDate(getSegEnd(last))} ${fmtTime(getSegEnd(last))}</td>
+                    <td>${first.BookingNumber||''}</td>
+                    <td>${first.Source||''}</td>
+                </tr>`;
+                for (const leg of group.segments) {
+                    html += `<tr class="conn-leg ${id}">
+                        <td></td>
+                        <td class="indent">${leg.Operator||''} ${leg.TrainNumber||''} ${leg.SeatClass?'('+leg.SeatClass+')':''}</td>
+                        <td>${getSegFromFull(leg)}</td>
+                        <td>${getSegToFull(leg)}</td>
+                        <td>${fmtDate(getSegStart(leg))} ${fmtTime(getSegStart(leg))}</td>
+                        <td>${fmtDate(getSegEnd(leg))} ${fmtTime(getSegEnd(leg))}</td>
+                        <td>${leg.BookingNumber||''}</td>
+                        <td>${leg.Source||''}</td>
+                    </tr>`;
                 }
             }
         }
-
-        // Events
-        const tripEvents = eventsData.filter(e => e.TripId === trip.TripId);
-        if (tripEvents.length > 0) {
-            html += `<div class="events-section">`;
-            html += `<div class="events-label">Events (${tripEvents.length})</div>`;
-            for (const evt of tripEvents) {
-                html += `<div class="event-chip"><span class="port-date">${fmtShort(evt.StartTime)}</span>${evt.Title} (${evt.City||''}, ${evt.CountryCode||''})</div>`;
+        // Cruise port calls (expandable within the cruise row)
+        // Events for this trip
+        if (tripEvents.length) {
+            html += `<tr class="event-separator"><td colspan="8">Events</td></tr>`;
+            for (const ev of tripEvents) {
+                html += `<tr class="event-row">
+                    <td>\u{1F3AF} ${ev.EventType}</td>
+                    <td>${ev.Title}</td>
+                    <td>${ev.City}, ${ev.CountryCode}</td>
+                    <td></td>
+                    <td>${fmtDate(ev.StartTime)} ${ev.IsFullDay?'(all day)':fmtTime(ev.StartTime)}</td>
+                    <td>${ev.EndTime ? fmtTime(ev.EndTime) : ''}</td>
+                    <td></td>
+                    <td>${ev.Source||''}</td>
+                </tr>`;
             }
-            html += `</div>`;
         }
-
-        html += `</div></div>`;
+        html += '</tbody></table></div></div>';
     }
-
-    if (filtered.length === 0) html = '<p class="empty-msg">No trips match filters</p>';
     wrapper.innerHTML = html;
 }
 
-// Timeline View
-function renderTimeline(trips) {
+function renderSegRow(seg) {
+    // For cruises, make them expandable to show port calls
+    if (seg.SegmentType === 'Cruise' && seg.PortsOfCall && seg.PortsOfCall.length) {
+        const id = 'ports-' + Math.random().toString(36).substr(2, 8);
+        let html = `<tr class="group-header" onclick="document.querySelectorAll('.${id}').forEach(r=>r.classList.toggle('show'))">
+            <td>${segIcon(seg.SegmentType)} ${seg.SegmentType}</td>
+            <td>${getSegDetail(seg)} ${seg.RoomType?'('+seg.RoomType+')':''} ${seg.Stateroom?'#'+seg.Stateroom:''} <span class="conn-badge">${seg.PortsOfCall.length} ports</span></td>
+            <td>${getSegFromFull(seg)}</td>
+            <td>${getSegToFull(seg)}</td>
+            <td>${fmtDate(getSegStart(seg))} ${fmtTime(getSegStart(seg))}</td>
+            <td>${fmtDate(getSegEnd(seg))} ${fmtTime(getSegEnd(seg))}</td>
+            <td>${seg.BookingNumber||''}</td>
+            <td>${seg.Source||''}</td>
+        </tr>`;
+        for (const port of seg.PortsOfCall) {
+            html += `<tr class="conn-leg ${id}">
+                <td></td>
+                <td class="indent">\u2693 ${port.PortName || port.City || ''}</td>
+                <td>${port.City||''}, ${port.CountryCode||''}</td>
+                <td></td>
+                <td>${fmtDate(port.Date)}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>`;
+        }
+        return html;
+    }
+    // Regular single segment row
+    let extra = '';
+    if (seg.SegmentType === 'Flight') extra = seg.SeatClass ? ' (' + seg.SeatClass + ')' : '';
+    if (seg.SegmentType === 'Train') extra = seg.SeatClass ? ' (' + seg.SeatClass + ')' : '';
+    if (seg.SegmentType === 'Accommodation') extra = seg.Address1 ? ' - ' + seg.Address1 : '';
+    const missingBooking = !seg.BookingNumber ? ' class="missing"' : '';
+    return `<tr>
+        <td>${segIcon(seg.SegmentType)} ${seg.SegmentType}</td>
+        <td>${getSegDetail(seg)}${extra}</td>
+        <td>${getSegFromFull(seg)}</td>
+        <td>${getSegToFull(seg)}</td>
+        <td>${fmtDate(getSegStart(seg))} ${fmtTime(getSegStart(seg))}</td>
+        <td>${fmtDate(getSegEnd(seg))} ${fmtTime(getSegEnd(seg))}</td>
+        <td${missingBooking}>${seg.BookingNumber || '<span class="gap-marker">missing</span>'}</td>
+        <td>${seg.Source||''}</td>
+    </tr>`;
+}
+
+// ==================== TIMELINE VIEW ====================
+function renderTimelineView(trips, events) {
     const container = document.getElementById('timeline-container');
+    // Group by year descending
     const byYear = {};
     for (const trip of trips) {
         const year = getTripYear(trip);
@@ -665,208 +351,298 @@ function renderTimeline(trips) {
         byYear[year].push(trip);
     }
     const years = Object.keys(byYear).sort((a,b) => b - a);
-
     let html = '';
     for (const year of years) {
-        const yearTrips = byYear[year].sort((a,b) => new Date(getTripDateRange(a).start||0) - new Date(getTripDateRange(b).start||0));
-        html += `<div class="timeline-year">`;
-        html += `<div class="year-label" onclick="this.parentElement.classList.toggle('collapsed')">${year} <span class="year-count">(${yearTrips.length} trips)</span></div>`;
-
+        const yearTrips = byYear[year].sort((a,b) => {
+            const aStart = getTripDateRange(a).start;
+            const bStart = getTripDateRange(b).start;
+            return new Date(bStart||0) - new Date(aStart||0);
+        });
+        html += `<div class="timeline-year">
+            <div class="year-header" onclick="this.parentElement.classList.toggle('collapsed')">
+                <h2>${year}</h2>
+                <span class="trip-count">${yearTrips.length} trip${yearTrips.length!==1?'s':''}</span>
+                <span class="expand-icon">&#9660;</span>
+            </div>
+            <div class="year-body">`;
         for (const trip of yearTrips) {
             const range = getTripDateRange(trip);
-            const days = range.start && range.end ? daysBetween(range.start, range.end) : '?';
-            const hasGaps = (trip.Segments||[]).some(s => s.Source === 'inferred' && s.BookingNumber !== 'HOME');
-            const tripClass = hasGaps ? 'has-gaps' : '';
-
-            html += `<div class="timeline-trip ${tripClass}">`;
-            html += `<div class="timeline-header" onclick="this.parentElement.classList.toggle('expanded')">`;
-            html += `<span class="arrow">\u25B6</span>`;
-            html += `<span class="trip-name">${trip.TripName}</span>`;
-            html += `<span class="trip-badges">`;
-            const segTypes = [...new Set((trip.Segments||[]).map(s => s.SegmentType))];
-            html += segTypes.map(t => `<span class="badge badge-${t.toLowerCase()}">${segIcon(t)}</span>`).join('');
-            html += `</span>`;
-            html += `<span class="trip-dates">${fmtShort(range.start)} to ${fmtShort(range.end)} (${days}d)</span>`;
-            html += `</div>`;
-
-            html += `<div class="timeline-body">`;
-
-            if (trip.HomeAtStart || trip.HomeAtEnd) {
-                html += `<div class="home-info">`;
-                if (trip.HomeAtStart) html += `Home start: <strong>${trip.HomeAtStart}</strong>`;
-                if (trip.HomeAtStart && trip.HomeAtEnd) html += ` | `;
-                if (trip.HomeAtEnd) html += `Home end: <strong>${trip.HomeAtEnd}</strong>`;
-                html += `</div>`;
-            }
-
-            const groups = groupConnections(trip.Segments||[]);
-
+            const days = range.start && range.end ? daysBetween(range.start, range.end) : 0;
+            const groups = groupSegments(trip.Segments || []);
+            const tripEvents = events.filter(e => e.TripId === trip.TripId);
+            html += `<div class="timeline-trip">
+                <div class="timeline-trip-header" onclick="this.parentElement.classList.toggle('expanded')">
+                    <div class="timeline-trip-title">${trip.TripName}</div>
+                    <div class="timeline-trip-dates">
+                        ${fmtDate(range.start)} - ${fmtDate(range.end)}
+                        ${days ? `(${days} days)` : ''}
+                    </div>
+                    <span class="expand-icon">&#9660;</span>
+                </div>
+                <div class="timeline-trip-body">
+                    <div class="timeline-segments">`;
             for (const group of groups) {
-                if (group.type === 'connection') {
-                    const first = group.legs[0], last = group.legs[group.legs.length-1];
-                    const stops = group.legs.length - 1;
-                    html += `<div class="tl-segment connection-tl" onclick="this.classList.toggle('expanded')">`;
-                    html += `<div class="seg-icon" style="background:${getBgColor(group.segmentType)}">${segIcon(group.segmentType)}</div>`;
-                    html += `<div class="seg-content">`;
-                    html += `<div class="seg-title">${getSegFrom(first)} \u2192 ${getSegTo(last)} (${stops} stop${stops>1?'s':''})</div>`;
-                    html += `<div class="seg-meta">${fmtShort(getSegStart(first))} to ${fmtShort(getSegEnd(last))}</div>`;
-                    html += `<div class="connection-detail">`;
-                    for (const leg of group.legs) {
-                        html += `<div class="conn-leg">${segIcon(leg.SegmentType)} ${getSegDetail(leg)}: ${getSegFrom(leg)} \u2192 ${getSegTo(leg)} (${fmtShort(getSegStart(leg))})</div>`;
+                if (group.type === 'single') {
+                    const seg = group.segment;
+                    html += renderTimelineSegment(seg);
+                } else if (group.type === 'flight-group') {
+                    const first = group.segments[0];
+                    const last = group.segments[group.segments.length - 1];
+                    const id = 'tl-' + Math.random().toString(36).substr(2, 8);
+                    html += `<div class="tl-segment tl-group" onclick="this.classList.toggle('expanded')">
+                        <div class="tl-icon">${segIcon('Flight')}</div>
+                        <div class="tl-content">
+                            <div class="tl-main">${first.Airline||''}: ${getSegFrom(first)} to ${getSegTo(last)} <span class="conn-badge">${group.segments.length} legs</span></div>
+                            <div class="tl-time">${fmtDate(getSegStart(first))} ${fmtTime(getSegStart(first))} - ${fmtTime(getSegEnd(last))}</div>
+                            <div class="tl-legs">`;
+                    for (const leg of group.segments) {
+                        html += `<div class="tl-leg">
+                            ${leg.Airline||''} ${leg.FlightNumber||''}: ${getSegFrom(leg)} (${fmtTime(getSegStart(leg))}) to ${getSegTo(leg)} (${fmtTime(getSegEnd(leg))})
+                        </div>`;
                     }
-                    html += `</div>`;
-                    html += `</div></div>`;
-                } else {
-                    const seg = group.seg;
-                    const hasPorts = seg.SegmentType === 'Cruise' && seg.PortsOfCall && seg.PortsOfCall.length > 0;
-                    html += `<div class="tl-segment${hasPorts ? ' has-ports' : ''}"${hasPorts ? ' onclick="this.classList.toggle(\'expanded\')"' : ''}>`;
-                    html += `<div class="seg-icon" style="background:${getBgColor(seg.SegmentType)}">${segIcon(seg.SegmentType)}</div>`;
-                    html += `<div class="seg-content">`;
-                    html += `<div class="seg-title">${getSegDetail(seg)}</div>`;
-                    html += `<div class="seg-meta">${fmtShort(getSegStart(seg))} to ${fmtShort(getSegEnd(seg))} | ${getSegFrom(seg)} \u2192 ${getSegTo(seg)}</div>`;
-                    html += `<div class="seg-meta"><span class="badge badge-${seg.Source||'manual'}">${seg.Source||'manual'}</span> `;
-                    html += seg.BookingNumber ? `<span class="booking-ref">${seg.BookingNumber}</span>` : '';
-                    html += `</div>`;
-
-                    if (hasPorts) {
-                        html += `<div class="tl-ports">`;
-                        for (const port of seg.PortsOfCall) {
-                            html += `<span class="port-chip"><span class="port-date">${fmtShort(port.Date)}</span>${port.City}, ${port.CountryCode}</span>`;
-                        }
-                        html += `</div>`;
+                    html += `</div></div></div>`;
+                } else if (group.type === 'train-group') {
+                    const first = group.segments[0];
+                    const last = group.segments[group.segments.length - 1];
+                    html += `<div class="tl-segment tl-group" onclick="this.classList.toggle('expanded')">
+                        <div class="tl-icon">${segIcon('Train')}</div>
+                        <div class="tl-content">
+                            <div class="tl-main">${first.Operator||'Train'}: ${getSegFrom(first)} to ${getSegTo(last)} <span class="conn-badge">${group.segments.length} legs</span></div>
+                            <div class="tl-time">${fmtDate(getSegStart(first))} ${fmtTime(getSegStart(first))} - ${fmtTime(getSegEnd(last))}</div>
+                            <div class="tl-legs">`;
+                    for (const leg of group.segments) {
+                        html += `<div class="tl-leg">
+                            ${leg.Operator||''} ${leg.TrainNumber||''}: ${getSegFrom(leg)} (${fmtTime(getSegStart(leg))}) to ${getSegTo(leg)} (${fmtTime(getSegEnd(leg))})
+                        </div>`;
                     }
-                    html += `</div></div>`;
+                    html += `</div></div></div>`;
                 }
             }
-
-            // Events
-            const tripEvents = eventsData.filter(e => e.TripId === trip.TripId);
-            if (tripEvents.length > 0) {
-                html += `<div class="events-section">`;
-                html += `<div class="events-label">Events</div>`;
-                for (const evt of tripEvents) {
-                    html += `<div class="tl-segment">`;
-                    html += `<div class="seg-icon" style="background:rgba(236,72,153,0.15)">\u{1F4CC}</div>`;
-                    html += `<div class="seg-content">`;
-                    html += `<div class="seg-title">${evt.Title}</div>`;
-                    html += `<div class="seg-meta">${fmtDate(evt.StartTime)} | ${evt.City||''}, ${evt.CountryCode||''} | ${evt.EventType}</div>`;
-                    html += `</div></div>`;
+            // Events in timeline
+            if (tripEvents.length) {
+                html += '<div class="tl-events-header">Events</div>';
+                for (const ev of tripEvents) {
+                    html += `<div class="tl-segment tl-event">
+                        <div class="tl-icon">\u{1F3AF}</div>
+                        <div class="tl-content">
+                            <div class="tl-main">${ev.Title}</div>
+                            <div class="tl-time">${fmtDate(ev.StartTime)} ${ev.IsFullDay?'(all day)':fmtTime(ev.StartTime)}${ev.Notes ? ' - '+ev.Notes.substring(0,80)+'...' : ''}</div>
+                        </div>
+                    </div>`;
                 }
-                html += `</div>`;
             }
-
-            html += `</div></div>`;
+            html += '</div></div></div>';
         }
-        html += `</div>`;
+        html += '</div></div>';
     }
     container.innerHTML = html;
 }
 
-function getBgColor(type) {
-    return ({
-        Cruise: 'rgba(59,130,246,0.15)',
-        Flight: 'rgba(245,158,11,0.15)',
-        Train: 'rgba(139,92,246,0.15)',
-        Bus: 'rgba(239,68,68,0.15)',
-        Accommodation: 'rgba(16,185,129,0.15)'
-    })[type] || 'rgba(255,255,255,0.1)';
+function renderTimelineSegment(seg) {
+    let detail = getSegDetail(seg);
+    let timeStr = '';
+    if (seg.SegmentType === 'Accommodation') {
+        timeStr = `${fmtDate(seg.CheckInDate)} - ${fmtDate(seg.CheckOutDate)}`;
+    } else {
+        timeStr = `${fmtDate(getSegStart(seg))} ${fmtTime(getSegStart(seg))}`;
+        if (getSegEnd(seg)) timeStr += ` - ${fmtTime(getSegEnd(seg))}`;
+    }
+    let portsHtml = '';
+    if (seg.SegmentType === 'Cruise' && seg.PortsOfCall && seg.PortsOfCall.length) {
+        portsHtml = `<div class="tl-legs">`;
+        for (const p of seg.PortsOfCall) {
+            portsHtml += `<div class="tl-leg">\u2693 ${p.PortName||p.City||''}, ${p.CountryCode||''} - ${fmtDate(p.Date)}</div>`;
+        }
+        portsHtml += '</div>';
+        return `<div class="tl-segment tl-group" onclick="this.classList.toggle('expanded')">
+            <div class="tl-icon">${segIcon(seg.SegmentType)}</div>
+            <div class="tl-content">
+                <div class="tl-main">${detail} <span class="conn-badge">${seg.PortsOfCall.length} ports</span></div>
+                <div class="tl-sub">${getSegFrom(seg)} to ${getSegTo(seg)}</div>
+                <div class="tl-time">${timeStr}</div>
+                ${portsHtml}
+            </div>
+        </div>`;
+    }
+    return `<div class="tl-segment">
+        <div class="tl-icon">${segIcon(seg.SegmentType)}</div>
+        <div class="tl-content">
+            <div class="tl-main">${detail}</div>
+            <div class="tl-sub">${getSegFromFull(seg)} to ${getSegToFull(seg)}</div>
+            <div class="tl-time">${timeStr}</div>
+        </div>
+    </div>`;
 }
 
-// Gaps View
-function renderGaps(gaps) {
+// ==================== GAPS VIEW ====================
+function renderGapsView() {
     const container = document.getElementById('gaps-container');
-    let html = '';
-
-    html += `<div class="gap-summary">`;
-    html += `<div class="gap-stat${gaps.missingBooking.length?'  warning':''}"><div class="num">${gaps.missingBooking.length}</div><div class="label">Missing Booking</div></div>`;
-    html += `<div class="gap-stat${gaps.timeGaps.length?' warning':''}"><div class="num">${gaps.timeGaps.length}</div><div class="label">Time Gaps</div></div>`;
-    html += `<div class="gap-stat${gaps.inferredSegments.length?' warning':''}"><div class="num">${gaps.inferredSegments.length}</div><div class="label">Inferred</div></div>`;
-    html += `<div class="gap-stat${gaps.missingFields.length?' warning':''}"><div class="num">${gaps.missingFields.length}</div><div class="label">Missing Fields</div></div>`;
-    html += `</div>`;
-
-    if (gaps.missingBooking.length > 0) {
-        html += `<div class="gap-section-title">Missing Booking References (${gaps.missingBooking.length})</div>`;
-        for (const g of gaps.missingBooking) {
-            html += `<div class="gap-card"><h3>${g.type}: ${g.segment}</h3><p>Trip: ${g.trip}</p></div>`;
-        }
-    }
-    if (gaps.timeGaps.length > 0) {
-        html += `<div class="gap-section-title">Time Gaps Between Segments (${gaps.timeGaps.length})</div>`;
-        for (const g of gaps.timeGaps.sort((a,b)=>b.days-a.days)) {
-            html += `<div class="gap-card"><h3>${g.days} day gap in ${g.trip}</h3><p>${g.fromDate} to ${g.toDate}<br>After: ${g.after}<br>Before: ${g.before}</p></div>`;
-        }
-    }
-    if (gaps.inferredSegments.length > 0) {
-        html += `<div class="gap-section-title">Inferred Segments (${gaps.inferredSegments.length})</div>`;
-        for (const g of gaps.inferredSegments) {
-            html += `<div class="gap-card"><h3>${g.type}: ${g.segment}</h3><p>Trip: ${g.trip} | Source: inferred (needs verification)</p></div>`;
-        }
-    }
-    if (gaps.missingFields.length > 0) {
-        html += `<div class="gap-section-title">Missing Fields (${gaps.missingFields.length})</div>`;
-        for (const g of gaps.missingFields) {
-            html += `<div class="gap-card"><h3>Missing: ${g.field}</h3><p>${g.segment} | Trip: ${g.trip}</p></div>`;
-        }
-    }
-    if (!gaps.missingBooking.length && !gaps.timeGaps.length && !gaps.inferredSegments.length && !gaps.missingFields.length) {
-        html = '<p class="empty-msg" style="color:var(--accommodation)">All data looks complete. No gaps detected.</p>';
-    }
-    container.innerHTML = html;
-}
-
-// View Switching
-function switchView(view) {
-    currentView = view;
-    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.view === view));
-    document.querySelectorAll('.view').forEach(p => p.classList.remove('active'));
-    document.getElementById(view + '-view').classList.add('active');
-}
-
-function populateYearFilter(trips) {
-    const select = document.getElementById('year-filter');
-    const years = [...new Set(trips.map(t => getTripYear(t)))].sort((a,b) => b - a);
-    for (const y of years) {
-        const opt = document.createElement('option');
-        opt.value = y; opt.textContent = y;
-        select.appendChild(opt);
-    }
-}
-
-function getFilters() {
-    return {
-        search: document.getElementById('search-input').value,
-        year: document.getElementById('year-filter').value,
-        type: document.getElementById('type-filter').value,
-        source: document.getElementById('source-filter').value
-    };
-}
-
-// Init
-async function init() {
-    try {
-        const [tripsRes, eventsRes] = await Promise.all([fetch('data/trips.json'), fetch('data/events.json')]);
-        tripsData = await tripsRes.json();
-        eventsData = await eventsRes.json();
-    } catch(e) {
-        console.error('Failed to load data:', e);
-        document.getElementById('stats-bar').innerHTML = '<div class="stat-pill danger"><span class="num">ERROR</span> Failed to load data files</div>';
+    const gaps = detectGaps();
+    if (!gaps.length) {
+        container.innerHTML = '<p class="empty">No gaps or issues detected. All data looks complete!</p>';
         return;
     }
+    // Group by trip
+    const byTrip = {};
+    for (const g of gaps) {
+        if (!byTrip[g.trip]) byTrip[g.trip] = [];
+        byTrip[g.trip].push(g);
+    }
+    let html = `<div class="gaps-summary">
+        <h3>Data Issues Found</h3>
+        <div class="gap-stats">
+            <span class="gap-stat warning">${gaps.filter(g=>g.severity==='warning').length} warnings</span>
+            <span class="gap-stat info">${gaps.filter(g=>g.severity==='info').length} info</span>
+        </div>
+    </div>`;
+    for (const [tripName, tripGaps] of Object.entries(byTrip)) {
+        html += `<div class="gap-trip">
+            <div class="gap-trip-header" onclick="this.parentElement.classList.toggle('collapsed')">
+                <h4>${tripName}</h4>
+                <span>${tripGaps.length} issue${tripGaps.length!==1?'s':''}</span>
+                <span class="expand-icon">&#9660;</span>
+            </div>
+            <div class="gap-trip-body">`;
+        for (const g of tripGaps) {
+            html += `<div class="gap-item ${g.severity}">
+                <span class="gap-severity">${g.severity === 'warning' ? '\u26A0\uFE0F' : '\u2139\uFE0F'}</span>
+                <span class="gap-msg">${g.msg}</span>
+            </div>`;
+        }
+        html += '</div></div>';
+    }
+    container.innerHTML = html;
+}
 
-    const gaps = detectGaps(tripsData);
-    renderStats(tripsData, eventsData, gaps);
-    renderGapAlerts(gaps);
-    renderTable(tripsData, getFilters());
-    renderTimeline(tripsData);
-    renderGaps(gaps);
-    populateYearFilter(tripsData);
+// ==================== STATS BAR ====================
+function renderStats() {
+    const bar = document.getElementById('stats-bar');
+    let totalSegs = 0, cruises = 0, flights = 0, trains = 0, buses = 0, accommodations = 0;
+    const countries = new Set();
+    for (const trip of tripsData) {
+        for (const seg of trip.Segments || []) {
+            totalSegs++;
+            if (seg.SegmentType === 'Cruise') cruises++;
+            else if (seg.SegmentType === 'Flight') flights++;
+            else if (seg.SegmentType === 'Train') trains++;
+            else if (seg.SegmentType === 'Bus') buses++;
+            else if (seg.SegmentType === 'Accommodation') accommodations++;
+            // Collect countries
+            if (seg.DeparturePort && seg.DeparturePort.CountryCode) countries.add(seg.DeparturePort.CountryCode);
+            if (seg.ArrivalPort && seg.ArrivalPort.CountryCode) countries.add(seg.ArrivalPort.CountryCode);
+            if (seg.Departure && seg.Departure.CountryCode) countries.add(seg.Departure.CountryCode);
+            if (seg.Arrival && seg.Arrival.CountryCode) countries.add(seg.Arrival.CountryCode);
+            if (seg.CountryCode) countries.add(seg.CountryCode);
+            if (seg.PortsOfCall) seg.PortsOfCall.forEach(p => { if(p.CountryCode) countries.add(p.CountryCode); });
+        }
+    }
+    const gapCount = detectGaps().filter(g => g.severity === 'warning').length;
+    bar.innerHTML = `
+        <div class="stat">\u{1F30D} <strong>${tripsData.length}</strong> trips</div>
+        <div class="stat">\u{1F4CD} <strong>${totalSegs}</strong> segments</div>
+        <div class="stat">\u{1F6A2} <strong>${cruises}</strong> cruises</div>
+        <div class="stat">\u2708\uFE0F <strong>${flights}</strong> flights</div>
+        <div class="stat">\u{1F686} <strong>${trains}</strong> trains</div>
+        <div class="stat">\u{1F3E8} <strong>${accommodations}</strong> stays</div>
+        <div class="stat">\u{1F30E} <strong>${countries.size}</strong> countries</div>
+        <div class="stat">\u{1F3AF} <strong>${eventsData.length}</strong> events</div>
+        ${gapCount ? `<div class="stat warning">\u26A0\uFE0F <strong>${gapCount}</strong> gaps</div>` : ''}
+    `;
+}
 
-    document.querySelectorAll('.nav-btn').forEach(btn => btn.addEventListener('click', () => switchView(btn.dataset.view)));
-    const rerender = () => renderTable(tripsData, getFilters());
-    document.getElementById('search-input').addEventListener('input', rerender);
-    document.getElementById('year-filter').addEventListener('change', rerender);
-    document.getElementById('type-filter').addEventListener('change', rerender);
-    document.getElementById('source-filter').addEventListener('change', rerender);
+// ==================== FILTERING ====================
+function getFilteredTrips() {
+    let trips = [...tripsData];
+    const search = document.getElementById('search-input').value.toLowerCase();
+    const yearFilter = document.getElementById('year-filter').value;
+    const typeFilter = document.getElementById('type-filter').value;
+    const sourceFilter = document.getElementById('source-filter').value;
+
+    if (search) {
+        trips = trips.filter(t => {
+            const name = t.TripName.toLowerCase();
+            if (name.includes(search)) return true;
+            return (t.Segments||[]).some(s =>
+                (getSegDetail(s)||'').toLowerCase().includes(search) ||
+                (getSegFrom(s)||'').toLowerCase().includes(search) ||
+                (getSegTo(s)||'').toLowerCase().includes(search) ||
+                (s.BookingNumber||'').toLowerCase().includes(search)
+            );
+        });
+    }
+    if (yearFilter !== 'all') {
+        trips = trips.filter(t => String(getTripYear(t)) === yearFilter);
+    }
+    if (typeFilter !== 'all') {
+        trips = trips.filter(t => (t.Segments||[]).some(s => s.SegmentType === typeFilter));
+    }
+    if (sourceFilter !== 'all') {
+        trips = trips.filter(t => (t.Segments||[]).some(s => s.Source === sourceFilter));
+    }
+    // Sort descending by start date
+    trips.sort((a,b) => {
+        const aStart = getTripDateRange(a).start;
+        const bStart = getTripDateRange(b).start;
+        return new Date(bStart||0) - new Date(aStart||0);
+    });
+    return trips;
+}
+
+function populateYearFilter() {
+    const sel = document.getElementById('year-filter');
+    const years = new Set();
+    for (const trip of tripsData) years.add(getTripYear(trip));
+    const sorted = [...years].sort((a,b) => b - a);
+    for (const y of sorted) {
+        const opt = document.createElement('option');
+        opt.value = y; opt.textContent = y;
+        sel.appendChild(opt);
+    }
+}
+
+function renderCurrentView() {
+    const trips = getFilteredTrips();
+    const events = eventsData;
+    if (currentView === 'table') renderTableView(trips, events);
+    else if (currentView === 'timeline') renderTimelineView(trips, events);
+    else if (currentView === 'gaps') renderGapsView();
+}
+
+// ==================== INIT ====================
+async function init() {
+    try {
+        const [tripsResp, eventsResp] = await Promise.all([
+            fetch('data/trips.json'),
+            fetch('data/events.json')
+        ]);
+        tripsData = await tripsResp.json();
+        eventsData = await eventsResp.json();
+    } catch (err) {
+        console.error('Failed to load data:', err);
+        document.getElementById('table-wrapper').innerHTML = '<p class="empty">Failed to load data files.</p>';
+        return;
+    }
+    populateYearFilter();
+    renderStats();
+    renderCurrentView();
+
+    // Nav buttons
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            currentView = btn.dataset.view;
+            document.getElementById(currentView + '-view').classList.add('active');
+            renderCurrentView();
+        });
+    });
+
+    // Filters
+    ['search-input','year-filter','type-filter','source-filter'].forEach(id => {
+        const el = document.getElementById(id);
+        el.addEventListener(id === 'search-input' ? 'input' : 'change', renderCurrentView);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', init);
