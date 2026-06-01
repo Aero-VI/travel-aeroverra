@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Nicholas's Travel Map</title>
-    <link rel="stylesheet" href="css/style.css?v=30">
+    <link rel="stylesheet" href="css/style.css?v=32">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
@@ -30,6 +30,19 @@
     </header>
 
     <div id="stats-bar"></div>
+
+    <div id="map-filters" class="map-filters-bar">
+        <select id="map-ship-filter"><option value="all">All Ships</option></select>
+        <select id="map-year-filter"><option value="all">All Years</option></select>
+        <select id="map-trip-filter"><option value="all">All Trips</option></select>
+        <select id="map-type-filter">
+            <option value="all">All Types</option>
+            <option value="Cruise">&#x1F6A2; Cruises</option>
+            <option value="Flight">&#x2708;&#xFE0F; Flights</option>
+            <option value="Train">&#x1F686; Trains</option>
+        </select>
+        <button id="map-filter-reset" class="map-reset-btn" title="Reset all filters">&#x21BA; Reset</button>
+    </div>
 
     <div id="filters" class="filters-bar" style="display:none;">
         <input type="text" id="search-input" placeholder="&#x1F50D; Search trips, airlines, cities...">
@@ -74,8 +87,8 @@
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="js/geocode.js?v=30"></script>
-    <script src="js/globe.js?v=30"></script>
-    <script src="js/app.js?v=30"></script>
+    <script src="js/geocode.js?v=32"></script>
+    <script src="js/globe.js?v=32"></script>
+    <script src="js/app.js?v=32"></script>
 </body>
 </html>
