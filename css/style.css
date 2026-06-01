@@ -458,36 +458,12 @@ tr:hover .issues-btn, .trip-header:hover .issues-btn { opacity: 0.8; }
 .filters-bar select { min-width: 120px; }
 
 /* Header improvements */
-#main-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 24px;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 1001;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-.header-left h1 {
-    font-size: 1.2rem;
-    margin: 0;
-    white-space: nowrap;
-}
-#main-header nav {
-    display: flex;
-    gap: 6px;
-    margin: 0;
-}
 
 /* Mobile globe */
 @media (max-width: 768px) {
     #globe-container { height: calc(100vh - 110px); }
     #globe-legend { bottom: 10px; left: 10px; padding: 8px 12px; font-size: 0.75rem; }
     #globe-stats { top: 8px; right: 8px; padding: 8px 12px; }
-    #main-header { padding: 8px 12px; }
     .header-left h1 { font-size: 1rem; }
     #main-header nav { gap: 4px; }
     .nav-btn { padding: 5px 10px; font-size: 0.8rem; }
