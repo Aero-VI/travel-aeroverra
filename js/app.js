@@ -1030,7 +1030,7 @@ function buildSummaryContent(yearFilter) {
     html += buildStatCard('\u{1F6A2}', 'Cruises', cruises.length, cruiseDays + ' days at sea');
     html += buildStatCard('\u2708\uFE0F', 'Flights', flights.length, flightBookings.size + ' bookings');
     html += buildStatCard('\u{1F686}', 'Trains', trains.length, '');
-    html += buildStatCard('\u{1F3E8}', 'Hotels', hotelBookings.size + ' bookings', hotels.length + ' stays, ' + hotelNights + ' nights');
+    html += buildStatCard('\u{1F3E8}', 'Hotels', hotelNights + ' nights', hotelBookings.size + ' bookings, ' + hotels.length + ' stays');
     html += buildStatCard('\u2693', 'Ports', ports.size, '');
     html += buildStatCard('\u{1F3AB}', 'Events', events.length, '');
     html += '</div>';
@@ -1135,6 +1135,12 @@ function renderStats(trips) {
     const hotelCount = hotels.length;
     const hotelBookings = new Set(hotels.filter(h => h.BookingNumber).map(h => h.BookingNumber));
     const hotelBookingCount = hotelBookings.size;
+    let hotelNights = 0;
+    hotels.forEach(h => {
+        const ci = h.CheckInDate ? new Date(h.CheckInDate) : null;
+        const co = h.CheckOutDate ? new Date(h.CheckOutDate) : null;
+        if (ci && co) hotelNights += daysBetween(ci, co);
+    });
     const events = eventsData.length;
     let issueCount = 0;
     for (const t of trips) { issueCount += getTripIssues(t).length; }
@@ -1143,7 +1149,7 @@ function renderStats(trips) {
         + '<span class="stat">\u{1F6A2} <strong>' + cruises + '</strong> Cruises</span>'
         + '<span class="stat">\u2708\uFE0F <strong>' + bookingCount + '</strong> Bookings / <strong>' + flightCount + '</strong> Flights</span>'
         + '<span class="stat">\u{1F686} <strong>' + trains + '</strong> Trains</span>'
-        + '<span class="stat">\u{1F3E8} <strong>' + hotelBookingCount + '</strong> Bookings / <strong>' + hotelCount + '</strong> Stays</span>'
+        + '<span class="stat">\u{1F3E8} <strong>' + hotelNights + '</strong> Nights / <strong>' + hotelBookingCount + '</strong> Bookings</span>'
         + '<span class="stat">\u{1F3AB} <strong>' + events + '</strong> Events</span>'
         + (issueCount > 0 ? '<span class="stat warning">\u26A0\uFE0F <strong>' + issueCount + '</strong> Issues</span>' : '');
 }
