@@ -1697,18 +1697,18 @@ function switchView(view) {
     const mapFilters = document.getElementById('map-filters');
     const tableFilters = document.getElementById('filters');
     const statsBar = document.getElementById('stats-bar');
-    const body = document.getElementById('app-body');
     if (view === 'globe') {
         mapFilters.style.display = 'flex';
         tableFilters.style.display = 'none';
         statsBar.style.display = 'none';
-        body.classList.add('globe-active');
         handleMapResize();
     } else {
         mapFilters.style.display = 'none';
         tableFilters.style.display = view === 'countries' || view === 'summary' ? 'none' : 'flex';
         statsBar.style.display = view === 'countries' || view === 'summary' ? 'none' : 'flex';
-        body.classList.remove('globe-active');
+        // Hide detail panel when switching away from globe
+        var dp = document.getElementById('detail-panel');
+        if (dp) dp.style.display = 'none';
     }
 
     render();
@@ -1797,8 +1797,8 @@ function setupSearch() {
 async function init() {
     try {
         const [tripsRes, eventsRes] = await Promise.all([
-            fetch('data/trips.json?v=200'),
-            fetch('data/events.json?v=200')
+            fetch('data/trips.json?v=220'),
+            fetch('data/events.json?v=220')
         ]);
         tripsData = await tripsRes.json();
         eventsData = await eventsRes.json();
@@ -1808,7 +1808,6 @@ async function init() {
         return;
     }
 
-    document.getElementById('app-body').classList.add('globe-active');
     document.getElementById('stats-bar').style.display = 'none';
 
     // Build search index

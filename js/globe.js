@@ -291,6 +291,33 @@ function buildMapData(trips, events, filterShip, filterType) {
           addCountry(arrPort.CountryCode);
         }
 
+        // Store itinerary for detail panel
+        if (seg.BookingNumber) {
+          var itinPorts = [];
+          if (depCoord) {
+            itinPorts.push({
+              name: depPort.PortName || depPort.City || 'Departure',
+              country: typeof countryName === 'function' ? countryName(depPort.CountryCode) : (depPort.CountryCode || ''),
+              date: depPort.Time ? new Date(depPort.Time).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : ''
+            });
+          }
+          (seg.PortsOfCall || []).forEach(function(p) {
+            itinPorts.push({
+              name: p.PortName || p.City || '',
+              country: typeof countryName === 'function' ? countryName(p.CountryCode) : (p.CountryCode || ''),
+              date: p.Date ? new Date(p.Date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : ''
+            });
+          });
+          if (arrCoord) {
+            itinPorts.push({
+              name: arrPort.PortName || arrPort.City || 'Arrival',
+              country: typeof countryName === 'function' ? countryName(arrPort.CountryCode) : (arrPort.CountryCode || ''),
+              date: arrPort.Time ? new Date(arrPort.Time).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : ''
+            });
+          }
+          storeCruiseItinerary(seg.BookingNumber, shipLabel, itinPorts);
+        }
+
         for (var ci = 0; ci < ports.length - 1; ci++) {
           var cruiseArc = createGeoArc(ports[ci].coord, ports[ci + 1].coord, 40);
           cruiseFeatures.push({
@@ -582,55 +609,35 @@ function setupInteractions() {
     map.on('mouseleave', layerId, function() { map.getCanvas().style.cursor = ''; });
   });
 
-  // Flight popup
+  // Flight click -> detail panel
   map.on('click', 'flight-lines', function(e) {
     var f = e.features[0];
     var p = f.properties;
-    mapPopup.setLngLat(e.lngLat).setHTML(
-      buildPopupHtml(p.icon, p.airline, p.from + ' \u2192 ' + p.to,
-        (p.date || '') +
-        (p.trip ? '<br><span class="mp-trip-name">' + p.trip + '</span>' : '') +
-        (p.booking ? '<br><span class="mp-booking">' + p.booking + '</span>' : ''))
-    ).addTo(map);
+    showDetailPanel('Flight', p);
   });
 
-  // Cruise popup
+  // Cruise click -> detail panel
   map.on('click', 'cruise-lines', function(e) {
     var f = e.features[0];
     var p = f.properties;
-    mapPopup.setLngLat(e.lngLat).setHTML(
-      buildPopupHtml(p.icon, p.ship, p.from + ' \u2192 ' + p.to,
-        (p.date || '') +
-        (p.trip ? '<br><span class="mp-trip-name">' + p.trip + '</span>' : '') +
-        (p.booking ? '<br><span class="mp-booking">' + p.booking + '</span>' : ''))
-    ).addTo(map);
+    showDetailPanel('Cruise', p);
   });
 
-  // Train popup
+  // Train click -> detail panel
   map.on('click', 'train-lines', function(e) {
     var f = e.features[0];
     var p = f.properties;
-    mapPopup.setLngLat(e.lngLat).setHTML(
-      buildPopupHtml(p.icon, p.operator + (p.trainNum ? ' ' + p.trainNum : ''),
-        p.from + ' \u2192 ' + p.to,
-        (p.date || '') +
-        (p.trip ? '<br><span class="mp-trip-name">' + p.trip + '</span>' : ''))
-    ).addTo(map);
+    showDetailPanel('Train', p);
   });
 
-  // Bus popup
+  // Bus click -> detail panel
   map.on('click', 'bus-lines', function(e) {
     var f = e.features[0];
     var p = f.properties;
-    mapPopup.setLngLat(e.lngLat).setHTML(
-      buildPopupHtml(p.icon, p.operator + (p.route ? ' ' + p.route : ''),
-        p.from + ' \u2192 ' + p.to,
-        (p.date || '') +
-        (p.trip ? '<br><span class="mp-trip-name">' + p.trip + '</span>' : ''))
-    ).addTo(map);
+    showDetailPanel('Bus', p);
   });
 
-  // Marker popup
+  // Marker popup (keep as popup for quick info)
   map.on('click', 'markers-core', function(e) {
     var f = e.features[0];
     var p = f.properties;
@@ -639,7 +646,6 @@ function setupInteractions() {
 
     if (p.countries) {
       var cnames = p.countries.split(',').map(function(c) {
-        // countryName is defined in app.js, loaded before this runs
         return typeof countryName === 'function' ? countryName(c) : c;
       }).filter(Boolean);
       if (cnames.length) html += '<div class="mp-country">' + cnames.join(', ') + '</div>';
@@ -679,6 +685,234 @@ function setupInteractions() {
     html += '</div>';
     mapPopup.setLngLat(e.lngLat).setHTML(html).addTo(map);
   });
+}
+
+// ===== DETAIL PANEL =====
+function showDetailPanel(type, props) {
+  var panel = document.getElementById('detail-panel');
+  var content = document.getElementById('dp-content');
+  var html = '';
+
+  if (type === 'Flight') {
+    html = buildFlightDetail(props);
+  } else if (type === 'Cruise') {
+    html = buildCruiseDetail(props);
+  } else if (type === 'Train') {
+    html = buildTrainDetail(props);
+  } else if (type === 'Bus') {
+    html = buildBusDetail(props);
+  }
+
+  content.innerHTML = html;
+  panel.style.display = 'flex';
+}
+
+function buildFlightDetail(p) {
+  var fromParts = (p.from || '').match(/^(.*?)\s*\(([A-Z]{3})\)$/) || [null, p.from, ''];
+  var toParts = (p.to || '').match(/^(.*?)\s*\(([A-Z]{3})\)$/) || [null, p.to, ''];
+  var fromCity = fromParts[1] || p.from || '';
+  var fromCode = fromParts[2] || '';
+  var toCity = toParts[1] || p.to || '';
+  var toCode = toParts[2] || '';
+
+  var html = '<div class="dp-header">';
+  html += '<span class="dp-type-icon">\u2708\uFE0F</span>';
+  html += '<div><div class="dp-title">' + (p.airline || 'Flight') + '</div>';
+  html += '<div class="dp-subtitle">Flight Details</div></div>';
+  html += '</div>';
+
+  html += '<div class="dp-route">';
+  html += '<div class="dp-route-point">';
+  html += '<div class="dp-route-code">' + (fromCode || fromCity) + '</div>';
+  html += '<div class="dp-route-city">' + fromCity + '</div>';
+  html += '</div>';
+  html += '<div class="dp-route-arrow">\u2192</div>';
+  html += '<div class="dp-route-point">';
+  html += '<div class="dp-route-code">' + (toCode || toCity) + '</div>';
+  html += '<div class="dp-route-city">' + toCity + '</div>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div class="dp-info-grid">';
+  if (p.airline) html += '<div class="dp-info-item"><div class="dp-info-label">Airline</div><div class="dp-info-value">' + p.airline + '</div></div>';
+  if (p.date) html += '<div class="dp-info-item"><div class="dp-info-label">Date</div><div class="dp-info-value">' + p.date + '</div></div>';
+  if (p.booking) html += '<div class="dp-info-item"><div class="dp-info-label">Booking Ref</div><div class="dp-info-value" style="font-family:var(--mono);color:var(--accent)">' + p.booking + '</div></div>';
+  html += '</div>';
+
+  if (p.trip) {
+    html += '<div class="dp-section-title">Trip</div>';
+    html += '<div class="dp-trip-badge">' + p.trip + '</div>';
+  }
+
+  return html;
+}
+
+function buildCruiseDetail(p) {
+  var html = '<div class="dp-header">';
+  html += '<span class="dp-type-icon">\uD83D\uDEA2</span>';
+  html += '<div><div class="dp-title">' + (p.ship || 'Cruise') + '</div>';
+  html += '<div class="dp-subtitle">Cruise Route</div></div>';
+  html += '</div>';
+
+  html += '<div class="dp-route">';
+  html += '<div class="dp-route-point">';
+  html += '<div class="dp-route-code" style="font-size:0.9rem">' + (p.from || '') + '</div>';
+  html += '</div>';
+  html += '<div class="dp-route-arrow">\u2192</div>';
+  html += '<div class="dp-route-point">';
+  html += '<div class="dp-route-code" style="font-size:0.9rem">' + (p.to || '') + '</div>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div class="dp-info-grid">';
+  if (p.ship) html += '<div class="dp-info-item"><div class="dp-info-label">Ship</div><div class="dp-info-value">' + p.ship + '</div></div>';
+  if (p.date) html += '<div class="dp-info-item"><div class="dp-info-label">Date</div><div class="dp-info-value">' + p.date + '</div></div>';
+  if (p.booking) html += '<div class="dp-info-item"><div class="dp-info-label">Booking Ref</div><div class="dp-info-value" style="font-family:var(--mono);color:var(--accent)">' + p.booking + '</div></div>';
+  html += '</div>';
+
+  // Check if we have full cruise data (itinerary) stored in _cruiseItineraries
+  if (typeof _cruiseItineraries !== 'undefined' && p.booking && _cruiseItineraries[p.booking]) {
+    var itin = _cruiseItineraries[p.booking];
+    html += '<div class="dp-section-title">Itinerary (' + itin.ports.length + ' ports)</div>';
+    html += '<div class="dp-port-list">';
+    itin.ports.forEach(function(port) {
+      html += '<div class="dp-port-item">';
+      html += '<span class="dp-port-dot"></span>';
+      html += '<span class="dp-port-date">' + (port.date || '') + '</span>';
+      html += '<span class="dp-port-name">' + port.name + '</span>';
+      if (port.country) html += '<span class="dp-port-country">' + port.country + '</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+
+  if (p.trip) {
+    html += '<div class="dp-section-title">Trip</div>';
+    html += '<div class="dp-trip-badge">' + p.trip + '</div>';
+  }
+
+  return html;
+}
+
+function buildTrainDetail(p) {
+  var html = '<div class="dp-header">';
+  html += '<span class="dp-type-icon">\uD83D\uDE86</span>';
+  html += '<div><div class="dp-title">' + (p.operator || 'Train') + (p.trainNum ? ' ' + p.trainNum : '') + '</div>';
+  html += '<div class="dp-subtitle">Train Journey</div></div>';
+  html += '</div>';
+
+  html += '<div class="dp-route">';
+  html += '<div class="dp-route-point">';
+  html += '<div class="dp-route-code" style="font-size:0.9rem">' + (p.from || '') + '</div>';
+  html += '</div>';
+  html += '<div class="dp-route-arrow">\u2192</div>';
+  html += '<div class="dp-route-point">';
+  html += '<div class="dp-route-code" style="font-size:0.9rem">' + (p.to || '') + '</div>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div class="dp-info-grid">';
+  if (p.operator) html += '<div class="dp-info-item"><div class="dp-info-label">Operator</div><div class="dp-info-value">' + p.operator + '</div></div>';
+  if (p.trainNum) html += '<div class="dp-info-item"><div class="dp-info-label">Train #</div><div class="dp-info-value">' + p.trainNum + '</div></div>';
+  if (p.date) html += '<div class="dp-info-item"><div class="dp-info-label">Date</div><div class="dp-info-value">' + p.date + '</div></div>';
+  html += '</div>';
+
+  if (p.trip) {
+    html += '<div class="dp-section-title">Trip</div>';
+    html += '<div class="dp-trip-badge">' + p.trip + '</div>';
+  }
+
+  return html;
+}
+
+function buildBusDetail(p) {
+  var html = '<div class="dp-header">';
+  html += '<span class="dp-type-icon">\uD83D\uDE8C</span>';
+  html += '<div><div class="dp-title">' + (p.operator || 'Bus') + (p.route ? ' ' + p.route : '') + '</div>';
+  html += '<div class="dp-subtitle">Bus Route</div></div>';
+  html += '</div>';
+
+  html += '<div class="dp-route">';
+  html += '<div class="dp-route-point">';
+  html += '<div class="dp-route-code" style="font-size:0.9rem">' + (p.from || '') + '</div>';
+  html += '</div>';
+  html += '<div class="dp-route-arrow">\u2192</div>';
+  html += '<div class="dp-route-point">';
+  html += '<div class="dp-route-code" style="font-size:0.9rem">' + (p.to || '') + '</div>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div class="dp-info-grid">';
+  if (p.operator) html += '<div class="dp-info-item"><div class="dp-info-label">Operator</div><div class="dp-info-value">' + p.operator + '</div></div>';
+  if (p.date) html += '<div class="dp-info-item"><div class="dp-info-label">Date</div><div class="dp-info-value">' + p.date + '</div></div>';
+  html += '</div>';
+
+  if (p.trip) {
+    html += '<div class="dp-section-title">Trip</div>';
+    html += '<div class="dp-trip-badge">' + p.trip + '</div>';
+  }
+
+  return html;
+}
+
+// ===== DRAGGABLE PANEL LOGIC =====
+(function() {
+  var panel = document.getElementById('detail-panel');
+  var handle = document.getElementById('dp-handle');
+  var closeBtn = document.getElementById('dp-close');
+  if (!panel || !handle || !closeBtn) return;
+
+  closeBtn.onclick = function() { panel.style.display = 'none'; };
+
+  var isDragging = false;
+  var startX, startY, startLeft, startTop;
+
+  handle.addEventListener('mousedown', dragStart);
+  handle.addEventListener('touchstart', dragStart, { passive: false });
+
+  function dragStart(e) {
+    isDragging = true;
+    var touch = e.touches ? e.touches[0] : e;
+    var rect = panel.getBoundingClientRect();
+    startX = touch.clientX;
+    startY = touch.clientY;
+    startLeft = rect.left;
+    startTop = rect.top;
+    panel.style.right = 'auto';
+    panel.style.left = startLeft + 'px';
+    panel.style.top = startTop + 'px';
+    document.addEventListener('mousemove', dragMove);
+    document.addEventListener('mouseup', dragEnd);
+    document.addEventListener('touchmove', dragMove, { passive: false });
+    document.addEventListener('touchend', dragEnd);
+    e.preventDefault();
+  }
+
+  function dragMove(e) {
+    if (!isDragging) return;
+    var touch = e.touches ? e.touches[0] : e;
+    var dx = touch.clientX - startX;
+    var dy = touch.clientY - startY;
+    panel.style.left = (startLeft + dx) + 'px';
+    panel.style.top = (startTop + dy) + 'px';
+    e.preventDefault();
+  }
+
+  function dragEnd() {
+    isDragging = false;
+    document.removeEventListener('mousemove', dragMove);
+    document.removeEventListener('mouseup', dragEnd);
+    document.removeEventListener('touchmove', dragMove);
+    document.removeEventListener('touchend', dragEnd);
+  }
+})();
+
+// Store cruise itineraries for detail panel
+var _cruiseItineraries = {};
+
+function storeCruiseItinerary(booking, ship, ports) {
+  if (!booking) return;
+  _cruiseItineraries[booking] = { ship: ship, ports: ports };
 }
 
 function refreshMap(trips, events, filterShip, filterType) {

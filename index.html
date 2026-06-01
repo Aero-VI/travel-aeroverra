@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Nicholas's Travel Map</title>
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.0.0/dist/maplibre-gl.css">
-    <link rel="stylesheet" href="css/style.css?v=210">
+    <link rel="stylesheet" href="css/style.css?v=220">
 </head>
 <body id="app-body">
     <header id="main-header">
@@ -99,6 +99,15 @@
         </div>
     </div>
 
+    <!-- Draggable Detail Panel -->
+    <div id="detail-panel" class="detail-panel" style="display:none;">
+        <div class="dp-drag-handle" id="dp-handle">
+            <span class="dp-dots">&#x22EE;&#x22EE;&#x22EE;</span>
+        </div>
+        <button class="dp-close" id="dp-close">&times;</button>
+        <div id="dp-content"></div>
+    </div>
+
     <div id="table-view" class="view">
         <div id="table-wrapper"></div>
     </div>
@@ -120,8 +129,8 @@
     </div>
 
     <script src="https://unpkg.com/maplibre-gl@5.0.0/dist/maplibre-gl.js"></script>
-    <script src="js/geocode.js?v=210"></script>
-    <script src="js/globe.js?v=210"></script>
-    <script src="js/app.js?v=210"></script>
+    <script src="js/geocode.js?v=220"></script>
+    <script src="js/globe.js?v=220"></script>
+    <script src="js/app.js?v=220"></script>
 </body>
 </html>
