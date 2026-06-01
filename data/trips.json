@@ -216,6 +216,20 @@
         }
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "91935EE015127",
+        "DisplayName": "Wyndham Garden Atlanta Airport",
+        "City": "College Park",
+        "Province": "GA",
+        "PostalCode": "30349",
+        "CountryCode": "US",
+        "Address1": "1551 Phoenix Blvd",
+        "Address2": null,
+        "CheckInDate": "2024-09-25",
+        "CheckOutDate": "2024-09-28",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "GN4N7O",
         "Airline": "Delta Air Lines",
@@ -236,6 +250,34 @@
           "Code": "HND",
           "Time": "2024-09-29T13:10:00+09:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Sotetsu Fresa Inn Toyocho",
+        "City": "Tokyo",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": "Toyo, Koto-ku",
+        "Address2": null,
+        "CheckInDate": "2024-09-29",
+        "CheckOutDate": "2024-10-02",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Tokyu Stay Kyoto Ryogaemachi-dori",
+        "City": "Kyoto",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": "Ryogaemachi-dori, Nakagyo-ku",
+        "Address2": null,
+        "CheckInDate": "2024-10-02",
+        "CheckOutDate": "2024-10-05",
+        "Source": "manual"
       },
       {
         "SegmentType": "Train",
@@ -260,6 +302,20 @@
         }
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Super Hotel LOHAS Yaesu",
+        "City": "Tokyo",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": "Yaesu, Chuo-ku",
+        "Address2": null,
+        "CheckInDate": "2024-10-05",
+        "CheckOutDate": "2024-10-06",
+        "Source": "manual"
+      },
+      {
         "SegmentType": "Train",
         "BookingNumber": "E06655",
         "Operator": "JR East (eki-net)",
@@ -282,6 +338,20 @@
         }
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "John's House",
+        "City": "Noshiro",
+        "Province": "Akita",
+        "PostalCode": "016-0813",
+        "CountryCode": "JP",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2024-10-06",
+        "CheckOutDate": "2024-10-09",
+        "Source": "manual"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "MEDYIM",
         "Airline": "Japan Airlines / Singapore Airlines",
@@ -302,6 +372,20 @@
           "Code": "SIN",
           "Time": "2024-10-09T23:05:00+08:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Holiday Inn Express Singapore Clarke Quay",
+        "City": "Singapore",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "SG",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2024-10-09",
+        "CheckOutDate": "2024-10-12",
+        "Source": "email"
       },
       {
         "SegmentType": "Cruise",
@@ -362,6 +446,48 @@
             "Date": "2024-10-29"
           }
         ]
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "B_16216518",
+        "DisplayName": "La Quinta Inn & Suites Inglewood",
+        "City": "Inglewood",
+        "Province": "CA",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": "3945 W. Imperial Hwy.",
+        "Address2": null,
+        "CheckInDate": "2024-11-05",
+        "CheckOutDate": "2024-11-06",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "80767905",
+        "DisplayName": "Hampton Inn Los Angeles Intl Airport/Hawthorne",
+        "City": "Hawthorne",
+        "Province": "CA",
+        "PostalCode": "90250",
+        "CountryCode": "US",
+        "Address1": "11430 Acacia Ave.",
+        "Address2": null,
+        "CheckInDate": "2024-11-06",
+        "CheckOutDate": "2024-11-10",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Embassy Suites by Hilton Las Vegas",
+        "City": "Las Vegas",
+        "Province": "NV",
+        "PostalCode": "89119",
+        "CountryCode": "US",
+        "Address1": "4315 University Center Drive",
+        "Address2": null,
+        "CheckInDate": "2024-11-10",
+        "CheckOutDate": "2024-11-12",
+        "Source": "manual"
       },
       {
         "SegmentType": "Flight",
@@ -511,6 +637,48 @@
         }
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Sister's House",
+        "City": "Denver",
+        "Province": "CO",
+        "PostalCode": "80223",
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-02-18",
+        "CheckOutDate": "2025-02-21",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Upper Rockies",
+        "City": "Steamboat Springs",
+        "Province": "CO",
+        "PostalCode": "80487",
+        "CountryCode": "US",
+        "Address1": "Cornice Road, Mountain Village",
+        "Address2": null,
+        "CheckInDate": "2025-02-21",
+        "CheckOutDate": "2025-02-23",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Sister's House",
+        "City": "Denver",
+        "Province": "CO",
+        "PostalCode": "80223",
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-02-23",
+        "CheckOutDate": "2025-02-27",
+        "Source": "manual"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "GXLQ49",
         "Airline": "Delta / KLM",
@@ -531,6 +699,132 @@
           "Code": "BHX",
           "Time": "2025-02-28T08:35:00+00:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "H-WJ4ZBFM38G7K",
+        "DisplayName": "Moxy Birmingham NEC",
+        "City": "Birmingham",
+        "Province": "ENG",
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-02-28",
+        "CheckOutDate": "2025-03-03",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "79533077",
+        "DisplayName": "Travelodge Birmingham Airport",
+        "City": "Birmingham",
+        "Province": "ENG",
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-03-03",
+        "CheckOutDate": "2025-03-04",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "79826290",
+        "DisplayName": "Travelodge Birmingham Airport",
+        "City": "Birmingham",
+        "Province": "ENG",
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-03-04",
+        "CheckOutDate": "2025-03-05",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "10242762",
+        "DisplayName": "Hilton London Olympia",
+        "City": "London",
+        "Province": "ENG",
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-03-05",
+        "CheckOutDate": "2025-03-07",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "88047-567893220",
+        "DisplayName": "Wombat's City Hostel London",
+        "City": "London",
+        "Province": "ENG",
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-03-07",
+        "CheckOutDate": "2025-03-10",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Wombat's City Hostel London (Extended)",
+        "City": "London",
+        "Province": "ENG",
+        "PostalCode": "E1 8JN",
+        "CountryCode": "GB",
+        "Address1": "7 Dock Street",
+        "Address2": null,
+        "CheckInDate": "2025-03-10",
+        "CheckOutDate": "2025-03-11",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "88047-567995092",
+        "DisplayName": "Wombat's City Hostel London",
+        "City": "London",
+        "Province": "ENG",
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-03-11",
+        "CheckOutDate": "2025-03-12",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Holiday Inn Salisbury Stonehenge",
+        "City": "Amesbury",
+        "Province": "Wiltshire",
+        "PostalCode": "SP4 7SQ",
+        "CountryCode": "GB",
+        "Address1": "Mid Summer Place, Solstice Park",
+        "Address2": null,
+        "CheckInDate": "2025-03-12",
+        "CheckOutDate": "2025-03-14",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Cousin Sam's House",
+        "City": "Plymouth",
+        "Province": "Devon",
+        "PostalCode": "PL5 4JS",
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-03-14",
+        "CheckOutDate": "2025-03-16",
+        "Source": "manual"
       },
       {
         "SegmentType": "Flight",
@@ -555,6 +849,76 @@
         }
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "25382-568114741",
+        "DisplayName": "Abigails Hostel",
+        "City": "Dublin",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "IE",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-03-16",
+        "CheckOutDate": "2025-03-20",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "319519-568225659",
+        "DisplayName": "Clink i Lar",
+        "City": "Dublin",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "IE",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-03-20",
+        "CheckOutDate": "2025-03-22",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "The Victoria Hotel",
+        "City": "Galway",
+        "Province": null,
+        "PostalCode": "H91 KVW0",
+        "CountryCode": "IE",
+        "Address1": "Victoria Place, Eyre Square",
+        "Address2": null,
+        "CheckInDate": "2025-03-22",
+        "CheckOutDate": "2025-03-24",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "UKCTE55",
+        "DisplayName": "Shannon Springs Hotel",
+        "City": "Shannon",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "IE",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-03-24",
+        "CheckOutDate": "2025-03-25",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "The Olde Lodge",
+        "City": "Shannon",
+        "Province": "Clare",
+        "PostalCode": "V14 A336",
+        "CountryCode": "IE",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-03-24",
+        "CheckOutDate": "2025-03-25",
+        "Source": "manual"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "BQYCUZ",
         "Airline": "Ryanair",
@@ -577,6 +941,48 @@
         }
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "MAG8906687",
+        "DisplayName": "hub by Premier Inn Edinburgh Rose Street",
+        "City": "Edinburgh",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-03-25",
+        "CheckOutDate": "2025-03-26",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "551-568364153",
+        "DisplayName": "Castle Rock Hostel",
+        "City": "Edinburgh",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-03-26",
+        "CheckOutDate": "2025-03-28",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "507-568419055",
+        "DisplayName": "St Christopher's Edinburgh",
+        "City": "Edinburgh",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-03-28",
+        "CheckOutDate": "2025-03-30",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "VNWFYI",
         "Airline": "Ryanair",
@@ -597,6 +1003,34 @@
           "Code": "BVA",
           "Time": "2025-03-30T21:35:00+02:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "19865-568435649",
+        "DisplayName": "St Christopher's Inn Canal",
+        "City": "Paris",
+        "Province": null,
+        "PostalCode": "75019",
+        "CountryCode": "FR",
+        "Address1": "159 rue de Crimee",
+        "Address2": null,
+        "CheckInDate": "2025-03-30",
+        "CheckOutDate": "2025-04-02",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "293315-568514676",
+        "DisplayName": "JO&JOE Paris Gentilly",
+        "City": "Gentilly",
+        "Province": null,
+        "PostalCode": "94250",
+        "CountryCode": "FR",
+        "Address1": "89 Avenue Paul Vaillant Couturier",
+        "Address2": null,
+        "CheckInDate": "2025-04-02",
+        "CheckOutDate": "2025-04-05",
+        "Source": "email"
       },
       {
         "SegmentType": "Train",
@@ -643,6 +1077,34 @@
         "Source": "email"
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "72062264522365",
+        "DisplayName": "Arcadien Hotel & Spa",
+        "City": "Les Arcs",
+        "Province": null,
+        "PostalCode": "73700",
+        "CountryCode": "FR",
+        "Address1": "Arc 1600",
+        "Address2": null,
+        "CheckInDate": "2025-04-05",
+        "CheckOutDate": "2025-04-07",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Arcadien Hotel & Spa (Extended)",
+        "City": "Les Arcs",
+        "Province": null,
+        "PostalCode": "73700",
+        "CountryCode": "FR",
+        "Address1": "Arc 1600",
+        "Address2": null,
+        "CheckInDate": "2025-04-07",
+        "CheckOutDate": "2025-04-08",
+        "Source": "manual"
+      },
+      {
         "SegmentType": "Train",
         "BookingNumber": "7GTJSB",
         "Operator": "SNCF (TGV INOUI + TER)",
@@ -662,6 +1124,20 @@
           "CountryCode": "FR",
           "Time": "2025-04-08T00:00:00+02:00"
         },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "92198-568706023",
+        "DisplayName": "Generator Paris",
+        "City": "Paris",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "FR",
+        "Address1": "9-11 Place du Colonel Fabien",
+        "Address2": null,
+        "CheckInDate": "2025-04-08",
+        "CheckOutDate": "2025-04-12",
         "Source": "email"
       },
       {
@@ -716,6 +1192,20 @@
           "Code": "MYR",
           "Time": "2025-04-18T23:51:00-04:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "9067944974196",
+        "DisplayName": "Homewood Suites by Hilton TechRidge",
+        "City": "Austin",
+        "Province": "TX",
+        "PostalCode": "78753",
+        "CountryCode": "US",
+        "Address1": "13001 Center Lake Drive",
+        "Address2": null,
+        "CheckInDate": "2025-04-13",
+        "CheckOutDate": "2025-04-18",
+        "Source": "email"
       }
     ]
   },
@@ -810,6 +1300,20 @@
         "Source": "email"
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Airbnb El Born",
+        "City": "Barcelona",
+        "Province": "CT",
+        "PostalCode": "08003",
+        "CountryCode": "ES",
+        "Address1": "Carrer de l'Allada-Vermell",
+        "Address2": null,
+        "CheckInDate": "2025-05-10",
+        "CheckOutDate": "2025-05-13",
+        "Source": "manual"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "NED5XY",
         "Airline": "Vueling",
@@ -830,6 +1334,34 @@
           "Code": "FCO",
           "Time": "2025-05-13T14:05:00+02:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "9070017051340",
+        "DisplayName": "Hilton Garden Inn Rome Airport",
+        "City": "Fiumicino",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "IT",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-05-13",
+        "CheckOutDate": "2025-05-14",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "4393875352",
+        "DisplayName": "Gens Mundi B&B",
+        "City": "Ostia Antica",
+        "Province": null,
+        "PostalCode": "00119",
+        "CountryCode": "IT",
+        "Address1": "Via Edoardo Gatti 60",
+        "Address2": null,
+        "CheckInDate": "2025-05-14",
+        "CheckOutDate": "2025-05-15",
+        "Source": "email"
       },
       {
         "SegmentType": "Flight",
@@ -854,6 +1386,62 @@
         }
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "9080011474762",
+        "DisplayName": "Fly On Hotel",
+        "City": "Bologna",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "IT",
+        "Address1": "Via dell'Aeroporto 34/36",
+        "Address2": null,
+        "CheckInDate": "2025-05-15",
+        "CheckOutDate": "2025-05-16",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "9069031396706",
+        "DisplayName": "Hotel Marta",
+        "City": "Forli",
+        "Province": null,
+        "PostalCode": "47121",
+        "CountryCode": "IT",
+        "Address1": "Via Carlo Cignani",
+        "Address2": null,
+        "CheckInDate": "2025-05-16",
+        "CheckOutDate": "2025-05-19",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "9080092907894",
+        "DisplayName": "Hotel Bologna Airport",
+        "City": "Bologna",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "IT",
+        "Address1": "Via M.E Lepido 203/14",
+        "Address2": null,
+        "CheckInDate": "2025-05-19",
+        "CheckOutDate": "2025-05-20",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "9069134946447",
+        "DisplayName": "Fly On Hotel",
+        "City": "Bologna",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "IT",
+        "Address1": "Via dell'Aeroporto 34/36",
+        "Address2": null,
+        "CheckInDate": "2025-05-20",
+        "CheckOutDate": "2025-05-21",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "RVNFNA",
         "Airline": "Ryanair",
@@ -874,6 +1462,62 @@
           "Code": "BER",
           "Time": "2025-05-21T21:40:00+02:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "27242-569686341",
+        "DisplayName": "Singer109 Backpacker Hostel",
+        "City": "Berlin",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "DE",
+        "Address1": "Singer Str. 109",
+        "Address2": null,
+        "CheckInDate": "2025-05-21",
+        "CheckOutDate": "2025-05-26",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Singer109 Backpacker Hostel (Extended)",
+        "City": "Berlin",
+        "Province": null,
+        "PostalCode": "10179",
+        "CountryCode": "DE",
+        "Address1": "Singer Str. 109",
+        "Address2": null,
+        "CheckInDate": "2025-05-26",
+        "CheckOutDate": "2025-06-02",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "57132-569964062",
+        "DisplayName": "MEININGER Berlin Airport",
+        "City": "Berlin",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "DE",
+        "Address1": "Alexander-Meissner-Strasse 1",
+        "Address2": null,
+        "CheckInDate": "2025-06-02",
+        "CheckOutDate": "2025-06-04",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "A8GZT7",
+        "DisplayName": "Grunau Hotel",
+        "City": "Berlin",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "DE",
+        "Address1": "Kablower Weg 87",
+        "Address2": null,
+        "CheckInDate": "2025-06-04",
+        "CheckOutDate": "2025-06-05",
+        "Source": "email"
       },
       {
         "SegmentType": "Accommodation",
@@ -935,8 +1579,8 @@
         "CountryCode": "DK",
         "Address1": null,
         "Address2": null,
-        "CheckInDate": "2025-06-07",
-        "CheckOutDate": "2025-06-08",
+        "CheckInDate": "2025-06-09",
+        "CheckOutDate": "2025-06-12",
         "Source": "email"
       },
       {
@@ -962,6 +1606,34 @@
         "Source": "email"
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "88047-570189297",
+        "DisplayName": "Wombat's City Hostel London",
+        "City": "London",
+        "Province": "ENG",
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-06-12",
+        "CheckOutDate": "2025-06-14",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Wombat's City Hostel London (Extended)",
+        "City": "London",
+        "Province": "ENG",
+        "PostalCode": "E1 8JN",
+        "CountryCode": "GB",
+        "Address1": "7 Dock Street",
+        "Address2": null,
+        "CheckInDate": "2025-06-14",
+        "CheckOutDate": "2025-06-17",
+        "Source": "manual"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "K9NF5T2",
         "Airline": "easyJet",
@@ -984,6 +1656,20 @@
         }
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "13607-570309687",
+        "DisplayName": "St Christopher's Inn The Winston",
+        "City": "Amsterdam",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "NL",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-06-17",
+        "CheckOutDate": "2025-06-19",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "K9NF6HN",
         "Airline": "easyJet",
@@ -1004,6 +1690,62 @@
           "Code": "LGW",
           "Time": "2025-06-19T07:15:00+01:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Premier Inn London Heathrow Terminal 4",
+        "City": "London",
+        "Province": "ENG",
+        "PostalCode": "TW6 3AF",
+        "CountryCode": "GB",
+        "Address1": "Sheffield Road, Hillingdon",
+        "Address2": null,
+        "CheckInDate": "2025-06-19",
+        "CheckOutDate": "2025-06-20",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "502-570367775",
+        "DisplayName": "St Christopher's Inn London Bridge",
+        "City": "London",
+        "Province": "ENG",
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-06-20",
+        "CheckOutDate": "2025-06-26",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "502-570463524",
+        "DisplayName": "St Christopher's Inn London Bridge",
+        "City": "London",
+        "Province": "ENG",
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-06-26",
+        "CheckOutDate": "2025-06-27",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "St Christopher's Inn London Bridge (Extended)",
+        "City": "London",
+        "Province": "ENG",
+        "PostalCode": "SE1 1HR",
+        "CountryCode": "GB",
+        "Address1": "161-165 Borough High Street",
+        "Address2": null,
+        "CheckInDate": "2025-06-27",
+        "CheckOutDate": "2025-06-28",
+        "Source": "manual"
       },
       {
         "SegmentType": "Accommodation",
@@ -1094,6 +1836,20 @@
         "Source": "email"
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Travelodge Crawley",
+        "City": "Crawley",
+        "Province": "West Sussex",
+        "PostalCode": "RH10 1GE",
+        "CountryCode": "GB",
+        "Address1": "Pegler Way",
+        "Address2": null,
+        "CheckInDate": "2025-07-11",
+        "CheckOutDate": "2025-07-12",
+        "Source": "manual"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "PXPMJG",
         "Airline": "China Eastern",
@@ -1114,6 +1870,20 @@
           "Code": "ICN",
           "Time": "2025-07-13T17:25:00+09:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Airbnb Yongsan-gu (3BR near Seoul Station)",
+        "City": "Seoul",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "KR",
+        "Address1": "Cheongpa-dong, Yongsan-gu",
+        "Address2": null,
+        "CheckInDate": "2025-07-13",
+        "CheckOutDate": "2025-07-20",
+        "Source": "email"
       },
       {
         "SegmentType": "Flight",
@@ -1138,6 +1908,76 @@
         }
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Mitsui Garden Hotel Hiroshima",
+        "City": "Hiroshima",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": "9-12 Heiwa-Odori, Naka-ku",
+        "Address2": null,
+        "CheckInDate": "2025-07-20",
+        "CheckOutDate": "2025-07-22",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Hotel in Naniwa-ku",
+        "City": "Osaka",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": "Sakuragawa 4-chome, Naniwa-ku",
+        "Address2": null,
+        "CheckInDate": "2025-07-22",
+        "CheckOutDate": "2025-07-25",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Airbnb Otsuka Toshima-ku",
+        "City": "Tokyo",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": "Toshima-ku",
+        "Address2": null,
+        "CheckInDate": "2025-07-25",
+        "CheckOutDate": "2025-08-01",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "川どこ べらぼう",
+        "City": "Noshiro",
+        "Province": "Akita",
+        "PostalCode": "016-0813",
+        "CountryCode": "JP",
+        "Address1": "Akanuma-48-21 Noshiromachi",
+        "Address2": null,
+        "CheckInDate": "2025-08-01",
+        "CheckOutDate": "2025-08-04",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "1637092660",
+        "DisplayName": "Toyoko Inn Narita Airport Shinkan",
+        "City": "Narita",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-08-04",
+        "CheckOutDate": "2025-08-06",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "3E49EG",
         "Airline": "ZIPAIR",
@@ -1158,6 +1998,20 @@
           "Code": "MNL",
           "Time": "2025-08-06T12:40:00+08:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "895304842",
+        "DisplayName": "mySTAY Hotel BGC West",
+        "City": "Manila",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "PH",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-08-06",
+        "CheckOutDate": "2025-08-08",
+        "Source": "email"
       },
       {
         "SegmentType": "Flight",
@@ -1182,6 +2036,76 @@
         }
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "1923420305",
+        "DisplayName": "Canyon Hotels & Resorts Boracay",
+        "City": "Boracay",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "PH",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-08-08",
+        "CheckOutDate": "2025-08-15",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "1639261552",
+        "DisplayName": "Achievers Airport Hotel",
+        "City": "Manila",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "PH",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-08-15",
+        "CheckOutDate": "2025-08-17",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "1641286460",
+        "DisplayName": "Savoy Hotel Manila",
+        "City": "Manila",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "PH",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-08-17",
+        "CheckOutDate": "2025-08-20",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "1642082688",
+        "DisplayName": "The Heritage Hotel Manila",
+        "City": "Manila",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "PH",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-08-20",
+        "CheckOutDate": "2025-08-22",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "11368906",
+        "DisplayName": "Holiday Inn Express Manila Newport City",
+        "City": "Manila",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "PH",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-08-22",
+        "CheckOutDate": "2025-08-23",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "ULFY5Q",
         "Airline": "Cebu Pacific",
@@ -1202,6 +2126,20 @@
           "Code": "SGN",
           "Time": "2025-08-24T00:25:00+07:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "1928557410",
+        "DisplayName": "Huazhu / Hanting Hotel",
+        "City": "Ho Chi Minh City",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "VN",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-08-23",
+        "CheckOutDate": "2025-08-28",
+        "Source": "email"
       },
       {
         "SegmentType": "Flight",
@@ -1278,6 +2216,20 @@
           "Code": "MCO",
           "Time": "2025-09-11T18:52:00-04:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "11493441",
+        "DisplayName": "Country Inn & Suites Port Canaveral",
+        "City": "Cape Canaveral",
+        "Province": "FL",
+        "PostalCode": "32920",
+        "CountryCode": "US",
+        "Address1": "9009 Astronaut Blvd",
+        "Address2": null,
+        "CheckInDate": "2025-09-11",
+        "CheckOutDate": "2025-09-13",
+        "Source": "email"
       },
       {
         "SegmentType": "Cruise",
@@ -1729,6 +2681,48 @@
           "Code": "MYR",
           "Time": "2025-12-12T13:20:00-05:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "220-463-523-97",
+        "DisplayName": "avid Hotels Round Rock South",
+        "City": "Round Rock",
+        "Province": "TX",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-12-05",
+        "CheckOutDate": "2025-12-06",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Kalahari Resort Hotel",
+        "City": "Round Rock",
+        "Province": "TX",
+        "PostalCode": "78665",
+        "CountryCode": "US",
+        "Address1": "3001 Kalahari Blvd",
+        "Address2": null,
+        "CheckInDate": "2025-12-06",
+        "CheckOutDate": "2025-12-07",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "3382534867",
+        "DisplayName": "Hilton Garden Inn Austin/Round Rock",
+        "City": "Round Rock",
+        "Province": "TX",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-12-07",
+        "CheckOutDate": "2025-12-12",
+        "Source": "email"
       }
     ]
   },
@@ -1785,6 +2779,20 @@
         "Source": "email"
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "6813140681",
+        "DisplayName": "Courtyard by Marriott Brisbane South Bank",
+        "City": "Brisbane",
+        "Province": "QLD",
+        "PostalCode": "4101",
+        "CountryCode": "AU",
+        "Address1": "218 Vulture Street, South Brisbane",
+        "Address2": null,
+        "CheckInDate": "2026-01-16",
+        "CheckOutDate": "2026-01-18",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Cruise",
         "BookingNumber": "JX96T4",
         "CruiseLine": "Carnival",
@@ -1838,6 +2846,20 @@
         "Source": "email"
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "B_23750113",
+        "DisplayName": "Courtyard by Marriott Brisbane South Bank",
+        "City": "Brisbane",
+        "Province": "QLD",
+        "PostalCode": "4101",
+        "CountryCode": "AU",
+        "Address1": "218 Vulture Street, South Brisbane",
+        "Address2": null,
+        "CheckInDate": "2026-01-25",
+        "CheckOutDate": "2026-01-26",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "FMM2WV",
         "Airline": "Qantas",
@@ -1860,6 +2882,48 @@
         }
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "574905465",
+        "DisplayName": "Wake Up! Sydney Central",
+        "City": "Sydney",
+        "Province": "NSW",
+        "PostalCode": "2000",
+        "CountryCode": "AU",
+        "Address1": "509 Pitt Street",
+        "Address2": null,
+        "CheckInDate": "2026-01-26",
+        "CheckOutDate": "2026-01-28",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "ZO-AX1029-42780",
+        "DisplayName": "Sofitel Sydney Darling Harbour",
+        "City": "Sydney",
+        "Province": "NSW",
+        "PostalCode": "2000",
+        "CountryCode": "AU",
+        "Address1": "12 Darling Drive",
+        "Address2": null,
+        "CheckInDate": "2026-01-28",
+        "CheckOutDate": "2026-01-30",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Sofitel Sydney Darling Harbour (Extended)",
+        "City": "Sydney",
+        "Province": "NSW",
+        "PostalCode": "2000",
+        "CountryCode": "AU",
+        "Address1": "12 Darling Drive",
+        "Address2": null,
+        "CheckInDate": "2026-01-30",
+        "CheckOutDate": "2026-02-01",
+        "Source": "manual"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "OLQYFI",
         "Airline": "Virgin Australia",
@@ -1880,6 +2944,20 @@
           "Code": "BNE",
           "Time": "2026-02-01T23:00:00+10:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Mercure Sunshine Coast Kawana Waters",
+        "City": "Birtinya",
+        "Province": "QLD",
+        "PostalCode": null,
+        "CountryCode": "AU",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2026-02-01",
+        "CheckOutDate": "2026-02-03",
+        "Source": "email"
       },
       {
         "SegmentType": "Cruise",
@@ -1935,6 +3013,34 @@
         "Source": "email"
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "GnLuqUcdD",
+        "DisplayName": "M Social Singapore",
+        "City": "Singapore",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "SG",
+        "Address1": "90 Robertson Quay",
+        "Address2": null,
+        "CheckInDate": "2026-02-16",
+        "CheckOutDate": "2026-02-18",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Dream Lodge Farrer Park",
+        "City": "Singapore",
+        "Province": null,
+        "PostalCode": "208934",
+        "CountryCode": "SG",
+        "Address1": "259A Jalan Besar",
+        "Address2": null,
+        "CheckInDate": "2026-02-18",
+        "CheckOutDate": "2026-02-22",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "S136R3",
         "Airline": "ZIPAIR",
@@ -1954,6 +3060,20 @@
           "Code": "NRT",
           "Time": "2026-02-22T08:25:00+09:00"
         },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "1701217069",
+        "DisplayName": "Shoreline Hotel Waikiki",
+        "City": "Honolulu",
+        "Province": "HI",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2026-02-22",
+        "CheckOutDate": "2026-03-02",
         "Source": "email"
       },
       {
@@ -1977,6 +3097,34 @@
           "Time": "2026-03-03T18:50:00+09:00"
         },
         "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "974075022",
+        "DisplayName": "Red Roof Inn Kamata Haneda Tokyo",
+        "City": "Tokyo",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2026-03-03",
+        "CheckOutDate": "2026-03-05",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Red Roof Inn Kamata Haneda Tokyo (Extended)",
+        "City": "Tokyo",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": "Nishi-Kamata 7-chome, Ota-ku",
+        "Address2": null,
+        "CheckInDate": "2026-03-05",
+        "CheckOutDate": "2026-03-07",
+        "Source": "manual"
       },
       {
         "SegmentType": "Flight",
@@ -2022,6 +3170,20 @@
         "Source": "email"
       },
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "9090947803738",
+        "DisplayName": "Hilton Niseko Village",
+        "City": "Niseko",
+        "Province": "Hokkaido",
+        "PostalCode": "048-1592",
+        "CountryCode": "JP",
+        "Address1": "Higashiyama Onsen, Abuta-gun",
+        "Address2": null,
+        "CheckInDate": "2026-03-07",
+        "CheckOutDate": "2026-03-10",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Bus",
         "BookingNumber": "25X03070732",
         "Operator": "Hokkaido Resort Liner",
@@ -2062,6 +3224,20 @@
           "Code": "HND",
           "Time": "2026-03-10T15:10:00+09:00"
         },
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "1706528516",
+        "DisplayName": "APA Hotel Akihabara Suehirochoekimae",
+        "City": "Tokyo",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2026-03-10",
+        "CheckOutDate": "2026-03-26",
         "Source": "email"
       },
       {
@@ -2121,6 +3297,20 @@
           "CountryCode": "JP",
           "Time": "2026-03-30T12:02:00+09:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "H-FGSRFR7BGDWT",
+        "DisplayName": "APA Hotel & Resort Osaka Namba Ekimae Tower",
+        "City": "Osaka",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": "1-2-13 Minatomachi, Naniwa-ku",
+        "Address2": null,
+        "CheckInDate": "2026-03-30",
+        "CheckOutDate": "2026-04-09",
+        "Source": "email"
       },
       {
         "SegmentType": "Accommodation",
@@ -2218,16 +3408,72 @@
       },
       {
         "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "John's House",
+        "City": "Noshiro",
+        "Province": "Akita",
+        "PostalCode": "016-0813",
+        "CountryCode": "JP",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2026-04-09",
+        "CheckOutDate": "2026-04-10",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "川どこ べらぼう",
+        "City": "Noshiro",
+        "Province": "Akita",
+        "PostalCode": "016-0813",
+        "CountryCode": "JP",
+        "Address1": "Akanuma-48-21 Noshiromachi",
+        "Address2": null,
+        "CheckInDate": "2026-04-10",
+        "CheckOutDate": "2026-04-11",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Inn in Semboku",
+        "City": "Semboku",
+        "Province": "Akita",
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2026-04-11",
+        "CheckOutDate": "2026-04-12",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "川どこ べらぼう",
+        "City": "Noshiro",
+        "Province": "Akita",
+        "PostalCode": "016-0813",
+        "CountryCode": "JP",
+        "Address1": "Akanuma-48-21 Noshiromachi",
+        "Address2": null,
+        "CheckInDate": "2026-04-12",
+        "CheckOutDate": "2026-04-20",
+        "Source": "manual"
+      },
+      {
+        "SegmentType": "Accommodation",
         "BookingNumber": "1718353536",
-        "DisplayName": "APA Hotel Akita-Ekimae",
+        "DisplayName": "APA Hotel Akita-Senshukoen",
         "City": "Akita",
         "Province": null,
         "PostalCode": null,
         "CountryCode": "JP",
         "Address1": null,
         "Address2": null,
-        "CheckInDate": "2026-04-15",
-        "CheckOutDate": "2026-04-16",
+        "CheckInDate": "2026-04-20",
+        "CheckOutDate": "2026-04-21",
         "Source": "email"
       },
       {
@@ -2269,7 +3515,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": "1719240397",
-        "DisplayName": "APA Hotel Kyoto-Eki Higashi",
+        "DisplayName": "APA Hotel Kyoto-Eki-Horikawadori",
         "City": "Kyoto",
         "Province": null,
         "PostalCode": null,
@@ -2277,7 +3523,7 @@
         "Address1": null,
         "Address2": null,
         "CheckInDate": "2026-04-26",
-        "CheckOutDate": "2026-04-28",
+        "CheckOutDate": "2026-05-01",
         "Source": "email"
       },
       {
@@ -2323,6 +3569,20 @@
           "CountryCode": "JP",
           "Time": "2026-05-01T12:07:00+09:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "1719246528",
+        "DisplayName": "APA Hotel Shibuya-Dogenzaka-Ue",
+        "City": "Tokyo",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "JP",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2026-05-01",
+        "CheckOutDate": "2026-05-03",
+        "Source": "email"
       },
       {
         "SegmentType": "Flight",
