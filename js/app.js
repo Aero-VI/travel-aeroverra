@@ -1,4 +1,4 @@
-// Travel Dashboard v120 - Complete
+// Travel Dashboard v200 - Search, Where Was I, Countries, Annual Summary
 // Source of truth: data/trips.json and data/events.json
 // DO NOT modify data files.
 
@@ -27,8 +27,17 @@ const COUNTRIES = {
     SI:'Slovenia',SK:'Slovakia',CZ:'Czech Republic',HU:'Hungary',RO:'Romania',
     BG:'Bulgaria',LT:'Lithuania',UA:'Ukraine',BY:'Belarus',MD:'Moldova',
     AT:'Austria',CH:'Switzerland',BE:'Belgium',LU:'Luxembourg',MC:'Monaco',
-    LI:'Liechtenstein',SM:'San Marino',VA:'Vatican City',AD:'Andorra'
+    LI:'Liechtenstein',SM:'San Marino',VA:'Vatican City',AD:'Andorra',
+    NC:'New Caledonia',VU:'Vanuatu'
 };
+
+// Country flag emoji from ISO code
+const FLAG_EMOJI = {};
+Object.keys(COUNTRIES).forEach(code => {
+    const codePoints = code.split('').map(c => 0x1F1E6 + c.charCodeAt(0) - 65);
+    FLAG_EMOJI[code] = String.fromCodePoint(...codePoints);
+});
+
 function countryName(code) { return code ? (COUNTRIES[code] || code) : ''; }
 
 // ==================== HELPERS ====================
@@ -157,7 +166,6 @@ function getTripIssues(trip) {
     for (let i = 0; i < segs.length; i++) {
         const seg = segs[i];
         const segIssues = getSegmentIssues(seg);
-        // Check gap to next segment
         if (i < segs.length - 1) {
             const thisEnd = getSegEnd(seg);
             const nextStart = getSegStart(segs[i + 1]);
@@ -331,6 +339,756 @@ function groupSegments(segments) {
         }
     }
     return groups;
+}
+
+// ==================== SEARCH INDEX ====================
+let searchIndex = [];
+
+function buildSearchIndex() {
+    searchIndex = [];
+    // Index all locations from geocode database
+    const allLocations = new Map(); // key -> {name, type, latlng, trips, countries}
+
+    for (const trip of tripsData) {
+        if (isHomeTrip(trip)) continue;
+        for (const seg of trip.Segments || []) {
+            const addLoc = (name, type, countryCode) => {
+                if (!name) return;
+                const key = name.toLowerCase();
+                if (!allLocations.has(key)) {
+                    allLocations.set(key, { name, type, trips: new Set(), countries: new Set() });
+                }
+                const loc = allLocations.get(key);
+                loc.trips.add(trip.TripName);
+                if (countryCode) loc.countries.add(countryCode);
+            };
+
+            if (seg.SegmentType === 'Cruise') {
+                const dep = seg.DeparturePort || {};
+                const arr = seg.ArrivalPort || {};
+                addLoc(dep.City || dep.PortName, 'Cruise Port', dep.CountryCode);
+                addLoc(arr.City || arr.PortName, 'Cruise Port', arr.CountryCode);
+                (seg.PortsOfCall || []).forEach(p => addLoc(p.City || p.PortName, 'Cruise Port', p.CountryCode));
+                if (seg.Ship) addLoc(seg.Ship, 'Ship', null);
+            } else if (seg.SegmentType === 'Flight') {
+                const dep = seg.Departure || {};
+                const arr = seg.Arrival || {};
+                addLoc(dep.City, 'Airport', dep.CountryCode);
+                addLoc(arr.City, 'Airport', arr.CountryCode);
+                if (dep.Code) addLoc(dep.Code, 'Airport Code', dep.CountryCode);
+                if (arr.Code) addLoc(arr.Code, 'Airport Code', arr.CountryCode);
+            } else if (seg.SegmentType === 'Train') {
+                const dep = seg.Departure || {};
+                const arr = seg.Arrival || {};
+                addLoc(dep.City || dep.LocationName, 'Train Station', dep.CountryCode);
+                addLoc(arr.City || arr.LocationName, 'Train Station', arr.CountryCode);
+            } else if (seg.SegmentType === 'Bus') {
+                const dep = seg.Departure || {};
+                const arr = seg.Arrival || {};
+                addLoc(dep.City || dep.LocationName, 'Bus Stop', dep.CountryCode);
+                addLoc(arr.City || arr.LocationName, 'Bus Stop', arr.CountryCode);
+            }
+        }
+    }
+
+    // Add countries
+    const visitedCountries = getAllVisitedCountries();
+    for (const code of visitedCountries) {
+        const name = countryName(code);
+        if (name) {
+            allLocations.set('country:' + code, { name, type: 'Country', trips: new Set(), countries: new Set([code]) });
+        }
+    }
+
+    // Add trip names
+    for (const trip of tripsData) {
+        if (!isHomeTrip(trip)) {
+            allLocations.set('trip:' + trip.TripId, { name: trip.TripName, type: 'Trip', trips: new Set([trip.TripName]), countries: new Set() });
+        }
+    }
+
+    for (const [key, loc] of allLocations) {
+        searchIndex.push({
+            key,
+            name: loc.name,
+            type: loc.type,
+            trips: [...loc.trips],
+            countries: [...loc.countries],
+            searchText: (loc.name + ' ' + [...loc.countries].map(c => countryName(c)).join(' ')).toLowerCase()
+        });
+    }
+}
+
+function searchLocations(query) {
+    if (!query || query.length < 2) return [];
+    const q = query.toLowerCase();
+    const results = searchIndex.filter(item => item.searchText.includes(q));
+    // Sort: exact match first, then by trip count
+    results.sort((a, b) => {
+        const aExact = a.name.toLowerCase().startsWith(q) ? 0 : 1;
+        const bExact = b.name.toLowerCase().startsWith(q) ? 0 : 1;
+        if (aExact !== bExact) return aExact - bExact;
+        return b.trips.length - a.trips.length;
+    });
+    return results.slice(0, 12);
+}
+
+function flyToLocation(name, type) {
+    // Try to geocode the location
+    let coords = null;
+    if (type === 'Airport Code') {
+        coords = geocode('Flight', '', '', name);
+    } else if (type === 'Cruise Port') {
+        coords = geocode('Cruise', name, name, '');
+    } else if (type === 'Train Station') {
+        coords = geocode('Train', name, name, '');
+    } else if (type === 'Bus Stop') {
+        coords = geocode('Bus', name, name, '');
+    } else if (type === 'Country') {
+        // Find a city in that country to fly to
+        for (const item of searchIndex) {
+            if (item.type !== 'Country' && item.countries.length > 0) {
+                const cc = item.countries[0];
+                if (countryName(cc) === name) {
+                    coords = geocode('', item.name, item.name, '');
+                    if (coords) break;
+                }
+            }
+        }
+    } else {
+        coords = geocode('Cruise', name, name, '') || geocode('Train', name, name, '') || geocode('', '', name, '');
+    }
+
+    if (coords && map) {
+        map.flyTo({ center: [coords[1], coords[0]], zoom: 8, duration: 2000, essential: true });
+    }
+}
+
+// ==================== WHERE WAS I ON ====================
+function findWhereOnDate(dateStr) {
+    const targetDate = new Date(dateStr + 'T12:00:00');
+    const targetMs = targetDate.getTime();
+    let result = null;
+
+    for (const trip of tripsData) {
+        const segs = trip.Segments || [];
+        for (const seg of segs) {
+            const start = getSegStart(seg);
+            const end = getSegEnd(seg);
+            if (!start) continue;
+
+            const startMs = new Date(start).getTime();
+            const endMs = end ? new Date(end).getTime() : startMs + 86400000;
+
+            if (targetMs >= startMs && targetMs <= endMs) {
+                // Found it - determine specific location
+                if (seg.SegmentType === 'Cruise') {
+                    // Check ports of call for exact date
+                    const ports = seg.PortsOfCall || [];
+                    for (const port of ports) {
+                        if (port.Date) {
+                            const portDate = new Date(port.Date).toISOString().slice(0, 10);
+                            if (portDate === dateStr) {
+                                return {
+                                    trip: trip.TripName,
+                                    segment: seg,
+                                    location: (port.City || port.PortName) + ', ' + countryName(port.CountryCode),
+                                    detail: 'Docked at ' + (port.PortName || port.City) + ' on ' + (seg.Ship || 'cruise'),
+                                    type: 'Cruise Port',
+                                    countryCode: port.CountryCode,
+                                    portName: port.City || port.PortName
+                                };
+                            }
+                        }
+                    }
+                    // At sea or between ports
+                    return {
+                        trip: trip.TripName,
+                        segment: seg,
+                        location: 'At sea on ' + (seg.Ship || 'cruise ship'),
+                        detail: (seg.CruiseLine || '') + ' ' + (seg.Ship || '') + ' (' + getSegFrom(seg) + ' to ' + getSegTo(seg) + ')',
+                        type: 'At Sea',
+                        countryCode: null,
+                        portName: null
+                    };
+                } else if (seg.SegmentType === 'Flight') {
+                    return {
+                        trip: trip.TripName,
+                        segment: seg,
+                        location: 'In transit: ' + getSegFrom(seg) + ' to ' + getSegTo(seg),
+                        detail: (seg.Airline || '') + ' ' + (seg.FlightNumber || ''),
+                        type: 'Flight',
+                        countryCode: getSegFromCountry(seg),
+                        portName: null
+                    };
+                } else if (seg.SegmentType === 'Train') {
+                    return {
+                        trip: trip.TripName,
+                        segment: seg,
+                        location: getSegFrom(seg) + ' to ' + getSegTo(seg),
+                        detail: (seg.Operator || 'Train') + ' ' + (seg.TrainNumber || ''),
+                        type: 'Train',
+                        countryCode: getSegFromCountry(seg),
+                        portName: null
+                    };
+                } else if (seg.SegmentType === 'Accommodation') {
+                    return {
+                        trip: trip.TripName,
+                        segment: seg,
+                        location: (seg.City || seg.DisplayName || 'Unknown') + (seg.CountryCode ? ', ' + countryName(seg.CountryCode) : ''),
+                        detail: seg.DisplayName || seg.City || '',
+                        type: 'Accommodation',
+                        countryCode: seg.CountryCode,
+                        portName: seg.City
+                    };
+                } else {
+                    return {
+                        trip: trip.TripName,
+                        segment: seg,
+                        location: getSegFrom(seg) || 'Unknown',
+                        detail: getSegDetail(seg),
+                        type: seg.SegmentType,
+                        countryCode: getSegFromCountry(seg),
+                        portName: null
+                    };
+                }
+            }
+        }
+
+        // Check if date falls within trip date range but between segments
+        const range = getTripDateRange(trip);
+        if (range.start && range.end) {
+            const tripStart = new Date(range.start).getTime();
+            const tripEnd = new Date(range.end).getTime();
+            if (targetMs >= tripStart && targetMs <= tripEnd && !result) {
+                // Find the most recent past segment and next upcoming segment
+                let prevSeg = null, nextSeg = null;
+                let prevDist = Infinity, nextDist = Infinity;
+                for (const seg of segs) {
+                    const end = getSegEnd(seg);
+                    const start = getSegStart(seg);
+                    if (end) {
+                        const dist = targetMs - new Date(end).getTime();
+                        if (dist >= 0 && dist < prevDist) { prevDist = dist; prevSeg = seg; }
+                    }
+                    if (start) {
+                        const dist = new Date(start).getTime() - targetMs;
+                        if (dist >= 0 && dist < nextDist) { nextDist = dist; nextSeg = seg; }
+                    }
+                }
+                // Prefer next segment's departure city (where you are waiting to depart from)
+                // Fall back to previous segment's arrival city
+                let loc = null, cc = null, city = null;
+                if (nextSeg) {
+                    loc = getSegFrom(nextSeg);
+                    cc = getSegFromCountry(nextSeg);
+                    city = loc;
+                }
+                if (!loc && prevSeg) {
+                    loc = getSegTo(prevSeg);
+                    cc = getSegToCountry(prevSeg);
+                    city = loc;
+                }
+                if (loc) {
+                    result = {
+                        trip: trip.TripName,
+                        segment: prevSeg || nextSeg,
+                        location: loc + (cc ? ', ' + countryName(cc) : ''),
+                        detail: 'Staying in ' + loc,
+                        type: 'Location',
+                        countryCode: cc,
+                        portName: city
+                    };
+                }
+            }
+        }
+    }
+
+    // Check home trips
+    if (!result) {
+        // Default: check which home period this falls in
+        for (const trip of tripsData) {
+            if (!isHomeTrip(trip)) continue;
+            // Home trips don't have dates, so check if this date is between the surrounding trips
+            const ti = tripsData.indexOf(trip);
+            let prevEnd = null, nextStart = null;
+            // Look backward for previous trip end
+            for (let i = ti - 1; i >= 0; i--) {
+                const r = getTripDateRange(tripsData[i]);
+                if (r.end) { prevEnd = r.end; break; }
+            }
+            // Look forward for next trip start
+            for (let i = ti + 1; i < tripsData.length; i++) {
+                const r = getTripDateRange(tripsData[i]);
+                if (r.start) { nextStart = r.start; break; }
+            }
+            if (prevEnd && nextStart) {
+                if (targetMs >= new Date(prevEnd).getTime() && targetMs <= new Date(nextStart).getTime()) {
+                    const homeName = trip.TripName.replace('Home in ', '');
+                    result = {
+                        trip: trip.TripName,
+                        segment: null,
+                        location: homeName,
+                        detail: 'Home base',
+                        type: 'Home',
+                        countryCode: 'US',
+                        portName: homeName
+                    };
+                    break;
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
+function showWhereResult(dateStr) {
+    const banner = document.getElementById('where-result');
+    const result = findWhereOnDate(dateStr);
+    const formattedDate = new Date(dateStr + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+    if (!result) {
+        banner.innerHTML = '<div class="where-content"><span class="where-date">' + formattedDate + '</span><span class="where-location">No travel data found for this date</span><button class="where-close" onclick="document.getElementById(\'where-result\').style.display=\'none\'">\u2715</button></div>';
+        banner.style.display = 'flex';
+        return;
+    }
+
+    const icon = result.type === 'At Sea' ? '\u{1F6A2}' :
+                 result.type === 'Cruise Port' ? '\u2693' :
+                 result.type === 'Flight' ? '\u2708\uFE0F' :
+                 result.type === 'Train' ? '\u{1F686}' :
+                 result.type === 'Home' ? '\u{1F3E0}' :
+                 result.type === 'Gap Day' ? '\u{1F4CD}' : '\u{1F30D}';
+
+    banner.innerHTML = '<div class="where-content">'
+        + '<span class="where-date">' + formattedDate + '</span>'
+        + '<span class="where-icon">' + icon + '</span>'
+        + '<span class="where-location">' + esc(result.location) + '</span>'
+        + '<span class="where-detail">' + esc(result.detail) + '</span>'
+        + '<span class="where-trip">' + esc(result.trip) + '</span>'
+        + '<button class="where-close" onclick="document.getElementById(\'where-result\').style.display=\'none\'">\u2715</button>'
+        + '</div>';
+    banner.style.display = 'flex';
+
+    // Fly to location on map
+    if (result.portName) {
+        flyToLocation(result.portName, result.type);
+    }
+}
+
+// ==================== COUNTRY DATA ====================
+function getAllVisitedCountries() {
+    const countries = new Set();
+    for (const trip of tripsData) {
+        for (const seg of trip.Segments || []) {
+            const fc = getSegFromCountry(seg);
+            const tc = getSegToCountry(seg);
+            if (fc) countries.add(fc);
+            if (tc) countries.add(tc);
+            if (seg.PortsOfCall) {
+                seg.PortsOfCall.forEach(p => { if (p.CountryCode) countries.add(p.CountryCode); });
+            }
+        }
+    }
+    for (const ev of eventsData) {
+        if (ev.CountryCode) countries.add(ev.CountryCode);
+    }
+    return countries;
+}
+
+function getCountryDetails() {
+    const countryData = {};
+
+    // Build a chronological list of all country touches across all trips
+    const countryTimeline = []; // [{code, city, date, tripName}]
+
+    for (const trip of tripsData) {
+        if (isHomeTrip(trip)) continue;
+
+        for (const seg of trip.Segments || []) {
+            const addTouch = (code, city, date) => {
+                if (!code) return;
+                countryTimeline.push({ code, city, date, tripName: trip.TripName });
+                // Initialize country data
+                if (!countryData[code]) {
+                    countryData[code] = { code, visits: 0, firstVisit: null, lastVisit: null, cities: new Set(), trips: new Set(), totalDays: 0 };
+                }
+                const cd = countryData[code];
+                if (city) cd.cities.add(city);
+                cd.trips.add(trip.TripName);
+                if (date) {
+                    const d = new Date(date);
+                    if (!cd.firstVisit || d < new Date(cd.firstVisit)) cd.firstVisit = date;
+                    if (!cd.lastVisit || d > new Date(cd.lastVisit)) cd.lastVisit = date;
+                }
+            };
+
+            if (seg.SegmentType === 'Cruise') {
+                const dep = seg.DeparturePort || {};
+                const arr = seg.ArrivalPort || {};
+                addTouch(dep.CountryCode, dep.City, dep.Time);
+                (seg.PortsOfCall || []).forEach(p => addTouch(p.CountryCode, p.City || p.PortName, p.Date));
+                addTouch(arr.CountryCode, arr.City, arr.Time);
+            } else if (seg.SegmentType === 'Flight') {
+                const dep = seg.Departure || {};
+                const arr = seg.Arrival || {};
+                addTouch(dep.CountryCode, dep.City, dep.Time);
+                addTouch(arr.CountryCode, arr.City, arr.Time);
+            } else if (seg.SegmentType === 'Train' || seg.SegmentType === 'Bus') {
+                const dep = seg.Departure || {};
+                const arr = seg.Arrival || {};
+                addTouch(dep.CountryCode, dep.City || dep.LocationName, dep.Time);
+                addTouch(arr.CountryCode, arr.City || arr.LocationName, arr.Time);
+            } else if (seg.SegmentType === 'Accommodation') {
+                addTouch(seg.CountryCode, seg.City, seg.CheckInDate);
+                if (seg.CheckInDate && seg.CheckOutDate) {
+                    const days = daysBetween(seg.CheckInDate, seg.CheckOutDate);
+                    if (countryData[seg.CountryCode]) countryData[seg.CountryCode].totalDays += days;
+                }
+            }
+        }
+    }
+
+    // Sort timeline chronologically
+    countryTimeline.sort((a, b) => {
+        const da = a.date ? new Date(a.date).getTime() : 0;
+        const db = b.date ? new Date(b.date).getTime() : 0;
+        return da - db;
+    });
+
+    // Count visits: a new visit = touching a country after having been in a different country
+    // Consecutive touches of the same country (even different cities) = same visit
+    let lastCountry = null;
+    for (const touch of countryTimeline) {
+        if (touch.code !== lastCountry) {
+            // Entered a new country (or re-entered after leaving)
+            if (countryData[touch.code]) {
+                countryData[touch.code].visits++;
+            }
+            lastCountry = touch.code;
+        }
+    }
+
+    return countryData;
+}
+
+// ==================== COUNTRIES VIEW ====================
+function renderCountriesView() {
+    const container = document.getElementById('countries-container');
+    const countryData = getCountryDetails();
+    const allCodes = Object.keys(countryData).sort((a, b) => {
+        // Sort by visit count desc, then name asc
+        const va = countryData[a].visits, vb = countryData[b].visits;
+        if (va !== vb) return vb - va;
+        return countryName(a).localeCompare(countryName(b));
+    });
+
+    const totalCountries = allCodes.length;
+    const totalCities = new Set();
+    allCodes.forEach(c => countryData[c].cities.forEach(city => totalCities.add(city)));
+
+    // By continent/region grouping
+    const regions = {
+        'Asia & Pacific': ['JP','KR','CN','TW','HK','TH','VN','SG','MY','ID','PH','GU','AU','NZ','NC','VU','IN'],
+        'Europe': ['GB','IE','FR','DE','IT','ES','PT','NL','BE','AT','CH','DK','SE','NO','FI','IS','EE','LV','LT','PL','CZ','SK','HU','HR','ME','AL','GR','TR','MT','CY','GI','MK','RS','BA','SI','RO','BG','UA','BY','MD','MC','LI','SM','VA','AD','LU'],
+        'Americas': ['US','CA','MX','CO','CR','PA','PR','VI','BS','KY','DO','SX','TC','JM','HT','CU','BZ','HN','GT','SV','NI','BB','TT','AW','CW','BM','LC','AG','KN','DM','GD','VC','BR','AR','CL','PE','EC'],
+        'Middle East & Africa': ['AE']
+    };
+
+    let html = '<div class="countries-header">';
+    html += '<div class="countries-stats">';
+    html += '<div class="cs-big">' + (FLAG_EMOJI['US'] || '') + ' <span class="cs-num">' + totalCountries + '</span> <span class="cs-label">countries visited</span></div>';
+    html += '<div class="cs-small">' + totalCities.size + ' unique cities</div>';
+    html += '<div class="cs-small">' + Math.round(totalCountries / 195 * 100) + '% of the world</div>';
+    html += '</div>';
+    html += '<div class="countries-progress"><div class="cp-bar" style="width:' + (totalCountries / 195 * 100) + '%"></div><span class="cp-text">' + totalCountries + '/195</span></div>';
+    html += '</div>';
+
+    // Sort options
+    html += '<div class="countries-sort">';
+    html += '<button class="sort-btn active" data-sort="visits">By Visits</button>';
+    html += '<button class="sort-btn" data-sort="name">By Name</button>';
+    html += '<button class="sort-btn" data-sort="recent">By Recent</button>';
+    html += '<button class="sort-btn" data-sort="region">By Region</button>';
+    html += '</div>';
+
+    // Default view: by visits
+    html += '<div id="countries-grid" class="countries-grid">';
+    html += renderCountryCards(allCodes, countryData, 'visits');
+    html += '</div>';
+
+    container.innerHTML = html;
+
+    // Sort button handlers
+    container.querySelectorAll('.sort-btn').forEach(btn => {
+        btn.onclick = function() {
+            container.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const sort = this.dataset.sort;
+            let sorted;
+            if (sort === 'name') {
+                sorted = [...allCodes].sort((a, b) => countryName(a).localeCompare(countryName(b)));
+            } else if (sort === 'recent') {
+                sorted = [...allCodes].sort((a, b) => {
+                    const da = countryData[a].lastVisit, db = countryData[b].lastVisit;
+                    if (!da && !db) return 0;
+                    if (!da) return 1;
+                    if (!db) return -1;
+                    return new Date(db) - new Date(da);
+                });
+            } else if (sort === 'region') {
+                sorted = [];
+                const used = new Set();
+                for (const [region, codes] of Object.entries(regions)) {
+                    const regionCodes = codes.filter(c => allCodes.includes(c));
+                    regionCodes.forEach(c => { sorted.push(c); used.add(c); });
+                }
+                allCodes.filter(c => !used.has(c)).forEach(c => sorted.push(c));
+            } else {
+                sorted = allCodes;
+            }
+            document.getElementById('countries-grid').innerHTML = renderCountryCards(sorted, countryData, sort);
+        };
+    });
+}
+
+function renderCountryCards(codes, countryData, sortMode) {
+    const regions = {
+        'Asia & Pacific': ['JP','KR','CN','TW','HK','TH','VN','SG','MY','ID','PH','GU','AU','NZ','NC','VU','IN'],
+        'Europe': ['GB','IE','FR','DE','IT','ES','PT','NL','BE','AT','CH','DK','SE','NO','FI','IS','EE','LV','LT','PL','CZ','SK','HU','HR','ME','AL','GR','TR','MT','CY','GI','MK','RS','BA','SI','RO','BG','UA','BY','MD','MC','LI','SM','VA','AD','LU'],
+        'Americas': ['US','CA','MX','CO','CR','PA','PR','VI','BS','KY','DO','SX','TC','JM','HT','CU','BZ','HN','GT','SV','NI','BB','TT','AW','CW','BM','LC','AG','KN','DM','GD','VC','BR','AR','CL','PE','EC'],
+        'Middle East & Africa': ['AE']
+    };
+
+    let html = '';
+    let currentRegion = '';
+
+    for (const code of codes) {
+        const cd = countryData[code];
+        if (!cd) continue;
+
+        // Region header for region sort
+        if (sortMode === 'region') {
+            for (const [region, rcodes] of Object.entries(regions)) {
+                if (rcodes.includes(code) && region !== currentRegion) {
+                    currentRegion = region;
+                    html += '<div class="region-header">' + region + '</div>';
+                    break;
+                }
+            }
+        }
+
+        const flag = FLAG_EMOJI[code] || '';
+        const name = countryName(code);
+        const cities = [...cd.cities].slice(0, 5).join(', ');
+        const firstDate = cd.firstVisit ? fmtDate(cd.firstVisit) : 'Unknown';
+        const lastDate = cd.lastVisit ? fmtDate(cd.lastVisit) : '';
+        const tripCount = cd.trips.size;
+
+        html += '<div class="country-card" onclick="this.classList.toggle(\'expanded\')">';
+        html += '<div class="cc-header">';
+        html += '<span class="cc-flag">' + flag + '</span>';
+        html += '<span class="cc-name">' + esc(name) + '</span>';
+        html += '<span class="cc-visits">' + cd.visits + ' visit' + (cd.visits !== 1 ? 's' : '') + '</span>';
+        html += '</div>';
+        html += '<div class="cc-body">';
+        html += '<div class="cc-row"><span class="cc-label">First visit:</span> ' + firstDate + '</div>';
+        if (lastDate && lastDate !== firstDate) html += '<div class="cc-row"><span class="cc-label">Last visit:</span> ' + lastDate + '</div>';
+        html += '<div class="cc-row"><span class="cc-label">Cities:</span> ' + esc(cities) + (cd.cities.size > 5 ? ' +' + (cd.cities.size - 5) + ' more' : '') + '</div>';
+        html += '<div class="cc-row"><span class="cc-label">Trips:</span> ' + tripCount + '</div>';
+        html += '<div class="cc-trips">';
+        [...cd.trips].slice(0, 4).forEach(t => {
+            html += '<div class="cc-trip-name">' + esc(t.length > 60 ? t.substring(0, 57) + '...' : t) + '</div>';
+        });
+        if (cd.trips.size > 4) html += '<div class="cc-trip-name cc-more">+' + (cd.trips.size - 4) + ' more trips</div>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+    }
+    return html;
+}
+
+// ==================== ANNUAL SUMMARY VIEW ====================
+function renderSummaryView() {
+    const container = document.getElementById('summary-container');
+    const years = [...new Set(tripsData.map(t => getTripYear(t)))].filter(y => y !== 9999).sort((a, b) => b - a);
+
+    let html = '<div class="summary-header"><h2>Annual Travel Summary</h2></div>';
+
+    // Year selector
+    html += '<div class="summary-year-tabs">';
+    html += '<button class="sy-tab active" data-year="all">All Time</button>';
+    years.forEach(yr => {
+        html += '<button class="sy-tab" data-year="' + yr + '">' + yr + '</button>';
+    });
+    html += '</div>';
+
+    html += '<div id="summary-content">';
+    html += buildSummaryContent('all');
+    html += '</div>';
+
+    container.innerHTML = html;
+
+    // Year tab handlers
+    container.querySelectorAll('.sy-tab').forEach(tab => {
+        tab.onclick = function() {
+            container.querySelectorAll('.sy-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById('summary-content').innerHTML = buildSummaryContent(this.dataset.year);
+        };
+    });
+}
+
+function buildSummaryContent(yearFilter) {
+    const isAll = yearFilter === 'all';
+    const filteredTrips = tripsData.filter(t => {
+        if (isAll) return !isHomeTrip(t);
+        return !isHomeTrip(t) && String(getTripYear(t)) === yearFilter;
+    });
+
+    const allSegs = filteredTrips.flatMap(t => t.Segments || []);
+    const cruises = allSegs.filter(s => s.SegmentType === 'Cruise');
+    const flights = allSegs.filter(s => s.SegmentType === 'Flight');
+    const trains = allSegs.filter(s => s.SegmentType === 'Train');
+    const buses = allSegs.filter(s => s.SegmentType === 'Bus');
+
+    // Countries
+    const countries = new Set();
+    allSegs.forEach(s => {
+        const fc = getSegFromCountry(s);
+        const tc = getSegToCountry(s);
+        if (fc) countries.add(fc);
+        if (tc) countries.add(tc);
+        if (s.PortsOfCall) s.PortsOfCall.forEach(p => { if (p.CountryCode) countries.add(p.CountryCode); });
+    });
+
+    // Ships
+    const ships = new Set();
+    cruises.forEach(c => { if (c.Ship) ships.add(c.Ship); });
+
+    // Cruise days
+    let cruiseDays = 0;
+    cruises.forEach(c => {
+        const s = getSegStart(c), e = getSegEnd(c);
+        if (s && e) cruiseDays += daysBetween(s, e);
+    });
+
+    // Ports of call
+    const ports = new Set();
+    cruises.forEach(c => {
+        (c.PortsOfCall || []).forEach(p => ports.add(p.PortName || p.City || ''));
+    });
+
+    // Travel days
+    let totalTravelDays = 0;
+    filteredTrips.forEach(t => {
+        const r = getTripDateRange(t);
+        if (r.start && r.end) totalTravelDays += daysBetween(r.start, r.end);
+    });
+
+    // Events
+    const tripIds = new Set(filteredTrips.map(t => t.TripId));
+    const events = eventsData.filter(e => tripIds.has(e.TripId));
+
+    // Unique booking refs (flight bookings)
+    const flightBookings = new Set(flights.filter(f => f.BookingNumber).map(f => f.BookingNumber));
+
+    // Airlines
+    const airlines = new Set();
+    flights.forEach(f => { if (f.Airline) airlines.add(f.Airline); });
+
+    // Cities
+    const cities = new Set();
+    allSegs.forEach(s => {
+        const from = getSegFrom(s).replace(/\s*\(.*\)/, '');
+        const to = getSegTo(s).replace(/\s*\(.*\)/, '');
+        if (from) cities.add(from);
+        if (to) cities.add(to);
+    });
+
+    const title = isAll ? 'All Time Stats' : yearFilter + ' in Review';
+
+    let html = '<div class="summary-title">' + title + '</div>';
+
+    // Big stat cards
+    html += '<div class="summary-cards">';
+    html += buildStatCard('\u{1F30D}', 'Trips', filteredTrips.length, '');
+    html += buildStatCard('\u{1F3F3}\uFE0F', 'Countries', countries.size, Math.round(countries.size / 195 * 100) + '% of world');
+    html += buildStatCard('\u{1F3D9}\uFE0F', 'Cities', cities.size, '');
+    html += buildStatCard('\u{1F4C5}', 'Travel Days', totalTravelDays, totalTravelDays > 365 ? (totalTravelDays / 365.25).toFixed(1) + ' years' : '');
+    html += buildStatCard('\u{1F6A2}', 'Cruises', cruises.length, cruiseDays + ' days at sea');
+    html += buildStatCard('\u2708\uFE0F', 'Flights', flights.length, flightBookings.size + ' bookings');
+    html += buildStatCard('\u{1F686}', 'Trains', trains.length, '');
+    html += buildStatCard('\u2693', 'Ports', ports.size, '');
+    html += buildStatCard('\u{1F3AB}', 'Events', events.length, '');
+    html += '</div>';
+
+    // Breakdowns
+    html += '<div class="summary-sections">';
+
+    // Ships used
+    if (ships.size > 0) {
+        html += '<div class="summary-section">';
+        html += '<h3>\u{1F6A2} Ships (' + ships.size + ')</h3>';
+        html += '<div class="ss-list">';
+        [...ships].sort().forEach(ship => {
+            const shipCruises = cruises.filter(c => c.Ship === ship);
+            let shipDays = 0;
+            shipCruises.forEach(c => {
+                const s = getSegStart(c), e = getSegEnd(c);
+                if (s && e) shipDays += daysBetween(s, e);
+            });
+            html += '<div class="ss-item"><span class="ss-name">' + esc(ship) + '</span><span class="ss-stat">' + shipCruises.length + ' cruise' + (shipCruises.length > 1 ? 's' : '') + ', ' + shipDays + ' days</span></div>';
+        });
+        html += '</div></div>';
+    }
+
+    // Airlines
+    if (airlines.size > 0) {
+        html += '<div class="summary-section">';
+        html += '<h3>\u2708\uFE0F Airlines (' + airlines.size + ')</h3>';
+        html += '<div class="ss-list">';
+        [...airlines].sort().forEach(airline => {
+            const count = flights.filter(f => f.Airline === airline).length;
+            html += '<div class="ss-item"><span class="ss-name">' + esc(airline) + '</span><span class="ss-stat">' + count + ' flight' + (count > 1 ? 's' : '') + '</span></div>';
+        });
+        html += '</div></div>';
+    }
+
+    // Countries list
+    if (countries.size > 0) {
+        html += '<div class="summary-section">';
+        html += '<h3>\u{1F3F3}\uFE0F Countries (' + countries.size + ')</h3>';
+        html += '<div class="ss-countries">';
+        [...countries].sort((a, b) => countryName(a).localeCompare(countryName(b))).forEach(code => {
+            const flag = FLAG_EMOJI[code] || '';
+            html += '<span class="ss-country">' + flag + ' ' + countryName(code) + '</span>';
+        });
+        html += '</div></div>';
+    }
+
+    // Trip list
+    html += '<div class="summary-section">';
+    html += '<h3>\u{1F30D} Trips (' + filteredTrips.length + ')</h3>';
+    html += '<div class="ss-list">';
+    filteredTrips.sort((a, b) => {
+        const da = getTripDateRange(a).start, db = getTripDateRange(b).start;
+        return new Date(da || 0) - new Date(db || 0);
+    }).forEach(trip => {
+        const r = getTripDateRange(trip);
+        const dur = tripDurationText(r.start, r.end);
+        const segCount = (trip.Segments || []).length;
+        html += '<div class="ss-item"><span class="ss-name">' + esc(trip.TripName) + '</span><span class="ss-stat">' + fmtDate(r.start) + (dur ? ' (' + dur + ')' : '') + ' - ' + segCount + ' segments</span></div>';
+    });
+    html += '</div></div>';
+
+    html += '</div>';
+    return html;
+}
+
+function buildStatCard(icon, label, value, sub) {
+    return '<div class="stat-card"><div class="sc-icon">' + icon + '</div><div class="sc-value">' + value + '</div><div class="sc-label">' + label + '</div>' + (sub ? '<div class="sc-sub">' + sub + '</div>' : '') + '</div>';
 }
 
 // ==================== STATS BAR ====================
@@ -789,7 +1547,6 @@ function populateMapFilters() {
     const yearFilter = document.getElementById('map-year-filter');
     const tripFilter = document.getElementById('map-trip-filter');
 
-    // Ships
     const ships = new Set();
     for (const trip of tripsData) {
         for (const seg of trip.Segments || []) {
@@ -803,7 +1560,6 @@ function populateMapFilters() {
         shipFilter.appendChild(opt);
     });
 
-    // Years
     const years = [...new Set(tripsData.map(t => getTripYear(t)))].filter(y => y !== 9999).sort((a,b) => b - a);
     years.forEach(yr => {
         const opt = document.createElement('option');
@@ -812,7 +1568,6 @@ function populateMapFilters() {
         yearFilter.appendChild(opt);
     });
 
-    // Trips (non-home only)
     tripsData.filter(t => !isHomeTrip(t)).forEach(trip => {
         const opt = document.createElement('option');
         opt.value = trip.TripId;
@@ -841,7 +1596,6 @@ function getMapFilteredData() {
         return true;
     });
 
-    // Filter events to matching trips
     const tripIds = new Set(filtered.map(t => t.TripId));
     const filteredEvents = eventsData.filter(e => tripIds.has(e.TripId));
 
@@ -923,6 +1677,8 @@ function render() {
     if (currentView === 'table') renderTableView(sorted);
     else if (currentView === 'timeline') renderTimelineView(sorted);
     else if (currentView === 'gaps') renderGapsView(sorted);
+    else if (currentView === 'countries') renderCountriesView();
+    else if (currentView === 'summary') renderSummaryView();
     else if (currentView === 'globe') {
         const { trips, events, shipVal, typeVal } = getMapFilteredData();
         refreshMap(trips, events, shipVal, typeVal);
@@ -938,7 +1694,6 @@ function switchView(view) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById(view + '-view').classList.add('active');
 
-    // Show/hide appropriate filter bars
     const mapFilters = document.getElementById('map-filters');
     const tableFilters = document.getElementById('filters');
     const statsBar = document.getElementById('stats-bar');
@@ -951,20 +1706,99 @@ function switchView(view) {
         handleMapResize();
     } else {
         mapFilters.style.display = 'none';
-        tableFilters.style.display = 'flex';
-        statsBar.style.display = 'flex';
+        tableFilters.style.display = view === 'countries' || view === 'summary' ? 'none' : 'flex';
+        statsBar.style.display = view === 'countries' || view === 'summary' ? 'none' : 'flex';
         body.classList.remove('globe-active');
     }
 
     render();
 }
 
+// ==================== SEARCH SETUP ====================
+function setupSearch() {
+    const searchInput = document.getElementById('map-search');
+    const resultsDiv = document.getElementById('map-search-results');
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value;
+        const results = searchLocations(query);
+
+        if (results.length === 0) {
+            resultsDiv.style.display = 'none';
+            return;
+        }
+
+        let html = '';
+        results.forEach(item => {
+            const typeIcon = item.type === 'Ship' ? '\u{1F6A2}' :
+                             item.type === 'Airport' || item.type === 'Airport Code' ? '\u2708\uFE0F' :
+                             item.type === 'Cruise Port' ? '\u2693' :
+                             item.type === 'Train Station' ? '\u{1F686}' :
+                             item.type === 'Country' ? '\u{1F3F3}\uFE0F' :
+                             item.type === 'Trip' ? '\u{1F30D}' : '\u{1F4CD}';
+            const countryStr = item.countries.length > 0 ? ' <span class="sr-country">' + item.countries.map(c => countryName(c)).join(', ') + '</span>' : '';
+            html += '<div class="search-result" data-name="' + esc(item.name) + '" data-type="' + esc(item.type) + '">';
+            html += '<span class="sr-icon">' + typeIcon + '</span>';
+            html += '<span class="sr-name">' + esc(item.name) + '</span>';
+            html += '<span class="sr-type">' + esc(item.type) + '</span>';
+            html += countryStr;
+            html += '</div>';
+        });
+        resultsDiv.innerHTML = html;
+        resultsDiv.style.display = 'block';
+
+        resultsDiv.querySelectorAll('.search-result').forEach(el => {
+            el.onclick = function() {
+                const name = this.dataset.name;
+                const type = this.dataset.type;
+                searchInput.value = name;
+                resultsDiv.style.display = 'none';
+
+                if (type === 'Trip') {
+                    // Find and select the trip in the filter
+                    const tripFilter = document.getElementById('map-trip-filter');
+                    for (const opt of tripFilter.options) {
+                        if (opt.textContent.includes(name.substring(0, 20))) {
+                            tripFilter.value = opt.value;
+                            applyMapFilters();
+                            return;
+                        }
+                    }
+                } else if (type === 'Ship') {
+                    const shipFilter = document.getElementById('map-ship-filter');
+                    for (const opt of shipFilter.options) {
+                        if (opt.textContent.includes(name)) {
+                            shipFilter.value = opt.value;
+                            applyMapFilters();
+                            return;
+                        }
+                    }
+                }
+
+                flyToLocation(name, type);
+            };
+        });
+    });
+
+    searchInput.addEventListener('focus', function() {
+        if (this.value.length >= 2) {
+            resultsDiv.style.display = 'block';
+        }
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.map-search-wrapper')) {
+            resultsDiv.style.display = 'none';
+        }
+    });
+}
+
 // ==================== INIT ====================
 async function init() {
     try {
         const [tripsRes, eventsRes] = await Promise.all([
-            fetch('data/trips.json?v=130'),
-            fetch('data/events.json?v=130')
+            fetch('data/trips.json?v=200'),
+            fetch('data/events.json?v=200')
         ]);
         tripsData = await tripsRes.json();
         eventsData = await eventsRes.json();
@@ -974,9 +1808,11 @@ async function init() {
         return;
     }
 
-    // Set globe-active on body (default view is globe)
     document.getElementById('app-body').classList.add('globe-active');
     document.getElementById('stats-bar').style.display = 'none';
+
+    // Build search index
+    buildSearchIndex();
 
     // Populate year filter (table/timeline/gaps)
     const years = [...new Set(tripsData.map(t => getTripYear(t)))].filter(y => y !== 9999).sort((a, b) => b - a);
@@ -988,8 +1824,15 @@ async function init() {
         yearSelect.appendChild(opt);
     }
 
+    // Set default date for "Where Was I On" to today or a sample date
+    const whereDate = document.getElementById('where-date');
+    whereDate.value = '2025-06-15'; // Default to a date during travel
+
     // Populate map filters
     populateMapFilters();
+
+    // Setup search
+    setupSearch();
 
     // Nav buttons
     document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -1012,7 +1855,15 @@ async function init() {
         document.getElementById('map-year-filter').value = 'all';
         document.getElementById('map-trip-filter').value = 'all';
         document.getElementById('map-type-filter').value = 'all';
+        document.getElementById('map-search').value = '';
+        document.getElementById('where-result').style.display = 'none';
         applyMapFilters();
+    });
+
+    // Where Was I On
+    document.getElementById('where-btn').addEventListener('click', function() {
+        const dateVal = document.getElementById('where-date').value;
+        if (dateVal) showWhereResult(dateVal);
     });
 
     // Initial render

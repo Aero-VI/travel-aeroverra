@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Nicholas's Travel Map</title>
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.0.0/dist/maplibre-gl.css">
-    <link rel="stylesheet" href="css/style.css?v=130">
+    <link rel="stylesheet" href="css/style.css?v=210">
 </head>
 <body id="app-body">
     <header id="main-header">
@@ -26,12 +26,23 @@
             <button class="nav-btn" data-view="gaps">
                 <span class="nav-icon">&#x26A0;</span> Gaps
             </button>
+            <button class="nav-btn" data-view="countries">
+                <span class="nav-icon">&#x1F3F3;&#xFE0F;</span> Countries
+            </button>
+            <button class="nav-btn" data-view="summary">
+                <span class="nav-icon">&#x1F4CA;</span> Summary
+            </button>
         </nav>
     </header>
 
     <div id="stats-bar"></div>
 
     <div id="map-filters" class="map-filters-bar">
+        <!-- Search bar for globe -->
+        <div class="map-search-wrapper">
+            <input type="text" id="map-search" placeholder="&#x1F50D; Search cities, ports, airports..." autocomplete="off">
+            <div id="map-search-results" class="search-dropdown"></div>
+        </div>
         <select id="map-ship-filter"><option value="all">All Ships</option></select>
         <select id="map-year-filter"><option value="all">All Years</option></select>
         <select id="map-trip-filter"><option value="all">All Trips</option></select>
@@ -42,6 +53,11 @@
             <option value="Train">&#x1F686; Trains</option>
             <option value="Bus">&#x1F68C; Buses</option>
         </select>
+        <!-- Where Was I On date picker -->
+        <div class="where-was-i">
+            <input type="date" id="where-date" title="Where was I on...">
+            <button id="where-btn" class="map-reset-btn" title="Find where I was on this date">&#x1F4CD; Where?</button>
+        </div>
         <button id="map-filter-reset" class="map-reset-btn" title="Reset all filters">&#x21BA; Reset</button>
     </div>
 
@@ -62,6 +78,8 @@
         </select>
     </div>
 
+    <!-- Where Was I Result Banner -->
+    <div id="where-result" class="where-result-banner" style="display:none;"></div>
 
     <div id="globe-view" class="view active">
         <div id="globe-container"></div>
@@ -93,9 +111,17 @@
         <div id="gaps-container"></div>
     </div>
 
+    <div id="countries-view" class="view">
+        <div id="countries-container"></div>
+    </div>
+
+    <div id="summary-view" class="view">
+        <div id="summary-container"></div>
+    </div>
+
     <script src="https://unpkg.com/maplibre-gl@5.0.0/dist/maplibre-gl.js"></script>
-    <script src="js/geocode.js?v=130"></script>
-    <script src="js/globe.js?v=130"></script>
-    <script src="js/app.js?v=130"></script>
+    <script src="js/geocode.js?v=210"></script>
+    <script src="js/globe.js?v=210"></script>
+    <script src="js/app.js?v=210"></script>
 </body>
 </html>

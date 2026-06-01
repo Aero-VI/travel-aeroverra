@@ -537,8 +537,8 @@ function loadCountryHighlights(visitedCodes) {
     if (iso3) iso3Set.add(iso3);
   });
 
-  // Use lightweight GeoJSON with ISO_A3 properties
-  fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+  // Use Natural Earth 110m GeoJSON (~800KB, has iso_a3 property)
+  fetch('https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_admin_0_countries.geojson')
     .then(function(r) {
       if (!r.ok) throw new Error('Failed to fetch countries');
       return r.json();
@@ -547,7 +547,7 @@ function loadCountryHighlights(visitedCodes) {
       var features = data.features || [];
       var visited = features.filter(function(f) {
         var props = f.properties || {};
-        var iso3 = props.ISO_A3 || props.iso_a3 || '';
+        var iso3 = props.iso_a3 || props.ISO_A3 || props.adm0_a3 || '';
         return iso3Set.has(iso3);
       });
 
@@ -564,11 +564,11 @@ function loadCountryHighlights(visitedCodes) {
       var beforeLayer = map.getLayer('cruise-glow') ? 'cruise-glow' : undefined;
       map.addLayer({
         id: 'country-fill', type: 'fill', source: 'visited-countries',
-        paint: { 'fill-color': '#22d3ee', 'fill-opacity': 0.06 }
+        paint: { 'fill-color': '#22d3ee', 'fill-opacity': 0.12 }
       }, beforeLayer);
       map.addLayer({
         id: 'country-border', type: 'line', source: 'visited-countries',
-        paint: { 'line-color': '#22d3ee', 'line-width': 0.8, 'line-opacity': 0.2 }
+        paint: { 'line-color': '#22d3ee', 'line-width': 1.2, 'line-opacity': 0.4 }
       }, beforeLayer);
     })
     .catch(function(err) { console.warn('Country highlights failed:', err); });
