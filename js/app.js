@@ -1030,7 +1030,7 @@ function buildSummaryContent(yearFilter) {
     html += buildStatCard('\u{1F6A2}', 'Cruises', cruises.length, cruiseDays + ' days at sea');
     html += buildStatCard('\u2708\uFE0F', 'Flights', flights.length, flightBookings.size + ' bookings');
     html += buildStatCard('\u{1F686}', 'Trains', trains.length, '');
-    html += buildStatCard('\u{1F3E8}', 'Hotels', hotelNights + ' nights', hotelBookings.size + ' bookings, ' + hotels.length + ' stays');
+    html += buildHotelCard(hotelNights, hotelBookings.size, hotels.length);
     html += buildStatCard('\u2693', 'Ports', ports.size, '');
     html += buildStatCard('\u{1F3AB}', 'Events', events.length, '');
     html += '</div>';
@@ -1119,6 +1119,18 @@ function buildSummaryContent(yearFilter) {
 function buildStatCard(icon, label, value, sub) {
     return '<div class="stat-card"><div class="sc-icon">' + icon + '</div><div class="sc-value">' + value + '</div><div class="sc-label">' + label + '</div>' + (sub ? '<div class="sc-sub">' + sub + '</div>' : '') + '</div>';
 }
+function buildHotelCard(nights, bookings, stays) {
+    return '<div class="stat-card hotel-card"><div class="sc-icon">🏨</div>'
+        + '<div class="hotel-stats">'
+        + '<div class="hotel-stat"><span class="hotel-num">' + nights + '</span><span class="hotel-lbl">nights</span></div>'
+        + '<div class="hotel-divider"></div>'
+        + '<div class="hotel-stat"><span class="hotel-num">' + bookings + '</span><span class="hotel-lbl">bookings</span></div>'
+        + '<div class="hotel-divider"></div>'
+        + '<div class="hotel-stat"><span class="hotel-num">' + stays + '</span><span class="hotel-lbl">stays</span></div>'
+        + '</div>'
+        + '<div class="sc-label">Hotels</div>'
+        + '</div>';
+}
 
 // ==================== STATS BAR ====================
 function renderStats(trips) {
@@ -1149,7 +1161,7 @@ function renderStats(trips) {
         + '<span class="stat">\u{1F6A2} <strong>' + cruises + '</strong> Cruises</span>'
         + '<span class="stat">\u2708\uFE0F <strong>' + bookingCount + '</strong> Bookings / <strong>' + flightCount + '</strong> Flights</span>'
         + '<span class="stat">\u{1F686} <strong>' + trains + '</strong> Trains</span>'
-        + '<span class="stat">\u{1F3E8} <strong>' + hotelNights + '</strong> Nights / <strong>' + hotelBookingCount + '</strong> Bookings</span>'
+        + '<span class="stat">\u{1F3E8} <strong>' + hotelNights + '</strong> Nights / <strong>' + hotelBookingCount + '</strong> Bookings / <strong>' + hotelCount + '</strong> Stays</span>'
         + '<span class="stat">\u{1F3AB} <strong>' + events + '</strong> Events</span>'
         + (issueCount > 0 ? '<span class="stat warning">\u26A0\uFE0F <strong>' + issueCount + '</strong> Issues</span>' : '');
 }
@@ -1838,7 +1850,7 @@ async function init() {
     try {
         const [tripsRes, eventsRes] = await Promise.all([
             fetch('data/trips.json?v=285'),
-            fetch('data/events.json?v=220')
+            fetch('data/events.json?v=260')
         ]);
         tripsData = await tripsRes.json();
         eventsData = await eventsRes.json();

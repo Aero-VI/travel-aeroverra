@@ -1592,3 +1592,46 @@ tr:hover .issues-btn, .trip-header:hover .issues-btn { opacity: 0.8; }
     flex: 1;
     min-height: 0;
 }
+
+/* Hotel Card - Multi-stat layout */
+.hotel-card {
+    grid-column: span 2;
+}
+.hotel-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 4px 0;
+}
+.hotel-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.hotel-num {
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-shadow: 0 0 15px rgba(34,211,238,0.25);
+    line-height: 1.1;
+}
+.hotel-lbl {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+}
+.hotel-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--border);
+    opacity: 0.5;
+}
+@media (max-width: 768px) {
+    .hotel-card { grid-column: span 2; }
+    .hotel-num { font-size: 1.2rem; }
+}

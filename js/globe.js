@@ -318,8 +318,10 @@ function buildMapData(trips, events, filterShip, filterType) {
           storeCruiseItinerary(seg.BookingNumber, shipLabel, itinPorts);
         }
 
+        console.log('[CRUISE]', shipLabel, 'ports:', ports.length, ports.map(function(p){return p.name + ' [' + p.coord[0] + ',' + p.coord[1] + ']';}));
         for (var ci = 0; ci < ports.length - 1; ci++) {
           var cruiseArc = createGeoArc(ports[ci].coord, ports[ci + 1].coord, 40);
+          console.log('[CRUISE ARC]', ports[ci].name, '->', ports[ci+1].name, 'points:', cruiseArc.length);
           cruiseFeatures.push({
             type: 'Feature',
             geometry: { type: 'LineString', coordinates: cruiseArc },
@@ -447,6 +449,7 @@ function buildMapData(trips, events, filterShip, filterType) {
     });
   });
 
+  console.log("[MAP SUMMARY] Flights:", flightFeatures.length, "Cruises:", cruiseFeatures.length, "Trains:", trainFeatures.length, "Buses:", busFeatures.length, "Markers:", markerFeatures.length);
   // Add sources and layers
   try {
     map.addSource('flights', {
@@ -473,11 +476,11 @@ function buildMapData(trips, events, filterShip, filterType) {
     // Cruise glow + line
     map.addLayer({
       id: 'cruise-glow', type: 'line', source: 'cruises',
-      paint: { 'line-color': ROUTE_COLORS.Cruise, 'line-width': 6, 'line-opacity': 0.15, 'line-blur': 4 }
+      paint: { 'line-color': ROUTE_COLORS.Cruise, 'line-width': 8, 'line-opacity': 0.25, 'line-blur': 4 }
     });
     map.addLayer({
       id: 'cruise-lines', type: 'line', source: 'cruises',
-      paint: { 'line-color': ROUTE_COLORS.Cruise, 'line-width': 2, 'line-opacity': 0.65 }
+      paint: { 'line-color': ROUTE_COLORS.Cruise, 'line-width': 3, 'line-opacity': 0.85 }
     });
 
     // Train glow + line
