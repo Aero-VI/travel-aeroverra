@@ -1,11 +1,490 @@
 [
   {
+    "TripId": "valor-western-2005",
+    "TripName": "Carnival Valor: Exotic Western Caribbean",
+    "IsActiveTravel": true,
+    "HomeAtStart": null,
+    "HomeAtEnd": null,
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "Z30K60",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Valor",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port of Miami",
+          "City": "Miami",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2005-02-06T16:00:00-05:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Miami",
+          "City": "Miami",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2005-02-13T08:00:00-05:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Belize City",
+            "City": "Belize City",
+            "Province": null,
+            "CountryCode": "BZ",
+            "Date": "2005-02-08"
+          },
+          {
+            "PortName": "Isla Roatan",
+            "City": "Roatan",
+            "Province": null,
+            "CountryCode": "HN",
+            "Date": "2005-02-09"
+          },
+          {
+            "PortName": "George Town",
+            "City": "Grand Cayman",
+            "Province": null,
+            "CountryCode": "KY",
+            "Date": "2005-02-10"
+          },
+          {
+            "PortName": "Cozumel",
+            "City": "Cozumel",
+            "Province": "QR",
+            "CountryCode": "MX",
+            "Date": "2005-02-11"
+          }
+        ],
+        "Source": "manual"
+      }
+    ]
+  },
+  {
+    "TripId": "liberty-western-2011",
+    "TripName": "Carnival Liberty: Western Caribbean",
+    "IsActiveTravel": true,
+    "HomeAtStart": null,
+    "HomeAtEnd": null,
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "81SG30",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Liberty",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port of Miami",
+          "City": "Miami",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2011-04-09T16:00:00-04:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Miami",
+          "City": "Miami",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2011-04-16T08:00:00-04:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Cozumel",
+            "City": "Cozumel",
+            "Province": "QR",
+            "CountryCode": "MX",
+            "Date": "2011-04-11"
+          },
+          {
+            "PortName": "George Town",
+            "City": "Grand Cayman",
+            "Province": null,
+            "CountryCode": "KY",
+            "Date": "2011-04-12"
+          },
+          {
+            "PortName": "Ocho Rios",
+            "City": "Ocho Rios",
+            "Province": null,
+            "CountryCode": "JM",
+            "Date": "2011-04-13"
+          }
+        ],
+        "Source": "manual"
+      }
+    ]
+  },
+  {
+    "TripId": "glory-canada-2012",
+    "TripName": "Carnival Glory: Canada & New England",
+    "IsActiveTravel": true,
+    "HomeAtStart": null,
+    "HomeAtEnd": null,
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "27PNX8",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Glory",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port of Boston",
+          "City": "Boston",
+          "Province": "MA",
+          "CountryCode": "US",
+          "Time": "2012-06-18T16:00:00-04:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Boston",
+          "City": "Boston",
+          "Province": "MA",
+          "CountryCode": "US",
+          "Time": "2012-06-23T08:00:00-04:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Saint John",
+            "City": "Saint John",
+            "Province": "NB",
+            "CountryCode": "CA",
+            "Date": "2012-06-20"
+          },
+          {
+            "PortName": "Halifax",
+            "City": "Halifax",
+            "Province": "NS",
+            "CountryCode": "CA",
+            "Date": "2012-06-21"
+          }
+        ],
+        "Source": "manual"
+      }
+    ]
+  },
+  {
+    "TripId": "dream-eastern-2013",
+    "TripName": "Carnival Dream: Eastern Caribbean",
+    "IsActiveTravel": true,
+    "HomeAtStart": null,
+    "HomeAtEnd": null,
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "31KXD0",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Dream",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port Canaveral",
+          "City": "Cape Canaveral",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2013-04-20T16:00:00-04:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port Canaveral",
+          "City": "Cape Canaveral",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2013-04-27T08:00:00-04:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Nassau",
+            "City": "Nassau",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2013-04-22"
+          },
+          {
+            "PortName": "Charlotte Amalie",
+            "City": "St. Thomas",
+            "Province": "USVI",
+            "CountryCode": "VI",
+            "Date": "2013-04-24"
+          },
+          {
+            "PortName": "Philipsburg",
+            "City": "St. Maarten",
+            "Province": null,
+            "CountryCode": "SX",
+            "Date": "2013-04-25"
+          }
+        ],
+        "Source": "manual"
+      }
+    ]
+  },
+  {
+    "TripId": "glory-eastern-2015",
+    "TripName": "Carnival Glory: Exotic Eastern Caribbean",
+    "IsActiveTravel": true,
+    "HomeAtStart": null,
+    "HomeAtEnd": null,
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "3Q0WJ5",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Glory",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port of Miami",
+          "City": "Miami",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2015-04-18T16:00:00-04:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Miami",
+          "City": "Miami",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2015-04-25T08:00:00-04:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Half Moon Cay",
+            "City": "Half Moon Cay",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2015-04-19"
+          },
+          {
+            "PortName": "Grand Turk",
+            "City": "Grand Turk",
+            "Province": null,
+            "CountryCode": "TC",
+            "Date": "2015-04-20"
+          },
+          {
+            "PortName": "San Juan",
+            "City": "San Juan",
+            "Province": "PR",
+            "CountryCode": "PR",
+            "Date": "2015-04-21"
+          },
+          {
+            "PortName": "Charlotte Amalie",
+            "City": "St. Thomas",
+            "Province": "USVI",
+            "CountryCode": "VI",
+            "Date": "2015-04-22"
+          }
+        ],
+        "Source": "manual"
+      }
+    ]
+  },
+  {
+    "TripId": "sensation-cozumel-2017",
+    "TripName": "Carnival Sensation: Cozumel Plus Western Caribbean",
+    "IsActiveTravel": true,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "8PV2P5",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Sensation",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port of Miami",
+          "City": "Miami",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2017-09-21T16:00:00-04:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Miami",
+          "City": "Miami",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2017-09-25T08:00:00-04:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Key West",
+            "City": "Key West",
+            "Province": "FL",
+            "CountryCode": "US",
+            "Date": "2017-09-22"
+          },
+          {
+            "PortName": "Cozumel",
+            "City": "Cozumel",
+            "Province": "QR",
+            "CountryCode": "MX",
+            "Date": "2017-09-23"
+          }
+        ],
+        "Source": "manual"
+      }
+    ]
+  },
+  {
+    "TripId": "sunshine-bahamas-2022",
+    "TripName": "Carnival Sunshine: Bahamas",
+    "IsActiveTravel": true,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "Q53GB2",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Sunshine",
+        "RoomType": "PT Interior",
+        "Stateroom": "1409",
+        "DeparturePort": {
+          "PortName": "Port of Charleston",
+          "City": "Charleston",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Time": "2022-02-19T16:00:00-05:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Charleston",
+          "City": "Charleston",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Time": "2022-02-24T08:00:00-05:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Half Moon Cay",
+            "City": "Half Moon Cay",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2022-02-21"
+          },
+          {
+            "PortName": "Nassau",
+            "City": "Nassau",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2022-02-22"
+          }
+        ],
+        "Source": "email"
+      }
+    ]
+  },
+  {
+    "TripId": "magic-bermuda-2023",
+    "TripName": "Carnival Magic: Bermuda (Rerouted to Bahamas - Hurricane Lee)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "T3V1Q3",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Magic",
+        "RoomType": "Upper/Lower (1A)",
+        "Stateroom": "11274",
+        "DeparturePort": {
+          "PortName": "Norfolk International Terminals",
+          "City": "Norfolk",
+          "Province": "VA",
+          "CountryCode": "US",
+          "Time": "2023-09-10T17:30:00-04:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Norfolk International Terminals",
+          "City": "Norfolk",
+          "Province": "VA",
+          "CountryCode": "US",
+          "Time": "2023-09-16T08:00:00-04:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Half Moon Cay",
+            "City": "Half Moon Cay",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2023-09-12"
+          },
+          {
+            "PortName": "Nassau",
+            "City": "Nassau",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2023-09-13"
+          },
+          {
+            "PortName": "Freeport",
+            "City": "Freeport",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2023-09-14"
+          }
+        ],
+        "Source": "manual"
+      }
+    ]
+  },
+  {
     "TripId": "spirit-back-to-back-2024",
     "TripName": "Carnival Spirit Back-to-Back: Panama Canal + Alaska",
     "IsActiveTravel": true,
     "HomeAtStart": "St. Thomas, USVI",
     "HomeAtEnd": "St. Thomas, USVI",
     "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "FLJKBA",
+        "Airline": "JetBlue",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Cyril E. King Airport",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2024-04-05T17:57:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Luis Munoz Marin Intl",
+          "City": "San Juan",
+          "Province": "PR",
+          "CountryCode": "PR",
+          "Code": "SJU",
+          "Time": "2024-04-05T18:42:00-04:00"
+        },
+        "FlightNumber": "B6 1235"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "FLJKBA",
+        "Airline": "JetBlue",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Luis Munoz Marin Intl",
+          "City": "San Juan",
+          "Province": "PR",
+          "CountryCode": "PR",
+          "Code": "SJU",
+          "Time": "2024-04-05T20:59:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Tampa International Airport",
+          "City": "Tampa",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "TPA",
+          "Time": "2024-04-06T00:12:00-04:00"
+        },
+        "FlightNumber": "B6 2752"
+      },
       {
         "SegmentType": "Cruise",
         "BookingNumber": "T7G1G3",
@@ -160,6 +639,52 @@
           }
         ],
         "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "EWDV2B",
+        "Airline": "United Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Seattle-Tacoma Intl",
+          "City": "Seattle",
+          "Province": "WA",
+          "CountryCode": "US",
+          "Code": "SEA",
+          "Time": "2024-05-07T13:10:00-07:00"
+        },
+        "Arrival": {
+          "LocationName": "San Francisco Intl",
+          "City": "San Francisco",
+          "Province": "CA",
+          "CountryCode": "US",
+          "Code": "SFO",
+          "Time": "2024-05-07T15:27:00-07:00"
+        },
+        "FlightNumber": "UA 1896"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "EWDV2B",
+        "Airline": "United Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "San Francisco Intl",
+          "City": "San Francisco",
+          "Province": "CA",
+          "CountryCode": "US",
+          "Code": "SFO",
+          "Time": "2024-05-07T16:10:00-07:00"
+        },
+        "Arrival": {
+          "LocationName": "Fresno Yosemite Intl",
+          "City": "Fresno",
+          "Province": "CA",
+          "CountryCode": "US",
+          "Code": "FAT",
+          "Time": "2024-05-07T17:25:00-07:00"
+        },
+        "FlightNumber": "UA 5663"
       }
     ]
   },
@@ -544,6 +1069,66 @@
     "HomeAtEnd": "Myrtle Beach, SC",
     "Segments": [
       {
+        "SegmentType": "Flight",
+        "BookingNumber": "AHU9YC",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-01-17T15:56:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Newark Liberty Intl",
+          "City": "Newark",
+          "Province": "NJ",
+          "CountryCode": "US",
+          "Code": "EWR",
+          "Time": "2025-01-17T17:46:00-05:00"
+        },
+        "FlightNumber": "NK 212"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "AHU9YC",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Newark Liberty Intl",
+          "City": "Newark",
+          "Province": "NJ",
+          "CountryCode": "US",
+          "Code": "EWR",
+          "Time": "2025-01-17T18:43:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Los Angeles Intl",
+          "City": "Los Angeles",
+          "Province": "CA",
+          "CountryCode": "US",
+          "Code": "LAX",
+          "Time": "2025-01-17T22:14:00-08:00"
+        },
+        "FlightNumber": "NK 893"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "723-791-125-17",
+        "DisplayName": "Hilton Long Beach",
+        "City": "Long Beach",
+        "Province": "CA",
+        "PostalCode": "90831",
+        "CountryCode": "US",
+        "Address1": "701 West Ocean Boulevard",
+        "Address2": null,
+        "CheckInDate": "2025-01-17",
+        "CheckOutDate": "2025-01-18",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Cruise",
         "BookingNumber": "W0WF04",
         "CruiseLine": "Carnival",
@@ -581,6 +1166,75 @@
           }
         ],
         "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "AHU9YC",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Los Angeles Intl",
+          "City": "Los Angeles",
+          "Province": "CA",
+          "CountryCode": "US",
+          "Code": "LAX",
+          "Time": "2025-01-23T21:40:00-08:00"
+        },
+        "Arrival": {
+          "LocationName": "Detroit Metropolitan Airport",
+          "City": "Detroit",
+          "Province": "MI",
+          "CountryCode": "US",
+          "Code": "DTW",
+          "Time": "2025-01-24T05:03:00-05:00"
+        },
+        "FlightNumber": "NK 262"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "AHU9YC",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Detroit Metropolitan Airport",
+          "City": "Detroit",
+          "Province": "MI",
+          "CountryCode": "US",
+          "Code": "DTW",
+          "Time": "2025-01-24T06:15:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "LaGuardia Airport",
+          "City": "New York",
+          "Province": "NY",
+          "CountryCode": "US",
+          "Code": "LGA",
+          "Time": "2025-01-24T08:00:00-05:00"
+        },
+        "FlightNumber": "NK 2963"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "AHU9YC",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "LaGuardia Airport",
+          "City": "New York",
+          "Province": "NY",
+          "CountryCode": "US",
+          "Code": "LGA",
+          "Time": "2025-01-24T08:59:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-01-24T10:57:00-05:00"
+        },
+        "FlightNumber": "NK 2964"
       }
     ]
   },
@@ -1172,6 +1826,20 @@
     "HomeAtEnd": "Myrtle Beach, SC",
     "Segments": [
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "9067944974196",
+        "DisplayName": "Homewood Suites by Hilton TechRidge",
+        "City": "Austin",
+        "Province": "TX",
+        "PostalCode": "78753",
+        "CountryCode": "US",
+        "Address1": "13001 Center Lake Drive",
+        "Address2": null,
+        "CheckInDate": "2025-04-13",
+        "CheckOutDate": "2025-04-18",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "HX8PZN",
         "Airline": "Delta Air Lines",
@@ -1185,27 +1853,83 @@
           "Time": "2025-04-13T18:46:00-04:00"
         },
         "Arrival": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2025-04-13T20:19:00-04:00"
+        },
+        "FlightNumber": "DL 3170"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "HX8PZN",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2025-04-13T21:15:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Austin-Bergstrom Intl",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2025-04-13T22:47:00-05:00"
+        },
+        "FlightNumber": "DL 1081"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "HX8PZN",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Austin-Bergstrom Intl",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2025-04-18T18:30:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2025-04-18T21:48:00-04:00"
+        },
+        "FlightNumber": "DL 1491"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "HX8PZN",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2025-04-18T22:41:00-04:00"
+        },
+        "Arrival": {
           "LocationName": "Myrtle Beach Intl",
           "City": "Myrtle Beach",
           "Province": "SC",
           "CountryCode": "US",
           "Code": "MYR",
           "Time": "2025-04-18T23:51:00-04:00"
-        }
-      },
-      {
-        "SegmentType": "Accommodation",
-        "BookingNumber": "9067944974196",
-        "DisplayName": "Homewood Suites by Hilton TechRidge",
-        "City": "Austin",
-        "Province": "TX",
-        "PostalCode": "78753",
-        "CountryCode": "US",
-        "Address1": "13001 Center Lake Drive",
-        "Address2": null,
-        "CheckInDate": "2025-04-13",
-        "CheckOutDate": "2025-04-18",
-        "Source": "email"
+        },
+        "FlightNumber": "DL 3074"
       }
     ]
   },
@@ -1239,6 +1963,66 @@
     "HomeAtStart": "Myrtle Beach, SC",
     "HomeAtEnd": "Myrtle Beach, SC",
     "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GC4DC5",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-04-22T11:32:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2025-04-22T13:59:00-04:00"
+        },
+        "FlightNumber": "DL 3047"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GC4DC5",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2025-04-22T13:59:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Louis Armstrong New Orleans Intl",
+          "City": "New Orleans",
+          "Province": "LA",
+          "CountryCode": "US",
+          "Code": "MSY",
+          "Time": "2025-04-22T14:30:00-05:00"
+        },
+        "FlightNumber": "DL 3157"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "9068337686111",
+        "DisplayName": "Hyatt Place New Orleans Convention Center",
+        "City": "New Orleans",
+        "Province": "LA",
+        "PostalCode": "70130",
+        "CountryCode": "US",
+        "Address1": "881 Convention Center Blvd",
+        "Address2": null,
+        "CheckInDate": "2025-04-22",
+        "CheckOutDate": "2025-04-23",
+        "Source": "email"
+      },
       {
         "SegmentType": "Cruise",
         "BookingNumber": "CM47Q6",
@@ -2441,6 +3225,29 @@
         "Source": "email"
       },
       {
+        "SegmentType": "Flight",
+        "BookingNumber": "TNJ7FN",
+        "Airline": "Vueling",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Athens International Airport",
+          "City": "Athens",
+          "Province": null,
+          "CountryCode": "GR",
+          "Code": "ATH",
+          "Time": "2025-10-15T11:10:00+03:00"
+        },
+        "Arrival": {
+          "LocationName": "Barcelona-El Prat",
+          "City": "Barcelona",
+          "Province": "CT",
+          "CountryCode": "ES",
+          "Code": "BCN",
+          "Time": "2025-10-15T13:25:00+02:00"
+        },
+        "FlightNumber": "VY 8101"
+      },
+      {
         "SegmentType": "Cruise",
         "BookingNumber": "Z0VR92",
         "CruiseLine": "Carnival",
@@ -2661,6 +3468,20 @@
     "HomeAtEnd": "Myrtle Beach, SC",
     "Segments": [
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "220-463-523-97",
+        "DisplayName": "avid Hotels Round Rock South",
+        "City": "Round Rock",
+        "Province": "TX",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-12-05",
+        "CheckOutDate": "2025-12-06",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "XSJSVH",
         "Airline": "Spirit Airlines",
@@ -2674,27 +3495,37 @@
           "Time": "2025-12-05T09:05:00-05:00"
         },
         "Arrival": {
-          "LocationName": "Myrtle Beach Intl",
-          "City": "Myrtle Beach",
-          "Province": "SC",
+          "LocationName": "Newark Liberty Intl",
+          "City": "Newark",
+          "Province": "NJ",
           "CountryCode": "US",
-          "Code": "MYR",
-          "Time": "2025-12-12T13:20:00-05:00"
-        }
+          "Code": "EWR",
+          "Time": "2025-12-05T10:56:00-05:00"
+        },
+        "FlightNumber": "NK 136"
       },
       {
-        "SegmentType": "Accommodation",
-        "BookingNumber": "220-463-523-97",
-        "DisplayName": "avid Hotels Round Rock South",
-        "City": "Round Rock",
-        "Province": "TX",
-        "PostalCode": null,
-        "CountryCode": "US",
-        "Address1": null,
-        "Address2": null,
-        "CheckInDate": "2025-12-05",
-        "CheckOutDate": "2025-12-06",
-        "Source": "email"
+        "SegmentType": "Flight",
+        "BookingNumber": "XSJSVH",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Newark Liberty Intl",
+          "City": "Newark",
+          "Province": "NJ",
+          "CountryCode": "US",
+          "Code": "EWR",
+          "Time": "2025-12-05T12:49:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Austin-Bergstrom Intl",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2025-12-05T16:03:00-06:00"
+        },
+        "FlightNumber": "NK 1420"
       },
       {
         "SegmentType": "Accommodation",
@@ -2723,6 +3554,52 @@
         "CheckInDate": "2025-12-07",
         "CheckOutDate": "2025-12-12",
         "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "XSJSVH",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Austin-Bergstrom Intl",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2025-12-12T06:00:00-06:00"
+        },
+        "Arrival": {
+          "LocationName": "Orlando Intl",
+          "City": "Orlando",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "MCO",
+          "Time": "2025-12-12T09:39:00-05:00"
+        },
+        "FlightNumber": "NK 1415"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "XSJSVH",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Orlando Intl",
+          "City": "Orlando",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "MCO",
+          "Time": "2025-12-12T12:00:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-12-12T13:20:00-05:00"
+        },
+        "FlightNumber": "NK 2985"
       }
     ]
   },
