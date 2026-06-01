@@ -2,46 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Verification Tool</title>
-    <link rel="stylesheet" href="css/style.css?v=16">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Nicholas's Travel Map</title>
+    <link rel="stylesheet" href="css/style.css?v=21">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
-    <header>
-        <h1>Travel Data Viewer</h1>
-        <nav>
-            <button class="nav-btn active" data-view="table">Table</button>
-            <button class="nav-btn" data-view="timeline">Timeline</button>
-            <button class="nav-btn" data-view="gaps">Gaps & Issues</button>
-        </nav>
-        <div id="filters">
-            <input type="text" id="search-input" placeholder="Search trips...">
-            <select id="year-filter"><option value="all">All Years</option></select>
-            <select id="type-filter">
-                <option value="all">All Types</option>
-                <option value="Cruise">Cruise</option>
-                <option value="Flight">Flight</option>
-                <option value="Train">Train</option>
-                <option value="Bus">Bus</option>
-                <option value="Accommodation">Accommodation</option>
-            </select>
-            <select id="source-filter">
-                <option value="all">All Sources</option>
-                <option value="email">Email</option>
-                <option value="inferred">Inferred</option>
-                <option value="manual">Manual</option>
-            </select>
+    <header id="main-header">
+        <div class="header-left">
+            <h1>Nicholas's Travels</h1>
         </div>
+        <nav>
+            <button class="nav-btn active" data-view="globe">Map</button>
+            <button class="nav-btn" data-view="table">Table</button>
+            <button class="nav-btn" data-view="timeline">Timeline</button>
+            <button class="nav-btn" data-view="gaps">Gaps</button>
+        </nav>
     </header>
 
     <div id="stats-bar"></div>
 
+    <div id="filters" class="filters-bar" style="display:none;">
+        <input type="text" id="search-input" placeholder="Search trips...">
+        <select id="year-filter"><option value="all">All Years</option></select>
+        <select id="type-filter">
+            <option value="all">All Types</option>
+            <option value="Cruise">Cruise</option>
+            <option value="Flight">Flight</option>
+            <option value="Train">Train</option>
+            <option value="Bus">Bus</option>
+            <option value="Accommodation">Accommodation</option>
+        </select>
+        <select id="source-filter">
+            <option value="all">All Sources</option>
+            <option value="email">Email</option>
+            <option value="inferred">Inferred</option>
+            <option value="manual">Manual</option>
+        </select>
+    </div>
+
     <main>
-        <div id="table-view" class="view active"><div id="table-wrapper"></div></div>
+        <div id="globe-view" class="view active">
+            <div id="globe-container"></div>
+            <div id="globe-legend">
+                <div class="legend-item"><span class="legend-dot" style="background:#4fc3f7"></span> Cruise Port</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#ba68c8"></span> Airport</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#ffb74d"></span> Train Station</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#3fb950"></span> Event</div>
+                <div class="legend-line"><span class="legend-arc" style="border-color:#4fc3f7"></span> Cruise Route</div>
+                <div class="legend-line"><span class="legend-arc" style="border-color:#ba68c8"></span> Flight Path</div>
+                <div class="legend-line"><span class="legend-arc" style="border-color:#ffb74d"></span> Train Route</div>
+            </div>
+        </div>
+        <div id="table-view" class="view"><div id="table-wrapper"></div></div>
         <div id="timeline-view" class="view"><div id="timeline-container"></div></div>
         <div id="gaps-view" class="view"><div id="gaps-container"></div></div>
     </main>
 
-    <script src="js/app.js?v=16"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/geocode.js?v=21"></script>
+    <script src="js/globe.js?v=21"></script>
+    <script src="js/app.js?v=21"></script>
 </body>
 </html>

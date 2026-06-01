@@ -1,0 +1,187 @@
+// Geocode database for all travel locations
+// Auto-generated from trips.json analysis
+
+const GEOCODE = {
+  airports: {
+    AMS:[52.3086,4.7639],ATL:[33.6407,-84.4277],AXT:[39.6156,140.2186],
+    BCN:[41.2974,2.0833],BER:[52.3667,13.5033],BHX:[52.4539,-1.748],
+    BLQ:[44.5354,11.2887],BNE:[-27.3842,153.1175],BVA:[49.4544,2.1128],
+    CDG:[49.0097,2.5479],CPH:[55.618,12.6508],CTS:[42.7752,141.6925],
+    DEN:[39.8561,-104.6737],DUB:[53.4213,-6.2701],EDI:[55.95,-3.3725],
+    FCO:[41.8003,12.2389],HIJ:[34.4361,132.9194],HND:[35.5494,139.7798],
+    HNL:[21.3245,-157.9251],ICN:[37.4602,126.4407],LAS:[36.084,-115.1537],
+    LGW:[51.1537,-0.1821],LTN:[51.8747,-0.3683],MCO:[28.4312,-81.3081],
+    MNL:[14.5086,121.0197],MPH:[11.9244,121.9536],MYR:[33.6796,-78.9284],
+    NQY:[50.4406,-4.9954],NRT:[35.7647,140.3864],PHL:[39.8744,-75.2424],
+    SGN:[10.8185,106.6519],SIN:[1.3644,103.9915],SNN:[52.702,-8.9248],
+    STN:[51.885,0.235],STT:[18.3373,-64.9734],SYD:[-33.9399,151.1753]
+  },
+  ports: {
+    'George Town':[19.2869,-81.3831],'Grand Cayman':[19.2869,-81.3831],
+    'Cartagena':[10.391,-75.5144],'Panama Canal':[9.34,-79.92],
+    'Panama Canal Transit':[9.34,-79.92],'Puntarenas':[9.9762,-84.8385],
+    'Cabo San Lucas':[22.8905,-109.9167],'Ketchikan':[55.3422,-131.6461],
+    'Juneau':[58.3005,-134.4197],'Skagway':[59.4583,-135.3139],
+    'Icy Strait Point':[58.1328,-135.4331],'Victoria':[48.4284,-123.3656],
+    'Port Tampa Bay':[27.9428,-82.446],'Tampa':[27.9428,-82.446],
+    'Port of Seattle':[47.581,-122.3444],'Seattle':[47.6062,-122.3321],
+    'Half Moon Cay':[20.928,-79.0928],'Grand Turk':[21.4468,-71.141],
+    'Amber Cove':[19.7824,-70.6893],'Port Canaveral':[28.4106,-80.6325],
+    'Cozumel':[20.423,-86.9223],'Nassau':[25.048,-77.3554],
+    'CocoCay':[25.7833,-77.9167],'Perfect Day at CocoCay':[25.7833,-77.9167],
+    'Philipsburg':[18.026,-63.047],'San Juan':[18.4655,-66.1057],
+    'St. Thomas':[18.3358,-64.9307],'Charlotte Amalie':[18.3358,-64.9307],
+    'Myrtle Beach':[33.6891,-78.8867],'New York':[40.6892,-74.0445],
+    'Cape Liberty':[40.6626,-74.0575],
+    'Southampton':[50.9097,-1.4044],'Vigo':[42.2406,-8.7207],
+    'Lisbon':[38.7223,-9.1393],'Cadiz':[36.5271,-6.2886],
+    'Gibraltar':[36.1408,-5.3536],'Barcelona':[41.3784,2.1699],
+    'Marseille':[43.346,5.331],'La Spezia':[44.1024,9.8242],
+    'Civitavecchia':[42.0935,11.7962],'Rome':[41.9028,12.4964],
+    'Mykonos':[37.4467,25.3289],'Kusadasi':[37.8579,27.2611],
+    'Piraeus':[37.9477,23.6432],'Athens':[37.9838,23.7275],
+    'Kotor':[42.4247,18.7712],'Dubrovnik':[42.6507,18.0944],
+    'Corfu':[39.6243,19.9217],
+    'Reykjavik':[64.1466,-21.9426],'Isafjordur':[66.0666,-23.1237],
+    'Akureyri':[65.6885,-18.0878],'Seydisfjordur':[65.2617,-13.9975],
+    'Lerwick':[60.1534,-1.1457],'Shetland Islands':[60.1534,-1.1457],
+    'Bodo':[67.2804,14.4049],'Molde':[62.7373,7.159],
+    'Alesund':[62.4723,6.1495],'Nordfjordeid':[61.9055,5.9849],
+    'Bergen':[60.3913,5.3221],'Haugesund':[59.4138,5.268],
+    'Flam':[60.8628,7.1135],'Eidfjord':[60.4664,6.9856],
+    'Geiranger':[62.0993,7.2081],
+    'Oslo':[59.9139,10.7522],'Skagen':[57.7209,10.5835],
+    'Bornholm':[55.1273,14.9137],'Visby':[57.6348,18.2948],
+    'Stockholm':[59.3293,18.0686],'Helsinki':[60.1699,24.9384],
+    'Tallinn':[59.437,24.7536],'Riga':[56.9496,24.1052],
+    'Gdynia':[54.5189,18.5305],'Gdansk':[54.352,18.6466],
+    'Copenhagen':[55.6761,12.5683],
+    'Yokohama':[35.4437,139.638],'Osaka':[34.6937,135.5023],
+    'Naha':[26.2124,127.6792],'Ishigaki':[24.3448,124.1572],
+    'Keelung':[25.1264,121.742],'Hong Kong':[22.3193,114.1694],
+    'Nha Trang':[12.2388,109.1967],'Ho Chi Minh City':[10.8231,106.6297],
+    'Singapore':[1.2644,103.8222],
+    'Port Klang':[2.9999,101.3924],'Kuala Lumpur':[3.139,101.6869],
+    'Benoa':[-8.7467,115.21],'Bali':[-8.3405,115.092],
+    'Broome':[-17.9614,122.2356],'Geraldton':[-28.7745,114.6158],
+    'Fremantle':[-32.0569,115.744],'Perth':[-31.9505,115.8605],
+    'Adelaide':[-34.9285,138.6007],'Kangaroo Island':[-35.7752,137.2142],
+    'Melbourne':[-37.8136,144.9631],'Sydney':[-33.8688,151.2093],
+    'Hobart':[-42.8821,147.3272],
+    'Noumea':[-22.2763,166.458],'Mystery Island':[-20.4806,169.8689],
+    'Port Vila':[-17.7334,168.322],'Lifou':[-20.9202,167.1437],
+    'Bay of Islands':[-35.2269,174.0921],'Auckland':[-36.8485,174.7633],
+    'Tauranga':[-37.6878,176.1651],'Napier':[-39.4928,176.912],
+    'Wellington':[-41.2924,174.7787],'Christchurch':[-43.5321,172.6362],
+    'Akaroa':[-43.803,172.9684],'Dunedin':[-45.8788,170.5028],
+    'Fiordland':[-45.4146,167.1458],'Milford Sound':[-44.6726,167.9267],
+    'Pusan':[35.1028,129.0403],'Busan':[35.1028,129.0403],
+    'Kagoshima':[31.5969,130.5571],'Hakodate':[41.7687,140.7288],
+    'Aomori':[40.8225,140.7474],
+    'Noshiro':[40.215,140.0568],'Kanazawa':[36.5944,136.6256],
+    'Sakata':[38.9147,139.8364],'Otaru':[43.1907,141.0013],
+    'Kushiro':[42.9849,144.382],
+    'Anchorage':[61.2181,-149.9003],'Whittier':[60.7724,-148.6837],
+    'Sitka':[57.0531,-135.33],'Glacier Bay':[58.6658,-136.9002],
+    'Hubbard Glacier':[60.02,-139.5],
+    'Bridgetown':[13.1132,-59.5988],'Barbados':[13.1939,-59.5432],
+    'Kralendijk':[12.1443,-68.2655],'Bonaire':[12.2019,-68.2624],
+    'Oranjestad':[12.5092,-70.0086],'Aruba':[12.5211,-69.9683],
+    'Willemstad':[12.1696,-68.99],'Curacao':[12.1696,-68.99],
+    'St. Maarten':[18.0425,-63.0548],
+    // Missing ports filled in
+    'Airlie Beach':[-20.2674,148.7183],'Alicante':[38.3452,-0.4815],
+    'Belfast':[54.5973,-5.9301],'Cairns':[-16.9186,145.7781],
+    'Celebration Key':[26.5269,-78.6969],'Freeport':[26.5285,-78.6967],
+    'Darwin':[-12.4634,130.8456],'Endicott Arm':[ 57.7,-133.3],
+    'Endicott Arm Fjord':[57.7,-133.3],
+    'Ensenada':[31.8667,-116.5964],'Funchal':[32.6669,-16.9241],
+    'Grundarfjordur':[64.9192,-23.2606],'Guam':[13.4443,144.7937],
+    'Hagatna':[13.4757,144.7489],
+    'Heimaey':[63.4393,-20.2686],'Heimaey, Westman Islands':[63.4393,-20.2686],
+    'Honolulu':[21.3069,-157.8583],
+    'Hubbard Glacier (Scenic Cruising)':[60.02,-139.5],
+    'Yakutat Bay':[59.5,-139.7],
+    'Invergordon':[57.6889,-4.1716],'Istanbul':[41.0082,28.9784],
+    'Katakolon':[37.6367,21.3175],'Olympia':[37.6367,21.3175],
+    'Katakolon (Olympia)':[37.6367,21.3175],
+    'Kavala':[40.9399,24.4015],
+    'Kota Kinabalu':[5.9804,116.0735],'Lembar':[-8.7303,116.0707],
+    'Lombok':[-8.6507,116.3249],'Malaga':[36.7213,-4.4214],
+    'Manila':[14.5995,120.9842],'Naples':[40.8518,14.2681],
+    'Ponta Delgada':[37.7483,-25.6666],
+    'Port Douglas':[-16.4836,145.4647],
+    'Port of Brisbane':[-27.3818,153.1682],'Brisbane':[-27.4698,153.0251],
+    'Port of Civitavecchia':[42.0935,11.7962],
+    'Civitavecchia (Rome)':[42.0935,11.7962],
+    'Port of Dover':[51.1279,1.3134],'Dover':[51.1279,1.3134],
+    'Port of Long Beach':[33.7615,-118.195],'Long Beach':[33.7701,-118.1937],
+    'Port of New Orleans':[29.9386,-90.0593],'New Orleans':[29.9511,-90.0715],
+    'Seward':[60.1042,-149.4422],
+    'Tenerife':[28.4636,-16.2518],'Santa Cruz de Tenerife':[28.4636,-16.2518],
+    'Tracy Arm':[57.8333,-133.6167],'Tracy Arm Fjord':[57.8333,-133.6167],
+    'Valdez':[61.1309,-146.3484],
+    'Willis Island':[-16.2903,149.9681]
+  },
+  trains: {
+    'Kyoto Station':[34.9858,135.7588],'Tokyo Station':[35.6812,139.7671],
+    'Shin-Osaka Station':[34.7336,135.5001],'Hiroshima Station':[34.3977,132.4754],
+    'London St Pancras':[51.5322,-0.126],'Paris Gare du Nord':[48.8809,2.3553],
+    'Paris Gare de Lyon':[48.8443,2.3739],'Lyon Part-Dieu':[45.7604,4.8595],
+    'Edinburgh Waverley':[55.952,-3.1893],
+    'Bologna Centrale':[44.5058,11.3426],
+    'Florence Santa Maria Novella':[43.7764,11.2479],
+    'Shin-Hakodate-Hokuto Station':[41.9042,140.6494],
+    'Morioka Station':[39.7015,141.1372],
+    'Akita Station':[39.717,140.1276],
+    'Nagano Station':[36.6436,138.1891],
+    'Nagoya Station':[35.1709,136.8815],
+    'Hakata Station':[33.5897,130.4207],
+    'Noshiro Station':[40.215,140.0568],
+    'Odate Station':[40.2721,140.5639],
+    'Hirosaki Station':[40.593,140.4887],
+    // Missing trains
+    'Bourg-Saint-Maurice':[45.6195,6.7713],
+    'Himeji Station':[34.8267,134.6889],'Himeji':[34.8267,134.6889],
+    'Les Arcs - Draguignan':[43.4607,6.4759],'Les Arcs':[43.4607,6.4759],
+    'Marseille Saint-Charles':[43.3028,5.3802],'Marseille':[43.2965,5.3698],
+    // Cities as fallback
+    'Myrtle Beach':[33.6891,-78.8867],'Kyoto':[34.9858,135.7588],
+    'Tokyo':[35.6812,139.7671],'Osaka':[34.6937,135.5023],
+    'London':[51.5074,-0.1278],'Paris':[48.8566,2.3522],
+    'Edinburgh':[55.9533,-3.1883],'Bologna':[44.4949,11.3426],
+    'Florence':[43.7696,11.2558],'Lyon':[45.764,4.8357],
+    'Hiroshima':[34.3853,132.4553]
+  },
+  events: {
+    'Austin':[30.2672,-97.7431],'Tokyo':[35.6762,139.6503],
+    'Osaka':[34.6937,135.5023],'Manila':[14.5995,120.9842],
+    'Sydney':[-33.8688,151.2093],'London':[51.5074,-0.1278],
+    'Edinburgh':[55.9533,-3.1883],'Dublin':[53.3498,-6.2603],
+    'Myrtle Beach':[33.6891,-78.8867],'Brisbane':[-27.4698,153.0251],
+    'Melbourne':[-37.8136,144.9631],'Copenhagen':[55.6761,12.5683],
+    'Barcelona':[41.3874,2.1686],'Rome':[41.9028,12.4964],
+    'Reykjavik':[64.1466,-21.9426],'Seoul':[37.5665,126.978],
+    'Ho Chi Minh City':[10.8231,106.6297],'Singapore':[1.3521,103.8198],
+    'Kyoto':[34.9858,135.7588]
+  }
+};
+
+// Resolve a location to [lat, lng]
+function geocode(type, name, city, code) {
+  if (type === 'Flight' && code && GEOCODE.airports[code]) return GEOCODE.airports[code];
+  if (type === 'Cruise') {
+    if (GEOCODE.ports[name]) return GEOCODE.ports[name];
+    if (GEOCODE.ports[city]) return GEOCODE.ports[city];
+  }
+  if (type === 'Train') {
+    if (GEOCODE.trains[name]) return GEOCODE.trains[name];
+    if (GEOCODE.trains[city]) return GEOCODE.trains[city];
+  }
+  // Fallback: check all databases
+  if (GEOCODE.ports[name]) return GEOCODE.ports[name];
+  if (GEOCODE.ports[city]) return GEOCODE.ports[city];
+  if (GEOCODE.events[city]) return GEOCODE.events[city];
+  if (GEOCODE.events[name]) return GEOCODE.events[name];
+  return null;
+}

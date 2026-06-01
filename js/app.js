@@ -4,7 +4,7 @@
 
 let tripsData = [];
 let eventsData = [];
-let currentView = 'table';
+let currentView = 'globe';
 
 // ==================== COUNTRY CODE MAP ====================
 const COUNTRIES = {
@@ -39,6 +39,22 @@ const fmtShort = d => d ? new Date(d).toLocaleDateString('en-US',{month:'short',
 const daysBetween = (a,b) => Math.round((new Date(b)-new Date(a))/86400000);
 
 function isHomeTripName(name) { return name && name.toLowerCase().startsWith('home in'); }
+
+function formatTripDuration(startStr, endStr) {
+    if (!startStr || !endStr) return '';
+    const start = new Date(startStr);
+    const end = new Date(endStr);
+    const days = Math.round((end - start) / 86400000);
+    if (days <= 0) return '';
+    if (days < 7) return '(' + days + ' day' + (days !== 1 ? 's' : '') + ')';
+    const weeks = Math.round(days / 7);
+    if (days < 30) return '(' + weeks + ' week' + (weeks !== 1 ? 's' : '') + ')';
+    const months = Math.round(days / 30.44);
+    if (months < 12) return '(' + months + ' month' + (months !== 1 ? 's' : '') + ')';
+    const years = Math.round(days / 365.25 * 10) / 10;
+    return '(' + years + ' year' + (years !== 1 ? 's' : '') + ')';
+}
+
 
 function getSegStart(seg) {
     if (seg.DeparturePort && seg.DeparturePort.Time) return seg.DeparturePort.Time;
@@ -589,7 +605,7 @@ function renderTimelineView(trips) {
             html += '<div class="timeline-trip-header" onclick="this.parentElement.classList.toggle(\'expanded\')">';
             html += '<span class="expand-icon">\u25B6</span>';
             html += '<span class="timeline-trip-title">' + esc(trip.TripName) + '</span>';
-            html += '<span class="timeline-trip-dates">' + fmtShort(start) + ' - ' + fmtShort(end) + '</span>';
+            html += '<span class="timeline-trip-dates">' + fmtShort(start) + ' - ' + fmtShort(end) + ' ' + formatTripDuration(start, end) + '</span>';
             html += '</div>';
             html += '<div class="timeline-trip-body">';
 
@@ -817,7 +833,18 @@ async function init() {
             this.classList.add('active');
             currentView = this.getAttribute('data-view');
             document.getElementById(currentView + '-view').classList.add('active');
-            applyFilters();
+            // Show/hide filters (not needed for globe)
+            const filtersEl = document.getElementById('filters');
+            if (filtersEl) filtersEl.style.display = (currentView === 'globe') ? 'none' : 'flex';
+            // Show/hide stats bar on globe
+            const statsEl = document.getElementById('stats-bar');
+            if (statsEl) statsEl.style.display = (currentView === 'globe') ? 'none' : 'flex';
+            if (currentView === 'globe') {
+                refreshMap(tripsData, eventsData);
+                handleMapResize();
+            } else {
+                applyFilters();
+            }
         };
     });
 
@@ -827,7 +854,13 @@ async function init() {
     document.getElementById('type-filter').onchange = applyFilters;
     document.getElementById('source-filter').onchange = applyFilters;
 
-    applyFilters();
+    // Init globe view (default)
+    refreshMap(tripsData, eventsData);
+    // Hide filters and stats on globe view
+    var filtersEl = document.getElementById('filters');
+    if (filtersEl) filtersEl.style.display = 'none';
+    var statsEl = document.getElementById('stats-bar');
+    if (statsEl) statsEl.style.display = 'none';
 }
 
 init();
