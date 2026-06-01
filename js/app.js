@@ -1,10 +1,11 @@
-// Travel Verification Tool - Complete Rewrite v14
+// Travel Dashboard - Complete Rewrite v20
 // Source of truth: data/trips.json and data/events.json
 // DO NOT modify data files. All gap detection is script-side only.
 
 let tripsData = [];
 let eventsData = [];
 let currentView = 'globe';
+let globeInitialized = false;
 
 // ==================== COUNTRY CODE MAP ====================
 const COUNTRIES = {
@@ -40,22 +41,6 @@ const daysBetween = (a,b) => Math.round((new Date(b)-new Date(a))/86400000);
 
 function isHomeTripName(name) { return name && name.toLowerCase().startsWith('home in'); }
 
-function formatTripDuration(startStr, endStr) {
-    if (!startStr || !endStr) return '';
-    const start = new Date(startStr);
-    const end = new Date(endStr);
-    const days = Math.round((end - start) / 86400000);
-    if (days <= 0) return '';
-    if (days < 7) return '(' + days + ' day' + (days !== 1 ? 's' : '') + ')';
-    const weeks = Math.round(days / 7);
-    if (days < 30) return '(' + weeks + ' week' + (weeks !== 1 ? 's' : '') + ')';
-    const months = Math.round(days / 30.44);
-    if (months < 12) return '(' + months + ' month' + (months !== 1 ? 's' : '') + ')';
-    const years = Math.round(days / 365.25 * 10) / 10;
-    return '(' + years + ' year' + (years !== 1 ? 's' : '') + ')';
-}
-
-
 function getSegStart(seg) {
     if (seg.DeparturePort && seg.DeparturePort.Time) return seg.DeparturePort.Time;
     if (seg.Departure && seg.Departure.Time) return seg.Departure.Time;
@@ -79,16 +64,6 @@ function getSegTo(seg) {
     if (seg.Arrival) return seg.Arrival.Code ? seg.Arrival.City + ' (' + seg.Arrival.Code + ')' : (seg.Arrival.City || '');
     if (seg.City) return seg.City;
     return '';
-}
-function getSegFromCountry(seg) {
-    if (seg.DeparturePort) return seg.DeparturePort.CountryCode || '';
-    if (seg.Departure) return seg.Departure.CountryCode || '';
-    return seg.CountryCode || '';
-}
-function getSegToCountry(seg) {
-    if (seg.ArrivalPort) return seg.ArrivalPort.CountryCode || '';
-    if (seg.Arrival) return seg.Arrival.CountryCode || '';
-    return seg.CountryCode || '';
 }
 function getSegDetail(seg) {
     switch(seg.SegmentType) {
@@ -121,6 +96,20 @@ function portDisplay(port) {
     let country = countryName(port.CountryCode);
     if (city && city !== name) return name + ' (' + city + '), ' + country;
     return (name || city) + (country ? ', ' + country : '');
+}
+
+function tripDurationText(start, end) {
+    if (!start || !end) return '';
+    const days = daysBetween(start, end);
+    if (days <= 0) return '1 day';
+    if (days === 1) return '1 day';
+    if (days < 7) return days + ' days';
+    if (days < 14) return '1 week';
+    const weeks = Math.round(days / 7);
+    if (days < 30) return weeks + ' weeks';
+    if (days < 60) return '1 month';
+    const months = Math.round(days / 30);
+    return months + ' months';
 }
 
 // ==================== JSON VIEWER POPUP ====================
@@ -163,36 +152,24 @@ function attachJsonListeners() {
     });
 }
 
-// ==================== ISSUES PER SEGMENT ====================
+// ==================== ISSUES ====================
 function getSegmentIssues(seg, segIdx, trip) {
     const issues = [];
-    if (!seg.BookingNumber) {
-        issues.push({severity: 'warning', msg: 'Missing booking reference'});
-    }
-    if (seg.Source === 'inferred') {
-        issues.push({severity: 'info', msg: 'Segment was inferred (not from a booking source)'});
-    }
-    if (!getSegStart(seg)) {
-        issues.push({severity: 'info', msg: 'Missing departure/start time'});
-    }
-    if (!getSegEnd(seg)) {
-        issues.push({severity: 'info', msg: 'Missing arrival/end time'});
-    }
-    // Time gap: check if there's a >2 day gap before this segment
+    if (!seg.BookingNumber) issues.push({severity:'warning',msg:'Missing booking reference'});
+    if (seg.Source === 'inferred') issues.push({severity:'info',msg:'Segment was inferred (not from a booking source)'});
+    if (!getSegStart(seg)) issues.push({severity:'info',msg:'Missing departure/start time'});
+    if (!getSegEnd(seg)) issues.push({severity:'info',msg:'Missing arrival/end time'});
     const segs = trip.Segments || [];
     if (segIdx > 0) {
         const prevEnd = getSegEnd(segs[segIdx - 1]);
         const thisStart = getSegStart(seg);
         if (prevEnd && thisStart) {
             const gapDays = daysBetween(prevEnd, thisStart);
-            if (gapDays > 2) {
-                issues.push({severity: 'warning', msg: gapDays + '-day gap before this segment (from ' + esc(getSegDetail(segs[segIdx-1]).trim()) + ')'});
-            }
+            if (gapDays > 2) issues.push({severity:'warning',msg:gapDays+'-day gap before this segment'});
         }
     }
     return issues;
 }
-
 function getTripIssues(trip) {
     const issues = [];
     const segs = trip.Segments || [];
@@ -205,62 +182,49 @@ function getTripIssues(trip) {
     return issues;
 }
 
-// Issues popup
 function showIssuesPopup(issues) {
     const existing = document.getElementById('json-popup-overlay');
     if (existing) existing.remove();
-
     const overlay = document.createElement('div');
     overlay.id = 'json-popup-overlay';
     overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:center;justify-content:center;';
     overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
-
     const popup = document.createElement('div');
     popup.style.cssText = 'background:#161b22;border:1px solid #30363d;border-radius:12px;padding:24px;max-width:600px;width:90%;max-height:80vh;overflow:auto;position:relative;';
-
     const closeBtn = document.createElement('button');
     closeBtn.textContent = '\u2715';
     closeBtn.style.cssText = 'position:absolute;top:10px;right:14px;background:none;border:none;color:#8b949e;font-size:1.3rem;cursor:pointer;';
     closeBtn.onclick = () => overlay.remove();
-
     const title = document.createElement('h3');
     title.textContent = '\u26A0\uFE0F Issues (' + issues.length + ')';
     title.style.cssText = 'color:#d29922;margin-bottom:16px;font-size:1.1rem;';
-
     popup.appendChild(closeBtn);
     popup.appendChild(title);
-
     for (const issue of issues) {
         const row = document.createElement('div');
         row.style.cssText = 'display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #30363d;align-items:flex-start;';
-
         const icon = document.createElement('span');
         icon.textContent = issue.severity === 'warning' ? '\u26A0\uFE0F' : '\uD83D\uDD0D';
         icon.style.cssText = 'min-width:24px;text-align:center;';
-
         const msg = document.createElement('span');
         msg.style.cssText = 'color:' + (issue.severity === 'warning' ? '#d29922' : '#8b949e') + ';font-size:0.9rem;';
         let text = issue.msg;
         if (issue.segment) text = issue.segment + ': ' + text;
         msg.textContent = text;
-
         row.appendChild(icon);
         row.appendChild(msg);
         popup.appendChild(row);
     }
-
     if (issues.length === 0) {
         const noIssues = document.createElement('p');
         noIssues.textContent = '\u2705 No issues detected';
         noIssues.style.cssText = 'color:#3fb950;text-align:center;padding:20px;';
         popup.appendChild(noIssues);
     }
-
     overlay.appendChild(popup);
     document.body.appendChild(overlay);
 }
 
-// Issues button HTML generators
 function issuesBtnHTML(tripIdx, segIdx) {
     const trip = tripsData[tripIdx];
     const seg = trip.Segments[segIdx];
@@ -268,22 +232,18 @@ function issuesBtnHTML(tripIdx, segIdx) {
     if (issues.length === 0) return '';
     return '<button class="issues-btn" data-trip="' + tripIdx + '" data-seg="' + segIdx + '" title="' + issues.length + ' issue(s)">\u26A0\uFE0F ' + issues.length + '</button>';
 }
-
 function issuesBtnTripHTML(tripIdx) {
     const trip = tripsData[tripIdx];
     const issues = getTripIssues(trip);
     if (issues.length === 0) return '';
     return '<button class="issues-btn issues-btn-trip" data-trip="' + tripIdx + '" data-seg="-1" title="' + issues.length + ' issue(s)">\u26A0\uFE0F ' + issues.length + '</button>';
 }
-
 function issuesBtnConnectionHTML(tripIdx, legIndices) {
     const trip = tripsData[tripIdx];
     const allIssues = [];
     for (const idx of legIndices) {
         const segIssues = getSegmentIssues(trip.Segments[idx], idx, trip);
-        for (const issue of segIssues) {
-            allIssues.push({...issue, segment: getSegDetail(trip.Segments[idx]).trim()});
-        }
+        for (const issue of segIssues) allIssues.push({...issue, segment: getSegDetail(trip.Segments[idx]).trim()});
     }
     if (allIssues.length === 0) return '';
     return '<button class="issues-btn" data-trip="' + tripIdx + '" data-legs="' + legIndices.join(',') + '" title="' + allIssues.length + ' issue(s)">\u26A0\uFE0F ' + allIssues.length + '</button>';
@@ -297,16 +257,12 @@ function attachIssuesListeners() {
             const segIdx = parseInt(this.getAttribute('data-seg'));
             const legsAttr = this.getAttribute('data-legs');
             const trip = tripsData[tripIdx];
-
             if (legsAttr) {
-                // Connection: aggregate issues from all legs
                 const indices = legsAttr.split(',').map(Number);
                 const allIssues = [];
                 for (const idx of indices) {
                     const segIssues = getSegmentIssues(trip.Segments[idx], idx, trip);
-                    for (const issue of segIssues) {
-                        allIssues.push({...issue, segment: getSegDetail(trip.Segments[idx]).trim()});
-                    }
+                    for (const issue of segIssues) allIssues.push({...issue, segment: getSegDetail(trip.Segments[idx]).trim()});
                 }
                 showIssuesPopup(allIssues);
             } else if (segIdx === -1) {
@@ -319,19 +275,12 @@ function attachIssuesListeners() {
 }
 
 // ==================== GROUPING LOGIC ====================
-// Group consecutive flights where:
-//   - Same booking number, OR
-//   - Arrival airport code matches next departure airport code
-// Group back-to-back trains (within 3 hours) as connections
 function groupSegments(segments) {
     const groups = [];
     let i = 0;
-
     while (i < segments.length) {
         const seg = segments[i];
-
         if (seg.SegmentType === 'Flight') {
-            // Try to chain consecutive flights
             const chain = [{seg, idx: i}];
             let j = i + 1;
             while (j < segments.length && segments[j].SegmentType === 'Flight') {
@@ -341,21 +290,12 @@ function groupSegments(segments) {
                 const nextDepCode = (nextSeg.Departure || {}).Code || '';
                 const sameBooking = prevSeg.BookingNumber && prevSeg.BookingNumber === nextSeg.BookingNumber;
                 const airportMatch = prevArrCode && nextDepCode && prevArrCode === nextDepCode;
-
-                if (sameBooking || airportMatch) {
-                    chain.push({seg: nextSeg, idx: j});
-                    j++;
-                } else {
-                    break;
-                }
+                if (sameBooking || airportMatch) { chain.push({seg: nextSeg, idx: j}); j++; }
+                else break;
             }
-            if (chain.length > 1) {
-                groups.push({ type: 'flight-connection', legs: chain });
-            } else {
-                groups.push({ type: 'single', seg: seg, idx: i });
-            }
+            if (chain.length > 1) groups.push({ type: 'flight-connection', legs: chain });
+            else groups.push({ type: 'single', seg: seg, idx: i });
             i = j;
-
         } else if (seg.SegmentType === 'Train') {
             const trainGroup = [{seg, idx: i}];
             let j = i + 1;
@@ -364,20 +304,13 @@ function groupSegments(segments) {
                 const nextStart = getSegStart(segments[j]);
                 if (lastEnd && nextStart) {
                     const gapHours = (new Date(nextStart) - new Date(lastEnd)) / (1000*60*60);
-                    if (gapHours >= 0 && gapHours <= 3) {
-                        trainGroup.push({seg: segments[j], idx: j});
-                        lastEnd = getSegEnd(segments[j]);
-                        j++;
-                    } else break;
+                    if (gapHours >= 0 && gapHours <= 3) { trainGroup.push({seg: segments[j], idx: j}); lastEnd = getSegEnd(segments[j]); j++; }
+                    else break;
                 } else break;
             }
-            if (trainGroup.length > 1) {
-                groups.push({ type: 'train-connection', legs: trainGroup });
-            } else {
-                groups.push({ type: 'single', seg: seg, idx: i });
-            }
+            if (trainGroup.length > 1) groups.push({ type: 'train-connection', legs: trainGroup });
+            else groups.push({ type: 'single', seg: seg, idx: i });
             i = j;
-
         } else {
             groups.push({ type: 'single', seg: seg, idx: i });
             i++;
@@ -386,8 +319,6 @@ function groupSegments(segments) {
     return groups;
 }
 
-
-// ==================== TABLE VIEW ====================
 // ==================== STATS BAR ====================
 function renderStats(trips) {
     const bar = document.getElementById('stats-bar');
@@ -406,11 +337,24 @@ function renderStats(trips) {
         }
         events += getTripEvents(t.TripId || '').length;
     }
+    // Count unique countries
+    const countries = new Set();
+    for (const t of trips) {
+        for (const s of t.Segments || []) {
+            if (s.DeparturePort && s.DeparturePort.CountryCode) countries.add(s.DeparturePort.CountryCode);
+            if (s.ArrivalPort && s.ArrivalPort.CountryCode) countries.add(s.ArrivalPort.CountryCode);
+            if (s.Departure && s.Departure.CountryCode) countries.add(s.Departure.CountryCode);
+            if (s.Arrival && s.Arrival.CountryCode) countries.add(s.Arrival.CountryCode);
+            if (s.CountryCode) countries.add(s.CountryCode);
+            if (s.PortsOfCall) s.PortsOfCall.forEach(p => { if (p.CountryCode) countries.add(p.CountryCode); });
+        }
+    }
     const gapData = detectGaps(trips);
     for (const g of gapData) issues += g.issues.length;
 
     bar.innerHTML =
         '<span class="stat">\u{1F30D} <strong>' + nonHomeTrips.length + '</strong> Trips</span>' +
+        '<span class="stat">\u{1F3F3}\uFE0F <strong>' + countries.size + '</strong> Countries</span>' +
         '<span class="stat">\u{1F9E9} <strong>' + segs + '</strong> Segments</span>' +
         '<span class="stat">\u{1F6A2} <strong>' + cruises + '</strong> Cruises</span>' +
         '<span class="stat">\u2708\uFE0F <strong>' + flightBookings.size + '</strong> Bookings / <strong>' + planeRides + '</strong> Flights</span>' +
@@ -419,6 +363,7 @@ function renderStats(trips) {
         '<span class="stat warning">\u26A0\uFE0F <strong>' + issues + '</strong> Issues</span>';
 }
 
+// ==================== TABLE VIEW ====================
 function renderTableView(trips) {
     const wrapper = document.getElementById('table-wrapper');
     if (!trips.length) { wrapper.innerHTML = '<div class="empty">No trips found</div>'; return; }
@@ -430,13 +375,16 @@ function renderTableView(trips) {
         const typeBadges = [...new Set((trip.Segments||[]).map(s => s.SegmentType))].map(t =>
             '<span class="badge badge-' + t.toLowerCase() + '">' + segIcon(t) + ' ' + t + '</span>'
         ).join(' ');
+        const dur = tripDurationText(start, end);
 
         html += '<div class="trip-card' + homeClass + '" data-trip="' + ti + '">';
         html += '<div class="trip-header" onclick="this.parentElement.classList.toggle(\'expanded\')">';
         html += '<span class="expand-icon">\u25B6</span>';
         html += '<span class="trip-title">' + esc(trip.TripName) + '</span>';
         html += '<span class="trip-meta">' + typeBadges + '</span>';
-        html += '<span class="trip-dates">' + fmtShort(start) + ' - ' + fmtShort(end) + '</span>';
+        html += '<span class="trip-dates">' + fmtShort(start) + ' - ' + fmtShort(end);
+        if (dur) html += ' <span class="timeline-trip-dur">(' + dur + ')</span>';
+        html += '</span>';
         html += '<button class="json-btn json-btn-trip" data-trip="' + ti + '" data-seg="-1" title="View Trip JSON">{}</button>';
         html += issuesBtnTripHTML(ti);
         html += '</div>';
@@ -446,7 +394,6 @@ function renderTableView(trips) {
             html += '<div class="home-info">\u{1F3E0} Home stay in ' + esc(trip.Segments?.[0]?.City || '') + '</div>';
         }
 
-        // Segment table
         const groups = groupSegments(trip.Segments || []);
         html += '<table class="seg-table"><thead><tr>';
         html += '<th>Type</th><th>Detail</th><th>From</th><th>To</th><th>Dates</th><th>Booking</th><th></th>';
@@ -544,17 +491,17 @@ function renderTableView(trips) {
             }
         });
 
-        // Events for this trip
+        // Events
         const tripEvents = getTripEvents(trip.TripId || '');
         if (tripEvents.length) {
             html += '<tr class="event-separator"><td colspan="7">\u{1F3AD} Events (' + tripEvents.length + ')</td></tr>';
-            tripEvents.forEach((ev, ei) => {
+            tripEvents.forEach((ev) => {
                 const evGlobalIdx = eventsData.indexOf(ev);
                 html += '<tr class="event-row">';
                 html += '<td>\u{1F3AD}</td>';
-                html += '<td>' + esc(ev.EventName || '') + '</td>';
+                html += '<td>' + esc(ev.EventName || ev.Title || '') + '</td>';
                 html += '<td colspan="2">' + esc(ev.Venue || '') + (ev.City ? ', ' + esc(ev.City) : '') + '</td>';
-                html += '<td>' + fmtShort(ev.EventDate || ev.Date) + '</td>';
+                html += '<td>' + fmtShort(ev.EventDate || ev.StartTime || ev.Date) + '</td>';
                 html += '<td>' + (ev.BookingNumber ? '<span class="booking-ref">' + esc(ev.BookingNumber) + '</span>' : '') + '</td>';
                 html += '<td><button class="json-btn" data-event="' + evGlobalIdx + '" title="View Event JSON">{}</button></td>';
                 html += '</tr>';
@@ -574,7 +521,6 @@ function renderTimelineView(trips) {
     const container = document.getElementById('timeline-container');
     if (!trips.length) { container.innerHTML = '<div class="empty">No trips found</div>'; return; }
 
-    // Group by year descending
     const byYear = {};
     trips.forEach((trip, ti) => {
         const yr = getTripYear(trip);
@@ -601,11 +547,14 @@ function renderTimelineView(trips) {
         yearTrips.forEach(({trip, ti}) => {
             const { start, end } = getTripDateRange(trip);
             const isHome = isHomeTripName(trip.TripName);
+            const dur = tripDurationText(start, end);
             html += '<div class="timeline-trip' + (isHome ? ' home-timeline-trip' : '') + '">';
             html += '<div class="timeline-trip-header" onclick="this.parentElement.classList.toggle(\'expanded\')">';
             html += '<span class="expand-icon">\u25B6</span>';
             html += '<span class="timeline-trip-title">' + esc(trip.TripName) + '</span>';
-            html += '<span class="timeline-trip-dates">' + fmtShort(start) + ' - ' + fmtShort(end) + ' ' + formatTripDuration(start, end) + '</span>';
+            html += '<span class="timeline-trip-dates">' + fmtShort(start) + ' - ' + fmtShort(end);
+            if (dur) html += ' <span class="timeline-trip-dur">(' + dur + ')</span>';
+            html += '</span>';
             html += '</div>';
             html += '<div class="timeline-trip-body">';
 
@@ -614,7 +563,6 @@ function renderTimelineView(trips) {
                 if (g.type === 'flight-connection') {
                     const first = g.legs[0].seg, last = g.legs[g.legs.length-1].seg;
                     const stops = g.legs.length - 1;
-                    const gid = 'tl-fg-' + ti + '-' + gi;
                     html += '<div class="tl-segment tl-group" onclick="this.classList.toggle(\'expanded\')">';
                     html += '<div class="tl-icon">' + segIcon('Flight') + '</div>';
                     html += '<div class="tl-content">';
@@ -682,9 +630,9 @@ function renderTimelineView(trips) {
                     html += '<div class="tl-segment tl-event">';
                     html += '<div class="tl-icon">\u{1F3AD}</div>';
                     html += '<div class="tl-content">';
-                    html += '<div class="tl-main">' + esc(ev.EventName || '') + '</div>';
+                    html += '<div class="tl-main">' + esc(ev.EventName || ev.Title || '') + '</div>';
                     html += '<div class="tl-sub">' + esc(ev.Venue || '') + (ev.City ? ', ' + esc(ev.City) : '') + '</div>';
-                    html += '<div class="tl-time">' + fmtShort(ev.EventDate || ev.Date) + '</div>';
+                    html += '<div class="tl-time">' + fmtShort(ev.EventDate || ev.StartTime || ev.Date) + '</div>';
                     html += '</div></div>';
                 });
             }
@@ -702,7 +650,6 @@ function detectGaps(trips) {
     trips.forEach((trip, ti) => {
         const issues = [];
         const segs = trip.Segments || [];
-        // Missing booking numbers
         segs.forEach((seg, si) => {
             if (!seg.BookingNumber && seg.SegmentType !== 'Accommodation') {
                 issues.push({ severity: 'warning', msg: seg.SegmentType + ': ' + getSegDetail(seg) + ' has no booking number' });
@@ -711,7 +658,6 @@ function detectGaps(trips) {
                 issues.push({ severity: 'info', msg: seg.SegmentType + ': ' + getSegDetail(seg) + ' is inferred (not confirmed)' });
             }
         });
-        // Time gaps between consecutive segments
         for (let i = 0; i < segs.length - 1; i++) {
             const end = getSegEnd(segs[i]);
             const start = getSegStart(segs[i+1]);
@@ -806,7 +752,7 @@ async function init() {
         eventsData = await eventsResp.json();
     } catch(e) {
         console.error('Failed to load data:', e);
-        document.getElementById('table-wrapper').innerHTML = '<div class="empty">Failed to load data</div>';
+        document.getElementById('globe-container').innerHTML = '<div class="empty">Failed to load data</div>';
         return;
     }
 
@@ -825,6 +771,13 @@ async function init() {
         yearSelect.appendChild(opt);
     });
 
+    // Render stats
+    renderStats(tripsData);
+
+    // Init globe
+    initGlobe(tripsData, eventsData);
+    globeInitialized = true;
+
     // View switching
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.onclick = function() {
@@ -833,16 +786,14 @@ async function init() {
             this.classList.add('active');
             currentView = this.getAttribute('data-view');
             document.getElementById(currentView + '-view').classList.add('active');
-            // Show/hide filters (not needed for globe)
+
+            // Show/hide filters
             const filtersEl = document.getElementById('filters');
-            if (filtersEl) filtersEl.style.display = (currentView === 'globe') ? 'none' : 'flex';
-            // Show/hide stats bar on globe
-            const statsEl = document.getElementById('stats-bar');
-            if (statsEl) statsEl.style.display = (currentView === 'globe') ? 'none' : 'flex';
             if (currentView === 'globe') {
-                refreshMap(tripsData, eventsData);
-                handleMapResize();
+                filtersEl.style.display = 'none';
+                resizeGlobe();
             } else {
+                filtersEl.style.display = 'flex';
                 applyFilters();
             }
         };
@@ -853,14 +804,6 @@ async function init() {
     document.getElementById('year-filter').onchange = applyFilters;
     document.getElementById('type-filter').onchange = applyFilters;
     document.getElementById('source-filter').onchange = applyFilters;
-
-    // Init globe view (default)
-    refreshMap(tripsData, eventsData);
-    // Hide filters and stats on globe view
-    var filtersEl = document.getElementById('filters');
-    if (filtersEl) filtersEl.style.display = 'none';
-    var statsEl = document.getElementById('stats-bar');
-    if (statsEl) statsEl.style.display = 'none';
 }
 
 init();
