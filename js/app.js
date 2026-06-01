@@ -952,6 +952,8 @@ function buildSummaryContent(yearFilter) {
     const flights = allSegs.filter(s => s.SegmentType === 'Flight');
     const trains = allSegs.filter(s => s.SegmentType === 'Train');
     const buses = allSegs.filter(s => s.SegmentType === 'Bus');
+    const hotels = allSegs.filter(s => s.SegmentType === 'Accommodation' && s.BookingNumber !== 'HOME');
+    const hotelBookings = new Set(hotels.filter(h => h.BookingNumber).map(h => h.BookingNumber));
 
     // Countries
     const countries = new Set();
@@ -972,6 +974,14 @@ function buildSummaryContent(yearFilter) {
     cruises.forEach(c => {
         const s = getSegStart(c), e = getSegEnd(c);
         if (s && e) cruiseDays += daysBetween(s, e);
+    });
+
+    // Hotel nights
+    let hotelNights = 0;
+    hotels.forEach(h => {
+        const ci = h.CheckInDate || h.StartDate;
+        const co = h.CheckOutDate || h.EndDate;
+        if (ci && co) hotelNights += daysBetween(ci, co);
     });
 
     // Ports of call
@@ -1020,6 +1030,7 @@ function buildSummaryContent(yearFilter) {
     html += buildStatCard('\u{1F6A2}', 'Cruises', cruises.length, cruiseDays + ' days at sea');
     html += buildStatCard('\u2708\uFE0F', 'Flights', flights.length, flightBookings.size + ' bookings');
     html += buildStatCard('\u{1F686}', 'Trains', trains.length, '');
+    html += buildStatCard('\u{1F3E8}', 'Hotels', hotelBookings.size + ' bookings', hotels.length + ' stays, ' + hotelNights + ' nights');
     html += buildStatCard('\u2693', 'Ports', ports.size, '');
     html += buildStatCard('\u{1F3AB}', 'Events', events.length, '');
     html += '</div>';
@@ -1052,6 +1063,24 @@ function buildSummaryContent(yearFilter) {
         [...airlines].sort().forEach(airline => {
             const count = flights.filter(f => f.Airline === airline).length;
             html += '<div class="ss-item"><span class="ss-name">' + esc(airline) + '</span><span class="ss-stat">' + count + ' flight' + (count > 1 ? 's' : '') + '</span></div>';
+        });
+        html += '</div></div>';
+    }
+
+    // Hotels
+    if (hotels.length > 0) {
+        html += '<div class="summary-section">';
+        html += '<h3>\u{1F3E8} Hotels (' + hotels.length + ')</h3>';
+        html += '<div class="ss-list">';
+        hotels.sort((a, b) => (a.CheckInDate || "").localeCompare(b.CheckInDate || "")).forEach(h => {
+            const name = h.DisplayName || h.Property || "Unknown Hotel";
+            const city = h.City || "Unknown";
+            const ci = fmtDate(h.CheckInDate || h.StartDate);
+            const co = fmtDate(h.CheckOutDate || h.EndDate);
+            const ciDate = h.CheckInDate || h.StartDate;
+            const coDate = h.CheckOutDate || h.EndDate;
+            const nights = (ciDate && coDate) ? daysBetween(ciDate, coDate) : "?";
+            html += '<div class="ss-item"><span class="ss-name">' + esc(name) + ' <span style="opacity:0.6">(' + esc(city) + ')</span></span><span class="ss-stat">' + ci + ' → ' + co + ' (' + nights + ' night' + (nights !== 1 ? 's' : "") + ')</span></div>';
         });
         html += '</div></div>';
     }
@@ -1102,6 +1131,10 @@ function renderStats(trips) {
     const bookingRefs = new Set(flights.filter(f => f.BookingNumber).map(f => f.BookingNumber));
     const bookingCount = bookingRefs.size + flights.filter(f => !f.BookingNumber).length;
     const trains = allSegs.filter(s => s.SegmentType === 'Train').length;
+    const hotels = allSegs.filter(s => s.SegmentType === 'Accommodation' && s.BookingNumber !== 'HOME');
+    const hotelCount = hotels.length;
+    const hotelBookings = new Set(hotels.filter(h => h.BookingNumber).map(h => h.BookingNumber));
+    const hotelBookingCount = hotelBookings.size;
     const events = eventsData.length;
     let issueCount = 0;
     for (const t of trips) { issueCount += getTripIssues(t).length; }
@@ -1110,6 +1143,7 @@ function renderStats(trips) {
         + '<span class="stat">\u{1F6A2} <strong>' + cruises + '</strong> Cruises</span>'
         + '<span class="stat">\u2708\uFE0F <strong>' + bookingCount + '</strong> Bookings / <strong>' + flightCount + '</strong> Flights</span>'
         + '<span class="stat">\u{1F686} <strong>' + trains + '</strong> Trains</span>'
+        + '<span class="stat">\u{1F3E8} <strong>' + hotelBookingCount + '</strong> Bookings / <strong>' + hotelCount + '</strong> Stays</span>'
         + '<span class="stat">\u{1F3AB} <strong>' + events + '</strong> Events</span>'
         + (issueCount > 0 ? '<span class="stat warning">\u26A0\uFE0F <strong>' + issueCount + '</strong> Issues</span>' : '');
 }
