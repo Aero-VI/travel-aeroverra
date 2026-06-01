@@ -733,3 +733,33 @@ tr:hover .issues-btn, .trip-header:hover .issues-btn { opacity: 0.8; }
     #map-hud { padding: 6px 12px; gap: 10px; top: 8px; }
     .hud-item { font-size: 0.65rem; }
 }
+
+/* ===== ENHANCED MAP POPUP STYLES ===== */
+.mp-country {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+}
+.mp-trip-ref {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-top: 6px;
+    padding-top: 4px;
+    border-top: 1px solid var(--border);
+    opacity: 0.7;
+}
+.mp-booking {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 2px;
+}
+.mp-detail {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    padding: 2px 0;
+}
