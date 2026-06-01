@@ -217,6 +217,33 @@ function groupSegments(segments) {
 
 
 // ==================== TABLE VIEW ====================
+// ==================== STATS BAR ====================
+function renderStats(trips) {
+    const bar = document.getElementById('stats-bar');
+    const nonHomeTrips = trips.filter(t => !isHomeTripName(t.TripName));
+    let segs = 0, cruises = 0, flights = 0, trains = 0, events = 0, issues = 0;
+    for (const t of trips) {
+        for (const s of t.Segments || []) {
+            segs++;
+            if (s.SegmentType === 'Cruise') cruises++;
+            if (s.SegmentType === 'Flight') flights++;
+            if (s.SegmentType === 'Train') trains++;
+        }
+        events += getTripEvents(t.TripId || '').length;
+    }
+    const gapData = detectGaps(trips);
+    for (const g of gapData) issues += g.issues.length;
+
+    bar.innerHTML =
+        '<span class="stat">\u{1F30D} <strong>' + nonHomeTrips.length + '</strong> Trips</span>' +
+        '<span class="stat">\u{1F9E9} <strong>' + segs + '</strong> Segments</span>' +
+        '<span class="stat">\u{1F6A2} <strong>' + cruises + '</strong> Cruises</span>' +
+        '<span class="stat">\u2708\uFE0F <strong>' + flights + '</strong> Flights</span>' +
+        '<span class="stat">\u{1F686} <strong>' + trains + '</strong> Trains</span>' +
+        '<span class="stat">\u{1F3AD} <strong>' + events + '</strong> Events</span>' +
+        '<span class="stat warning">\u26A0\uFE0F <strong>' + issues + '</strong> Issues</span>';
+}
+
 function renderTableView(trips) {
     const wrapper = document.getElementById('table-wrapper');
     if (!trips.length) { wrapper.innerHTML = '<div class="empty">No trips found</div>'; return; }
