@@ -157,9 +157,8 @@ function createArc(from, to, numPoints) {
   return latlngs;
 }
 
-// Split an arc into multiple segments at the antimeridian so Leaflet
-// draws the short way around the world instead of a line spanning 360 degrees.
-// Returns an array of coordinate arrays (each is a valid polyline segment).
+// Split arc at antimeridian crossings so Leaflet draws the short path.
+// Returns array of coordinate arrays, each a valid polyline segment.
 function splitArcAtAntimeridian(coords) {
   if (coords.length < 2) return [coords];
 
@@ -171,20 +170,22 @@ function splitArcAtAntimeridian(coords) {
     var currLng = coords[i][1];
     var diff = currLng - prevLng;
 
-    // If the longitude jump is > 180 degrees, we crossed the antimeridian
     if (Math.abs(diff) > 180) {
-      // Calculate the latitude at the crossing point
-      var crossLng = diff > 0 ? -180 : 180;
-      var ratio = (crossLng - prevLng) / (currLng - (diff > 0 ? currLng - 360 : currLng + 360) - prevLng + (diff > 0 ? -360 : 360));
-      // Simplified: interpolate latitude
-      var crossLat = coords[i - 1][0] + ratio * (coords[i][0] - coords[i - 1][0]);
+      // Normalize current longitude to be continuous with previous
+      var adjCurr = diff > 0 ? currLng - 360 : currLng + 360;
+      // Find parameter t where the crossing happens at +/-180
+      var boundary = prevLng > 0 ? 180 : -180;
+      var t = (boundary - prevLng) / (adjCurr - prevLng);
+      if (t < 0) t = 0;
+      if (t > 1) t = 1;
+      var crossLat = coords[i - 1][0] + t * (coords[i][0] - coords[i - 1][0]);
 
-      // End current segment at the boundary
-      current.push([crossLat, crossLng]);
+      // End segment at the boundary
+      current.push([crossLat, boundary]);
       segments.push(current);
 
-      // Start new segment from the other side
-      current = [[crossLat, -crossLng], coords[i]];
+      // Start new segment from the opposite boundary
+      current = [[crossLat, -boundary], coords[i]];
     } else {
       current.push(coords[i]);
     }
