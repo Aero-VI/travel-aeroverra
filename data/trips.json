@@ -203,7 +203,7 @@
           {
             "PortName": "Charlotte Amalie",
             "City": "St. Thomas",
-            "Province": "USVI",
+            "Province": null,
             "CountryCode": "VI",
             "Date": "2013-04-24"
           },
@@ -265,14 +265,14 @@
           {
             "PortName": "San Juan",
             "City": "San Juan",
-            "Province": "PR",
+            "Province": null,
             "CountryCode": "PR",
             "Date": "2015-04-21"
           },
           {
             "PortName": "Charlotte Amalie",
             "City": "St. Thomas",
-            "Province": "USVI",
+            "Province": null,
             "CountryCode": "VI",
             "Date": "2015-04-22"
           }
@@ -447,7 +447,7 @@
         "Departure": {
           "LocationName": "Cyril E. King Airport",
           "City": "St. Thomas",
-          "Province": "USVI",
+          "Province": null,
           "CountryCode": "VI",
           "Code": "STT",
           "Time": "2024-04-05T17:57:00-04:00"
@@ -455,7 +455,7 @@
         "Arrival": {
           "LocationName": "Luis Munoz Marin Intl",
           "City": "San Juan",
-          "Province": "PR",
+          "Province": null,
           "CountryCode": "PR",
           "Code": "SJU",
           "Time": "2024-04-05T18:42:00-04:00"
@@ -470,7 +470,7 @@
         "Departure": {
           "LocationName": "Luis Munoz Marin Intl",
           "City": "San Juan",
-          "Province": "PR",
+          "Province": null,
           "CountryCode": "PR",
           "Code": "SJU",
           "Time": "2024-04-05T20:59:00-04:00"
@@ -700,7 +700,7 @@
         "BookingNumber": "HOME",
         "DisplayName": "Home Residence",
         "City": "St. Thomas",
-        "Province": "USVI",
+        "Province": null,
         "PostalCode": null,
         "CountryCode": "VI",
         "Address1": null,
@@ -726,7 +726,7 @@
         "Departure": {
           "LocationName": "Cyril E. King Airport",
           "City": "St. Thomas",
-          "Province": "USVI",
+          "Province": null,
           "CountryCode": "VI",
           "Code": "STT",
           "Time": "2024-09-25T14:49:00-04:00"
@@ -945,7 +945,7 @@
           {
             "PortName": "Kota Kinabalu",
             "City": "Kota Kinabalu",
-            "Province": "Sabah",
+            "Province": null,
             "CountryCode": "MY",
             "Date": "2024-10-16"
           },
@@ -1563,7 +1563,7 @@
         "BookingNumber": null,
         "DisplayName": "The Olde Lodge",
         "City": "Shannon",
-        "Province": "Clare",
+        "Province": null,
         "PostalCode": "V14 A336",
         "CountryCode": "IE",
         "Address1": null,
@@ -1588,7 +1588,7 @@
         "Arrival": {
           "LocationName": "Edinburgh Airport",
           "City": "Edinburgh",
-          "Province": null,
+          "Province": "Scotland",
           "CountryCode": "GB",
           "Code": "EDI",
           "Time": "2025-03-25T10:55:00+00:00"
@@ -1599,7 +1599,7 @@
         "BookingNumber": "MAG8906687",
         "DisplayName": "hub by Premier Inn Edinburgh Rose Street",
         "City": "Edinburgh",
-        "Province": null,
+        "Province": "Scotland",
         "PostalCode": null,
         "CountryCode": "GB",
         "Address1": null,
@@ -1613,7 +1613,7 @@
         "BookingNumber": "551-568364153",
         "DisplayName": "Castle Rock Hostel",
         "City": "Edinburgh",
-        "Province": null,
+        "Province": "Scotland",
         "PostalCode": null,
         "CountryCode": "GB",
         "Address1": null,
@@ -1627,7 +1627,7 @@
         "BookingNumber": "507-568419055",
         "DisplayName": "St Christopher's Edinburgh",
         "City": "Edinburgh",
-        "Province": null,
+        "Province": "Scotland",
         "PostalCode": null,
         "CountryCode": "GB",
         "Address1": null,
@@ -1644,7 +1644,7 @@
         "Departure": {
           "LocationName": "Edinburgh Airport",
           "City": "Edinburgh",
-          "Province": null,
+          "Province": "Scotland",
           "CountryCode": "GB",
           "Code": "EDI",
           "Time": "2025-03-30T18:55:00+01:00"
@@ -1652,7 +1652,7 @@
         "Arrival": {
           "LocationName": "Paris Beauvais Airport",
           "City": "Paris",
-          "Province": null,
+          "Province": "Ile-de-France",
           "CountryCode": "FR",
           "Code": "BVA",
           "Time": "2025-03-30T21:35:00+02:00"
@@ -1663,7 +1663,7 @@
         "BookingNumber": "19865-568435649",
         "DisplayName": "St Christopher's Inn Canal",
         "City": "Paris",
-        "Province": null,
+        "Province": "Ile-de-France",
         "PostalCode": "75019",
         "CountryCode": "FR",
         "Address1": "159 rue de Crimee",
@@ -1677,7 +1677,7 @@
         "BookingNumber": "293315-568514676",
         "DisplayName": "JO&JOE Paris Gentilly",
         "City": "Gentilly",
-        "Province": null,
+        "Province": "Ile-de-France",
         "PostalCode": "94250",
         "CountryCode": "FR",
         "Address1": "89 Avenue Paul Vaillant Couturier",
@@ -1695,14 +1695,14 @@
         "Departure": {
           "LocationName": "Paris Gare De Lyon",
           "City": "Paris",
-          "Province": null,
+          "Province": "Ile-de-France",
           "CountryCode": "FR",
           "Time": "2025-04-05T12:38:00+02:00"
         },
         "Arrival": {
           "LocationName": "Les Arcs - Draguignan",
           "City": "Les Arcs",
-          "Province": null,
+          "Province": "Savoie",
           "CountryCode": "FR",
           "Time": "2025-04-05T00:00:00+02:00"
         },
@@ -1717,14 +1717,14 @@
         "Departure": {
           "LocationName": "Marseille Saint-Charles",
           "City": "Marseille",
-          "Province": null,
+          "Province": "PACA",
           "CountryCode": "FR",
           "Time": "2025-04-05T17:12:00+02:00"
         },
         "Arrival": {
           "LocationName": "Bourg-Saint-Maurice",
           "City": "Bourg-Saint-Maurice",
-          "Province": null,
+          "Province": "Savoie",
           "CountryCode": "FR",
           "Time": "2025-04-05T00:00:00+02:00"
         },
@@ -1735,7 +1735,7 @@
         "BookingNumber": "72062264522365",
         "DisplayName": "Arcadien Hotel & Spa",
         "City": "Les Arcs",
-        "Province": null,
+        "Province": "Savoie",
         "PostalCode": "73700",
         "CountryCode": "FR",
         "Address1": "Arc 1600",
@@ -1749,7 +1749,7 @@
         "BookingNumber": null,
         "DisplayName": "Arcadien Hotel & Spa (Extended)",
         "City": "Les Arcs",
-        "Province": null,
+        "Province": "Savoie",
         "PostalCode": "73700",
         "CountryCode": "FR",
         "Address1": "Arc 1600",
@@ -1767,14 +1767,14 @@
         "Departure": {
           "LocationName": "Bourg-Saint-Maurice",
           "City": "Bourg-Saint-Maurice",
-          "Province": null,
+          "Province": "Savoie",
           "CountryCode": "FR",
           "Time": "2025-04-08T12:10:00+02:00"
         },
         "Arrival": {
           "LocationName": "Paris Gare De Lyon",
           "City": "Paris",
-          "Province": null,
+          "Province": "Ile-de-France",
           "CountryCode": "FR",
           "Time": "2025-04-08T00:00:00+02:00"
         },
@@ -1785,7 +1785,7 @@
         "BookingNumber": "92198-568706023",
         "DisplayName": "Generator Paris",
         "City": "Paris",
-        "Province": null,
+        "Province": "Ile-de-France",
         "PostalCode": null,
         "CountryCode": "FR",
         "Address1": "9-11 Place du Colonel Fabien",
@@ -1802,7 +1802,7 @@
         "Departure": {
           "LocationName": "Paris CDG Airport",
           "City": "Paris",
-          "Province": null,
+          "Province": "Ile-de-France",
           "CountryCode": "FR",
           "Code": "CDG",
           "Time": "2025-04-12T14:40:00+02:00"
@@ -2113,7 +2113,7 @@
         "Arrival": {
           "LocationName": "Rome Fiumicino",
           "City": "Rome",
-          "Province": null,
+          "Province": "Lazio",
           "CountryCode": "IT",
           "Code": "FCO",
           "Time": "2025-05-13T14:05:00+02:00"
@@ -2124,7 +2124,7 @@
         "BookingNumber": "9070017051340",
         "DisplayName": "Hilton Garden Inn Rome Airport",
         "City": "Fiumicino",
-        "Province": null,
+        "Province": "Lazio",
         "PostalCode": null,
         "CountryCode": "IT",
         "Address1": null,
@@ -2138,7 +2138,7 @@
         "BookingNumber": "4393875352",
         "DisplayName": "Gens Mundi B&B",
         "City": "Ostia Antica",
-        "Province": null,
+        "Province": "Lazio",
         "PostalCode": "00119",
         "CountryCode": "IT",
         "Address1": "Via Edoardo Gatti 60",
@@ -2155,7 +2155,7 @@
         "Departure": {
           "LocationName": "Rome Fiumicino",
           "City": "Rome",
-          "Province": null,
+          "Province": "Lazio",
           "CountryCode": "IT",
           "Code": "FCO",
           "Time": "2025-05-15T10:36:00+02:00"
@@ -2163,7 +2163,7 @@
         "Arrival": {
           "LocationName": "Bologna Airport",
           "City": "Bologna",
-          "Province": null,
+          "Province": "Emilia-Romagna",
           "CountryCode": "IT",
           "Code": "BLQ",
           "Time": "2025-05-15T11:30:00+02:00"
@@ -2174,7 +2174,7 @@
         "BookingNumber": "9080011474762",
         "DisplayName": "Fly On Hotel",
         "City": "Bologna",
-        "Province": null,
+        "Province": "Emilia-Romagna",
         "PostalCode": null,
         "CountryCode": "IT",
         "Address1": "Via dell'Aeroporto 34/36",
@@ -2188,7 +2188,7 @@
         "BookingNumber": "9069031396706",
         "DisplayName": "Hotel Marta",
         "City": "Forli",
-        "Province": null,
+        "Province": "FC",
         "PostalCode": "47121",
         "CountryCode": "IT",
         "Address1": "Via Carlo Cignani",
@@ -2202,7 +2202,7 @@
         "BookingNumber": "9080092907894",
         "DisplayName": "Hotel Bologna Airport",
         "City": "Bologna",
-        "Province": null,
+        "Province": "Emilia-Romagna",
         "PostalCode": null,
         "CountryCode": "IT",
         "Address1": "Via M.E Lepido 203/14",
@@ -2216,7 +2216,7 @@
         "BookingNumber": "9069134946447",
         "DisplayName": "Fly On Hotel",
         "City": "Bologna",
-        "Province": null,
+        "Province": "Emilia-Romagna",
         "PostalCode": null,
         "CountryCode": "IT",
         "Address1": "Via dell'Aeroporto 34/36",
@@ -2233,7 +2233,7 @@
         "Departure": {
           "LocationName": "Bologna Airport",
           "City": "Bologna",
-          "Province": null,
+          "Province": "Emilia-Romagna",
           "CountryCode": "IT",
           "Code": "BLQ",
           "Time": "2025-05-21T19:55:00+02:00"
@@ -2570,7 +2570,7 @@
           {
             "PortName": "Belfast",
             "City": "Belfast",
-            "Province": null,
+            "Province": "Northern Ireland",
             "CountryCode": "GB",
             "Date": "2025-07-01"
           },
@@ -2752,7 +2752,7 @@
         "BookingNumber": "1637092660",
         "DisplayName": "Toyoko Inn Narita Airport Shinkan",
         "City": "Narita",
-        "Province": null,
+        "Province": "Chiba",
         "PostalCode": null,
         "CountryCode": "JP",
         "Address1": null,
@@ -3084,7 +3084,7 @@
         "Arrival": {
           "LocationName": "Rome Fiumicino",
           "City": "Rome",
-          "Province": null,
+          "Province": "Lazio",
           "CountryCode": "IT",
           "Code": "FCO",
           "Time": "2025-09-27T11:55:00+02:00"
@@ -3100,14 +3100,14 @@
         "DeparturePort": {
           "PortName": "Port of Civitavecchia",
           "City": "Civitavecchia (Rome)",
-          "Province": null,
+          "Province": "Lazio",
           "CountryCode": "IT",
           "Time": "2025-09-27T18:30:00+02:00"
         },
         "ArrivalPort": {
           "PortName": "Port of Civitavecchia",
           "City": "Civitavecchia (Rome)",
-          "Province": null,
+          "Province": "Lazio",
           "CountryCode": "IT",
           "Time": "2025-10-06T06:00:00+02:00"
         },
@@ -3143,7 +3143,7 @@
           {
             "PortName": "Naples",
             "City": "Naples",
-            "Province": null,
+            "Province": "Campania",
             "CountryCode": "IT",
             "Date": "2025-10-05"
           }
@@ -3160,14 +3160,14 @@
         "DeparturePort": {
           "PortName": "Port of Civitavecchia",
           "City": "Civitavecchia (Rome)",
-          "Province": null,
+          "Province": "Lazio",
           "CountryCode": "IT",
           "Time": "2025-10-06T18:30:00+02:00"
         },
         "ArrivalPort": {
           "PortName": "Port of Civitavecchia",
           "City": "Civitavecchia (Rome)",
-          "Province": null,
+          "Province": "Lazio",
           "CountryCode": "IT",
           "Time": "2025-10-18T06:00:00+02:00"
         },
@@ -3217,7 +3217,7 @@
           {
             "PortName": "Naples",
             "City": "Naples",
-            "Province": null,
+            "Province": "Campania",
             "CountryCode": "IT",
             "Date": "2025-10-17"
           }
@@ -3325,7 +3325,7 @@
           {
             "PortName": "Charlotte Amalie",
             "City": "St. Thomas",
-            "Province": "USVI",
+            "Province": null,
             "CountryCode": "VI",
             "Date": "2025-11-02"
           },
@@ -3339,7 +3339,7 @@
           {
             "PortName": "San Juan",
             "City": "San Juan",
-            "Province": "PR",
+            "Province": null,
             "CountryCode": "PR",
             "Date": "2025-11-04"
           },
@@ -4122,7 +4122,7 @@
         "BookingNumber": "299-821-263-95",
         "DisplayName": "Daiwa Roynet Hotel D-City Nagoya Fushimi",
         "City": "Nagoya",
-        "Province": null,
+        "Province": "Aichi",
         "PostalCode": null,
         "CountryCode": "JP",
         "Address1": null,
@@ -4148,7 +4148,7 @@
         "Arrival": {
           "LocationName": "Nagoya Station",
           "City": "Nagoya",
-          "Province": null,
+          "Province": "Aichi",
           "CountryCode": "JP",
           "Time": "2026-03-26T14:24:00+09:00"
         }
@@ -4163,7 +4163,7 @@
         "Departure": {
           "LocationName": "Nagoya Station",
           "City": "Nagoya",
-          "Province": null,
+          "Province": "Aichi",
           "CountryCode": "JP",
           "Time": "2026-03-30T10:41:00+09:00"
         },
@@ -4194,7 +4194,7 @@
         "BookingNumber": "987175882",
         "DisplayName": "APA Hotel Himeji-Ekikita",
         "City": "Himeji",
-        "Province": null,
+        "Province": "Hyogo",
         "PostalCode": null,
         "CountryCode": "JP",
         "Address1": null,
@@ -4220,7 +4220,7 @@
         "Arrival": {
           "LocationName": "Himeji Station",
           "City": "Himeji",
-          "Province": null,
+          "Province": "Hyogo",
           "CountryCode": "JP",
           "Time": "2026-04-03T12:36:00+09:00"
         }
@@ -4631,7 +4631,7 @@
           {
             "PortName": "Visby",
             "City": "Visby",
-            "Province": "Gotland",
+            "Province": null,
             "CountryCode": "SE",
             "Date": "2026-06-12"
           },
