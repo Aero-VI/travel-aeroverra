@@ -148,73 +148,85 @@ function attachJsonListeners() {
 }
 
 // ==================== GROUPING LOGIC ====================
-// Group consecutive flights where:
-//   - Same booking number, OR
-//   - Arrival airport code matches next departure airport code
-// Group back-to-back trains (within 3 hours) as connections
 function groupSegments(segments) {
     const groups = [];
-    let i = 0;
-
-    while (i < segments.length) {
+    const used = new Set();
+    for (let i = 0; i < segments.length; i++) {
+        if (used.has(i)) continue;
         const seg = segments[i];
-
-        if (seg.SegmentType === 'Flight') {
-            // Try to chain consecutive flights
-            const chain = [{seg, idx: i}];
-            let j = i + 1;
-            while (j < segments.length && segments[j].SegmentType === 'Flight') {
-                const prevSeg = chain[chain.length - 1].seg;
-                const nextSeg = segments[j];
-                const prevArrCode = (prevSeg.Arrival || {}).Code || '';
-                const nextDepCode = (nextSeg.Departure || {}).Code || '';
-                const sameBooking = prevSeg.BookingNumber && prevSeg.BookingNumber === nextSeg.BookingNumber;
-                const airportMatch = prevArrCode && nextDepCode && prevArrCode === nextDepCode;
-
-                if (sameBooking || airportMatch) {
-                    chain.push({seg: nextSeg, idx: j});
-                    j++;
-                } else {
-                    break;
+        if (seg.SegmentType === 'Flight' && seg.BookingNumber) {
+            const connected = [{seg, idx: i}];
+            used.add(i);
+            for (let j = i + 1; j < segments.length; j++) {
+                if (used.has(j)) continue;
+                if (segments[j].SegmentType === 'Flight' && segments[j].BookingNumber === seg.BookingNumber) {
+                    connected.push({seg: segments[j], idx: j});
+                    used.add(j);
                 }
             }
-            if (chain.length > 1) {
-                groups.push({ type: 'flight-connection', legs: chain });
+            if (connected.length > 1) {
+                connected.sort((a,b) => new Date(getSegStart(a.seg)||0) - new Date(getSegStart(b.seg)||0));
+                groups.push({ type: 'flight-connection', legs: connected });
             } else {
-                groups.push({ type: 'single', seg: seg, idx: i });
+                groups.push({ type: 'single', seg, idx: i });
             }
-            i = j;
-
         } else if (seg.SegmentType === 'Train') {
             const trainGroup = [{seg, idx: i}];
-            let j = i + 1;
+            used.add(i);
             let lastEnd = getSegEnd(seg);
-            while (j < segments.length && segments[j].SegmentType === 'Train') {
+            for (let j = i + 1; j < segments.length; j++) {
+                if (used.has(j)) continue;
+                if (segments[j].SegmentType !== 'Train') break;
                 const nextStart = getSegStart(segments[j]);
                 if (lastEnd && nextStart) {
-                    const gapHours = (new Date(nextStart) - new Date(lastEnd)) / (1000*60*60);
-                    if (gapHours >= 0 && gapHours <= 3) {
+                    const gapHours = (new Date(nextStart) - new Date(lastEnd)) / 3600000;
+                    if (gapHours >= 0 && gapHours <= 4) {
                         trainGroup.push({seg: segments[j], idx: j});
+                        used.add(j);
                         lastEnd = getSegEnd(segments[j]);
-                        j++;
                     } else break;
                 } else break;
             }
             if (trainGroup.length > 1) {
                 groups.push({ type: 'train-connection', legs: trainGroup });
             } else {
-                groups.push({ type: 'single', seg: seg, idx: i });
+                groups.push({ type: 'single', seg, idx: i });
             }
-            i = j;
-
         } else {
-            groups.push({ type: 'single', seg: seg, idx: i });
-            i++;
+            used.add(i);
+            groups.push({ type: 'single', seg, idx: i });
         }
     }
     return groups;
 }
 
+// ==================== STATS BAR ====================
+function renderStats(trips) {
+    const bar = document.getElementById('stats-bar');
+    const nonHomeTrips = trips.filter(t => !isHomeTripName(t.TripName));
+    let segs = 0, cruises = 0, flights = 0, trains = 0, events = 0, issues = 0;
+    for (const t of trips) {
+        for (const s of t.Segments || []) {
+            segs++;
+            if (s.SegmentType === 'Cruise') cruises++;
+            if (s.SegmentType === 'Flight') flights++;
+            if (s.SegmentType === 'Train') trains++;
+        }
+        events += getTripEvents(t.TripId || '').length;
+    }
+    // Count issues
+    const gapData = detectGaps(trips);
+    for (const g of gapData) issues += g.issues.length;
+
+    bar.innerHTML =
+        '<span class="stat">\u{1F30D} <strong>' + nonHomeTrips.length + '</strong> Trips</span>' +
+        '<span class="stat">\u{1F9E9} <strong>' + segs + '</strong> Segments</span>' +
+        '<span class="stat">\u{1F6A2} <strong>' + cruises + '</strong> Cruises</span>' +
+        '<span class="stat">\u2708\uFE0F <strong>' + flights + '</strong> Flights</span>' +
+        '<span class="stat">\u{1F686} <strong>' + trains + '</strong> Trains</span>' +
+        '<span class="stat">\u{1F3AD} <strong>' + events + '</strong> Events</span>' +
+        '<span class="stat warning">\u26A0\uFE0F <strong>' + issues + '</strong> Issues</span>';
+}
 
 // ==================== TABLE VIEW ====================
 function renderTableView(trips) {
