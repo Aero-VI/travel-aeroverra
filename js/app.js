@@ -783,13 +783,13 @@ function renderStats() {
     const flights = tripsData.reduce((n,t) => n + (t.Segments||[]).filter(s=>s.SegmentType==='Flight').length, 0);
     const trains = tripsData.reduce((n,t) => n + (t.Segments||[]).filter(s=>s.SegmentType==='Train').length, 0);
 
-    bar.innerHTML = '<span class="stat"><strong>' + totalTrips + '</strong> Trips</span>' +
-        '<span class="stat"><strong>' + totalSegs + '</strong> Segments</span>' +
-        '<span class="stat"><strong>' + cruises + '</strong> Cruises</span>' +
-        '<span class="stat"><strong>' + flights + '</strong> Flights</span>' +
-        '<span class="stat"><strong>' + trains + '</strong> Trains</span>' +
-        '<span class="stat"><strong>' + totalEvents + '</strong> Events</span>' +
-        '<span class="stat' + (gaps.length > 0 ? ' warning' : '') + '"><strong>' + gaps.length + '</strong> Issues</span>';
+    bar.innerHTML = '<span class="stat">🌍 <strong>' + totalTrips + '</strong> Trips</span>' +
+        '<span class="stat">🧭 <strong>' + totalSegs + '</strong> Segments</span>' +
+        '<span class="stat">🚢 <strong>' + cruises + '</strong> Cruises</span>' +
+        '<span class="stat">✈️ <strong>' + flights + '</strong> Flights</span>' +
+        '<span class="stat">🚆 <strong>' + trains + '</strong> Trains</span>' +
+        '<span class="stat">🎫 <strong>' + totalEvents + '</strong> Events</span>' +
+        '<span class="stat' + (gaps.length > 0 ? ' warning' : '') + '">⚠️ <strong>' + gaps.length + '</strong> Issues</span>';
 }
 
 // ==================== FILTERING ====================
