@@ -147,6 +147,161 @@ function attachJsonListeners() {
     });
 }
 
+// ==================== ISSUES PER SEGMENT ====================
+function getSegmentIssues(seg, segIdx, trip) {
+    const issues = [];
+    if (!seg.BookingNumber) {
+        issues.push({severity: 'warning', msg: 'Missing booking reference'});
+    }
+    if (seg.Source === 'inferred') {
+        issues.push({severity: 'info', msg: 'Segment was inferred (not from a booking source)'});
+    }
+    if (!getSegStart(seg)) {
+        issues.push({severity: 'info', msg: 'Missing departure/start time'});
+    }
+    if (!getSegEnd(seg)) {
+        issues.push({severity: 'info', msg: 'Missing arrival/end time'});
+    }
+    // Time gap: check if there's a >2 day gap before this segment
+    const segs = trip.Segments || [];
+    if (segIdx > 0) {
+        const prevEnd = getSegEnd(segs[segIdx - 1]);
+        const thisStart = getSegStart(seg);
+        if (prevEnd && thisStart) {
+            const gapDays = daysBetween(prevEnd, thisStart);
+            if (gapDays > 2) {
+                issues.push({severity: 'warning', msg: gapDays + '-day gap before this segment (from ' + esc(getSegDetail(segs[segIdx-1]).trim()) + ')'});
+            }
+        }
+    }
+    return issues;
+}
+
+function getTripIssues(trip) {
+    const issues = [];
+    const segs = trip.Segments || [];
+    for (let i = 0; i < segs.length; i++) {
+        const segIssues = getSegmentIssues(segs[i], i, trip);
+        for (const issue of segIssues) {
+            issues.push({...issue, segment: getSegDetail(segs[i]).trim() || segs[i].SegmentType});
+        }
+    }
+    return issues;
+}
+
+// Issues popup
+function showIssuesPopup(issues) {
+    const existing = document.getElementById('json-popup-overlay');
+    if (existing) existing.remove();
+
+    const overlay = document.createElement('div');
+    overlay.id = 'json-popup-overlay';
+    overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:center;justify-content:center;';
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+    const popup = document.createElement('div');
+    popup.style.cssText = 'background:#161b22;border:1px solid #30363d;border-radius:12px;padding:24px;max-width:600px;width:90%;max-height:80vh;overflow:auto;position:relative;';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = '\u2715';
+    closeBtn.style.cssText = 'position:absolute;top:10px;right:14px;background:none;border:none;color:#8b949e;font-size:1.3rem;cursor:pointer;';
+    closeBtn.onclick = () => overlay.remove();
+
+    const title = document.createElement('h3');
+    title.textContent = '\u26A0\uFE0F Issues (' + issues.length + ')';
+    title.style.cssText = 'color:#d29922;margin-bottom:16px;font-size:1.1rem;';
+
+    popup.appendChild(closeBtn);
+    popup.appendChild(title);
+
+    for (const issue of issues) {
+        const row = document.createElement('div');
+        row.style.cssText = 'display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #30363d;align-items:flex-start;';
+
+        const icon = document.createElement('span');
+        icon.textContent = issue.severity === 'warning' ? '\u26A0\uFE0F' : '\uD83D\uDD0D';
+        icon.style.cssText = 'min-width:24px;text-align:center;';
+
+        const msg = document.createElement('span');
+        msg.style.cssText = 'color:' + (issue.severity === 'warning' ? '#d29922' : '#8b949e') + ';font-size:0.9rem;';
+        let text = issue.msg;
+        if (issue.segment) text = issue.segment + ': ' + text;
+        msg.textContent = text;
+
+        row.appendChild(icon);
+        row.appendChild(msg);
+        popup.appendChild(row);
+    }
+
+    if (issues.length === 0) {
+        const noIssues = document.createElement('p');
+        noIssues.textContent = '\u2705 No issues detected';
+        noIssues.style.cssText = 'color:#3fb950;text-align:center;padding:20px;';
+        popup.appendChild(noIssues);
+    }
+
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+}
+
+// Issues button HTML generators
+function issuesBtnHTML(tripIdx, segIdx) {
+    const trip = tripsData[tripIdx];
+    const seg = trip.Segments[segIdx];
+    const issues = getSegmentIssues(seg, segIdx, trip);
+    if (issues.length === 0) return '';
+    return '<button class="issues-btn" data-trip="' + tripIdx + '" data-seg="' + segIdx + '" title="' + issues.length + ' issue(s)">\u26A0\uFE0F ' + issues.length + '</button>';
+}
+
+function issuesBtnTripHTML(tripIdx) {
+    const trip = tripsData[tripIdx];
+    const issues = getTripIssues(trip);
+    if (issues.length === 0) return '';
+    return '<button class="issues-btn issues-btn-trip" data-trip="' + tripIdx + '" data-seg="-1" title="' + issues.length + ' issue(s)">\u26A0\uFE0F ' + issues.length + '</button>';
+}
+
+function issuesBtnConnectionHTML(tripIdx, legIndices) {
+    const trip = tripsData[tripIdx];
+    const allIssues = [];
+    for (const idx of legIndices) {
+        const segIssues = getSegmentIssues(trip.Segments[idx], idx, trip);
+        for (const issue of segIssues) {
+            allIssues.push({...issue, segment: getSegDetail(trip.Segments[idx]).trim()});
+        }
+    }
+    if (allIssues.length === 0) return '';
+    return '<button class="issues-btn" data-trip="' + tripIdx + '" data-legs="' + legIndices.join(',') + '" title="' + allIssues.length + ' issue(s)">\u26A0\uFE0F ' + allIssues.length + '</button>';
+}
+
+function attachIssuesListeners() {
+    document.querySelectorAll('.issues-btn').forEach(btn => {
+        btn.onclick = function(e) {
+            e.stopPropagation();
+            const tripIdx = parseInt(this.getAttribute('data-trip'));
+            const segIdx = parseInt(this.getAttribute('data-seg'));
+            const legsAttr = this.getAttribute('data-legs');
+            const trip = tripsData[tripIdx];
+
+            if (legsAttr) {
+                // Connection: aggregate issues from all legs
+                const indices = legsAttr.split(',').map(Number);
+                const allIssues = [];
+                for (const idx of indices) {
+                    const segIssues = getSegmentIssues(trip.Segments[idx], idx, trip);
+                    for (const issue of segIssues) {
+                        allIssues.push({...issue, segment: getSegDetail(trip.Segments[idx]).trim()});
+                    }
+                }
+                showIssuesPopup(allIssues);
+            } else if (segIdx === -1) {
+                showIssuesPopup(getTripIssues(trip));
+            } else {
+                showIssuesPopup(getSegmentIssues(trip.Segments[segIdx], segIdx, trip));
+            }
+        };
+    });
+}
+
 // ==================== GROUPING LOGIC ====================
 // Group consecutive flights where:
 //   - Same booking number, OR
@@ -263,6 +418,7 @@ function renderTableView(trips) {
         html += '<span class="trip-meta">' + typeBadges + '</span>';
         html += '<span class="trip-dates">' + fmtShort(start) + ' - ' + fmtShort(end) + '</span>';
         html += '<button class="json-btn json-btn-trip" data-trip="' + ti + '" data-seg="-1" title="View Trip JSON">{}</button>';
+        html += issuesBtnTripHTML(ti);
         html += '</div>';
         html += '<div class="trip-body">';
 
@@ -288,7 +444,7 @@ function renderTableView(trips) {
                 html += '<td>' + esc(getSegTo(last)) + '</td>';
                 html += '<td>' + fmtShort(getSegStart(first)) + ' - ' + fmtShort(getSegEnd(last)) + '</td>';
                 html += '<td><span class="booking-ref">' + esc(first.BookingNumber || '') + '</span></td>';
-                html += '<td><button class="json-btn" data-trip="' + ti + '" data-seg="' + g.legs[0].idx + '" title="View JSON">{}</button></td>';
+                html += '<td><button class="json-btn" data-trip="' + ti + '" data-seg="' + g.legs[0].idx + '" title="View JSON">{}</button>' + issuesBtnConnectionHTML(ti, g.legs.map(function(l){return l.idx})) + '</td>';
                 html += '</tr>';
                 g.legs.forEach(l => {
                     html += '<tr class="conn-leg ' + gid + '">';
@@ -312,7 +468,7 @@ function renderTableView(trips) {
                 html += '<td>' + esc(getSegTo(last)) + '</td>';
                 html += '<td>' + fmtShort(getSegStart(first)) + ' - ' + fmtShort(getSegEnd(last)) + '</td>';
                 html += '<td><span class="booking-ref">' + esc(first.BookingNumber || '') + '</span></td>';
-                html += '<td><button class="json-btn" data-trip="' + ti + '" data-seg="' + g.legs[0].idx + '" title="View JSON">{}</button></td>';
+                html += '<td><button class="json-btn" data-trip="' + ti + '" data-seg="' + g.legs[0].idx + '" title="View JSON">{}</button>' + issuesBtnConnectionHTML(ti, g.legs.map(function(l){return l.idx})) + '</td>';
                 html += '</tr>';
                 g.legs.forEach(l => {
                     html += '<tr class="conn-leg ' + gid + '">';
@@ -340,7 +496,7 @@ function renderTableView(trips) {
                 html += '<td><span class="booking-ref">' + esc(seg.BookingNumber || '') + '</span>';
                 if (seg.Source) html += ' <span class="badge badge-' + seg.Source + '">' + seg.Source + '</span>';
                 html += '</td>';
-                html += '<td><button class="json-btn" data-trip="' + ti + '" data-seg="' + g.idx + '" title="View JSON">{}</button></td>';
+                html += '<td><button class="json-btn" data-trip="' + ti + '" data-seg="' + g.idx + '" title="View JSON">{}</button>' + issuesBtnHTML(ti, g.idx) + '</td>';
                 html += '</tr>';
 
                 if (isCruise) {
@@ -390,6 +546,7 @@ function renderTableView(trips) {
     });
     wrapper.innerHTML = html;
     attachJsonListeners();
+    attachIssuesListeners();
 }
 
 // ==================== TIMELINE VIEW ====================
