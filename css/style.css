@@ -146,3 +146,52 @@ td.missing { color: var(--warning); }
     .seg-table th, .seg-table td { padding: 4px 6px; }
     #stats-bar { padding: 8px 12px; gap: 10px; }
 }
+
+
+/* Timeline body and segments */
+.timeline-body { display: none; padding: 0.5rem 1rem 0.8rem; border-top: 1px solid var(--border); }
+.timeline-trip.expanded > .timeline-body { display: block; }
+
+.timeline-header .trip-name { font-weight: 600; font-size: 0.92rem; flex: 1; }
+.timeline-header .trip-dates { font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; }
+
+.tl-seg {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+    flex-wrap: wrap;
+}
+.tl-seg:last-child { border-bottom: none; }
+.tl-seg.tl-leg { padding-left: 1.5rem; font-size: 0.78rem; background: var(--surface2); }
+
+.tl-detail { color: var(--text); min-width: 120px; }
+.tl-route { color: var(--text-muted); flex: 1; min-width: 150px; }
+.tl-date { color: var(--accent); font-weight: 600; font-size: 0.78rem; white-space: nowrap; }
+
+.tl-connection { border: 1px solid var(--border); border-radius: 6px; margin: 0.3rem 0; overflow: hidden; }
+.tl-conn-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    font-size: 0.82rem;
+    transition: background 0.2s;
+}
+.tl-conn-header:hover { background: var(--surface2); }
+.tl-connection .expand-icon { transition: transform 0.2s; color: var(--text-muted); font-size: 0.7rem; }
+.tl-connection.expanded > .tl-conn-header > .expand-icon { transform: rotate(90deg); }
+.tl-conn-legs { display: none; border-top: 1px solid var(--border); }
+.tl-connection.expanded .tl-conn-legs { display: block; }
+
+/* Gaps view sections */
+.gaps-summary { margin-bottom: 1.5rem; }
+.gaps-summary h2 { font-size: 1.3rem; margin-bottom: 0.3rem; }
+.gap-section { margin-bottom: 1.5rem; }
+.gap-section h3 { font-size: 1rem; margin-bottom: 0.6rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+.gap-card-error { border-left: 3px solid var(--gap); }
+.gap-card-warning { border-left: 3px solid var(--flight); }
+.gap-card-info { border-left: 3px solid var(--accent); }
