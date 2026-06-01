@@ -2,6 +2,12 @@
 // Auto-generated from trips.json analysis
 
 const GEOCODE = {
+  busStations: {
+    'New Chitose Airport':[42.7752,141.6925],
+    'Hilton Niseko Village':[42.8604,140.6889],
+    'Chitose':[42.7752,141.6925],
+    'Niseko':[42.8604,140.6889]
+  },
   airports: {
     AMS:[52.3086,4.7639],ATL:[33.6407,-84.4277],AXT:[39.6156,140.2186],
     BCN:[41.2974,2.0833],BER:[52.3667,13.5033],BHX:[52.4539,-1.748],
@@ -173,6 +179,10 @@ function geocode(type, name, city, code) {
   if (type === 'Cruise') {
     if (GEOCODE.ports[name]) return GEOCODE.ports[name];
     if (GEOCODE.ports[city]) return GEOCODE.ports[city];
+  }
+  if (type === 'Bus') {
+    if (GEOCODE.busStations[name]) return GEOCODE.busStations[name];
+    if (GEOCODE.busStations[city]) return GEOCODE.busStations[city];
   }
   if (type === 'Train') {
     if (GEOCODE.trains[name]) return GEOCODE.trains[name];

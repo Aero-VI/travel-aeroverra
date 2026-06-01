@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Nicholas's Travel Map</title>
-    <link rel="stylesheet" href="css/style.css?v=36">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.0.0/dist/maplibre-gl.css">
+    <link rel="stylesheet" href="css/style.css?v=130">
 </head>
-<body>
+<body id="app-body">
     <header id="main-header">
         <div class="header-left">
             <span class="logo-icon">&#x2B22;</span>
@@ -15,7 +15,7 @@
         </div>
         <nav>
             <button class="nav-btn active" data-view="globe">
-                <span class="nav-icon">&#x1F310;</span> Map
+                <span class="nav-icon">&#x1F310;</span> Globe
             </button>
             <button class="nav-btn" data-view="table">
                 <span class="nav-icon">&#x1F4CB;</span> Table
@@ -40,6 +40,7 @@
             <option value="Cruise">&#x1F6A2; Cruises</option>
             <option value="Flight">&#x2708;&#xFE0F; Flights</option>
             <option value="Train">&#x1F686; Trains</option>
+            <option value="Bus">&#x1F68C; Buses</option>
         </select>
         <button id="map-filter-reset" class="map-reset-btn" title="Reset all filters">&#x21BA; Reset</button>
     </div>
@@ -49,46 +50,52 @@
         <select id="year-filter"><option value="all">All Years</option></select>
         <select id="type-filter">
             <option value="all">All Types</option>
-            <option value="Cruise">Cruise</option>
-            <option value="Flight">Flight</option>
-            <option value="Train">Train</option>
-            <option value="Bus">Bus</option>
-            <option value="Accommodation">Accommodation</option>
+            <option value="Cruise">&#x1F6A2; Cruises</option>
+            <option value="Flight">&#x2708;&#xFE0F; Flights</option>
+            <option value="Train">&#x1F686; Trains</option>
+            <option value="Accommodation">&#x1F3E8; Hotels</option>
         </select>
         <select id="source-filter">
             <option value="all">All Sources</option>
-            <option value="email">Email</option>
-            <option value="inferred">Inferred</option>
+            <option value="tripit">TripIt</option>
             <option value="manual">Manual</option>
         </select>
     </div>
 
-    <main>
-        <div id="globe-view" class="view active">
-            <div id="globe-container"></div>
-            <div id="map-hud">
-                <div id="hud-stats"></div>
-            </div>
-            <div id="globe-legend">
-                <div class="legend-title">ROUTES</div>
-                <div class="legend-item"><span class="legend-line-sample cruise-line"></span> Cruise</div>
-                <div class="legend-item"><span class="legend-line-sample flight-line"></span> Flight</div>
-                <div class="legend-item"><span class="legend-line-sample train-line"></span> Train</div>
-                <div class="legend-title" style="margin-top:8px">MARKERS</div>
-                <div class="legend-item"><span class="legend-dot" style="background:#00e5ff;box-shadow:0 0 6px #00e5ff"></span> Cruise Port</div>
-                <div class="legend-item"><span class="legend-dot" style="background:#e040fb;box-shadow:0 0 6px #e040fb"></span> Airport</div>
-                <div class="legend-item"><span class="legend-dot" style="background:#ff9100;box-shadow:0 0 6px #ff9100"></span> Train Station</div>
-                <div class="legend-item"><span class="legend-dot" style="background:#00e676;box-shadow:0 0 6px #00e676"></span> Event</div>
-            </div>
-        </div>
-        <div id="table-view" class="view"><div id="table-wrapper"></div></div>
-        <div id="timeline-view" class="view"><div id="timeline-container"></div></div>
-        <div id="gaps-view" class="view"><div id="gaps-container"></div></div>
-    </main>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="js/geocode.js?v=36"></script>
-    <script src="js/globe.js?v=36"></script>
-    <script src="js/app.js?v=36"></script>
+    <div id="globe-view" class="view active">
+        <div id="globe-container"></div>
+        <div id="map-hud"><div id="hud-stats"></div></div>
+        <div id="globe-legend">
+            <div class="legend-title">Routes</div>
+            <div class="legend-item"><span class="legend-line-sample cruise-line"></span> Cruise</div>
+            <div class="legend-item"><span class="legend-line-sample flight-line"></span> Flight</div>
+            <div class="legend-item"><span class="legend-line-sample train-line"></span> Train</div>
+            <div class="legend-item"><span class="legend-line-sample bus-line"></span> Bus</div>
+            <div class="legend-title" style="margin-top:10px">Markers</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#22d3ee;color:#22d3ee"></span> Cruise Port</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#c084fc;color:#c084fc"></span> Airport</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#fbbf24;color:#fbbf24"></span> Train Station</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#34d399;color:#34d399"></span> Event</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#f87171;color:#f87171"></span> Home</div>
+        </div>
+    </div>
+
+    <div id="table-view" class="view">
+        <div id="table-wrapper"></div>
+    </div>
+
+    <div id="timeline-view" class="view">
+        <div id="timeline-container"></div>
+    </div>
+
+    <div id="gaps-view" class="view">
+        <div id="gaps-container"></div>
+    </div>
+
+    <script src="https://unpkg.com/maplibre-gl@5.0.0/dist/maplibre-gl.js"></script>
+    <script src="js/geocode.js?v=130"></script>
+    <script src="js/globe.js?v=130"></script>
+    <script src="js/app.js?v=130"></script>
 </body>
 </html>
