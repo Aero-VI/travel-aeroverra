@@ -376,12 +376,16 @@ function groupSegments(segments) {
 function renderStats(trips) {
     const bar = document.getElementById('stats-bar');
     const nonHomeTrips = trips.filter(t => !isHomeTripName(t.TripName));
-    let segs = 0, cruises = 0, flights = 0, trains = 0, events = 0, issues = 0;
+    let segs = 0, cruises = 0, planeRides = 0, trains = 0, events = 0, issues = 0;
+    const flightBookings = new Set();
     for (const t of trips) {
         for (const s of t.Segments || []) {
             segs++;
             if (s.SegmentType === 'Cruise') cruises++;
-            if (s.SegmentType === 'Flight') flights++;
+            if (s.SegmentType === 'Flight') {
+                planeRides++;
+                if (s.BookingNumber) flightBookings.add(s.BookingNumber);
+            }
             if (s.SegmentType === 'Train') trains++;
         }
         events += getTripEvents(t.TripId || '').length;
@@ -393,7 +397,7 @@ function renderStats(trips) {
         '<span class="stat">\u{1F30D} <strong>' + nonHomeTrips.length + '</strong> Trips</span>' +
         '<span class="stat">\u{1F9E9} <strong>' + segs + '</strong> Segments</span>' +
         '<span class="stat">\u{1F6A2} <strong>' + cruises + '</strong> Cruises</span>' +
-        '<span class="stat">\u2708\uFE0F <strong>' + flights + '</strong> Flights</span>' +
+        '<span class="stat">\u2708\uFE0F <strong>' + flightBookings.size + '</strong> Bookings / <strong>' + planeRides + '</strong> Flights</span>' +
         '<span class="stat">\u{1F686} <strong>' + trains + '</strong> Trains</span>' +
         '<span class="stat">\u{1F3AD} <strong>' + events + '</strong> Events</span>' +
         '<span class="stat warning">\u26A0\uFE0F <strong>' + issues + '</strong> Issues</span>';
