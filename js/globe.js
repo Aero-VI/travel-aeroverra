@@ -35,7 +35,7 @@ const ISO2_TO_ISO3 = {
   MT:'MLT',CY:'CYP',HR:'HRV',ME:'MNE',AL:'ALB',MK:'MKD',RS:'SRB',BA:'BIH',
   SI:'SVN',SK:'SVK',CZ:'CZE',HU:'HUN',RO:'ROU',BG:'BGR',LT:'LTU',UA:'UKR',
   BY:'BLR',MD:'MDA',AT:'AUT',CH:'CHE',BE:'BEL',LU:'LUX',MC:'MCO',LI:'LIE',
-  SM:'SMR',VA:'VAT',AD:'AND',NC:'NCL',VU:'VUT',FJ:'FJI',BB:'BRB',
+  SM:'SMR',VA:'VAT',AD:'AND',NC:'NCL',VU:'VUT',FJ:'FJI',
   NC:'NCL',VU:'VUT'
 };
 
@@ -121,7 +121,7 @@ function clearMap() {
   animationFrames = [];
 }
 
-// Great circle arc with antimeridian wrapping fix
+// Great circle arc generator
 function createArc(from, to, numPoints) {
   numPoints = numPoints || 60;
   var latlngs = [];
@@ -154,13 +154,47 @@ function createArc(from, to, numPoints) {
     latlngs.push([lat, lng]);
   }
 
-  // Prevent 360-degree jumps across antimeridian
-  for (var k = 1; k < latlngs.length; k++) {
-    while (latlngs[k][1] - latlngs[k - 1][1] > 180) latlngs[k][1] -= 360;
-    while (latlngs[k][1] - latlngs[k - 1][1] < -180) latlngs[k][1] += 360;
+  return latlngs;
+}
+
+// Split an arc into multiple segments at the antimeridian so Leaflet
+// draws the short way around the world instead of a line spanning 360 degrees.
+// Returns an array of coordinate arrays (each is a valid polyline segment).
+function splitArcAtAntimeridian(coords) {
+  if (coords.length < 2) return [coords];
+
+  var segments = [];
+  var current = [coords[0]];
+
+  for (var i = 1; i < coords.length; i++) {
+    var prevLng = coords[i - 1][1];
+    var currLng = coords[i][1];
+    var diff = currLng - prevLng;
+
+    // If the longitude jump is > 180 degrees, we crossed the antimeridian
+    if (Math.abs(diff) > 180) {
+      // Calculate the latitude at the crossing point
+      var crossLng = diff > 0 ? -180 : 180;
+      var ratio = (crossLng - prevLng) / (currLng - (diff > 0 ? currLng - 360 : currLng + 360) - prevLng + (diff > 0 ? -360 : 360));
+      // Simplified: interpolate latitude
+      var crossLat = coords[i - 1][0] + ratio * (coords[i][0] - coords[i - 1][0]);
+
+      // End current segment at the boundary
+      current.push([crossLat, crossLng]);
+      segments.push(current);
+
+      // Start new segment from the other side
+      current = [[crossLat, -crossLng], coords[i]];
+    } else {
+      current.push(coords[i]);
+    }
   }
 
-  return latlngs;
+  if (current.length > 0) {
+    segments.push(current);
+  }
+
+  return segments;
 }
 
 function buildPopup(icon, title, subtitle, extra) {
@@ -173,27 +207,39 @@ function buildPopup(icon, title, subtitle, extra) {
 }
 
 function addGlowRoute(layer, coords, color, weight, opacity, dashArray) {
-  var glow = L.polyline(coords, {
-    color: color,
-    weight: weight * 3,
-    opacity: opacity * 0.15,
-    smoothFactor: 1,
-    lineCap: 'round',
-    lineJoin: 'round'
-  });
-  mapLayers.glow.addLayer(glow);
+  // Split coordinates at antimeridian crossings
+  var segments = splitArcAtAntimeridian(coords);
+  var lastLine = null;
 
-  var line = L.polyline(coords, {
-    color: color,
-    weight: weight,
-    opacity: opacity,
-    dashArray: dashArray || null,
-    smoothFactor: 1,
-    lineCap: 'round',
-    lineJoin: 'round'
-  });
-  layer.addLayer(line);
-  return line;
+  for (var si = 0; si < segments.length; si++) {
+    var seg = segments[si];
+    if (seg.length < 2) continue;
+
+    // Glow layer
+    mapLayers.glow.addLayer(L.polyline(seg, {
+      color: color,
+      weight: weight * 3,
+      opacity: opacity * 0.15,
+      smoothFactor: 1,
+      lineCap: 'round',
+      lineJoin: 'round'
+    }));
+
+    // Main line
+    var line = L.polyline(seg, {
+      color: color,
+      weight: weight,
+      opacity: opacity,
+      dashArray: dashArray || null,
+      smoothFactor: 1,
+      lineCap: 'round',
+      lineJoin: 'round'
+    });
+    layer.addLayer(line);
+    lastLine = line;
+  }
+
+  return lastLine;
 }
 
 function buildMapData(trips, events, filterShip, filterType) {
@@ -231,8 +277,7 @@ function buildMapData(trips, events, filterShip, filterType) {
     var tripName = trip.TripName || '';
 
     segs.forEach(function(seg) {
-      // SEGMENT-LEVEL FILTERING: when a ship is selected, only show that ship's cruise segments
-      // (don't show flights/trains from the same trip unless a type filter explicitly includes them)
+      // SEGMENT-LEVEL FILTERING
       if (filterShip && filterShip !== 'all') {
         if (seg.SegmentType === 'Cruise' && seg.Ship !== filterShip) return;
         if (seg.SegmentType !== 'Cruise' && (!filterType || filterType === 'all')) return;
@@ -256,15 +301,17 @@ function buildMapData(trips, events, filterShip, filterType) {
             new Date(seg.Departure.Time).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}) : '';
 
           var line = addGlowRoute(mapLayers.flights, arc, ROUTE_COLORS.Flight, 1.2, 0.5, '8 5');
-          line.bindPopup(
-            buildPopup('\u2708\uFE0F', airline,
-              depCity + ' (' + depCode + ') \u2192 ' + arrCity + ' (' + arrCode + ')',
-              (dateStr ? dateStr : '') +
-              (tripName ? '<br><span class="mp-trip-name">' + tripName + '</span>' : '') +
-              (seg.BookingNumber ? '<br><span class="mp-booking">' + seg.BookingNumber + '</span>' : '')
-            ),
-            { className: 'dark-popup', closeButton: false }
-          );
+          if (line) {
+            line.bindPopup(
+              buildPopup('\u2708\uFE0F', airline,
+                depCity + ' (' + depCode + ') \u2192 ' + arrCity + ' (' + arrCode + ')',
+                (dateStr ? dateStr : '') +
+                (tripName ? '<br><span class="mp-trip-name">' + tripName + '</span>' : '') +
+                (seg.BookingNumber ? '<br><span class="mp-booking">' + seg.BookingNumber + '</span>' : '')
+              ),
+              { className: 'dark-popup', closeButton: false }
+            );
+          }
 
           addLocation(from, depCity + ' (' + depCode + ')', 'Flight',
             '\u2708\uFE0F ' + airline + ' \u2192 ' + arrCity, depCountry, tripName, dateStr);
@@ -316,15 +363,17 @@ function buildMapData(trips, events, filterShip, filterType) {
         for (var ci = 0; ci < ports.length - 1; ci++) {
           var cruiseArc = createArc(ports[ci].coord, ports[ci + 1].coord, 40);
           var cruiseLine = addGlowRoute(mapLayers.cruises, cruiseArc, ROUTE_COLORS.Cruise, 2, 0.6, null);
-          cruiseLine.bindPopup(
-            buildPopup('\uD83D\uDEA2', shipName.trim(),
-              ports[ci].name + ' \u2192 ' + ports[ci + 1].name,
-              (cruiseDateRange ? cruiseDateRange : '') +
-              (tripName ? '<br><span class="mp-trip-name">' + tripName + '</span>' : '') +
-              (seg.BookingNumber ? '<br><span class="mp-booking">' + seg.BookingNumber + '</span>' : '')
-            ),
-            { className: 'dark-popup', closeButton: false }
-          );
+          if (cruiseLine) {
+            cruiseLine.bindPopup(
+              buildPopup('\uD83D\uDEA2', shipName.trim(),
+                ports[ci].name + ' \u2192 ' + ports[ci + 1].name,
+                (cruiseDateRange ? cruiseDateRange : '') +
+                (tripName ? '<br><span class="mp-trip-name">' + tripName + '</span>' : '') +
+                (seg.BookingNumber ? '<br><span class="mp-booking">' + seg.BookingNumber + '</span>' : '')
+              ),
+              { className: 'dark-popup', closeButton: false }
+            );
+          }
         }
 
       } else if (seg.SegmentType === 'Train') {
@@ -343,14 +392,16 @@ function buildMapData(trips, events, filterShip, filterType) {
           var tn = seg.TrainNumber || '';
           var trainDate = seg.Departure && seg.Departure.Time ?
             new Date(seg.Departure.Time).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}) : '';
-          trainLine.bindPopup(
-            buildPopup('\uD83D\uDE86', op + (tn ? ' ' + tn : ''),
-              (tdepCity || tdepName) + ' \u2192 ' + (tarrCity || tarrName),
-              (trainDate ? trainDate : '') +
-              (tripName ? '<br><span class="mp-trip-name">' + tripName + '</span>' : '')
-            ),
-            { className: 'dark-popup', closeButton: false }
-          );
+          if (trainLine) {
+            trainLine.bindPopup(
+              buildPopup('\uD83D\uDE86', op + (tn ? ' ' + tn : ''),
+                (tdepCity || tdepName) + ' \u2192 ' + (tarrCity || tarrName),
+                (trainDate ? trainDate : '') +
+                (tripName ? '<br><span class="mp-trip-name">' + tripName + '</span>' : '')
+              ),
+              { className: 'dark-popup', closeButton: false }
+            );
+          }
 
           addLocation(tfrom, tdepCity || tdepName, 'Train',
             '\uD83D\uDE86 ' + op + ' \u2192 ' + (tarrCity || tarrName), tdepCountry, tripName, trainDate);

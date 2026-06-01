@@ -957,8 +957,8 @@ function switchView(view) {
 async function init() {
     try {
         const [tripsRes, eventsRes] = await Promise.all([
-            fetch('data/trips.json?v=32'),
-            fetch('data/events.json?v=32')
+            fetch('data/trips.json?v=35'),
+            fetch('data/events.json?v=35')
         ]);
         tripsData = await tripsRes.json();
         eventsData = await eventsRes.json();
