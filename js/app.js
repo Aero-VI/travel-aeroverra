@@ -1,4 +1,4 @@
-// Travel Dashboard v32 - Complete
+// Travel Dashboard v40 - Complete
 // Source of truth: data/trips.json and data/events.json
 // DO NOT modify data files.
 
@@ -957,8 +957,8 @@ function switchView(view) {
 async function init() {
     try {
         const [tripsRes, eventsRes] = await Promise.all([
-            fetch('data/trips.json?v=36'),
-            fetch('data/events.json?v=36')
+            fetch('data/trips.json?v=40'),
+            fetch('data/events.json?v=40')
         ]);
         tripsData = await tripsRes.json();
         eventsData = await eventsRes.json();

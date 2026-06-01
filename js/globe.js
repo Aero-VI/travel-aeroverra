@@ -1,10 +1,9 @@
-// Globe/Map View - Hacker aesthetic interactive travel map
-// Glowing arcs, pulsing markers, country highlights, dark cyberpunk feel
+// Globe View - 3D Interactive Globe using Globe.gl
+// Replaces Leaflet flat map to solve antimeridian wrapping issues
 
-let map = null;
-let mapLayers = { flights: null, cruises: null, trains: null, markers: null, glow: null, countries: null };
-let animationFrames = [];
+let globe = null;
 let countriesGeoJson = null;
+let globeDataCache = { arcs: [], points: [], polygons: [] };
 
 const ROUTE_COLORS = {
   Flight: '#c084fc',
@@ -21,7 +20,6 @@ const MARKER_COLORS = {
   Home: '#f87171'
 };
 
-// ISO Alpha-2 to Alpha-3 map for GeoJSON matching
 const ISO2_TO_ISO3 = {
   AU:'AUS',BS:'BHS',CA:'CAN',CO:'COL',CR:'CRI',DE:'DEU',DK:'DNK',DO:'DOM',
   EE:'EST',ES:'ESP',FI:'FIN',FR:'FRA',GB:'GBR',GI:'GIB',GR:'GRC',GU:'GUM',
@@ -35,11 +33,9 @@ const ISO2_TO_ISO3 = {
   MT:'MLT',CY:'CYP',HR:'HRV',ME:'MNE',AL:'ALB',MK:'MKD',RS:'SRB',BA:'BIH',
   SI:'SVN',SK:'SVK',CZ:'CZE',HU:'HUN',RO:'ROU',BG:'BGR',LT:'LTU',UA:'UKR',
   BY:'BLR',MD:'MDA',AT:'AUT',CH:'CHE',BE:'BEL',LU:'LUX',MC:'MCO',LI:'LIE',
-  SM:'SMR',VA:'VAT',AD:'AND',NC:'NCL',VU:'VUT',FJ:'FJI',
-  NC:'NCL',VU:'VUT'
+  SM:'SMR',VA:'VAT',AD:'AND',NC:'NCL',VU:'VUT',FJ:'FJI'
 };
 
-// Country name helper
 var COUNTRY_NAMES_MAP = {
   AU:'Australia',BS:'Bahamas',CA:'Canada',CO:'Colombia',CR:'Costa Rica',
   DE:'Germany',DK:'Denmark',DO:'Dominican Republic',EE:'Estonia',ES:'Spain',
@@ -56,197 +52,114 @@ function getCountryName(code) {
   return code ? (COUNTRY_NAMES_MAP[code] || code) : '';
 }
 
-function initMap() {
-  if (map) return;
+// Load country boundaries GeoJSON
+function loadCountryBoundaries() {
+  if (countriesGeoJson) return Promise.resolve();
+  return fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+    .then(function(r) { return r.json(); })
+    .then(function(data) { countriesGeoJson = data; })
+    .catch(function(err) { console.warn('Could not load country boundaries:', err); });
+}
+
+function initGlobe() {
+  if (globe) return;
   var container = document.getElementById('globe-container');
   if (!container) return;
 
-  map = L.map('globe-container', {
-    center: [20, 10],
-    zoom: 3,
-    minZoom: 2,
-    maxZoom: 15,
-    zoomControl: false,
-    attributionControl: false,
-    worldCopyJump: true,
-    zoomAnimation: true,
-    fadeAnimation: true,
-    maxBoundsViscosity: 0
+  // Clear any leftover content
+  container.innerHTML = '';
+
+  globe = new Globe(container)
+    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
+    .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
+    .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
+    .showAtmosphere(true)
+    .atmosphereColor('#1a73e8')
+    .atmosphereAltitude(0.2)
+    .showGraticules(false)
+    // Arcs (flight/cruise/train routes)
+    .arcColor('color')
+    .arcDashLength(function(d) { return d.dashLen || 1; })
+    .arcDashGap(function(d) { return d.dashGap || 0; })
+    .arcDashAnimateTime(function(d) { return d.animTime || 0; })
+    .arcStroke(function(d) { return d.stroke || 0.3; })
+    .arcLabel(function(d) { return buildGlobeTooltip(d); })
+    // Points (locations)
+    .pointColor('color')
+    .pointAltitude(function(d) { return d.size * 0.002; })
+    .pointRadius(function(d) { return d.size * 0.15; })
+    .pointLabel(function(d) { return buildPointTooltip(d); })
+    // Polygons (country highlights)
+    .polygonCapColor(function() { return 'rgba(34, 211, 238, 0.08)'; })
+    .polygonSideColor(function() { return 'rgba(34, 211, 238, 0.03)'; })
+    .polygonStrokeColor(function() { return 'rgba(34, 211, 238, 0.3)'; })
+    .polygonAltitude(0.005)
+    .polygonsTransitionDuration(300);
+
+  // Set initial viewpoint centered on Atlantic
+  globe.pointOfView({ lat: 30, lng: -20, altitude: 2.2 });
+
+  // Handle resize
+  var ro = new ResizeObserver(function() {
+    if (globe && container) {
+      globe.width(container.clientWidth);
+      globe.height(container.clientHeight);
+    }
   });
-
-  L.control.zoom({ position: 'topright' }).addTo(map);
-
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
-    subdomains: 'abcd',
-    maxZoom: 19,
-    opacity: 0.7
-  }).addTo(map);
-
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png', {
-    subdomains: 'abcd',
-    maxZoom: 19,
-    opacity: 0.35
-  }).addTo(map);
-
-  L.control.attribution({ position: 'bottomright', prefix: false })
-    .addAttribution('&copy; <a href="https://carto.com" style="color:#4a5568">CARTO</a>')
-    .addTo(map);
-
-  mapLayers.countries = L.layerGroup().addTo(map);
-  mapLayers.glow = L.layerGroup().addTo(map);
-  mapLayers.cruises = L.layerGroup().addTo(map);
-  mapLayers.trains = L.layerGroup().addTo(map);
-  mapLayers.flights = L.layerGroup().addTo(map);
-  mapLayers.markers = L.layerGroup().addTo(map);
+  ro.observe(container);
 
   loadCountryBoundaries();
 }
 
-function loadCountryBoundaries() {
-  if (countriesGeoJson) return;
-  fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      countriesGeoJson = data;
-    })
-    .catch(function(err) {
-      console.warn('Could not load country boundaries:', err);
-    });
-}
-
-function clearMap() {
-  if (!map) return;
-  Object.values(mapLayers).forEach(function(lg) { if (lg) lg.clearLayers(); });
-  animationFrames.forEach(function(id) { cancelAnimationFrame(id); });
-  animationFrames = [];
-}
-
-// Great circle arc generator
-function createArc(from, to, numPoints) {
-  numPoints = numPoints || 60;
-  var latlngs = [];
-  var lat1 = from[0] * Math.PI / 180;
-  var lng1 = from[1] * Math.PI / 180;
-  var lat2 = to[0] * Math.PI / 180;
-  var lng2 = to[1] * Math.PI / 180;
-
-  var d = Math.acos(
-    Math.min(1, Math.max(-1,
-      Math.sin(lat1) * Math.sin(lat2) +
-      Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1)
-    ))
-  );
-
-  if (d === 0 || isNaN(d)) {
-    latlngs.push([from[0], from[1]]);
-    return latlngs;
-  }
-
-  for (var i = 0; i <= numPoints; i++) {
-    var f = i / numPoints;
-    var A = Math.sin((1 - f) * d) / Math.sin(d);
-    var B = Math.sin(f * d) / Math.sin(d);
-    var x = A * Math.cos(lat1) * Math.cos(lng1) + B * Math.cos(lat2) * Math.cos(lng2);
-    var y = A * Math.cos(lat1) * Math.sin(lng1) + B * Math.cos(lat2) * Math.sin(lng2);
-    var z = A * Math.sin(lat1) + B * Math.sin(lat2);
-    var lat = Math.atan2(z, Math.sqrt(x * x + y * y)) * 180 / Math.PI;
-    var lng = Math.atan2(y, x) * 180 / Math.PI;
-    latlngs.push([lat, lng]);
-  }
-
-  return latlngs;
-}
-
-// Split arc at antimeridian crossings so Leaflet draws the short path.
-// Returns array of coordinate arrays, each a valid polyline segment.
-function splitArcAtAntimeridian(coords) {
-  if (coords.length < 2) return [coords];
-
-  var segments = [];
-  var current = [coords[0]];
-
-  for (var i = 1; i < coords.length; i++) {
-    var prevLng = coords[i - 1][1];
-    var currLng = coords[i][1];
-    var diff = currLng - prevLng;
-
-    if (Math.abs(diff) > 180) {
-      // Normalize current longitude to be continuous with previous
-      var adjCurr = diff > 0 ? currLng - 360 : currLng + 360;
-      // Find parameter t where the crossing happens at +/-180
-      var boundary = prevLng > 0 ? 180 : -180;
-      var t = (boundary - prevLng) / (adjCurr - prevLng);
-      if (t < 0) t = 0;
-      if (t > 1) t = 1;
-      var crossLat = coords[i - 1][0] + t * (coords[i][0] - coords[i - 1][0]);
-
-      // End segment at the boundary
-      current.push([crossLat, boundary]);
-      segments.push(current);
-
-      // Start new segment from the opposite boundary
-      current = [[crossLat, -boundary], coords[i]];
-    } else {
-      current.push(coords[i]);
-    }
-  }
-
-  if (current.length > 0) {
-    segments.push(current);
-  }
-
-  return segments;
-}
-
-function buildPopup(icon, title, subtitle, extra) {
-  var html = '<div class="map-popup">';
-  html += '<div class="mp-title">' + icon + ' ' + title + '</div>';
-  if (subtitle) html += '<div class="mp-sub">' + subtitle + '</div>';
-  if (extra) html += '<div class="mp-extra">' + extra + '</div>';
+function buildGlobeTooltip(d) {
+  var html = '<div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px 14px;font-family:monospace;font-size:12px;color:#e6edf3;max-width:300px">';
+  html += '<div style="font-weight:bold;color:' + (d.color || '#fff') + ';margin-bottom:4px">' + (d.icon || '') + ' ' + (d.title || '') + '</div>';
+  if (d.subtitle) html += '<div style="color:#8b949e;margin-bottom:3px">' + d.subtitle + '</div>';
+  if (d.extra) html += '<div style="color:#6e7681;font-size:11px">' + d.extra + '</div>';
   html += '</div>';
   return html;
 }
 
-function addGlowRoute(layer, coords, color, weight, opacity, dashArray) {
-  // Split coordinates at antimeridian crossings
-  var segments = splitArcAtAntimeridian(coords);
-  var lastLine = null;
-
-  for (var si = 0; si < segments.length; si++) {
-    var seg = segments[si];
-    if (seg.length < 2) continue;
-
-    // Glow layer
-    mapLayers.glow.addLayer(L.polyline(seg, {
-      color: color,
-      weight: weight * 3,
-      opacity: opacity * 0.15,
-      smoothFactor: 1,
-      lineCap: 'round',
-      lineJoin: 'round'
-    }));
-
-    // Main line
-    var line = L.polyline(seg, {
-      color: color,
-      weight: weight,
-      opacity: opacity,
-      dashArray: dashArray || null,
-      smoothFactor: 1,
-      lineCap: 'round',
-      lineJoin: 'round'
-    });
-    layer.addLayer(line);
-    lastLine = line;
+function buildPointTooltip(d) {
+  var html = '<div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px 14px;font-family:monospace;font-size:12px;color:#e6edf3;max-width:320px">';
+  html += '<div style="font-weight:bold;font-size:13px;margin-bottom:4px">' + (d.label || '') + '</div>';
+  if (d.country) html += '<div style="color:#8b949e;margin-bottom:4px">' + d.country + '</div>';
+  html += '<div style="color:#58a6ff;margin-bottom:4px">' + d.count + ' visit' + (d.count !== 1 ? 's' : '') + '</div>';
+  if (d.typeBadges) html += '<div style="margin-bottom:4px">' + d.typeBadges + '</div>';
+  if (d.trips && d.trips.length > 0) {
+    html += '<div style="border-top:1px solid #21262d;margin-top:4px;padding-top:4px;color:#6e7681;font-size:11px">';
+    html += '<div style="color:#484f58;margin-bottom:2px">TRIPS</div>';
+    var shown = d.trips.slice(0, 6);
+    for (var i = 0; i < shown.length; i++) {
+      html += '<div style="color:#8b949e">' + shown[i] + '</div>';
+    }
+    if (d.trips.length > 6) html += '<div style="color:#484f58">+ ' + (d.trips.length - 6) + ' more</div>';
+    html += '</div>';
   }
+  if (d.details && d.details.length > 0) {
+    html += '<div style="border-top:1px solid #21262d;margin-top:4px;padding-top:4px">';
+    html += '<div style="color:#484f58;margin-bottom:2px;font-size:11px">ACTIVITY</div>';
+    var shownD = d.details.slice(0, 8);
+    for (var j = 0; j < shownD.length; j++) {
+      html += '<div style="color:#8b949e;font-size:11px">' + shownD[j] + '</div>';
+    }
+    html += '</div>';
+  }
+  html += '</div>';
+  return html;
+}
 
-  return lastLine;
+function clearGlobe() {
+  if (!globe) return;
+  globe.arcsData([]).pointsData([]).polygonsData([]);
+  globeDataCache = { arcs: [], points: [], polygons: [] };
 }
 
 function buildMapData(trips, events, filterShip, filterType) {
-  clearMap();
-  if (!map) initMap();
+  clearGlobe();
+  if (!globe) initGlobe();
 
+  var arcs = [];
   var visitedLocations = {};
   var visitedCountryCodes = new Set();
 
@@ -254,12 +167,12 @@ function buildMapData(trips, events, filterShip, filterType) {
     if (code) visitedCountryCodes.add(code);
   }
 
-  function addLocation(latlng, label, type, detail, countryCode, tripName, dateStr) {
-    if (!latlng) return;
-    var key = latlng[0].toFixed(3) + ',' + latlng[1].toFixed(3);
+  function addLocation(lat, lng, label, type, detail, countryCode, tripName, dateStr) {
+    if (lat == null || lng == null) return;
+    var key = lat.toFixed(3) + ',' + lng.toFixed(3);
     if (!visitedLocations[key]) {
       visitedLocations[key] = {
-        latlng: latlng, label: label, types: new Set(),
+        lat: lat, lng: lng, label: label, types: new Set(),
         details: [], count: 0, countries: new Set(), trips: new Set(), dates: []
       };
     }
@@ -296,27 +209,24 @@ function buildMapData(trips, events, filterShip, filterType) {
         var to = geocode('Flight', '', arrCity, arrCode);
 
         if (from && to) {
-          var arc = createArc(from, to);
           var airline = seg.Airline || 'Flight';
           var dateStr = seg.Departure && seg.Departure.Time ?
             new Date(seg.Departure.Time).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}) : '';
 
-          var line = addGlowRoute(mapLayers.flights, arc, ROUTE_COLORS.Flight, 1.2, 0.5, '8 5');
-          if (line) {
-            line.bindPopup(
-              buildPopup('\u2708\uFE0F', airline,
-                depCity + ' (' + depCode + ') \u2192 ' + arrCity + ' (' + arrCode + ')',
-                (dateStr ? dateStr : '') +
-                (tripName ? '<br><span class="mp-trip-name">' + tripName + '</span>' : '') +
-                (seg.BookingNumber ? '<br><span class="mp-booking">' + seg.BookingNumber + '</span>' : '')
-              ),
-              { className: 'dark-popup', closeButton: false }
-            );
-          }
+          arcs.push({
+            startLat: from[0], startLng: from[1],
+            endLat: to[0], endLng: to[1],
+            color: ROUTE_COLORS.Flight,
+            dashLen: 0.4, dashGap: 0.15, animTime: 3000,
+            stroke: 0.4,
+            icon: '\u2708\uFE0F', title: airline,
+            subtitle: depCity + ' (' + depCode + ') \u2192 ' + arrCity + ' (' + arrCode + ')',
+            extra: dateStr + (tripName ? ' | ' + tripName : '') + (seg.BookingNumber ? ' | ' + seg.BookingNumber : '')
+          });
 
-          addLocation(from, depCity + ' (' + depCode + ')', 'Flight',
+          addLocation(from[0], from[1], depCity + ' (' + depCode + ')', 'Flight',
             '\u2708\uFE0F ' + airline + ' \u2192 ' + arrCity, depCountry, tripName, dateStr);
-          addLocation(to, arrCity + ' (' + arrCode + ')', 'Flight',
+          addLocation(to[0], to[1], arrCity + ' (' + arrCode + ')', 'Flight',
             '\u2708\uFE0F ' + airline + ' \u2190 ' + depCity, arrCountry, tripName, dateStr);
           addCountry(depCountry);
           addCountry(arrCountry);
@@ -328,16 +238,15 @@ function buildMapData(trips, events, filterShip, filterType) {
         var arrPort = seg.ArrivalPort || {};
         var depCoord = geocode('Cruise', depPort.PortName || '', depPort.City || '', '');
         var arrCoord = geocode('Cruise', arrPort.PortName || '', arrPort.City || '', '');
-        var shipName = (seg.CruiseLine || '') + ' ' + (seg.Ship || '');
+        var shipName = ((seg.CruiseLine || '') + ' ' + (seg.Ship || '')).trim();
         var cruiseDateStart = depPort.Time ? new Date(depPort.Time).toLocaleDateString('en-US', {month:'short',day:'numeric'}) : '';
         var cruiseDateEnd = arrPort.Time ? new Date(arrPort.Time).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}) : '';
         var cruiseDateRange = cruiseDateStart + (cruiseDateEnd ? ' - ' + cruiseDateEnd : '');
 
         if (depCoord) {
-          ports.push({ coord: depCoord, name: depPort.PortName || depPort.City || 'Departure' });
-          addLocation(depCoord, depPort.City || depPort.PortName || '', 'Cruise',
-            '\uD83D\uDEA2 ' + shipName.trim() + ' departure',
-            depPort.CountryCode, tripName, cruiseDateRange);
+          ports.push({ lat: depCoord[0], lng: depCoord[1], name: depPort.PortName || depPort.City || 'Departure' });
+          addLocation(depCoord[0], depCoord[1], depPort.City || depPort.PortName || '', 'Cruise',
+            '\uD83D\uDEA2 ' + shipName + ' departure', depPort.CountryCode, tripName, cruiseDateRange);
           addCountry(depPort.CountryCode);
         }
 
@@ -345,36 +254,31 @@ function buildMapData(trips, events, filterShip, filterType) {
           var coord = geocode('Cruise', p.PortName || '', p.City || '', '');
           var portDate = p.Date ? new Date(p.Date).toLocaleDateString('en-US', {month:'short',day:'numeric'}) : '';
           if (coord) {
-            ports.push({ coord: coord, name: p.PortName || p.City || '' });
-            addLocation(coord, p.City || p.PortName || '', 'Cruise',
-              '\uD83D\uDEA2 ' + (seg.Ship || 'Cruise') + ' (' + portDate + ')',
-              p.CountryCode, tripName, portDate);
+            ports.push({ lat: coord[0], lng: coord[1], name: p.PortName || p.City || '' });
+            addLocation(coord[0], coord[1], p.City || p.PortName || '', 'Cruise',
+              '\uD83D\uDEA2 ' + (seg.Ship || 'Cruise') + ' (' + portDate + ')', p.CountryCode, tripName, portDate);
             addCountry(p.CountryCode);
           }
         });
 
         if (arrCoord) {
-          ports.push({ coord: arrCoord, name: arrPort.PortName || arrPort.City || 'Arrival' });
-          addLocation(arrCoord, arrPort.City || arrPort.PortName || '', 'Cruise',
-            '\uD83D\uDEA2 ' + shipName.trim() + ' arrival',
-            arrPort.CountryCode, tripName, cruiseDateRange);
+          ports.push({ lat: arrCoord[0], lng: arrCoord[1], name: arrPort.PortName || arrPort.City || 'Arrival' });
+          addLocation(arrCoord[0], arrCoord[1], arrPort.City || arrPort.PortName || '', 'Cruise',
+            '\uD83D\uDEA2 ' + shipName + ' arrival', arrPort.CountryCode, tripName, cruiseDateRange);
           addCountry(arrPort.CountryCode);
         }
 
         for (var ci = 0; ci < ports.length - 1; ci++) {
-          var cruiseArc = createArc(ports[ci].coord, ports[ci + 1].coord, 40);
-          var cruiseLine = addGlowRoute(mapLayers.cruises, cruiseArc, ROUTE_COLORS.Cruise, 2, 0.6, null);
-          if (cruiseLine) {
-            cruiseLine.bindPopup(
-              buildPopup('\uD83D\uDEA2', shipName.trim(),
-                ports[ci].name + ' \u2192 ' + ports[ci + 1].name,
-                (cruiseDateRange ? cruiseDateRange : '') +
-                (tripName ? '<br><span class="mp-trip-name">' + tripName + '</span>' : '') +
-                (seg.BookingNumber ? '<br><span class="mp-booking">' + seg.BookingNumber + '</span>' : '')
-              ),
-              { className: 'dark-popup', closeButton: false }
-            );
-          }
+          arcs.push({
+            startLat: ports[ci].lat, startLng: ports[ci].lng,
+            endLat: ports[ci + 1].lat, endLng: ports[ci + 1].lng,
+            color: ROUTE_COLORS.Cruise,
+            dashLen: 1, dashGap: 0, animTime: 0,
+            stroke: 0.6,
+            icon: '\uD83D\uDEA2', title: shipName,
+            subtitle: ports[ci].name + ' \u2192 ' + ports[ci + 1].name,
+            extra: cruiseDateRange + (tripName ? ' | ' + tripName : '') + (seg.BookingNumber ? ' | ' + seg.BookingNumber : '')
+          });
         }
 
       } else if (seg.SegmentType === 'Train') {
@@ -388,25 +292,25 @@ function buildMapData(trips, events, filterShip, filterType) {
         var tto = geocode('Train', tarrName, tarrCity, '');
 
         if (tfrom && tto) {
-          var trainLine = addGlowRoute(mapLayers.trains, [tfrom, tto], ROUTE_COLORS.Train, 2, 0.5, '3 5');
           var op = seg.Operator || 'Train';
           var tn = seg.TrainNumber || '';
           var trainDate = seg.Departure && seg.Departure.Time ?
             new Date(seg.Departure.Time).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}) : '';
-          if (trainLine) {
-            trainLine.bindPopup(
-              buildPopup('\uD83D\uDE86', op + (tn ? ' ' + tn : ''),
-                (tdepCity || tdepName) + ' \u2192 ' + (tarrCity || tarrName),
-                (trainDate ? trainDate : '') +
-                (tripName ? '<br><span class="mp-trip-name">' + tripName + '</span>' : '')
-              ),
-              { className: 'dark-popup', closeButton: false }
-            );
-          }
 
-          addLocation(tfrom, tdepCity || tdepName, 'Train',
+          arcs.push({
+            startLat: tfrom[0], startLng: tfrom[1],
+            endLat: tto[0], endLng: tto[1],
+            color: ROUTE_COLORS.Train,
+            dashLen: 0.3, dashGap: 0.1, animTime: 2000,
+            stroke: 0.4,
+            icon: '\uD83D\uDE86', title: op + (tn ? ' ' + tn : ''),
+            subtitle: (tdepCity || tdepName) + ' \u2192 ' + (tarrCity || tarrName),
+            extra: trainDate + (tripName ? ' | ' + tripName : '')
+          });
+
+          addLocation(tfrom[0], tfrom[1], tdepCity || tdepName, 'Train',
             '\uD83D\uDE86 ' + op + ' \u2192 ' + (tarrCity || tarrName), tdepCountry, tripName, trainDate);
-          addLocation(tto, tarrCity || tarrName, 'Train',
+          addLocation(tto[0], tto[1], tarrCity || tarrName, 'Train',
             '\uD83D\uDE86 ' + op + ' \u2190 ' + (tdepCity || tdepName), tarrCountry, tripName, trainDate);
           addCountry(tdepCountry);
           addCountry(tarrCountry);
@@ -417,7 +321,7 @@ function buildMapData(trips, events, filterShip, filterType) {
         var aCountry = seg.CountryCode || '';
         var aCoord = geocode('', '', aCity, '');
         if (aCoord) {
-          addLocation(aCoord, aCity, 'Home',
+          addLocation(aCoord[0], aCoord[1], aCity, 'Home',
             '\uD83C\uDFE8 ' + (seg.DisplayName || aCity), aCountry, tripName, '');
           addCountry(aCountry);
         }
@@ -425,7 +329,7 @@ function buildMapData(trips, events, filterShip, filterType) {
     });
   });
 
-  // Events (skip if type filter is active and not matching)
+  // Events
   if (!filterType || filterType === 'all') {
     (events || []).forEach(function(ev) {
       var evCity = ev.City || '';
@@ -433,69 +337,33 @@ function buildMapData(trips, events, filterShip, filterType) {
       var evCoord = geocode('', '', evCity, '');
       var evDate = ev.StartTime ? new Date(ev.StartTime).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}) : '';
       if (evCoord) {
-        addLocation(evCoord, evCity, 'Event',
+        addLocation(evCoord[0], evCoord[1], evCity, 'Event',
           '\uD83C\uDFAD ' + (ev.EventName || ev.Title || ''), evCountry, '', evDate);
         addCountry(evCountry);
       }
     });
   }
 
-  // Render country highlights
-  renderCountryHighlights(visitedCountryCodes);
-
-  // Render markers
+  // Build points data
+  var points = [];
   var locationEntries = Object.values(visitedLocations);
   locationEntries.forEach(function(loc) {
     var color = '#58a6ff';
-    var size = 4;
+    var size = 1;
 
-    if (loc.types.has('Event')) { color = MARKER_COLORS.Event; size = 4; }
-    if (loc.types.has('Train')) { color = MARKER_COLORS.Train; size = 4; }
-    if (loc.types.has('Flight')) { color = MARKER_COLORS.Flight; size = 5; }
-    if (loc.types.has('Cruise')) { color = MARKER_COLORS.Cruise; size = 5; }
+    if (loc.types.has('Event')) { color = MARKER_COLORS.Event; size = 1; }
+    if (loc.types.has('Train')) { color = MARKER_COLORS.Train; size = 1; }
+    if (loc.types.has('Flight')) { color = MARKER_COLORS.Flight; size = 1.2; }
+    if (loc.types.has('Cruise')) { color = MARKER_COLORS.Cruise; size = 1.2; }
 
-    if (loc.count > 3) size += 2;
-    if (loc.count > 6) size += 2;
-    if (loc.count > 10) size += 2;
-
-    // Outer glow ring
-    mapLayers.glow.addLayer(L.circleMarker(loc.latlng, {
-      radius: size * 3,
-      fillColor: color,
-      fillOpacity: 0.06,
-      stroke: false
-    }));
-
-    // Mid glow
-    mapLayers.glow.addLayer(L.circleMarker(loc.latlng, {
-      radius: size + 3,
-      fillColor: color,
-      fillOpacity: 0.15,
-      color: color,
-      weight: 1,
-      opacity: 0.15
-    }));
-
-    // Core marker
-    var marker = L.circleMarker(loc.latlng, {
-      radius: size,
-      fillColor: color,
-      fillOpacity: 0.9,
-      color: '#fff',
-      weight: 0.5,
-      opacity: 0.35
-    });
-
-    // Build enriched popup with trip names, countries, details
-    var uniqueDetails = [];
-    var seen = {};
-    loc.details.forEach(function(d) { if (!seen[d]) { uniqueDetails.push(d); seen[d] = true; } });
-    uniqueDetails = uniqueDetails.slice(0, 15);
+    if (loc.count > 3) size += 0.4;
+    if (loc.count > 6) size += 0.4;
+    if (loc.count > 10) size += 0.4;
 
     var typeBadges = '';
     loc.types.forEach(function(t) {
       var tc = (MARKER_COLORS[t] || '#58a6ff');
-      typeBadges += '<span class="mp-type-badge" style="border-color:' + tc + ';color:' + tc + '">' + t + '</span>';
+      typeBadges += '<span style="border:1px solid ' + tc + ';color:' + tc + ';padding:1px 5px;border-radius:3px;font-size:10px;margin-right:3px">' + t + '</span>';
     });
 
     var countryList = [];
@@ -504,89 +372,69 @@ function buildMapData(trips, events, filterShip, filterType) {
     var tripList = [];
     loc.trips.forEach(function(t) { if (t) tripList.push(t); });
 
-    var popupHtml = '<div class="map-popup">';
-    popupHtml += '<div class="mp-title">' + loc.label + '</div>';
-    if (countryList.length > 0) {
-      popupHtml += '<div class="mp-country">' + countryList.join(', ') + '</div>';
-    }
-    popupHtml += '<div class="mp-visit-count">' + loc.count + ' visit' + (loc.count !== 1 ? 's' : '') + '</div>';
-    popupHtml += '<div class="mp-types">' + typeBadges + '</div>';
+    var uniqueDetails = [];
+    var seen = {};
+    loc.details.forEach(function(d) { if (!seen[d]) { uniqueDetails.push(d); seen[d] = true; } });
 
-    if (tripList.length > 0) {
-      popupHtml += '<div class="mp-trips-section">';
-      popupHtml += '<div class="mp-section-label">TRIPS</div>';
-      var shownTrips = tripList.slice(0, 6);
-      shownTrips.forEach(function(t) {
-        var shortName = t.length > 50 ? t.substring(0, 47) + '...' : t;
-        popupHtml += '<div class="mp-trip-item">' + shortName + '</div>';
-      });
-      if (tripList.length > 6) {
-        popupHtml += '<div class="mp-trip-item mp-more">+ ' + (tripList.length - 6) + ' more</div>';
-      }
-      popupHtml += '</div>';
-    }
-
-    if (uniqueDetails.length > 0) {
-      popupHtml += '<div class="mp-details">';
-      popupHtml += '<div class="mp-section-label">ACTIVITY</div>';
-      uniqueDetails.forEach(function(d) {
-        popupHtml += '<div class="mp-detail">' + d + '</div>';
-      });
-      popupHtml += '</div>';
-    }
-    popupHtml += '</div>';
-
-    marker.bindPopup(popupHtml, { className: 'dark-popup', closeButton: false, maxWidth: 360 });
-    mapLayers.markers.addLayer(marker);
+    points.push({
+      lat: loc.lat, lng: loc.lng,
+      color: color, size: size,
+      label: loc.label,
+      country: countryList.join(', '),
+      count: loc.count,
+      typeBadges: typeBadges,
+      trips: tripList,
+      details: uniqueDetails.slice(0, 15)
+    });
   });
 
-  // Fit bounds
-  var allCoords = locationEntries.map(function(l) { return l.latlng; });
-  if (allCoords.length > 0) {
-    map.fitBounds(L.latLngBounds(allCoords).pad(0.1));
+  // Build polygon data (visited countries)
+  var polygons = [];
+  if (countriesGeoJson) {
+    var iso3Set = new Set();
+    visitedCountryCodes.forEach(function(code) {
+      var iso3 = ISO2_TO_ISO3[code];
+      if (iso3) iso3Set.add(iso3);
+    });
+
+    countriesGeoJson.features.forEach(function(feature) {
+      var props = feature.properties || {};
+      var iso3 = props.ISO_A3 || props.iso_a3 || '';
+      if (iso3Set.has(iso3)) {
+        polygons.push(feature);
+      }
+    });
   }
+
+  // Apply to globe
+  globe.arcsData(arcs);
+  globe.pointsData(points);
+  globe.polygonsData(polygons);
+
+  globeDataCache = { arcs: arcs, points: points, polygons: polygons };
 
   return visitedCountryCodes;
 }
 
-function renderCountryHighlights(visitedCodes) {
-  if (!countriesGeoJson || !mapLayers.countries) return;
-
-  var iso3Set = new Set();
-  visitedCodes.forEach(function(code) {
-    var iso3 = ISO2_TO_ISO3[code];
-    if (iso3) iso3Set.add(iso3);
-  });
-
-  var layer = L.geoJSON(countriesGeoJson, {
-    filter: function(feature) {
-      var props = feature.properties || {};
-      var iso3 = props.ISO_A3 || props.iso_a3 || '';
-      return iso3Set.has(iso3);
-    },
-    style: function() {
-      return {
-        fillColor: '#22d3ee',
-        fillOpacity: 0.06,
-        color: '#22d3ee',
-        weight: 0.8,
-        opacity: 0.2
-      };
-    },
-    interactive: false
-  });
-
-  mapLayers.countries.addLayer(layer);
-}
-
 function refreshMap(trips, events, filterShip, filterType) {
   if (!document.getElementById('globe-container')) return;
-  initMap();
-  return buildMapData(trips, events, filterShip, filterType);
+  initGlobe();
+  // Wait for countries to load then render
+  if (!countriesGeoJson) {
+    loadCountryBoundaries().then(function() {
+      buildMapData(trips, events, filterShip, filterType);
+    });
+  } else {
+    return buildMapData(trips, events, filterShip, filterType);
+  }
 }
 
 function handleMapResize() {
-  if (map) {
-    setTimeout(function() { map.invalidateSize(); }, 100);
+  if (globe) {
+    var container = document.getElementById('globe-container');
+    if (container) {
+      globe.width(container.clientWidth);
+      globe.height(container.clientHeight);
+    }
   }
 }
