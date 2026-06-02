@@ -1850,7 +1850,7 @@ async function init() {
     try {
         const [tripsRes, eventsRes] = await Promise.all([
             fetch('data/trips.json?h=d5c31f90'),
-            fetch('data/events.json?h=9fd3dd38')
+            fetch('data/events.json?h=6c07e64f')
         ]);
         tripsData = await tripsRes.json();
         eventsData = await eventsRes.json();
