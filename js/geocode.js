@@ -131,9 +131,8 @@ const GEOCODE = {
     'Tenerife':[28.4636,-16.2518],'Santa Cruz de Tenerife':[28.4636,-16.2518],
     'Tracy Arm':[57.8333,-133.6167],'Tracy Arm Fjord':[57.8333,-133.6167],
     'Valdez':[61.1309,-146.3484],
-    'Willis Island':[-16.2903,149.9681]
+    'Willis Island':[-16.2903,149.9681],
     'Sapporo':[43.0618,141.3545],
-  ,
     'Belize City':[17.4988,-88.1886],
     'Benoa (Denpasar)':[-8.7467,115.21],
     'Boston':[42.3601,-71.0589],
