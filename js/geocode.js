@@ -212,6 +212,7 @@ const GEOCODE = {
     'Los Angeles':[34.0522,-118.2437],'North Charleston':[32.8546,-80.0226],
     'Oga':[39.9471,139.8472],'Salisbury':[51.0688,-1.7945],
     'Suzuka':[34.8843,136.5844],
+    'Pflugerville':[30.4393,-97.6200],
   },
   cities: {
     'Akita':[39.72,140.1025],

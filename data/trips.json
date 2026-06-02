@@ -539,7 +539,8 @@
           "Code": "MYR",
           "Time": "2018-12-19T07:18:00-05:00"
         },
-        "FlightNumber": "NK"
+        "FlightNumber": "NK",
+        "Price": "$213.60"
       },
       {
         "SegmentType": "Flight",
@@ -741,7 +742,8 @@
           "Code": "CLT",
           "Time": "2021-06-25T12:33:00-04:00"
         },
-        "FlightNumber": "AA 1084"
+        "FlightNumber": "AA 1084",
+        "Price": "$422.40"
       },
       {
         "SegmentType": "Flight",
@@ -764,7 +766,8 @@
           "Code": "MYR",
           "Time": "2021-06-25T13:58:00-04:00"
         },
-        "FlightNumber": "AA 1597"
+        "FlightNumber": "AA 1597",
+        "Price": "$422.40"
       },
       {
         "SegmentType": "Flight",
@@ -787,7 +790,8 @@
           "Code": "CLT",
           "Time": "2021-06-27T19:35:00-04:00"
         },
-        "FlightNumber": "AA 1603"
+        "FlightNumber": "AA 1603",
+        "Price": "$422.40"
       },
       {
         "SegmentType": "Flight",
@@ -810,7 +814,8 @@
           "Code": "AUS",
           "Time": "2021-06-27T22:46:00-05:00"
         },
-        "FlightNumber": "AA 764"
+        "FlightNumber": "AA 764",
+        "Price": "$422.40"
       }
     ]
   },
@@ -832,7 +837,7 @@
           "Province": "TX",
           "CountryCode": "US",
           "Code": "AUS",
-          "Time": "2021-11-20T00:00:00-05:00"
+          "Time": "2021-11-20T00:00:00-06:00"
         },
         "Arrival": {
           "LocationName": "Boston Logan Intl",
@@ -841,7 +846,8 @@
           "CountryCode": "US",
           "Code": "BOS",
           "Time": "2021-11-20T00:00:00-05:00"
-        }
+        },
+        "Price": "$206.80"
       }
     ]
   },
@@ -873,7 +879,8 @@
           "Code": "BNA",
           "Time": "2021-12-23T09:00:00-06:00"
         },
-        "FlightNumber": "WN 1595"
+        "FlightNumber": "WN 1595",
+        "Price": "$547.96"
       },
       {
         "SegmentType": "Flight",
@@ -896,7 +903,8 @@
           "Code": "MYR",
           "Time": "2021-12-23T12:30:00-05:00"
         },
-        "FlightNumber": "WN 1969"
+        "FlightNumber": "WN 1969",
+        "Price": "$547.96"
       }
     ]
   },
@@ -966,7 +974,9 @@
             "Date": "2022-02-22"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "CruiseRate": "$688.00",
+        "TotalCharges": "$933.72"
       },
       {
         "SegmentType": "Flight",
@@ -993,12 +1003,788 @@
     ]
   },
   {
+    "TripId": "charlotte-nascar-2022",
+    "TripName": "Charlotte NC (NASCAR Hall of Fame)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Round Rock, TX",
+    "HomeAtEnd": "Round Rock, TX",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "3WC39C",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2022-03-11T15:40:00-06:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Chicago",
+          "Province": "IL",
+          "CountryCode": "US",
+          "Code": "MDW",
+          "Time": "2022-03-11T18:10:00-06:00"
+        },
+        "FlightNumber": "WN 1458",
+        "Price": "$545.46"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "3WC39C",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Chicago",
+          "Province": "IL",
+          "CountryCode": "US",
+          "Code": "MDW",
+          "Time": "2022-03-11T19:30:00-06:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2022-03-11T22:15:00-05:00"
+        },
+        "FlightNumber": "WN 2464",
+        "Price": "$545.46"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "2375788685",
+        "DisplayName": "Hilton Garden Inn Charlotte Uptown",
+        "City": "Charlotte",
+        "Province": "NC",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2022-03-11",
+        "CheckOutDate": "2022-03-13",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "3WC39C",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2022-03-13T16:40:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Nashville",
+          "Province": "TN",
+          "CountryCode": "US",
+          "Code": "BNA",
+          "Time": "2022-03-13T17:05:00-05:00"
+        },
+        "FlightNumber": "WN 1478",
+        "Price": "$545.46"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "3WC39C",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Nashville",
+          "Province": "TN",
+          "CountryCode": "US",
+          "Code": "BNA",
+          "Time": "2022-03-13T22:10:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2022-03-14T00:30:00-05:00"
+        },
+        "FlightNumber": "WN 0790",
+        "Price": "$545.46"
+      }
+    ]
+  },
+  {
+    "TripId": "stt-scouting-may-2022",
+    "TripName": "St. Thomas Scouting Trip",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Round Rock, TX",
+    "HomeAtEnd": "Round Rock, TX",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "TMANSQ",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2022-05-10T07:06:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Miami",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "MIA",
+          "Time": "2022-05-10T10:58:00-04:00"
+        },
+        "FlightNumber": "AA 495"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "TMANSQ",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Miami",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "MIA",
+          "Time": "2022-05-10T12:00:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2022-05-10T15:00:00-04:00"
+        }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "A Sweet Ginger Retreat (Airbnb)",
+        "City": "St. Thomas",
+        "Province": "USVI",
+        "PostalCode": null,
+        "CountryCode": "VI",
+        "Address1": "Near Magens Bay, Northside",
+        "Address2": null,
+        "CheckInDate": "2022-05-10",
+        "CheckOutDate": "2022-05-17",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "TMANSQ",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2022-05-25T14:36:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Miami",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "MIA",
+          "Time": "2022-05-25T17:39:00-04:00"
+        },
+        "FlightNumber": "AA 943"
+      }
+    ]
+  },
+  {
+    "TripId": "pax-west-seattle-2022",
+    "TripName": "PAX West 2022 (Seattle)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Round Rock, TX",
+    "HomeAtEnd": "Round Rock, TX",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "YFXCZQ",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2022-09-01T18:03:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Seattle",
+          "Province": "WA",
+          "CountryCode": "US",
+          "Code": "SEA",
+          "Time": "2022-09-01T20:30:00-07:00"
+        },
+        "FlightNumber": "AA 429N"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "RE5RWWM6",
+        "DisplayName": "Sheraton Grand Seattle",
+        "City": "Seattle",
+        "Province": "WA",
+        "PostalCode": "98101",
+        "CountryCode": "US",
+        "Address1": "1400 Sixth Avenue",
+        "Address2": null,
+        "CheckInDate": "2022-09-01",
+        "CheckOutDate": "2022-09-04",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "FMMQHM",
+        "Airline": "Alaska Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Seattle",
+          "Province": "WA",
+          "CountryCode": "US",
+          "Code": "SEA",
+          "Time": "2022-09-04T07:55:00-07:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2022-09-04T14:00:00-05:00"
+        },
+        "FlightNumber": "AS 561"
+      }
+    ]
+  },
+  {
+    "TripId": "stt-move-oct-2022",
+    "TripName": "Permanent Move to St. Thomas",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Round Rock, TX",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "TBKI6L",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Fort Lauderdale",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "FLL",
+          "Time": "2022-10-04T14:05:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2022-10-04T16:46:00-04:00"
+        },
+        "FlightNumber": "NK 201",
+        "Price": "$265.79"
+      }
+    ]
+  },
+  {
+    "TripId": "christmas-multi-city-2022",
+    "TripName": "Christmas Multi-City (STT-Austin-Myrtle Beach)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GKQD5G",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2022-12-06T15:36:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2022-12-06T18:42:00-05:00"
+        },
+        "FlightNumber": "DL 1424"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GKQD5G",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2022-12-06T19:36:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2022-12-06T21:05:00-06:00"
+        },
+        "FlightNumber": "DL 2370"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "60451643",
+        "DisplayName": "Comfort Suites Pflugerville",
+        "City": "Pflugerville",
+        "Province": "TX",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2022-12-10",
+        "CheckOutDate": "2022-12-12",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "81451548",
+        "DisplayName": "Westin Austin at The Domain",
+        "City": "Austin",
+        "Province": "TX",
+        "PostalCode": "78758",
+        "CountryCode": "US",
+        "Address1": "11301 Domain Dr",
+        "Address2": null,
+        "CheckInDate": "2022-12-10",
+        "CheckOutDate": "2022-12-11",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "SUFCMP",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2022-12-12T17:53:00-06:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2022-12-12T21:32:00-05:00"
+        },
+        "FlightNumber": "AA 434",
+        "Price": "$281.10"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "SUFCMP",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2022-12-12T22:45:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2022-12-12T23:52:00-05:00"
+        },
+        "FlightNumber": "AA 2619",
+        "Price": "$281.10"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GK89LK",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2023-01-16T06:00:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2023-01-16T07:24:00-05:00"
+        },
+        "FlightNumber": "DL 2967",
+        "Price": "$494.30"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GK89LK",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2023-01-16T09:51:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2023-01-16T14:24:00-04:00"
+        },
+        "FlightNumber": "DL 1950",
+        "Price": "$494.30"
+      }
+    ]
+  },
+  {
+    "TripId": "austin-may-2023",
+    "TripName": "Austin & Myrtle Beach (May 2023)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "RQJVKA",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2023-05-27T14:42:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Miami",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "MIA",
+          "Time": "2023-05-27T17:00:00-04:00"
+        },
+        "FlightNumber": "AA 2490"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "RQJVKA",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Miami",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "MIA",
+          "Time": "2023-05-27T18:30:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2023-05-27T20:30:00-05:00"
+        },
+        "FlightNumber": "AA 2629"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "342-853-705-18",
+        "DisplayName": "Priceline Hotel Austin",
+        "City": "Austin",
+        "Province": "TX",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2023-06-29",
+        "CheckOutDate": "2023-06-30",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "343-611-105-16",
+        "DisplayName": "Priceline Hotel Austin",
+        "City": "Austin",
+        "Province": "TX",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2023-06-30",
+        "CheckOutDate": "2023-07-01",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "346-077-735-17",
+        "DisplayName": "Priceline Hotel Austin",
+        "City": "Austin",
+        "Province": "TX",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2023-07-03",
+        "CheckOutDate": "2023-07-04",
+        "Source": "email"
+      }
+    ]
+  },
+  {
+    "TripId": "austin-denver-jul-2023",
+    "TripName": "Austin & Denver (July 2023)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "HLM698",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2023-06-29T11:06:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2023-06-29T12:24:00-04:00"
+        },
+        "FlightNumber": "DL 2517"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "HLM698",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2023-06-29T13:52:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2023-06-29T15:15:00-05:00"
+        },
+        "FlightNumber": "DL 1397"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "4DEB56",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2023-07-07T11:50:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Denver",
+          "Province": "CO",
+          "CountryCode": "US",
+          "Code": "DEN",
+          "Time": "2023-07-07T13:00:00-06:00"
+        },
+        "FlightNumber": "WN 2943"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "TWSKEX",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Denver",
+          "Province": "CO",
+          "CountryCode": "US",
+          "Code": "DEN",
+          "Time": "2023-07-09T23:59:00-06:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2023-07-10T05:19:00-04:00"
+        },
+        "FlightNumber": "AA 510",
+        "Price": "$398.48"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "TWSKEX",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2023-07-10T09:16:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2023-07-10T13:03:00-04:00"
+        },
+        "FlightNumber": "AA 1919",
+        "Price": "$398.48"
+      }
+    ]
+  },
+  {
     "TripId": "magic-bermuda-2023",
     "TripName": "Carnival Magic: Bermuda (Rerouted to Bahamas - Hurricane Lee)",
     "IsActiveTravel": true,
     "HomeAtStart": "St. Thomas, USVI",
     "HomeAtEnd": "St. Thomas, USVI",
     "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "2CNRN6",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2023-09-09T07:25:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Baltimore",
+          "Province": "MD",
+          "CountryCode": "US",
+          "Code": "BWI",
+          "Time": "2023-09-09T08:45:00-04:00"
+        },
+        "FlightNumber": "WN 3268",
+        "Price": "$192.13"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "2CNRN6",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Baltimore",
+          "Province": "MD",
+          "CountryCode": "US",
+          "Code": "BWI",
+          "Time": "2023-09-09T10:55:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Norfolk",
+          "Province": "VA",
+          "CountryCode": "US",
+          "Code": "ORF",
+          "Time": "2023-09-09T11:50:00-04:00"
+        },
+        "FlightNumber": "WN 3246",
+        "Price": "$192.13"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "6562015",
+        "DisplayName": "Holiday Inn Virginia Beach - Norfolk",
+        "City": "Norfolk",
+        "Province": "VA",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2023-09-09",
+        "CheckOutDate": "2023-09-10",
+        "Source": "email"
+      },
       {
         "SegmentType": "Cruise",
         "BookingNumber": "T3V1Q3",
@@ -1043,7 +1829,288 @@
             "Date": "2023-09-14"
           }
         ],
-        "Source": "manual"
+        "Source": "manual",
+        "CruiseRate": "$1,358.00",
+        "TotalCharges": "$1,780.14"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "2CNRN6",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Norfolk",
+          "Province": "VA",
+          "CountryCode": "US",
+          "Code": "ORF",
+          "Time": "2023-09-16T16:00:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Baltimore",
+          "Province": "MD",
+          "CountryCode": "US",
+          "Code": "BWI",
+          "Time": "2023-09-16T17:00:00-04:00"
+        },
+        "FlightNumber": "WN 1860",
+        "Price": "$192.13"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "2CNRN6",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Baltimore",
+          "Province": "MD",
+          "CountryCode": "US",
+          "Code": "BWI",
+          "Time": "2023-09-16T18:45:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2023-09-16T20:10:00-04:00"
+        },
+        "FlightNumber": "WN 402",
+        "Price": "$192.13"
+      }
+    ]
+  },
+  {
+    "TripId": "stt-return-oct-2023",
+    "TripName": "Return to St. Thomas (October 2023)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "YIBJ2Z",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2023-10-03T10:25:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Fort Lauderdale",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "FLL",
+          "Time": "2023-10-03T12:14:00-04:00"
+        },
+        "FlightNumber": "NK 210",
+        "Price": "$376.79"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "YIBJ2Z",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Fort Lauderdale",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "FLL",
+          "Time": "2023-10-03T13:46:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2023-10-03T16:25:00-04:00"
+        },
+        "FlightNumber": "NK 201",
+        "Price": "$376.79"
+      }
+    ]
+  },
+  {
+    "TripId": "austin-christmas-2023",
+    "TripName": "Austin Christmas 2023",
+    "IsActiveTravel": true,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "O313Y5",
+        "Airline": "United Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2023-12-07T13:00:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Washington",
+          "Province": "DC",
+          "CountryCode": "US",
+          "Code": "IAD",
+          "Time": "2023-12-07T16:15:00-05:00"
+        },
+        "FlightNumber": "UA 1445"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "O313Y5",
+        "Airline": "United Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Washington",
+          "Province": "DC",
+          "CountryCode": "US",
+          "Code": "IAD",
+          "Time": "2023-12-07T17:48:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2023-12-07T20:29:00-06:00"
+        },
+        "FlightNumber": "UA 1858"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "3461693735",
+        "DisplayName": "Hilton Garden Inn Austin North",
+        "City": "Austin",
+        "Province": "TX",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": "12400 N. IH 35",
+        "Address2": null,
+        "CheckInDate": "2023-12-07",
+        "CheckOutDate": "2023-12-15",
+        "Source": "email"
+      }
+    ]
+  },
+  {
+    "TripId": "austin-jan-2024",
+    "TripName": "Austin (January 2024)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "FL6TKQ",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2024-01-17T09:05:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Fort Lauderdale",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "FLL",
+          "Time": "2024-01-17T11:00:00-05:00"
+        },
+        "FlightNumber": "NK 2001",
+        "Price": "$403.44"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "FL6TKQ",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Fort Lauderdale",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "FLL",
+          "Time": "2024-01-17T12:32:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2024-01-17T14:46:00-06:00"
+        },
+        "FlightNumber": "NK 517",
+        "Price": "$403.44"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "FL6TKQ",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2024-01-19T10:45:00-06:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Orlando",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "MCO",
+          "Time": "2024-01-19T14:11:00-05:00"
+        },
+        "FlightNumber": "NK 1879",
+        "Price": "$403.44"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "FL6TKQ",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Orlando",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "MCO",
+          "Time": "2024-01-19T14:51:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2024-01-19T16:15:00-05:00"
+        },
+        "FlightNumber": "NK 136",
+        "Price": "$403.44"
       }
     ]
   },
@@ -1075,7 +2142,8 @@
           "Code": "SJU",
           "Time": "2024-04-05T18:42:00-04:00"
         },
-        "FlightNumber": "B6 1235"
+        "FlightNumber": "B6 1235",
+        "Price": "$198.64"
       },
       {
         "SegmentType": "Flight",
@@ -1098,7 +2166,8 @@
           "Code": "TPA",
           "Time": "2024-04-06T00:12:00-04:00"
         },
-        "FlightNumber": "B6 2752"
+        "FlightNumber": "B6 2752",
+        "Price": "$198.64"
       },
       {
         "SegmentType": "Cruise",
@@ -1158,7 +2227,9 @@
             "Date": "2024-04-18"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "CruiseRate": "$2,368.00",
+        "TotalCharges": "$3,294.20"
       },
       {
         "SegmentType": "Cruise",
@@ -1253,7 +2324,9 @@
             "Date": "2024-05-06"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "CruiseRate": "$2,498.00",
+        "TotalCharges": "$3,343.65"
       },
       {
         "SegmentType": "Flight",
@@ -1276,7 +2349,8 @@
           "Code": "SFO",
           "Time": "2024-05-07T15:27:00-07:00"
         },
-        "FlightNumber": "UA 1896"
+        "FlightNumber": "UA 1896",
+        "Price": "$202.60"
       },
       {
         "SegmentType": "Flight",
@@ -1299,7 +2373,8 @@
           "Code": "FAT",
           "Time": "2024-05-07T17:25:00-07:00"
         },
-        "FlightNumber": "UA 5663"
+        "FlightNumber": "UA 5663",
+        "Price": "$202.60"
       }
     ]
   },
@@ -1323,6 +2398,259 @@
         "CheckInDate": "2024-05-07",
         "CheckOutDate": "2024-09-25",
         "Source": "inferred"
+      }
+    ]
+  },
+  {
+    "TripId": "stt-summer-2024",
+    "TripName": "St. Thomas & Puerto Rico (May-June 2024)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GXKZCA",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2024-05-25T05:07:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2024-05-25T06:13:00-04:00"
+        },
+        "FlightNumber": "AA 2504",
+        "Price": "$300.30"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GXKZCA",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2024-05-25T11:20:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2024-05-25T14:55:00-04:00"
+        },
+        "FlightNumber": "AA 2432",
+        "Price": "$300.30"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "303501-561930105",
+        "DisplayName": "Fortel Hostel",
+        "City": "San Juan",
+        "Province": "PR",
+        "PostalCode": "00901",
+        "CountryCode": "PR",
+        "Address1": "309 Calle Fortaleza, 2nd Floor",
+        "Address2": null,
+        "CheckInDate": "2024-06-04",
+        "CheckOutDate": "2024-06-05",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "ILMFPY",
+        "Airline": "JetBlue",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2024-06-05T17:08:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "San Juan",
+          "Province": "PR",
+          "CountryCode": "PR",
+          "Code": "SJU",
+          "Time": "2024-06-05T17:53:00-04:00"
+        },
+        "FlightNumber": "B6 1135",
+        "Price": "$86.20"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "ILMFPY",
+        "Airline": "JetBlue",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "San Juan",
+          "Province": "PR",
+          "CountryCode": "PR",
+          "Code": "SJU",
+          "Time": "2024-06-06T15:41:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2024-06-06T16:20:00-04:00"
+        },
+        "FlightNumber": "B6 1036",
+        "Price": "$86.20"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "IMRFNA",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2024-06-21T15:40:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Orlando",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "MCO",
+          "Time": "2024-06-21T19:10:00-04:00"
+        },
+        "FlightNumber": "NK 277",
+        "Price": "$316.11"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "IMRFNA",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Orlando",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "MCO",
+          "Time": "2024-06-21T20:59:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Atlantic City",
+          "Province": "NJ",
+          "CountryCode": "US",
+          "Code": "ACY",
+          "Time": "2024-06-21T23:22:00-04:00"
+        },
+        "FlightNumber": "NK 3997",
+        "Price": "$316.11"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "IMRFNA",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Atlantic City",
+          "Province": "NJ",
+          "CountryCode": "US",
+          "Code": "ACY",
+          "Time": "2024-06-24T20:15:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2024-06-24T21:39:00-04:00"
+        },
+        "FlightNumber": "NK 1682",
+        "Price": "$316.11"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "BQNBSR",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2024-06-29T20:30:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Fort Lauderdale",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "FLL",
+          "Time": "2024-06-29T22:21:00-04:00"
+        },
+        "FlightNumber": "NK 1002",
+        "Price": "$120.80"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "667f569af47ddb1d93890aa1",
+        "DisplayName": "Comfort Suites Fort Lauderdale",
+        "City": "Dania Beach",
+        "Province": "FL",
+        "PostalCode": "33004",
+        "CountryCode": "US",
+        "Address1": "302 N Federal Hwy",
+        "Address2": null,
+        "CheckInDate": "2024-06-29",
+        "CheckOutDate": "2024-06-30",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "BQNBSR",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Fort Lauderdale",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "FLL",
+          "Time": "2024-06-30T07:00:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2024-06-30T09:40:00-04:00"
+        },
+        "FlightNumber": "NK 894",
+        "Price": "$120.80"
       }
     ]
   },
@@ -1354,7 +2682,8 @@
           "Code": "FLL",
           "Time": "2024-09-05T13:33:00-04:00"
         },
-        "FlightNumber": "NK 895"
+        "FlightNumber": "NK 895",
+        "Price": "$456.19"
       },
       {
         "SegmentType": "Flight",
@@ -1377,7 +2706,8 @@
           "Code": "MYR",
           "Time": "2024-09-05T19:48:00-04:00"
         },
-        "FlightNumber": "NK 1001"
+        "FlightNumber": "NK 1001",
+        "Price": "$456.19"
       },
       {
         "SegmentType": "Flight",
@@ -1400,7 +2730,8 @@
           "Code": "FLL",
           "Time": "2024-09-09T22:29:00-04:00"
         },
-        "FlightNumber": "NK 1002"
+        "FlightNumber": "NK 1002",
+        "Price": "$456.19"
       },
       {
         "SegmentType": "Accommodation",
@@ -1437,7 +2768,8 @@
           "Code": "STT",
           "Time": "2024-09-10T09:37:00-04:00"
         },
-        "FlightNumber": "NK 894"
+        "FlightNumber": "NK 894",
+        "Price": "$456.19"
       }
     ]
   },
@@ -1449,26 +2781,90 @@
     "HomeAtEnd": "Myrtle Beach, SC",
     "Segments": [
       {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "4852433102",
+        "DisplayName": "Homewood Suites Anaheim-Main Gate",
+        "City": "Anaheim",
+        "Province": "CA",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2024-05-12",
+        "CheckOutDate": "2024-05-13",
+        "Source": "email"
+      },
+      {
         "SegmentType": "Flight",
-        "BookingNumber": "GVWQW5",
-        "Airline": "Delta Air Lines",
+        "BookingNumber": "OEKTVH",
+        "Airline": "American Airlines",
         "Source": "email",
         "Departure": {
-          "LocationName": "Cyril E. King Airport",
-          "City": "St. Thomas",
-          "Province": null,
-          "CountryCode": "VI",
-          "Code": "STT",
-          "Time": "2024-09-25T14:49:00-04:00"
+          "LocationName": "",
+          "City": "Fresno",
+          "Province": "CA",
+          "CountryCode": "US",
+          "Code": "FAT",
+          "Time": "2024-05-14T09:32:00-07:00"
         },
         "Arrival": {
-          "LocationName": "Hartsfield-Jackson Atlanta Intl",
-          "City": "Atlanta",
-          "Province": "GA",
+          "LocationName": "",
+          "City": "Phoenix",
+          "Province": "AZ",
           "CountryCode": "US",
-          "Code": "ATL",
-          "Time": "2024-09-25T18:34:00-04:00"
-        }
+          "Code": "PHX",
+          "Time": "2024-05-14T11:18:00-07:00"
+        },
+        "FlightNumber": "AA 3168",
+        "Price": "$431.97"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "OEKTVH",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Phoenix",
+          "Province": "AZ",
+          "CountryCode": "US",
+          "Code": "PHX",
+          "Time": "2024-05-14T12:33:00-07:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Dallas",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "DFW",
+          "Time": "2024-05-14T16:57:00-05:00"
+        },
+        "FlightNumber": "AA 1976",
+        "Price": "$431.97"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "OEKTVH",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Dallas",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "DFW",
+          "Time": "2024-05-14T19:16:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2024-05-14T22:56:00-04:00"
+        },
+        "FlightNumber": "AA 3621",
+        "Price": "$431.97"
       },
       {
         "SegmentType": "Accommodation",
@@ -1486,6 +2882,29 @@
       },
       {
         "SegmentType": "Flight",
+        "BookingNumber": "GVWQW5",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Cyril E. King Airport",
+          "City": "St. Thomas",
+          "Province": null,
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2024-09-27T14:24:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2024-09-27T18:34:00-04:00"
+        },
+        "Price": "$1,130.43"
+      },
+      {
+        "SegmentType": "Flight",
         "BookingNumber": "GN4N7O",
         "Airline": "Delta Air Lines",
         "Source": "email",
@@ -1495,7 +2914,7 @@
           "Province": "GA",
           "CountryCode": "US",
           "Code": "ATL",
-          "Time": "2024-09-28T09:55:00-04:00"
+          "Time": "2024-09-28T10:00:00-04:00"
         },
         "Arrival": {
           "LocationName": "Tokyo Haneda Airport",
@@ -1629,28 +3048,6 @@
         "Source": "manual"
       },
       {
-        "SegmentType": "Flight",
-        "BookingNumber": "MEDYIM",
-        "Airline": "Japan Airlines / Singapore Airlines",
-        "Source": "email",
-        "Departure": {
-          "LocationName": "Akita Airport",
-          "City": "Akita",
-          "Province": null,
-          "CountryCode": "JP",
-          "Code": "AXT",
-          "Time": "2024-10-09T13:00:00+09:00"
-        },
-        "Arrival": {
-          "LocationName": "Singapore Changi Airport",
-          "City": "Singapore",
-          "Province": null,
-          "CountryCode": "SG",
-          "Code": "SIN",
-          "Time": "2024-10-09T23:05:00+08:00"
-        }
-      },
-      {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
         "DisplayName": "Holiday Inn Express Singapore Clarke Quay",
@@ -1663,6 +3060,51 @@
         "CheckInDate": "2024-10-09",
         "CheckOutDate": "2024-10-12",
         "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "MEDYIM",
+        "Airline": "Japan Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Akita",
+          "Province": null,
+          "CountryCode": "JP",
+          "Code": "AXT",
+          "Time": "2024-10-09T13:00:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Code": "HND",
+          "Time": "2024-10-09T14:10:00+09:00"
+        },
+        "FlightNumber": "JL 164"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "MEDYIM",
+        "Airline": "Singapore Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Code": "HND",
+          "Time": "2024-10-09T18:00:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Singapore",
+          "Province": null,
+          "CountryCode": "SG",
+          "Code": "SIN",
+          "Time": "2024-10-09T23:05:00+08:00"
+        }
       },
       {
         "SegmentType": "Cruise",
@@ -1722,7 +3164,9 @@
             "CountryCode": "US",
             "Date": "2024-10-29"
           }
-        ]
+        ],
+        "CruiseRate": "$4,118.00",
+        "TotalCharges": "$4,856.00"
       },
       {
         "SegmentType": "Accommodation",
@@ -1787,7 +3231,8 @@
           "Code": "ATL",
           "Time": "2024-11-12T21:50:00-05:00"
         },
-        "FlightNumber": "DL 506"
+        "FlightNumber": "DL 506",
+        "Price": "$502.98"
       },
       {
         "SegmentType": "Flight",
@@ -1810,7 +3255,8 @@
           "Code": "MYR",
           "Time": "2024-11-12T23:58:00-05:00"
         },
-        "FlightNumber": "DL 3074"
+        "FlightNumber": "DL 3074",
+        "Price": "$502.98"
       }
     ]
   },
@@ -1865,7 +3311,8 @@
           "Code": "ISP",
           "Time": "2024-11-15T18:18:00-05:00"
         },
-        "FlightNumber": "F9 1682"
+        "FlightNumber": "F9 1682",
+        "Price": "$127.96"
       },
       {
         "SegmentType": "Flight",
@@ -1888,7 +3335,8 @@
           "Code": "MYR",
           "Time": "2024-11-17T14:13:00-05:00"
         },
-        "FlightNumber": "F9 1681"
+        "FlightNumber": "F9 1681",
+        "Price": "$127.96"
       }
     ]
   },
@@ -1920,7 +3368,8 @@
           "Code": "EWR",
           "Time": "2025-01-17T17:46:00-05:00"
         },
-        "FlightNumber": "NK 212"
+        "FlightNumber": "NK 212",
+        "Price": "$771.65"
       },
       {
         "SegmentType": "Flight",
@@ -1943,7 +3392,8 @@
           "Code": "LAX",
           "Time": "2025-01-17T22:14:00-08:00"
         },
-        "FlightNumber": "NK 893"
+        "FlightNumber": "NK 893",
+        "Price": "$771.65"
       },
       {
         "SegmentType": "Accommodation",
@@ -1996,7 +3446,8 @@
             "Date": "2025-01-22"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "TotalCharges": "$227.58"
       },
       {
         "SegmentType": "Flight",
@@ -2019,7 +3470,8 @@
           "Code": "DTW",
           "Time": "2025-01-24T05:03:00-05:00"
         },
-        "FlightNumber": "NK 262"
+        "FlightNumber": "NK 262",
+        "Price": "$771.65"
       },
       {
         "SegmentType": "Flight",
@@ -2042,7 +3494,8 @@
           "Code": "LGA",
           "Time": "2025-01-24T08:00:00-05:00"
         },
-        "FlightNumber": "NK 2963"
+        "FlightNumber": "NK 2963",
+        "Price": "$771.65"
       },
       {
         "SegmentType": "Flight",
@@ -2065,7 +3518,8 @@
           "Code": "MYR",
           "Time": "2025-01-24T10:57:00-05:00"
         },
-        "FlightNumber": "NK 2964"
+        "FlightNumber": "NK 2964",
+        "Price": "$771.65"
       }
     ]
   },
@@ -2100,28 +3554,6 @@
     "HomeAtEnd": "Myrtle Beach, SC",
     "Segments": [
       {
-        "SegmentType": "Flight",
-        "BookingNumber": "45NDHR",
-        "Airline": "Southwest Airlines",
-        "Source": "email",
-        "Departure": {
-          "LocationName": "Myrtle Beach Intl",
-          "City": "Myrtle Beach",
-          "Province": "SC",
-          "CountryCode": "US",
-          "Code": "MYR",
-          "Time": "2025-02-18T18:40:00-05:00"
-        },
-        "Arrival": {
-          "LocationName": "Denver Intl",
-          "City": "Denver",
-          "Province": "CO",
-          "CountryCode": "US",
-          "Code": "DEN",
-          "Time": "2025-02-18T23:10:00-07:00"
-        }
-      },
-      {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
         "DisplayName": "Sister's House",
@@ -2134,6 +3566,54 @@
         "CheckInDate": "2025-02-18",
         "CheckOutDate": "2025-02-21",
         "Source": "manual"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "45NDHR",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2025-02-18T18:40:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Baltimore",
+          "Province": "MD",
+          "CountryCode": "US",
+          "Code": "BWI",
+          "Time": "2025-02-18T20:05:00-05:00"
+        },
+        "FlightNumber": "WN 1833",
+        "Price": "$225.18"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "45NDHR",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Baltimore",
+          "Province": "MD",
+          "CountryCode": "US",
+          "Code": "BWI",
+          "Time": "2025-02-18T20:55:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Denver",
+          "Province": "CO",
+          "CountryCode": "US",
+          "Code": "DEN",
+          "Time": "2025-02-18T23:10:00-07:00"
+        },
+        "FlightNumber": "WN 1574",
+        "Price": "$225.18"
       },
       {
         "SegmentType": "Accommodation",
@@ -2166,10 +3646,10 @@
       {
         "SegmentType": "Flight",
         "BookingNumber": "GXLQ49",
-        "Airline": "Delta / KLM",
+        "Airline": "Delta Air Lines",
         "Source": "email",
         "Departure": {
-          "LocationName": "Denver Intl",
+          "LocationName": "",
           "City": "Denver",
           "Province": "CO",
           "CountryCode": "US",
@@ -2177,13 +3657,39 @@
           "Time": "2025-02-27T11:26:00-07:00"
         },
         "Arrival": {
-          "LocationName": "Birmingham Airport",
-          "City": "Birmingham",
-          "Province": "ENG",
-          "CountryCode": "GB",
-          "Code": "BHX",
-          "Time": "2025-02-28T08:35:00+00:00"
-        }
+          "LocationName": "",
+          "City": "Minneapolis",
+          "Province": "MN",
+          "CountryCode": "US",
+          "Code": "MSP",
+          "Time": "2025-02-27T14:29:00-06:00"
+        },
+        "FlightNumber": "DL 2849",
+        "Price": "$577.70"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GXLQ49",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Minneapolis",
+          "Province": "MN",
+          "CountryCode": "US",
+          "Code": "MSP",
+          "Time": "2025-02-27T15:37:00-06:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Amsterdam",
+          "Province": null,
+          "CountryCode": "NL",
+          "Code": "AMS",
+          "Time": "2025-02-28T06:50:00+01:00"
+        },
+        "FlightNumber": "DL 160",
+        "Price": "$577.70"
       },
       {
         "SegmentType": "Accommodation",
@@ -2198,6 +3704,30 @@
         "CheckInDate": "2025-02-28",
         "CheckOutDate": "2025-03-03",
         "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GXLQ49",
+        "Airline": "KLM",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Amsterdam",
+          "Province": null,
+          "CountryCode": "NL",
+          "Code": "AMS",
+          "Time": "2025-02-28T08:25:00+01:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Birmingham",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Code": "BHX",
+          "Time": "2025-02-28T08:35:00+00:00"
+        },
+        "FlightNumber": "DL 9210",
+        "Price": "$577.70"
       },
       {
         "SegmentType": "Accommodation",
@@ -2353,7 +3883,8 @@
           "CountryCode": "IE",
           "Code": "DUB",
           "Time": "2025-03-16T14:30:00+00:00"
-        }
+        },
+        "Price": "156.76 GBP"
       },
       {
         "SegmentType": "Accommodation",
@@ -2487,7 +4018,8 @@
           "CountryCode": "GB",
           "Code": "EDI",
           "Time": "2025-03-25T10:55:00+00:00"
-        }
+        },
+        "Price": "23.99 GBP"
       },
       {
         "SegmentType": "Accommodation",
@@ -2551,7 +4083,8 @@
           "CountryCode": "FR",
           "Code": "BVA",
           "Time": "2025-03-30T21:35:00+02:00"
-        }
+        },
+        "Price": "92.76 GBP"
       },
       {
         "SegmentType": "Accommodation",
@@ -2599,7 +4132,7 @@
           "City": "Les Arcs",
           "Province": "Savoie",
           "CountryCode": "FR",
-          "Time": "2025-04-05T00:00:00+02:00"
+          "Time": "2025-04-05T16:30:00+02:00"
         },
         "Source": "email"
       },
@@ -2621,7 +4154,7 @@
           "City": "Bourg-Saint-Maurice",
           "Province": "Savoie",
           "CountryCode": "FR",
-          "Time": "2025-04-05T00:00:00+02:00"
+          "Time": "2025-04-05T22:00:00+02:00"
         },
         "Source": "email"
       },
@@ -2671,7 +4204,7 @@
           "City": "Paris",
           "Province": "Ile-de-France",
           "CountryCode": "FR",
-          "Time": "2025-04-08T00:00:00+02:00"
+          "Time": "2025-04-08T17:30:00+02:00"
         },
         "Source": "email"
       },
@@ -2695,21 +4228,68 @@
         "Airline": "American Airlines",
         "Source": "email",
         "Departure": {
-          "LocationName": "Paris CDG Airport",
+          "LocationName": "",
           "City": "Paris",
-          "Province": "Ile-de-France",
+          "Province": null,
           "CountryCode": "FR",
           "Code": "CDG",
           "Time": "2025-04-12T14:40:00+02:00"
         },
         "Arrival": {
-          "LocationName": "Myrtle Beach Intl",
+          "LocationName": "",
+          "City": "Philadelphia",
+          "Province": "PA",
+          "CountryCode": "US",
+          "Code": "PHL",
+          "Time": "2025-04-12T16:50:00-04:00"
+        },
+        "FlightNumber": "AA 755"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "OMDXXD",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Philadelphia",
+          "Province": "PA",
+          "CountryCode": "US",
+          "Code": "PHL",
+          "Time": "2025-04-12T18:40:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2025-04-12T20:40:00-04:00"
+        },
+        "FlightNumber": "AA 3218"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "OMDXXD",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2025-04-12T22:50:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
           "City": "Myrtle Beach",
           "Province": "SC",
           "CountryCode": "US",
           "Code": "MYR",
           "Time": "2025-04-12T23:44:00-04:00"
-        }
+        },
+        "FlightNumber": "AA 1085"
       }
     ]
   },
@@ -2879,7 +4459,8 @@
           "Code": "ATL",
           "Time": "2025-04-22T13:59:00-04:00"
         },
-        "FlightNumber": "DL 3047"
+        "FlightNumber": "DL 3047",
+        "Price": "$120.09"
       },
       {
         "SegmentType": "Flight",
@@ -2902,7 +4483,8 @@
           "Code": "MSY",
           "Time": "2025-04-22T14:30:00-05:00"
         },
-        "FlightNumber": "DL 3157"
+        "FlightNumber": "DL 3157",
+        "Price": "$120.09"
       },
       {
         "SegmentType": "Accommodation",
@@ -2976,7 +4558,9 @@
             "Date": "2025-05-09"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "CruiseRate": "$1,295.00",
+        "TotalCharges": "$2,029.00"
       },
       {
         "SegmentType": "Accommodation",
@@ -3012,7 +4596,8 @@
           "CountryCode": "IT",
           "Code": "FCO",
           "Time": "2025-05-13T14:05:00+02:00"
-        }
+        },
+        "Price": "247.99 EUR"
       },
       {
         "SegmentType": "Accommodation",
@@ -3053,7 +4638,7 @@
           "Province": "Lazio",
           "CountryCode": "IT",
           "Code": "FCO",
-          "Time": "2025-05-15T10:36:00+02:00"
+          "Time": "2025-05-15T13:40:00+02:00"
         },
         "Arrival": {
           "LocationName": "Bologna Airport",
@@ -3061,7 +4646,7 @@
           "Province": "Emilia-Romagna",
           "CountryCode": "IT",
           "Code": "BLQ",
-          "Time": "2025-05-15T11:30:00+02:00"
+          "Time": "2025-05-15T14:35:00+02:00"
         }
       },
       {
@@ -3112,6 +4697,50 @@
           "Province": "Emilia-Romagna",
           "CountryCode": "IT",
           "Time": "2025-05-16T13:10:00+02:00"
+        }
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "Trenitalia (Regionale)",
+        "TrainNumber": null,
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Bologna Centrale",
+          "City": "Bologna",
+          "Province": "Emilia-Romagna",
+          "CountryCode": "IT",
+          "Time": "2025-05-16T08:00:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Imola Station",
+          "City": "Imola",
+          "Province": "Emilia-Romagna",
+          "CountryCode": "IT",
+          "Time": "2025-05-16T08:30:00+02:00"
+        }
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "Trenitalia (Regionale)",
+        "TrainNumber": null,
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Imola Station",
+          "City": "Imola",
+          "Province": "Emilia-Romagna",
+          "CountryCode": "IT",
+          "Time": "2025-05-18T19:00:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Bologna Centrale",
+          "City": "Bologna",
+          "Province": "Emilia-Romagna",
+          "CountryCode": "IT",
+          "Time": "2025-05-18T19:30:00+02:00"
         }
       },
       {
@@ -3184,7 +4813,8 @@
           "CountryCode": "DE",
           "Code": "BER",
           "Time": "2025-05-21T21:40:00+02:00"
-        }
+        },
+        "Price": "229.49 EUR"
       },
       {
         "SegmentType": "Accommodation",
@@ -3266,7 +4896,7 @@
           "Province": null,
           "CountryCode": "DE",
           "Code": "BER",
-          "Time": "2025-06-05T00:00:00+02:00"
+          "Time": "2025-06-05T11:20:00+02:00"
         },
         "Arrival": {
           "LocationName": "Copenhagen Airport",
@@ -3274,9 +4904,10 @@
           "Province": null,
           "CountryCode": "DK",
           "Code": "CPH",
-          "Time": "2025-06-05T00:00:00+02:00"
+          "Time": "2025-06-05T12:25:00+02:00"
         },
-        "Source": "email"
+        "Source": "email",
+        "Price": "179.99 EUR"
       },
       {
         "SegmentType": "Accommodation",
@@ -3324,7 +4955,7 @@
           "Province": "ENG",
           "CountryCode": "GB",
           "Code": "STN",
-          "Time": "2025-06-12T12:10:00+01:00"
+          "Time": "2025-06-12T12:00:00+01:00"
         },
         "Source": "email"
       },
@@ -3577,7 +5208,9 @@
             "Date": "2025-07-09"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "CruiseRate": "$200.00",
+        "TotalCharges": "$860.00"
       },
       {
         "SegmentType": "Accommodation",
@@ -3621,7 +5254,7 @@
         "Airline": "China Eastern",
         "Source": "email",
         "Departure": {
-          "LocationName": "London Gatwick",
+          "LocationName": "",
           "City": "London",
           "Province": "ENG",
           "CountryCode": "GB",
@@ -3629,12 +5262,12 @@
           "Time": "2025-07-12T18:00:00+01:00"
         },
         "Arrival": {
-          "LocationName": "Seoul Incheon Intl",
-          "City": "Seoul",
+          "LocationName": "",
+          "City": "Shanghai",
           "Province": null,
-          "CountryCode": "KR",
-          "Code": "ICN",
-          "Time": "2025-07-13T17:25:00+09:00"
+          "CountryCode": "CN",
+          "Code": "PVG",
+          "Time": "2025-07-13T12:00:00+08:00"
         }
       },
       {
@@ -3650,6 +5283,28 @@
         "CheckInDate": "2025-07-13",
         "CheckOutDate": "2025-07-20",
         "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "PXPMJG",
+        "Airline": "China Eastern",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Shanghai",
+          "Province": null,
+          "CountryCode": "CN",
+          "Code": "PVG",
+          "Time": "2025-07-13T14:00:00+08:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Seoul",
+          "Province": null,
+          "CountryCode": "KR",
+          "Code": "ICN",
+          "Time": "2025-07-13T17:25:00+09:00"
+        }
       },
       {
         "SegmentType": "Flight",
@@ -3955,6 +5610,29 @@
         "Source": "email"
       },
       {
+        "SegmentType": "Flight",
+        "BookingNumber": "1658106101050594",
+        "Airline": "Cebu Pacific",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Manila",
+          "Province": null,
+          "CountryCode": "PH",
+          "Code": "MNL",
+          "Time": "2025-08-17T22:30:00+08:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Ho Chi Minh City",
+          "Province": null,
+          "CountryCode": "VN",
+          "Code": "SGN",
+          "Time": "2025-08-18T00:25:00+07:00"
+        },
+        "FlightNumber": "5J 751"
+      },
+      {
         "SegmentType": "Accommodation",
         "BookingNumber": "1642082688",
         "DisplayName": "The Heritage Hotel Manila",
@@ -4021,10 +5699,10 @@
       {
         "SegmentType": "Flight",
         "BookingNumber": "GXVGAZ",
-        "Airline": "Delta / Vietnam Airlines",
+        "Airline": "Vietnam Airlines",
         "Source": "email",
         "Departure": {
-          "LocationName": "Tan Son Nhat Intl",
+          "LocationName": "",
           "City": "Ho Chi Minh City",
           "Province": null,
           "CountryCode": "VN",
@@ -4032,7 +5710,52 @@
           "Time": "2025-08-28T09:15:00+07:00"
         },
         "Arrival": {
-          "LocationName": "Myrtle Beach Intl",
+          "LocationName": "",
+          "City": "Seoul",
+          "Province": null,
+          "CountryCode": "KR",
+          "Code": "ICN",
+          "Time": "2025-08-28T16:00:00+09:00"
+        },
+        "FlightNumber": "VN 408"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GXVGAZ",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Seoul",
+          "Province": null,
+          "CountryCode": "KR",
+          "Code": "ICN",
+          "Time": "2025-08-28T18:30:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2025-08-28T18:00:00-04:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GXVGAZ",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2025-08-28T20:30:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "",
           "City": "Myrtle Beach",
           "Province": "SC",
           "CountryCode": "US",
@@ -4091,8 +5814,9 @@
           "Province": "FL",
           "CountryCode": "US",
           "Code": "MCO",
-          "Time": "2025-09-11T18:52:00-04:00"
-        }
+          "Time": "2025-09-11T18:49:00-04:00"
+        },
+        "Price": "$229.99"
       },
       {
         "SegmentType": "Accommodation",
@@ -4159,7 +5883,9 @@
             "Date": "2025-09-25"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "CruiseRate": "$200.00",
+        "TotalCharges": "$510.00"
       },
       {
         "SegmentType": "Flight",
@@ -4241,7 +5967,9 @@
             "Date": "2025-10-05"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "CruiseRate": "$200.00",
+        "TotalCharges": "$510.00"
       },
       {
         "SegmentType": "Cruise",
@@ -4391,7 +6119,9 @@
             "Date": "2025-10-29"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "CruiseRate": "$698.00",
+        "TotalCharges": "$1,008.00"
       },
       {
         "SegmentType": "Cruise",
@@ -4451,7 +6181,9 @@
             "Date": "2025-11-07"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "CruiseRate": "$200.00",
+        "TotalCharges": "$620.00"
       },
       {
         "SegmentType": "Cruise",
@@ -4504,7 +6236,9 @@
             "Date": "2025-11-14"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "CruiseRate": "$558.00",
+        "TotalCharges": "$938.00"
       },
       {
         "SegmentType": "Flight",
@@ -4526,7 +6260,8 @@
           "CountryCode": "US",
           "Code": "MYR",
           "Time": "2025-11-15T19:28:00-05:00"
-        }
+        },
+        "Price": "$224.99"
       }
     ]
   },
@@ -4595,7 +6330,8 @@
           "Code": "EWR",
           "Time": "2025-12-05T10:56:00-05:00"
         },
-        "FlightNumber": "NK 136"
+        "FlightNumber": "NK 136",
+        "Price": "$801.76"
       },
       {
         "SegmentType": "Flight",
@@ -4618,7 +6354,8 @@
           "Code": "AUS",
           "Time": "2025-12-05T16:03:00-06:00"
         },
-        "FlightNumber": "NK 1420"
+        "FlightNumber": "NK 1420",
+        "Price": "$801.76"
       },
       {
         "SegmentType": "Accommodation",
@@ -4669,7 +6406,8 @@
           "Code": "MCO",
           "Time": "2025-12-12T09:39:00-05:00"
         },
-        "FlightNumber": "NK 1415"
+        "FlightNumber": "NK 1415",
+        "Price": "$801.76"
       },
       {
         "SegmentType": "Flight",
@@ -4692,7 +6430,8 @@
           "Code": "MYR",
           "Time": "2025-12-12T13:20:00-05:00"
         },
-        "FlightNumber": "NK 2985"
+        "FlightNumber": "NK 2985",
+        "Price": "$801.76"
       }
     ]
   },
@@ -4736,7 +6475,7 @@
           "Province": "SC",
           "CountryCode": "US",
           "Code": "MYR",
-          "Time": "2026-01-14T00:00:00-05:00"
+          "Time": "2026-01-14T16:00:00-05:00"
         },
         "Arrival": {
           "LocationName": "Brisbane Airport",
@@ -4744,7 +6483,7 @@
           "Province": "QLD",
           "CountryCode": "AU",
           "Code": "BNE",
-          "Time": "2026-01-16T00:00:00+10:00"
+          "Time": "2026-01-16T08:20:00+10:00"
         },
         "Source": "email"
       },
@@ -4912,7 +6651,7 @@
           "Province": "QLD",
           "CountryCode": "AU",
           "Code": "BNE",
-          "Time": "2026-02-01T23:00:00+10:00"
+          "Time": "2026-02-01T22:30:00+10:00"
         }
       },
       {
@@ -5021,14 +6760,14 @@
           "City": "Narita",
           "Province": "Chiba",
           "CountryCode": "JP",
-          "Time": "2026-02-21T14:00:00+09:00"
+          "Time": "2026-02-22T14:00:00+09:00"
         },
         "Arrival": {
           "LocationName": "Tokyo Haneda Airport",
           "City": "Tokyo",
           "Province": null,
           "CountryCode": "JP",
-          "Time": "2026-02-21T16:00:00+09:00"
+          "Time": "2026-02-22T16:00:00+09:00"
         }
       },
       {
@@ -5265,6 +7004,72 @@
           "Province": "Aichi",
           "CountryCode": "JP",
           "Time": "2026-03-26T14:24:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR Central (Tokaido Shinkansen)",
+        "TrainNumber": "Nozomi (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Tokyo Station",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-03-26T12:49:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Nagoya Station",
+          "City": "Nagoya",
+          "Province": "Aichi",
+          "CountryCode": "JP",
+          "Time": "2026-03-26T14:24:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR Central / Ise Railway",
+        "TrainNumber": "Rapid Mie (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Nagoya Station",
+          "City": "Nagoya",
+          "Province": "Aichi",
+          "CountryCode": "JP",
+          "Time": "2026-03-27T08:00:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Suzuka Circuit Ino Station",
+          "City": "Suzuka",
+          "Province": "Mie",
+          "CountryCode": "JP",
+          "Time": "2026-03-27T09:30:00+09:00"
+        }
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR Central / Ise Railway",
+        "TrainNumber": "Rapid Mie (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Suzuka Circuit Ino Station",
+          "City": "Suzuka",
+          "Province": "Mie",
+          "CountryCode": "JP",
+          "Time": "2026-03-29T18:00:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Nagoya Station",
+          "City": "Nagoya",
+          "Province": "Aichi",
+          "CountryCode": "JP",
+          "Time": "2026-03-29T19:30:00+09:00"
         }
       },
       {
@@ -5596,7 +7401,8 @@
           "CountryCode": "US",
           "Code": "ATL",
           "Time": "2026-05-03T14:55:00-04:00"
-        }
+        },
+        "Price": "279,640 JPY"
       },
       {
         "SegmentType": "Flight",
@@ -5619,7 +7425,8 @@
           "CountryCode": "US",
           "Code": "MYR",
           "Time": "2026-05-03T18:06:00-04:00"
-        }
+        },
+        "Price": "279,640 JPY"
       }
     ]
   },
@@ -5785,7 +7592,9 @@
             "Date": "2026-06-18"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "CruiseRate": "$1,754.00 x2",
+        "TotalCharges": "$3,596.00"
       }
     ]
   },
@@ -5861,7 +7670,9 @@
             "Date": "2026-09-25"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "CruiseRate": "$1,918.00",
+        "TotalCharges": "$2,618.00"
       }
     ]
   },
@@ -5923,7 +7734,9 @@
             "Date": "2026-10-29"
           }
         ],
-        "Source": "email"
+        "Source": "email",
+        "CruiseRate": "$948.00",
+        "TotalCharges": "$1,308.00"
       }
     ]
   }
