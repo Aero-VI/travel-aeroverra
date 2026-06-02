@@ -3,8 +3,8 @@
     "TripId": "valor-western-2005",
     "TripName": "Carnival Valor: Exotic Western Caribbean",
     "IsActiveTravel": true,
-    "HomeAtStart": null,
-    "HomeAtEnd": null,
+    "HomeAtStart": "Concord, NH",
+    "HomeAtEnd": "Concord, NH",
     "Segments": [
       {
         "SegmentType": "Cruise",
@@ -65,8 +65,8 @@
     "TripId": "liberty-western-2011",
     "TripName": "Carnival Liberty: Western Caribbean",
     "IsActiveTravel": true,
-    "HomeAtStart": null,
-    "HomeAtEnd": null,
+    "HomeAtStart": "Concord, NH",
+    "HomeAtEnd": "Concord, NH",
     "Segments": [
       {
         "SegmentType": "Cruise",
@@ -120,8 +120,8 @@
     "TripId": "glory-canada-2012",
     "TripName": "Carnival Glory: Canada & New England",
     "IsActiveTravel": true,
-    "HomeAtStart": null,
-    "HomeAtEnd": null,
+    "HomeAtStart": "Concord, NH",
+    "HomeAtEnd": "Concord, NH",
     "Segments": [
       {
         "SegmentType": "Cruise",
@@ -168,8 +168,8 @@
     "TripId": "dream-eastern-2013",
     "TripName": "Carnival Dream: Eastern Caribbean",
     "IsActiveTravel": true,
-    "HomeAtStart": null,
-    "HomeAtEnd": null,
+    "HomeAtStart": "Concord, NH",
+    "HomeAtEnd": "Concord, NH",
     "Segments": [
       {
         "SegmentType": "Cruise",
@@ -223,8 +223,8 @@
     "TripId": "glory-eastern-2015",
     "TripName": "Carnival Glory: Exotic Eastern Caribbean",
     "IsActiveTravel": true,
-    "HomeAtStart": null,
-    "HomeAtEnd": null,
+    "HomeAtStart": "Concord, NH",
+    "HomeAtEnd": "Concord, NH",
     "Segments": [
       {
         "SegmentType": "Cruise",
@@ -285,8 +285,8 @@
     "TripId": "sensation-cozumel-2017",
     "TripName": "Carnival Sensation: Cozumel Plus Western Caribbean",
     "IsActiveTravel": true,
-    "HomeAtStart": "St. Thomas, USVI",
-    "HomeAtEnd": "St. Thomas, USVI",
+    "HomeAtStart": "Concord, NH",
+    "HomeAtEnd": "Concord, NH",
     "Segments": [
       {
         "SegmentType": "Cruise",
@@ -326,6 +326,577 @@
           }
         ],
         "Source": "manual"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "586379",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Fort Lauderdale-Hollywood Intl",
+          "City": "Fort Lauderdale",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "FLL",
+          "Time": "2017-09-25T12:30:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Baltimore/Washington Intl",
+          "City": "Baltimore",
+          "Province": "MD",
+          "CountryCode": "US",
+          "Code": "BWI",
+          "Time": "2017-09-25T15:00:00-04:00"
+        },
+        "FlightNumber": "WN 1223"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "586379",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Baltimore/Washington Intl",
+          "City": "Baltimore",
+          "Province": "MD",
+          "CountryCode": "US",
+          "Code": "BWI",
+          "Time": "2017-09-25T16:30:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Manchester-Boston Regional",
+          "City": "Manchester",
+          "Province": "NH",
+          "CountryCode": "US",
+          "Code": "MHT",
+          "Time": "2017-09-25T18:00:00-04:00"
+        },
+        "FlightNumber": "WN 5707"
+      }
+    ]
+  },
+  {
+    "TripId": "myrtle-beach-sep-2018",
+    "TripName": "Myrtle Beach (September 2018)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Concord, NH",
+    "HomeAtEnd": "Concord, NH",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "HYOUQW",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Manchester-Boston Regional",
+          "City": "Manchester",
+          "Province": "NH",
+          "CountryCode": "US",
+          "Code": "MHT",
+          "Time": "2018-09-19T07:00:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Detroit Metropolitan Airport",
+          "City": "Detroit",
+          "Province": "MI",
+          "CountryCode": "US",
+          "Code": "DTW",
+          "Time": "2018-09-19T09:00:00-04:00"
+        },
+        "FlightNumber": "DL 2071"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "HYOUQW",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Detroit Metropolitan Airport",
+          "City": "Detroit",
+          "Province": "MI",
+          "CountryCode": "US",
+          "Code": "DTW",
+          "Time": "2018-09-19T10:00:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2018-09-19T12:00:00-04:00"
+        },
+        "FlightNumber": "DL 3532"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "OSETLB",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2018-09-24T19:42:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Charlotte Douglas Intl",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2018-09-24T20:50:00-04:00"
+        },
+        "FlightNumber": "AA 5619"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "OSETLB",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Charlotte Douglas Intl",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2018-09-24T22:09:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Manchester-Boston Regional",
+          "City": "Manchester",
+          "Province": "NH",
+          "CountryCode": "US",
+          "Code": "MHT",
+          "Time": "2018-09-25T00:12:00-04:00"
+        },
+        "FlightNumber": "AA 5655"
+      }
+    ]
+  },
+  {
+    "TripId": "myrtle-beach-christmas-2018",
+    "TripName": "Myrtle Beach (Christmas 2018)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Concord, NH",
+    "HomeAtEnd": "Concord, NH",
+    "Segments": [
+      {
+        "SegmentType": "Bus",
+        "BookingNumber": "6004607",
+        "Operator": "Concord Coach Lines",
+        "Route": "Concord NH to Boston Logan",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Concord Coach Lines Terminal",
+          "City": "Concord",
+          "Province": "NH",
+          "CountryCode": "US",
+          "Time": "2018-12-18T15:00:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Boston Logan Airport Terminal A",
+          "City": "Boston",
+          "Province": "MA",
+          "CountryCode": "US",
+          "Time": "2018-12-18T16:30:00-05:00"
+        }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "80347510",
+        "DisplayName": "DoubleTree by Hilton Boston Logan Airport Chelsea",
+        "City": "Chelsea",
+        "Province": "MA",
+        "PostalCode": "02150",
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2018-12-18",
+        "CheckOutDate": "2018-12-19",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "U8H75F",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Boston Logan Intl",
+          "City": "Boston",
+          "Province": "MA",
+          "CountryCode": "US",
+          "Code": "BOS",
+          "Time": "2018-12-19T05:00:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2018-12-19T07:18:00-05:00"
+        },
+        "FlightNumber": "NK"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "RH7FSE",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Charleston Intl",
+          "City": "Charleston",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "CHS",
+          "Time": "2018-12-28T19:45:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Baltimore/Washington Intl",
+          "City": "Baltimore",
+          "Province": "MD",
+          "CountryCode": "US",
+          "Code": "BWI",
+          "Time": "2018-12-28T21:30:00-05:00"
+        },
+        "FlightNumber": "WN 2617"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "RH7FSE",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Baltimore/Washington Intl",
+          "City": "Baltimore",
+          "Province": "MD",
+          "CountryCode": "US",
+          "Code": "BWI",
+          "Time": "2018-12-28T22:15:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Manchester-Boston Regional",
+          "City": "Manchester",
+          "Province": "NH",
+          "CountryCode": "US",
+          "Code": "MHT",
+          "Time": "2018-12-28T23:45:00-05:00"
+        },
+        "FlightNumber": "WN 5455"
+      }
+    ]
+  },
+  {
+    "TripId": "pax-east-boston-2019",
+    "TripName": "PAX East 2019 (Boston)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Concord, NH",
+    "HomeAtEnd": "Concord, NH",
+    "Segments": [
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Sheraton Boston Hotel",
+        "City": "Boston",
+        "Province": "MA",
+        "PostalCode": "02199",
+        "CountryCode": "US",
+        "Address1": "39 Dalton Street",
+        "Address2": null,
+        "CheckInDate": "2019-03-28",
+        "CheckOutDate": "2019-03-31",
+        "Source": "email"
+      }
+    ]
+  },
+  {
+    "TripId": "myrtle-beach-may-2019",
+    "TripName": "Myrtle Beach (May-June 2019)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Concord, NH",
+    "HomeAtEnd": "Concord, NH",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GQJD2J",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Manchester-Boston Regional",
+          "City": "Manchester",
+          "Province": "NH",
+          "CountryCode": "US",
+          "Code": "MHT",
+          "Time": "2019-05-28T06:00:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2019-05-28T08:52:00-04:00"
+        },
+        "FlightNumber": "DL 2179"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GQJD2J",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2019-05-28T12:40:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2019-05-28T13:53:00-04:00"
+        },
+        "FlightNumber": "DL 1699"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GQJD2J",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2019-06-04T18:03:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2019-06-04T19:33:00-04:00"
+        },
+        "FlightNumber": "DL 2724"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "GQJD2J",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2019-06-04T21:09:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Manchester-Boston Regional",
+          "City": "Manchester",
+          "Province": "NH",
+          "CountryCode": "US",
+          "Code": "MHT",
+          "Time": "2019-06-04T23:44:00-04:00"
+        },
+        "FlightNumber": "DL 1349"
+      }
+    ]
+  },
+  {
+    "TripId": "myrtle-beach-jun-2021",
+    "TripName": "Myrtle Beach (June 2021)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Round Rock, TX",
+    "HomeAtEnd": "Round Rock, TX",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "LUYULR",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Austin-Bergstrom Intl",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2021-06-25T08:45:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Charlotte Douglas Intl",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2021-06-25T12:33:00-04:00"
+        },
+        "FlightNumber": "AA 1084"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "LUYULR",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Charlotte Douglas Intl",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2021-06-25T13:00:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2021-06-25T13:58:00-04:00"
+        },
+        "FlightNumber": "AA 1597"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "LUYULR",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2021-06-27T18:22:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Charlotte Douglas Intl",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2021-06-27T19:35:00-04:00"
+        },
+        "FlightNumber": "AA 1603"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "LUYULR",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Charlotte Douglas Intl",
+          "City": "Charlotte",
+          "Province": "NC",
+          "CountryCode": "US",
+          "Code": "CLT",
+          "Time": "2021-06-27T21:05:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Austin-Bergstrom Intl",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2021-06-27T22:46:00-05:00"
+        },
+        "FlightNumber": "AA 764"
+      }
+    ]
+  },
+  {
+    "TripId": "boston-thanksgiving-2021",
+    "TripName": "Boston / New Hampshire (Thanksgiving 2021)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Round Rock, TX",
+    "HomeAtEnd": "Round Rock, TX",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "CHJEVS",
+        "Airline": "American Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Austin-Bergstrom Intl",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2021-11-20T00:00:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Boston Logan Intl",
+          "City": "Boston",
+          "Province": "MA",
+          "CountryCode": "US",
+          "Code": "BOS",
+          "Time": "2021-11-20T00:00:00-05:00"
+        }
+      }
+    ]
+  },
+  {
+    "TripId": "myrtle-beach-christmas-2021",
+    "TripName": "Myrtle Beach (Christmas 2021)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Round Rock, TX",
+    "HomeAtEnd": "Round Rock, TX",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "34OLFO",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Austin-Bergstrom Intl",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2021-12-23T06:35:00-06:00"
+        },
+        "Arrival": {
+          "LocationName": "Nashville Intl",
+          "City": "Nashville",
+          "Province": "TN",
+          "CountryCode": "US",
+          "Code": "BNA",
+          "Time": "2021-12-23T09:00:00-06:00"
+        },
+        "FlightNumber": "WN 1595"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "34OLFO",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Nashville Intl",
+          "City": "Nashville",
+          "Province": "TN",
+          "CountryCode": "US",
+          "Code": "BNA",
+          "Time": "2021-12-23T10:05:00-06:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2021-12-23T12:30:00-05:00"
+        },
+        "FlightNumber": "WN 1969"
       }
     ]
   },
@@ -333,9 +904,31 @@
     "TripId": "sunshine-bahamas-2022",
     "TripName": "Carnival Sunshine: Bahamas",
     "IsActiveTravel": true,
-    "HomeAtStart": "St. Thomas, USVI",
-    "HomeAtEnd": "St. Thomas, USVI",
+    "HomeAtStart": "Round Rock, TX",
+    "HomeAtEnd": "Round Rock, TX",
     "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "2UDYBQ",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Austin-Bergstrom Intl",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2022-02-18T00:00:00-06:00"
+        },
+        "Arrival": {
+          "LocationName": "Charleston Intl",
+          "City": "Charleston",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "CHS",
+          "Time": "2022-02-18T00:00:00-05:00"
+        }
+      },
       {
         "SegmentType": "Cruise",
         "BookingNumber": "Q53GB2",
@@ -374,6 +967,28 @@
           }
         ],
         "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "2UFFMF",
+        "Airline": "Southwest Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Charleston Intl",
+          "City": "Charleston",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "CHS",
+          "Time": "2022-02-26T00:00:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Austin-Bergstrom Intl",
+          "City": "Austin",
+          "Province": "TX",
+          "CountryCode": "US",
+          "Code": "AUS",
+          "Time": "2022-02-26T00:00:00-06:00"
+        }
       }
     ]
   },
@@ -712,6 +1327,121 @@
     ]
   },
   {
+    "TripId": "myrtle-beach-sep-2024",
+    "TripName": "Myrtle Beach (September 2024)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "St. Thomas, USVI",
+    "HomeAtEnd": "St. Thomas, USVI",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "UK648J",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Cyril E. King Airport",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2024-09-05T10:35:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Fort Lauderdale-Hollywood Intl",
+          "City": "Fort Lauderdale",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "FLL",
+          "Time": "2024-09-05T13:33:00-04:00"
+        },
+        "FlightNumber": "NK 895"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "UK648J",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Fort Lauderdale-Hollywood Intl",
+          "City": "Fort Lauderdale",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "FLL",
+          "Time": "2024-09-05T18:04:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2024-09-05T19:48:00-04:00"
+        },
+        "FlightNumber": "NK 1001"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "UK648J",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2024-09-09T20:38:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Fort Lauderdale-Hollywood Intl",
+          "City": "Fort Lauderdale",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "FLL",
+          "Time": "2024-09-09T22:29:00-04:00"
+        },
+        "FlightNumber": "NK 1002"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "635-685-405-16",
+        "DisplayName": "Priceline Hotel Dania Beach",
+        "City": "Dania Beach",
+        "Province": "FL",
+        "PostalCode": null,
+        "CountryCode": "US",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2024-09-09",
+        "CheckOutDate": "2024-09-10",
+        "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "UK648J",
+        "Airline": "Spirit Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Fort Lauderdale-Hollywood Intl",
+          "City": "Fort Lauderdale",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Code": "FLL",
+          "Time": "2024-09-10T07:00:00-04:00"
+        },
+        "Arrival": {
+          "LocationName": "Cyril E. King Airport",
+          "City": "St. Thomas",
+          "Province": "USVI",
+          "CountryCode": "VI",
+          "Code": "STT",
+          "Time": "2024-09-10T09:37:00-04:00"
+        },
+        "FlightNumber": "NK 894"
+      }
+    ]
+  },
+  {
     "TripId": "japan-transpacific-relocation-2024",
     "TripName": "Japan, Transpacific Cruise & Relocation to Myrtle Beach",
     "IsActiveTravel": true,
@@ -789,6 +1519,28 @@
         "CheckInDate": "2024-09-29",
         "CheckOutDate": "2024-10-02",
         "Source": "email"
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR Central (Tokaido Shinkansen)",
+        "TrainNumber": "Nozomi (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Tokyo Station",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2024-10-01T12:48:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Kyoto Station",
+          "City": "Kyoto",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2024-10-01T15:12:00+09:00"
+        }
       },
       {
         "SegmentType": "Accommodation",
@@ -1028,13 +1780,37 @@
           "Time": "2024-11-12T14:53:00-08:00"
         },
         "Arrival": {
-          "LocationName": "Myrtle Beach International Airport",
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2024-11-12T21:50:00-05:00"
+        },
+        "FlightNumber": "DL 506"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "JMNXE3",
+        "Airline": "Delta Air Lines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Hartsfield-Jackson Atlanta Intl",
+          "City": "Atlanta",
+          "Province": "GA",
+          "CountryCode": "US",
+          "Code": "ATL",
+          "Time": "2024-11-12T22:46:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
           "City": "Myrtle Beach",
           "Province": "SC",
           "CountryCode": "US",
           "Code": "MYR",
           "Time": "2024-11-12T23:58:00-05:00"
-        }
+        },
+        "FlightNumber": "DL 3074"
       }
     ]
   },
@@ -1058,6 +1834,61 @@
         "CheckInDate": "2024-11-12",
         "CheckOutDate": "2025-01-17",
         "Source": "inferred"
+      }
+    ]
+  },
+  {
+    "TripId": "nyc-weekend-nov-2024",
+    "TripName": "New York Weekend (November 2024)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "QH46TD",
+        "Airline": "Frontier Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2024-11-15T16:38:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Long Island MacArthur Airport",
+          "City": "Islip",
+          "Province": "NY",
+          "CountryCode": "US",
+          "Code": "ISP",
+          "Time": "2024-11-15T18:18:00-05:00"
+        },
+        "FlightNumber": "F9 1682"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "QH46TD",
+        "Airline": "Frontier Airlines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Long Island MacArthur Airport",
+          "City": "Islip",
+          "Province": "NY",
+          "CountryCode": "US",
+          "Code": "ISP",
+          "Time": "2024-11-17T12:19:00-05:00"
+        },
+        "Arrival": {
+          "LocationName": "Myrtle Beach Intl",
+          "City": "Myrtle Beach",
+          "Province": "SC",
+          "CountryCode": "US",
+          "Code": "MYR",
+          "Time": "2024-11-17T14:13:00-05:00"
+        },
+        "FlightNumber": "F9 1681"
       }
     ]
   },
@@ -1411,6 +2242,28 @@
         "Source": "email"
       },
       {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "Avanti West Coast (estimated)",
+        "TrainNumber": null,
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Birmingham New Street",
+          "City": "Birmingham",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Time": "2025-03-05T10:00:00+00:00"
+        },
+        "Arrival": {
+          "LocationName": "London Euston",
+          "City": "London",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Time": "2025-03-05T11:30:00+00:00"
+        }
+      },
+      {
         "SegmentType": "Accommodation",
         "BookingNumber": "88047-567893220",
         "DisplayName": "Wombat's City Hostel London",
@@ -1545,6 +2398,27 @@
         "Source": "manual"
       },
       {
+        "SegmentType": "Bus",
+        "BookingNumber": null,
+        "Operator": "Bus Eireann (estimated)",
+        "Route": "Dublin to Galway",
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Dublin City Centre",
+          "City": "Dublin",
+          "Province": null,
+          "CountryCode": "IE",
+          "Time": "2025-03-22T10:00:00+00:00"
+        },
+        "Arrival": {
+          "LocationName": "Galway Bus Station",
+          "City": "Galway",
+          "Province": "Galway",
+          "CountryCode": "IE",
+          "Time": "2025-03-22T13:30:00+00:00"
+        }
+      },
+      {
         "SegmentType": "Accommodation",
         "BookingNumber": "UKCTE55",
         "DisplayName": "Shannon Springs Hotel",
@@ -1571,6 +2445,27 @@
         "CheckInDate": "2025-03-24",
         "CheckOutDate": "2025-03-25",
         "Source": "manual"
+      },
+      {
+        "SegmentType": "Bus",
+        "BookingNumber": null,
+        "Operator": "Bus Eireann (estimated)",
+        "Route": "Galway to Shannon",
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Galway Bus Station",
+          "City": "Galway",
+          "Province": "Galway",
+          "CountryCode": "IE",
+          "Time": "2025-03-24T10:00:00+00:00"
+        },
+        "Arrival": {
+          "LocationName": "Shannon Airport",
+          "City": "Shannon",
+          "Province": "Clare",
+          "CountryCode": "IE",
+          "Time": "2025-03-24T11:30:00+00:00"
+        }
       },
       {
         "SegmentType": "Flight",
@@ -2198,6 +3093,28 @@
         "Source": "email"
       },
       {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "Trenitalia (Regionale)",
+        "TrainNumber": null,
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Bologna Centrale",
+          "City": "Bologna",
+          "Province": "Emilia-Romagna",
+          "CountryCode": "IT",
+          "Time": "2025-05-16T12:00:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Forli Station",
+          "City": "Forli",
+          "Province": "Emilia-Romagna",
+          "CountryCode": "IT",
+          "Time": "2025-05-16T13:10:00+02:00"
+        }
+      },
+      {
         "SegmentType": "Accommodation",
         "BookingNumber": "9080092907894",
         "DisplayName": "Hotel Bologna Airport",
@@ -2210,6 +3127,28 @@
         "CheckInDate": "2025-05-19",
         "CheckOutDate": "2025-05-20",
         "Source": "email"
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "Trenitalia (Regionale)",
+        "TrainNumber": null,
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Forli Station",
+          "City": "Forli",
+          "Province": "Emilia-Romagna",
+          "CountryCode": "IT",
+          "Time": "2025-05-19T11:00:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Bologna Centrale",
+          "City": "Bologna",
+          "Province": "Emilia-Romagna",
+          "CountryCode": "IT",
+          "Time": "2025-05-19T12:10:00+02:00"
+        }
       },
       {
         "SegmentType": "Accommodation",
@@ -2546,6 +3485,27 @@
         "Source": "email"
       },
       {
+        "SegmentType": "Bus",
+        "BookingNumber": null,
+        "Operator": "National Express (estimated)",
+        "Route": "London to Dover",
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "London Victoria Coach Station",
+          "City": "London",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Time": "2025-06-28T10:00:00+01:00"
+        },
+        "Arrival": {
+          "LocationName": "Dover Cruise Terminal",
+          "City": "Dover",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Time": "2025-06-28T12:30:00+01:00"
+        }
+      },
+      {
         "SegmentType": "Cruise",
         "BookingNumber": "FN77C3",
         "CruiseLine": "Carnival",
@@ -2634,6 +3594,28 @@
         "Source": "manual"
       },
       {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "Southeastern (estimated)",
+        "TrainNumber": null,
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Dover Priory Station",
+          "City": "Dover",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Time": "2025-07-11T10:00:00+01:00"
+        },
+        "Arrival": {
+          "LocationName": "London Bridge Station",
+          "City": "London",
+          "Province": "ENG",
+          "CountryCode": "GB",
+          "Time": "2025-07-11T12:00:00+01:00"
+        }
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "PXPMJG",
         "Airline": "China Eastern",
@@ -2706,6 +3688,28 @@
         "Source": "manual"
       },
       {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR West (Sanyo Shinkansen)",
+        "TrainNumber": "Nozomi (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Hiroshima Station",
+          "City": "Hiroshima",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2025-07-21T10:00:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Shin-Osaka Station",
+          "City": "Osaka",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2025-07-21T11:30:00+09:00"
+        }
+      },
+      {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
         "DisplayName": "Hotel in Naniwa-ku",
@@ -2718,6 +3722,28 @@
         "CheckInDate": "2025-07-22",
         "CheckOutDate": "2025-07-25",
         "Source": "manual"
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR Central (Tokaido Shinkansen)",
+        "TrainNumber": "Nozomi (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Shin-Osaka Station",
+          "City": "Osaka",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2025-07-24T10:00:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Tokyo Station",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2025-07-24T12:30:00+09:00"
+        }
       },
       {
         "SegmentType": "Accommodation",
@@ -2748,6 +3774,28 @@
         "Source": "manual"
       },
       {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR East (Akita Shinkansen)",
+        "TrainNumber": "Komachi (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Tokyo Station",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2025-08-01T09:00:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Akita Station",
+          "City": "Akita",
+          "Province": "Akita",
+          "CountryCode": "JP",
+          "Time": "2025-08-01T13:00:00+09:00"
+        }
+      },
+      {
         "SegmentType": "Accommodation",
         "BookingNumber": "1637092660",
         "DisplayName": "Toyoko Inn Narita Airport Shinkan",
@@ -2760,6 +3808,28 @@
         "CheckInDate": "2025-08-04",
         "CheckOutDate": "2025-08-06",
         "Source": "email"
+      },
+      {
+        "SegmentType": "Train",
+        "BookingNumber": null,
+        "Operator": "JR East (Akita Shinkansen)",
+        "TrainNumber": "Komachi (estimated)",
+        "SeatClass": null,
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Akita Station",
+          "City": "Akita",
+          "Province": "Akita",
+          "CountryCode": "JP",
+          "Time": "2025-08-05T09:00:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Tokyo Station",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2025-08-05T13:00:00+09:00"
+        }
       },
       {
         "SegmentType": "Flight",
@@ -2846,6 +3916,29 @@
         "CheckInDate": "2025-08-15",
         "CheckOutDate": "2025-08-17",
         "Source": "email"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "1658106101257058",
+        "Airline": "Royal Air Philippines",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Godofredo P. Ramos Airport",
+          "City": "Caticlan",
+          "Province": "Aklan",
+          "CountryCode": "PH",
+          "Code": "MPH",
+          "Time": "2025-08-15T13:40:00+08:00"
+        },
+        "Arrival": {
+          "LocationName": "Ninoy Aquino Intl",
+          "City": "Manila",
+          "Province": null,
+          "CountryCode": "PH",
+          "Code": "MNL",
+          "Time": "2025-08-15T14:27:00+08:00"
+        },
+        "FlightNumber": "RW 108"
       },
       {
         "SegmentType": "Accommodation",
@@ -3916,6 +5009,27 @@
         "CheckInDate": "2026-02-18",
         "CheckOutDate": "2026-02-22",
         "Source": "email"
+      },
+      {
+        "SegmentType": "Bus",
+        "BookingNumber": null,
+        "Operator": "Airport Limousine Bus (estimated)",
+        "Route": "Narita to Haneda",
+        "Source": "maps",
+        "Departure": {
+          "LocationName": "Narita International Airport",
+          "City": "Narita",
+          "Province": "Chiba",
+          "CountryCode": "JP",
+          "Time": "2026-02-21T14:00:00+09:00"
+        },
+        "Arrival": {
+          "LocationName": "Tokyo Haneda Airport",
+          "City": "Tokyo",
+          "Province": null,
+          "CountryCode": "JP",
+          "Time": "2026-02-21T16:00:00+09:00"
+        }
       },
       {
         "SegmentType": "Flight",

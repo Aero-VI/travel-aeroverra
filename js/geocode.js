@@ -6,7 +6,11 @@ const GEOCODE = {
     'New Chitose Airport':[42.7752,141.6925],
     'Hilton Niseko Village':[42.8604,140.6889],
     'Chitose':[42.7752,141.6925],
-    'Niseko':[42.8604,140.6889]
+    'Niseko':[42.8604,140.6889],
+    'Concord Coach Lines Terminal':[43.2081,-71.5376],
+    'Concord':[43.2081,-71.5376],
+    'Boston Logan Airport Terminal A':[42.3656,-71.0096],
+    'Boston':[42.3656,-71.0096]
   },
   airports: {
     AMS:[52.3086,4.7639],ATL:[33.6407,-84.4277],AXT:[39.6156,140.2186],
@@ -201,6 +205,36 @@ const GEOCODE = {
     'Reykjavik':[64.1466,-21.9426],'Seoul':[37.5665,126.978],
     'Ho Chi Minh City':[10.8231,106.6297],'Singapore':[1.3521,103.8198],
     'Kyoto':[34.9858,135.7588]
+  },
+  cities: {
+    'Akita':[39.72,140.1025],
+    'Amesbury':[51.1726,-1.7726],
+    'Amsterdam':[52.3676,4.9041],
+    'Berlin':[52.52,13.405],
+    'Birmingham':[52.4862,-1.8904],
+    'Birtinya':[-26.7324,153.1007],
+    'Boracay':[11.9674,121.9248],
+    'Chelsea':[33.5601,-79.9486],
+    'College Park':[38.9807,-76.9369],
+    'Crawley':[51.1092,-0.1872],
+    'Denver':[39.7392,-104.9903],
+    'Fiumicino':[41.7666,12.2333],
+    'Forli':[44.2227,12.0408],
+    'Galway':[53.2707,-9.0568],
+    'Gentilly':[29.9724,-90.0514],
+    'Hawthorne':[33.9164,-118.3526],
+    'Hayes':[51.3862,-0.4178],
+    'Inglewood':[33.9617,-118.3531],
+    'Las Vegas':[36.1699,-115.1398],
+    'Nagoya':[35.1815,136.9066],
+    'Narita':[35.7764,140.3182],
+    'Ostia Antica':[41.7556,12.2917],
+    'Plymouth':[50.3755,-4.1427],
+    'Round Rock':[30.5083,-97.6789],
+    'Semboku':[39.5922,140.5031],
+    'Shannon':[52.703,-8.8641],
+    'Steamboat Springs':[40.485,-106.8317],
+    'Dania Beach':[26.0524,-80.1437]
   }
 };
 
@@ -220,6 +254,8 @@ function geocode(type, name, city, code) {
     if (GEOCODE.trains[city]) return GEOCODE.trains[city];
   }
   // Fallback: check all databases
+  if (GEOCODE.cities[name]) return GEOCODE.cities[name];
+  if (GEOCODE.cities[city]) return GEOCODE.cities[city];
   if (GEOCODE.ports[name]) return GEOCODE.ports[name];
   if (GEOCODE.ports[city]) return GEOCODE.ports[city];
   if (GEOCODE.events[city]) return GEOCODE.events[city];
