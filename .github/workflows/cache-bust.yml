@@ -12,38 +12,47 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate cache bust hash
+      - name: Update all cache bust hashes
         run: |
-          # Use short git SHA as cache buster
-          HASH=$(git rev-parse --short HEAD)
-          echo "CACHE_HASH=$HASH" >> $GITHUB_ENV
-          echo "Cache bust hash: $HASH"
-
-      - name: Update index.html with content hashes
-        run: |
-          # Replace any existing ?v=XXX or ?h=XXX with content-based hashes
-          for file in css/style.css js/app.js js/geocode.js js/globe.js data/trips.json; do
+          # Hash files referenced in index.html (CSS, JS)
+          for file in css/style.css js/app.js js/geocode.js js/globe.js; do
             if [ -f "$file" ]; then
-              # Generate MD5 of the actual file content (first 8 chars)
               FILE_HASH=$(md5sum "$file" | cut -c1-8)
-              # Escape dots and slashes for sed
               ESCAPED=$(echo "$file" | sed 's/\./\\./g' | sed 's/\//\\\//g')
-              # Replace href="file?v=anything" or href="file?h=anything" or href="file" (no query)
               sed -i -E "s|(${ESCAPED})\?[vh]=[a-zA-Z0-9]+|\1?h=${FILE_HASH}|g" index.html
-              # Also catch cases where there's no query string yet
               sed -i -E "s|(${ESCAPED})\"|\1?h=${FILE_HASH}\"|g" index.html
-              echo "$file -> ?h=$FILE_HASH"
+              echo "index.html: $file -> ?h=$FILE_HASH"
             fi
           done
-          
-          echo "--- Updated index.html ---"
-          grep -E "\.(js|css|json)" index.html | head -20
+
+          # Hash data files referenced inside JS (trips.json, events.json, etc.)
+          for datafile in data/trips.json data/events.json; do
+            if [ -f "$datafile" ]; then
+              DATA_HASH=$(md5sum "$datafile" | cut -c1-8)
+              ESCAPED=$(echo "$datafile" | sed 's/\./\\./g' | sed 's/\//\\\//g')
+              # Update references in all JS files
+              for jsfile in js/app.js js/globe.js js/geocode.js; do
+                if [ -f "$jsfile" ]; then
+                  sed -i -E "s|(${ESCAPED})\?[vh]=[a-zA-Z0-9]+|\1?h=${DATA_HASH}|g" "$jsfile"
+                  if grep -qP "${ESCAPED}(?!\?)" "$jsfile" 2>/dev/null; then
+                    sed -i -E "s|(${ESCAPED})'|\1?h=${DATA_HASH}'|g" "$jsfile"
+                    sed -i -E "s|(${ESCAPED})\"|\1?h=${DATA_HASH}\"|g" "$jsfile"
+                  fi
+                  echo "$jsfile: $datafile -> ?h=$DATA_HASH"
+                fi
+              done
+            fi
+          done
+
+          echo "--- Updated references ---"
+          grep -E '\.(js|css|json)' index.html | head -20
+          grep -E 'trips\.json|events\.json' js/app.js | head -10
 
       - name: Commit and push if changed
         run: |
           git config user.name "Azula"
           git config user.email "azula@aero.vi"
-          git diff --quiet index.html && echo "No changes" && exit 0
-          git add index.html
+          git diff --quiet && echo "No changes" && exit 0
+          git add -A
           git commit -m "chore: auto cache-bust [skip ci]"
           git push
