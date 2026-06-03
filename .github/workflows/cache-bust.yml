@@ -14,39 +14,42 @@ jobs:
 
       - name: Update all cache bust hashes
         run: |
-          # Hash files referenced in index.html (CSS, JS)
-          for file in css/style.css js/app.js js/geocode.js js/globe.js; do
-            if [ -f "$file" ]; then
-              FILE_HASH=$(md5sum "$file" | cut -c1-8)
-              ESCAPED=$(echo "$file" | sed 's/\./\\./g' | sed 's/\//\\\//g')
-              sed -i -E "s|(${ESCAPED})\?[vh]=[a-zA-Z0-9]+|\1?h=${FILE_HASH}|g" index.html
-              sed -i -E "s|(${ESCAPED})\"|\1?h=${FILE_HASH}\"|g" index.html
-              echo "index.html: $file -> ?h=$FILE_HASH"
-            fi
-          done
-
-          # Hash data files referenced inside JS (trips.json, events.json, etc.)
+          # STEP 1: Hash data files and update references INSIDE JS files first
           for datafile in data/trips.json data/events.json; do
             if [ -f "$datafile" ]; then
               DATA_HASH=$(md5sum "$datafile" | cut -c1-8)
-              ESCAPED=$(echo "$datafile" | sed 's/\./\\./g' | sed 's/\//\\\//g')
-              # Update references in all JS files
+              BASENAME=$(basename "$datafile")
               for jsfile in js/app.js js/globe.js js/geocode.js; do
                 if [ -f "$jsfile" ]; then
-                  sed -i -E "s|(${ESCAPED})\?[vh]=[a-zA-Z0-9]+|\1?h=${DATA_HASH}|g" "$jsfile"
-                  if grep -qP "${ESCAPED}(?!\?)" "$jsfile" 2>/dev/null; then
-                    sed -i -E "s|(${ESCAPED})'|\1?h=${DATA_HASH}'|g" "$jsfile"
-                    sed -i -E "s|(${ESCAPED})\"|\1?h=${DATA_HASH}\"|g" "$jsfile"
-                  fi
+                  # Update existing hash references
+                  sed -i -E "s|${BASENAME}\?[vh]=[a-zA-Z0-9]+|${BASENAME}?h=${DATA_HASH}|g" "$jsfile"
+                  # Add hash to bare references (no existing hash)
+                  sed -i -E "s|${BASENAME}(')|${BASENAME}?h=${DATA_HASH}\1|g" "$jsfile"
+                  sed -i -E "s|${BASENAME}(\")|${BASENAME}?h=${DATA_HASH}\1|g" "$jsfile"
+                  # Clean up double-hashed references
+                  sed -i -E "s|\?h=[a-f0-9]+\?h=|\?h=|g" "$jsfile"
                   echo "$jsfile: $datafile -> ?h=$DATA_HASH"
                 fi
               done
             fi
           done
 
-          echo "--- Updated references ---"
-          grep -E '\.(js|css|json)' index.html | head -20
-          grep -E 'trips\.json|events\.json' js/app.js | head -10
+          # STEP 2: NOW hash JS/CSS files (after their contents were updated above)
+          for file in css/style.css js/app.js js/geocode.js js/globe.js; do
+            if [ -f "$file" ]; then
+              FILE_HASH=$(md5sum "$file" | cut -c1-8)
+              BASENAME=$(basename "$file")
+              sed -i -E "s|${BASENAME}\?[vh]=[a-zA-Z0-9]+|${BASENAME}?h=${FILE_HASH}|g" index.html
+              sed -i -E "s|${BASENAME}(\")|${BASENAME}?h=${FILE_HASH}\1|g" index.html
+              # Clean up double-hashed references
+              sed -i -E "s|\?h=[a-f0-9]+\?h=|\?h=|g" index.html
+              echo "index.html: $file -> ?h=$FILE_HASH"
+            fi
+          done
+
+          echo "--- Final references ---"
+          grep -oP "\w+\.(js|css|json)\?h=[a-f0-9]+" index.html || true
+          grep -oP "\w+\.json\?h=[a-f0-9]+" js/app.js || true
 
       - name: Commit and push if changed
         run: |
@@ -56,3 +59,4 @@ jobs:
           git add -A
           git commit -m "chore: auto cache-bust [skip ci]"
           git push
+
