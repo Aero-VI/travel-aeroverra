@@ -5417,7 +5417,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "川どこ べらぼう",
+        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7219,7 +7219,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "川どこ べらぼう",
+        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7247,7 +7247,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "川どこ べらぼう",
+        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7595,6 +7595,78 @@
         "Source": "email",
         "CruiseRate": "$1,754.00 x2",
         "TotalCharges": "$3,596.00"
+      }
+    ]
+  },
+  {
+    "TripId": "liberty-hamburg-bruges-2026",
+    "TripName": "Royal Caribbean Liberty of the Seas: Hamburg & Bruges",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "D7U5A9",
+        "Airline": "SAS (Virgin Atlantic)",
+        "FlightNumber": "SK 503",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Copenhagen Airport (Kastrup)",
+          "City": "Copenhagen",
+          "Province": null,
+          "CountryCode": "DK",
+          "Code": "CPH",
+          "Time": "2026-06-20T12:35:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "London Heathrow Airport",
+          "City": "London",
+          "Province": null,
+          "CountryCode": "GB",
+          "Code": "LHR",
+          "Time": "2026-06-20T13:35:00+01:00"
+        }
+      },
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "8553297",
+        "CruiseLine": "Royal Caribbean",
+        "Ship": "Liberty of the Seas",
+        "RoomType": "Spacious Balcony (2B)",
+        "Stateroom": "8248",
+        "DeparturePort": {
+          "PortName": "Southampton",
+          "City": "Southampton",
+          "Province": null,
+          "CountryCode": "GB",
+          "Time": "2026-06-21T17:00:00+01:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Southampton",
+          "City": "Southampton",
+          "Province": null,
+          "CountryCode": "GB",
+          "Time": "2026-06-26T05:30:00+01:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Hamburg",
+            "City": "Hamburg",
+            "Province": null,
+            "CountryCode": "DE",
+            "Date": "2026-06-23"
+          },
+          {
+            "PortName": "Zeebrugge",
+            "City": "Bruges",
+            "Province": null,
+            "CountryCode": "BE",
+            "Date": "2026-06-25"
+          }
+        ],
+        "Source": "manual",
+        "Dining": "My Time"
       }
     ]
   },
