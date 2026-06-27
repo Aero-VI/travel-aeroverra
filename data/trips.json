@@ -7811,5 +7811,44 @@
         "TotalCharges": "$1,308.00"
       }
     ]
+  },
+  {
+    "TripId": "malta-june-2026",
+    "TripName": "Malta Trip",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "Y6YOOT",
+        "Airline": "British Airways",
+        "FlightNumber": "BA 2614",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "London Gatwick Airport",
+          "City": "London",
+          "Province": null,
+          "CountryCode": "GB",
+          "Code": "LGW",
+          "Time": "2026-06-27T08:40:00+01:00"
+        },
+        "Arrival": {
+          "LocationName": "Malta International Airport",
+          "City": "Malta",
+          "Province": null,
+          "CountryCode": "MT",
+          "Code": "MLA",
+          "Time": "2026-06-27T13:00:00+02:00"
+        },
+        "CabinClass": "Economy Plus",
+        "OperatedBy": "BA Euroflyer",
+        "BaseFare": 200.0,
+        "TaxesAndFees": 64.5,
+        "TotalFare": 264.5,
+        "PaymentMethod": "Capital One Venture X Visa *3763",
+        "CapitalOneTravelRef": "H-Z-D14ZUGGOB"
+      }
+    ]
   }
 ]
