@@ -7918,5 +7918,55 @@
         }
       }
     ]
+  },
+  {
+    "TripId": "vienna-salzburg-2026",
+    "TripName": "Vienna & Salzburg (Von Trapp Homecoming)",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Train",
+        "BookingNumber": "4731591852223457",
+        "Operator": "ÖBB (Austrian Federal Railways)",
+        "TrainNumber": null,
+        "SeatClass": "1. Klasse (First Class)",
+        "Source": "ticket",
+        "Departure": {
+          "LocationName": "Wien Hauptbahnhof",
+          "City": "Vienna",
+          "Province": null,
+          "CountryCode": "AT",
+          "Time": "2026-07-11T00:00:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Salzburg Stadtbf (Hauptbahnhof)",
+          "City": "Salzburg",
+          "Province": null,
+          "CountryCode": "AT",
+          "Time": "2026-07-11T00:00:00+02:00"
+        },
+        "Route": "via Neulengbach/Tullnerfeld, St. Pölten, Pöchlarn, Wels, Attnang-Puchheim, Linz",
+        "Price": "€143.40 + €13.04 VAT (10%)",
+        "TotalPrice": "€156.44"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "5228715927",
+        "DisplayName": "Hotel Himmelreich",
+        "City": "Wals-Siezenheim",
+        "Province": "Salzburg",
+        "PostalCode": "5071",
+        "CountryCode": "AT",
+        "Address1": "Himmelreichstraße 34",
+        "Address2": null,
+        "CheckInDate": "2026-07-11",
+        "CheckOutDate": "2026-07-13",
+        "Source": "email",
+        "Price": "€326.69",
+        "BookedVia": "Booking.com"
+      }
+    ]
   }
 ]

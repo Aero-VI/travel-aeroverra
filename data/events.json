@@ -960,5 +960,31 @@
     "IsFullDay": true,
     "Notes": "1x Adult Admission + Universal Express Standard. Trip.com Booking #1658110200684586. Sentosa Island.",
     "Source": "email"
+  },
+  {
+    "EventId": "EVT-OBB-VIE-SBG-2026",
+    "TripId": "vienna-salzburg-2026",
+    "EventType": "Train",
+    "Title": "ÖBB Train: Vienna → Salzburg (1st Class)",
+    "City": "Salzburg",
+    "CountryCode": "AT",
+    "StartTime": "2026-07-11T00:00:00+02:00",
+    "EndTime": "2026-07-11T00:00:00+02:00",
+    "IsFullDay": false,
+    "Notes": "ÖBB 1. Klasse train from Wien to Salzburg Stadtbf via St. Pölten, Wels, Linz. Order #4731591852223457. Standard ticket, volle Flexibilität. €143.40 + €13.04 VAT. CO₂ savings: 55.9 kg.",
+    "Source": "ticket"
+  },
+  {
+    "EventId": "EVT-SBG-VONTRAPP-2026",
+    "TripId": "vienna-salzburg-2026",
+    "EventType": "Excursion",
+    "Title": "Salzburg Von Trapp Family Homecoming",
+    "City": "Salzburg",
+    "CountryCode": "AT",
+    "StartTime": "2026-07-11T19:00:00+02:00",
+    "EndTime": "2026-07-12T20:00:00+02:00",
+    "IsFullDay": true,
+    "Notes": "Von Trapp family descendant homecoming. Visited: Residenzplatz fountain (I Have Confidence scene), Salzburg Cathedral, Kapitelplatz/Sphaera, Nonnberg Abbey gate (Maria's convent). Staying at Hotel Himmelreich. Tomorrow: Mirabell Gardens (Do-Re-Mi), Fortress Hohensalzburg, Villa Trapp (Traunstrasse 34), Schloss Leopoldskron, Hellbrunn Gazebo.",
+    "Source": "manual"
   }
 ]
