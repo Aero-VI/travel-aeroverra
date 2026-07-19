@@ -531,7 +531,7 @@ function findWhereOnDate(dateStr) {
                         countryCode: getSegFromCountry(seg),
                         portName: null
                     };
-                } else if (seg.SegmentType === 'Accommodation') {
+                } else if (seg.SegmentType === 'Accommodation' || seg.SegmentType === 'Hotel') {
                     return {
                         trip: trip.TripName,
                         segment: seg,
@@ -740,7 +740,7 @@ function getCountryDetails() {
                 const arr = seg.Arrival || {};
                 addTouch(dep.CountryCode, dep.City || dep.LocationName, dep.Time);
                 addTouch(arr.CountryCode, arr.City || arr.LocationName, arr.Time);
-            } else if (seg.SegmentType === 'Accommodation') {
+            } else if (seg.SegmentType === 'Accommodation' || seg.SegmentType === 'Hotel') {
                 addTouch(seg.CountryCode, seg.City, seg.CheckInDate);
                 if (seg.CheckInDate && seg.CheckOutDate) {
                     const days = daysBetween(seg.CheckInDate, seg.CheckOutDate);
@@ -1069,7 +1069,7 @@ function buildSummaryContent(yearFilter) {
     const flights = allSegs.filter(s => s.SegmentType === 'Flight');
     const trains = allSegs.filter(s => s.SegmentType === 'Train');
     const buses = allSegs.filter(s => s.SegmentType === 'Bus');
-    const hotels = allSegs.filter(s => s.SegmentType === 'Accommodation' && s.BookingNumber !== 'HOME');
+    const hotels = allSegs.filter(s => (s.SegmentType === 'Accommodation' || s.SegmentType === 'Hotel') && s.BookingNumber !== 'HOME');
     const hotelBookings = new Set(hotels.filter(h => h.BookingNumber).map(h => h.BookingNumber));
 
     // Countries
@@ -1260,7 +1260,7 @@ function renderStats(trips) {
     const bookingRefs = new Set(flights.filter(f => f.BookingNumber).map(f => f.BookingNumber));
     const bookingCount = bookingRefs.size + flights.filter(f => !f.BookingNumber).length;
     const trains = allSegs.filter(s => s.SegmentType === 'Train').length;
-    const hotels = allSegs.filter(s => s.SegmentType === 'Accommodation' && s.BookingNumber !== 'HOME');
+    const hotels = allSegs.filter(s => (s.SegmentType === 'Accommodation' || s.SegmentType === 'Hotel') && s.BookingNumber !== 'HOME');
     const hotelCount = hotels.length;
     const hotelBookings = new Set(hotels.filter(h => h.BookingNumber).map(h => h.BookingNumber));
     const hotelBookingCount = hotelBookings.size;
