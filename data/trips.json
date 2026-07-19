@@ -5417,7 +5417,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "川どこ べらぼう",
+        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7219,7 +7219,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "川どこ べらぼう",
+        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7247,7 +7247,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "川どこ べらぼう",
+        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7921,7 +7921,7 @@
   },
   {
     "TripId": "vienna-salzburg-2026",
-    "TripName": "Vienna & Salzburg (Von Trapp Homecoming)",
+    "TripName": "Vienna, Salzburg & Malta (Von Trapp Homecoming)",
     "IsActiveTravel": true,
     "HomeAtStart": "Myrtle Beach, SC",
     "HomeAtEnd": "Myrtle Beach, SC",
@@ -7929,7 +7929,7 @@
       {
         "SegmentType": "Train",
         "BookingNumber": "4731591852223457",
-        "Operator": "ÖBB (Austrian Federal Railways)",
+        "Operator": "\u00d6BB (Austrian Federal Railways)",
         "TrainNumber": null,
         "SeatClass": "1. Klasse (First Class)",
         "Source": "ticket",
@@ -7947,9 +7947,9 @@
           "CountryCode": "AT",
           "Time": "2026-07-11T00:00:00+02:00"
         },
-        "Route": "via Neulengbach/Tullnerfeld, St. Pölten, Pöchlarn, Wels, Attnang-Puchheim, Linz",
-        "Price": "€143.40 + €13.04 VAT (10%)",
-        "TotalPrice": "€156.44"
+        "Route": "via Neulengbach/Tullnerfeld, St. P\u00f6lten, P\u00f6chlarn, Wels, Attnang-Puchheim, Linz",
+        "Price": "\u20ac143.40 + \u20ac13.04 VAT (10%)",
+        "TotalPrice": "\u20ac156.44"
       },
       {
         "SegmentType": "Accommodation",
@@ -7959,13 +7959,128 @@
         "Province": "Salzburg",
         "PostalCode": "5071",
         "CountryCode": "AT",
-        "Address1": "Himmelreichstraße 34",
+        "Address1": "Himmelreichstra\u00dfe 34",
         "Address2": null,
         "CheckInDate": "2026-07-11",
         "CheckOutDate": "2026-07-13",
         "Source": "email",
-        "Price": "€326.69",
+        "Price": "\u20ac326.69",
         "BookedVia": "Booking.com"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "B_56416708",
+        "DisplayName": "Ibis Wien Hauptbahnhof",
+        "City": "Vienna",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "AT",
+        "Address1": "8 Canettistrasse",
+        "Address2": null,
+        "CheckInDate": "2026-07-13",
+        "CheckOutDate": "2026-07-14",
+        "Source": "email",
+        "BookedVia": "Super.com"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": null,
+        "Airline": "KM Malta Airlines",
+        "FlightNumber": null,
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Vienna International Airport",
+          "City": "Vienna",
+          "Province": null,
+          "CountryCode": "AT",
+          "Code": "VIE",
+          "Time": "2026-07-14T00:00:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Malta International Airport",
+          "City": "Malta",
+          "Province": null,
+          "CountryCode": "MT",
+          "Code": "MLA",
+          "Time": "2026-07-14T00:00:00+02:00"
+        },
+        "Note": "Exact times not found in email"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "5746768037",
+        "DisplayName": "Alexandra Hotel",
+        "City": "St. Julian's",
+        "Province": null,
+        "PostalCode": "STJ 3081",
+        "CountryCode": "MT",
+        "Address1": "Schreiber Street",
+        "Address2": null,
+        "CheckInDate": "2026-07-14",
+        "CheckOutDate": "2026-07-17",
+        "Source": "email",
+        "Price": 369.0,
+        "BookedVia": "Booking.com",
+        "PaymentMethod": "Card *3696"
+      }
+    ]
+  },
+  {
+    "TripId": "budapest-july-2026",
+    "TripName": "Budapest Trip",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Myrtle Beach, SC",
+    "HomeAtEnd": "Myrtle Beach, SC",
+    "Segments": [
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "IHYGVU",
+        "Airline": "Air Serbia",
+        "FlightNumber": "JU 451",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Malta International Airport (Luqa)",
+          "City": "Malta",
+          "Province": null,
+          "CountryCode": "MT",
+          "Code": "MLA",
+          "Time": "2026-07-19T14:30:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Nikola Tesla Airport",
+          "City": "Belgrade",
+          "Province": null,
+          "CountryCode": "RS",
+          "Code": "BEG",
+          "Time": "2026-07-19T16:25:00+02:00"
+        },
+        "CapitalOneTravelRef": "H-KQPRRR",
+        "Note": "Connecting flight leg 1: MLA->BEG"
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "IHYGVU",
+        "Airline": "Air Serbia",
+        "FlightNumber": "JU 132",
+        "Source": "email",
+        "Departure": {
+          "LocationName": "Nikola Tesla Airport",
+          "City": "Belgrade",
+          "Province": null,
+          "CountryCode": "RS",
+          "Code": "BEG",
+          "Time": null
+        },
+        "Arrival": {
+          "LocationName": "Budapest Ferenc Liszt International Airport",
+          "City": "Budapest",
+          "Province": null,
+          "CountryCode": "HU",
+          "Code": "BUD",
+          "Time": null
+        },
+        "CapitalOneTravelRef": "H-KQPRRR",
+        "Note": "Connecting flight leg 2: BEG->BUD. Exact times not extracted."
       }
     ]
   }
