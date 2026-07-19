@@ -3692,20 +3692,6 @@
         "Price": "$577.70"
       },
       {
-        "SegmentType": "Accommodation",
-        "BookingNumber": "H-WJ4ZBFM38G7K",
-        "DisplayName": "Moxy Birmingham NEC",
-        "City": "Birmingham",
-        "Province": "ENG",
-        "PostalCode": null,
-        "CountryCode": "GB",
-        "Address1": null,
-        "Address2": null,
-        "CheckInDate": "2025-02-28",
-        "CheckOutDate": "2025-03-03",
-        "Source": "email"
-      },
-      {
         "SegmentType": "Flight",
         "BookingNumber": "GXLQ49",
         "Airline": "KLM",
@@ -3728,6 +3714,20 @@
         },
         "FlightNumber": "DL 9210",
         "Price": "$577.70"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "H-WJ4ZBFM38G7K",
+        "DisplayName": "Moxy Birmingham NEC",
+        "City": "Birmingham",
+        "Province": "ENG",
+        "PostalCode": null,
+        "CountryCode": "GB",
+        "Address1": null,
+        "Address2": null,
+        "CheckInDate": "2025-02-28",
+        "CheckOutDate": "2025-03-03",
+        "Source": "email"
       },
       {
         "SegmentType": "Accommodation",
@@ -4873,20 +4873,6 @@
         "Source": "email"
       },
       {
-        "SegmentType": "Accommodation",
-        "BookingNumber": "545189323",
-        "DisplayName": "Cabinn Metro",
-        "City": "Copenhagen",
-        "Province": null,
-        "PostalCode": null,
-        "CountryCode": "DK",
-        "Address1": "Arne Jacobsens Alle 2",
-        "Address2": null,
-        "CheckInDate": "2025-06-05",
-        "CheckOutDate": "2025-06-07",
-        "Source": "email"
-      },
-      {
         "SegmentType": "Flight",
         "BookingNumber": "K9MP4BS",
         "Airline": "easyJet",
@@ -4908,6 +4894,20 @@
         },
         "Source": "email",
         "Price": "179.99 EUR"
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": "545189323",
+        "DisplayName": "Cabinn Metro",
+        "City": "Copenhagen",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "DK",
+        "Address1": "Arne Jacobsens Alle 2",
+        "Address2": null,
+        "CheckInDate": "2025-06-05",
+        "CheckOutDate": "2025-06-07",
+        "Source": "email"
       },
       {
         "SegmentType": "Accommodation",
@@ -5271,20 +5271,6 @@
         }
       },
       {
-        "SegmentType": "Accommodation",
-        "BookingNumber": null,
-        "DisplayName": "Airbnb Yongsan-gu (3BR near Seoul Station)",
-        "City": "Seoul",
-        "Province": null,
-        "PostalCode": null,
-        "CountryCode": "KR",
-        "Address1": "Cheongpa-dong, Yongsan-gu",
-        "Address2": null,
-        "CheckInDate": "2025-07-13",
-        "CheckOutDate": "2025-07-20",
-        "Source": "email"
-      },
-      {
         "SegmentType": "Flight",
         "BookingNumber": "PXPMJG",
         "Airline": "China Eastern",
@@ -5305,6 +5291,20 @@
           "Code": "ICN",
           "Time": "2025-07-13T17:25:00+09:00"
         }
+      },
+      {
+        "SegmentType": "Accommodation",
+        "BookingNumber": null,
+        "DisplayName": "Airbnb Yongsan-gu (3BR near Seoul Station)",
+        "City": "Seoul",
+        "Province": null,
+        "PostalCode": null,
+        "CountryCode": "KR",
+        "Address1": "Cheongpa-dong, Yongsan-gu",
+        "Address2": null,
+        "CheckInDate": "2025-07-13",
+        "CheckOutDate": "2025-07-20",
+        "Source": "email"
       },
       {
         "SegmentType": "Flight",

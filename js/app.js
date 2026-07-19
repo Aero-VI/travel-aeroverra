@@ -778,7 +778,7 @@ function getCountryDetails() {
 // Detect countries that are ONLY flight connections (layovers), never actual visits
 function getConnectionOnlyCountries() {
     // Phase 1: Find all connection airport codes across ALL trips
-    const globalConnectionAirports = new Set(); // airport codes that are connections somewhere
+    const globalConnectionAirports = new Set();
 
     for (const trip of tripsData) {
         const segs = trip.Segments || [];
@@ -790,18 +790,36 @@ function getConnectionOnlyCountries() {
         for (let fi = 0; fi < flights.length - 1; fi++) {
             const f1 = flights[fi];
             const f2 = flights[fi + 1];
-            const arr1 = f1.seg.Arrival || f1.seg.ArrivalPort || {};
-            const dep2 = f2.seg.Departure || f2.seg.DeparturePort || {};
+            const arr1 = f1.seg.Arrival || f1.seg.ArrivalPort || f1.seg.ArrivalAirport || {};
+            const dep2 = f2.seg.Departure || f2.seg.DeparturePort || f2.seg.DepartureAirport || {};
             const arr1Code = arr1.Code || arr1.AirportCode;
             const dep2Code = dep2.Code || dep2.AirportCode;
 
             if (arr1Code && arr1Code === dep2Code) {
+                // Time check: if layover > 24 hours, not a connection
+                const arr1Time = arr1.Time ? new Date(arr1.Time).getTime() : null;
+                const dep2Time = dep2.Time ? new Date(dep2.Time).getTime() : null;
+                if (arr1Time && dep2Time) {
+                    const hoursGap = (dep2Time - arr1Time) / (1000 * 60 * 60);
+                    if (hoursGap > 24 || hoursGap < 0) continue; // not a connection
+                }
+
+                // Check for stay segments between flights in the connection country
+                const connCountry = arr1.CountryCode || dep2.CountryCode;
                 const between = segs.slice(f1.idx + 1, f2.idx);
-                const hasStay = between.some(s =>
-                    s.SegmentType === 'Accommodation' || s.SegmentType === 'Hotel' ||
-                    s.SegmentType === 'Cruise' || s.SegmentType === 'Train' || s.SegmentType === 'Bus'
-                );
-                if (!hasStay) {
+                const hasStayInConnCountry = between.some(s => {
+                    const st = s.SegmentType;
+                    if (st === 'Accommodation' || st === 'Hotel') {
+                        return s.CountryCode === connCountry;
+                    }
+                    if (st === 'Cruise' || st === 'Train' || st === 'Bus') {
+                        const d = s.Departure || s.DeparturePort || {};
+                        const a = s.Arrival || s.ArrivalPort || {};
+                        return d.CountryCode === connCountry || a.CountryCode === connCountry;
+                    }
+                    return false;
+                });
+                if (!hasStayInConnCountry) {
                     globalConnectionAirports.add(arr1Code);
                 }
             }
@@ -809,8 +827,6 @@ function getConnectionOnlyCountries() {
     }
 
     // Phase 2: For each country, check if it ONLY appears via connection airports
-    // A country is "connection-only" if every flight touching it uses a connection airport
-    // AND there are no hotels, cruises, trains, or bus stops in that country
     const countriesWithRealVisit = new Set();
     const countriesFromFlights = new Set();
 
@@ -831,12 +847,11 @@ function getConnectionOnlyCountries() {
                 if (dep.CountryCode) countriesWithRealVisit.add(dep.CountryCode);
                 if (arr.CountryCode) countriesWithRealVisit.add(arr.CountryCode);
             } else if (st === 'Flight') {
-                const dep = seg.Departure || seg.DeparturePort || {};
-                const arr = seg.Arrival || seg.ArrivalPort || {};
+                const dep = seg.Departure || seg.DeparturePort || seg.DepartureAirport || {};
+                const arr = seg.Arrival || seg.ArrivalPort || seg.ArrivalAirport || {};
                 const depCode = dep.Code || dep.AirportCode;
                 const arrCode = arr.Code || arr.AirportCode;
 
-                // If the airport is NOT a known connection airport, this is a real visit
                 if (dep.CountryCode) {
                     countriesFromFlights.add(dep.CountryCode);
                     if (!globalConnectionAirports.has(depCode)) {
@@ -867,6 +882,7 @@ function getConnectionOnlyCountries() {
     }
     return connectionOnly;
 }
+
 
 // Global state for connection toggle
 let hideConnections = true;
