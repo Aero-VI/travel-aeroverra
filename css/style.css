@@ -1635,3 +1635,50 @@ tr:hover .issues-btn, .trip-header:hover .issues-btn { opacity: 0.8; }
     .hotel-card { grid-column: span 2; }
     .hotel-num { font-size: 1.2rem; }
 }
+
+/* Connection toggle */
+.countries-toggle {
+    text-align: center;
+    margin: 8px 0 4px 0;
+}
+.ct-label {
+    color: #aaa;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.2s;
+}
+.ct-label:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.2);
+}
+.ct-label input[type="checkbox"] {
+    accent-color: #4fc3f7;
+    cursor: pointer;
+}
+
+/* Connection-only card styling */
+.country-card.connection-only {
+    opacity: 0.7;
+    border-left: 3px solid #ff9800;
+}
+.country-card.connection-only:hover {
+    opacity: 1;
+}
+.cc-connection-badge {
+    background: rgba(255, 152, 0, 0.2);
+    color: #ff9800;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

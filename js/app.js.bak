@@ -773,94 +773,16 @@ function getCountryDetails() {
     return countryData;
 }
 
-
-
-// Detect countries that are ONLY flight connections (layovers), never actual visits
-function getConnectionOnlyCountries() {
-    const connectionCountriesByTrip = new Map(); // country -> Set of connection airport codes across all trips
-    const realVisitCountries = new Set();
-
-    for (const trip of tripsData) {
-        const segs = trip.Segments || [];
-        const flights = [];
-        segs.forEach((seg, idx) => {
-            if (seg.SegmentType === 'Flight') flights.push({ idx, seg });
-        });
-
-        const tripConnectionAirports = new Set();
-        for (let fi = 0; fi < flights.length - 1; fi++) {
-            const f1 = flights[fi];
-            const f2 = flights[fi + 1];
-            const arr1 = f1.seg.Arrival || f1.seg.ArrivalPort || {};
-            const dep2 = f2.seg.Departure || f2.seg.DeparturePort || {};
-
-            if (arr1.Code && arr1.Code === dep2.Code) {
-                const between = segs.slice(f1.idx + 1, f2.idx);
-                const hasStay = between.some(s =>
-                    s.SegmentType === 'Accommodation' || s.SegmentType === 'Cruise' ||
-                    s.SegmentType === 'Train' || s.SegmentType === 'Bus'
-                );
-                if (!hasStay) {
-                    const cc = arr1.CountryCode;
-                    if (cc) {
-                        tripConnectionAirports.add(arr1.Code);
-                        if (!connectionCountriesByTrip.has(cc)) connectionCountriesByTrip.set(cc, new Set());
-                        connectionCountriesByTrip.get(cc).add(arr1.Code);
-                    }
-                }
-            }
-        }
-
-        // Collect real visits
-        for (const seg of segs) {
-            if (seg.SegmentType === 'Accommodation') {
-                if (seg.CountryCode) realVisitCountries.add(seg.CountryCode);
-            } else if (seg.SegmentType === 'Cruise') {
-                const dep = seg.DeparturePort || {};
-                const arr = seg.ArrivalPort || {};
-                if (dep.CountryCode) realVisitCountries.add(dep.CountryCode);
-                if (arr.CountryCode) realVisitCountries.add(arr.CountryCode);
-                (seg.PortsOfCall || []).forEach(p => { if (p.CountryCode) realVisitCountries.add(p.CountryCode); });
-            } else if (seg.SegmentType === 'Train' || seg.SegmentType === 'Bus') {
-                const dep = seg.Departure || {};
-                const arr = seg.Arrival || {};
-                if (dep.CountryCode) realVisitCountries.add(dep.CountryCode);
-                if (arr.CountryCode) realVisitCountries.add(arr.CountryCode);
-            } else if (seg.SegmentType === 'Flight') {
-                const dep = seg.Departure || seg.DeparturePort || {};
-                const arr = seg.Arrival || seg.ArrivalPort || {};
-                // Flight endpoint counts as real UNLESS it was identified as a connection airport in this trip
-                if (dep.CountryCode && !tripConnectionAirports.has(dep.Code)) realVisitCountries.add(dep.CountryCode);
-                if (arr.CountryCode && !tripConnectionAirports.has(arr.Code)) realVisitCountries.add(arr.CountryCode);
-            }
-        }
-    }
-
-    for (const ev of eventsData) {
-        if (ev.CountryCode) realVisitCountries.add(ev.CountryCode);
-    }
-
-    const connectionOnly = new Set();
-    for (const [cc] of connectionCountriesByTrip) {
-        if (!realVisitCountries.has(cc)) connectionOnly.add(cc);
-    }
-    return connectionOnly;
-}
-
-// Global state for connection toggle
-let hideConnections = true;
-
 // ==================== COUNTRIES VIEW ====================
 function renderCountriesView() {
     const container = document.getElementById('countries-container');
     const countryData = getCountryDetails();
-    const connectionOnly = getConnectionOnlyCountries();
-    const allCodesUnfiltered = Object.keys(countryData).sort((a, b) => {
+    const allCodes = Object.keys(countryData).sort((a, b) => {
+        // Sort by visit count desc, then name asc
         const va = countryData[a].visits, vb = countryData[b].visits;
         if (va !== vb) return vb - va;
         return countryName(a).localeCompare(countryName(b));
     });
-    const allCodes = hideConnections ? allCodesUnfiltered.filter(c => !connectionOnly.has(c)) : allCodesUnfiltered;
 
     const totalCountries = allCodes.length;
     const totalCities = new Set();
@@ -882,13 +804,6 @@ function renderCountriesView() {
     html += '</div>';
     html += '<div class="countries-progress"><div class="cp-bar" style="width:' + (totalCountries / 195 * 100) + '%"></div><span class="cp-text">' + totalCountries + '/195</span></div>';
     html += '</div>';
-
-    // Connection toggle
-    if (connectionOnly.size > 0) {
-        html += '<div class="countries-toggle">';
-        html += '<label class="ct-label"><input type="checkbox" id="connections-toggle" ' + (hideConnections ? '' : 'checked') + '> Show connection-only countries (' + connectionOnly.size + ')</label>';
-        html += '</div>';
-    }
 
     // Sort options
     html += '<div class="countries-sort">';
@@ -936,15 +851,6 @@ function renderCountriesView() {
             document.getElementById('countries-grid').innerHTML = renderCountryCards(sorted, countryData, sort);
         };
     });
-
-    // Connection toggle handler
-    const connToggle = document.getElementById('connections-toggle');
-    if (connToggle) {
-        connToggle.onchange = function() {
-            hideConnections = !this.checked;
-            renderCountriesView();
-        };
-    }
 }
 
 function renderCountryCards(codes, countryData, sortMode) {
@@ -980,13 +886,11 @@ function renderCountryCards(codes, countryData, sortMode) {
         const lastDate = cd.lastVisit ? fmtDate(cd.lastVisit) : '';
         const tripCount = cd.trips.size;
 
-        const isConn = typeof getConnectionOnlyCountries === 'function' && getConnectionOnlyCountries().has(code);
-        html += '<div class="country-card' + (isConn ? ' connection-only' : '') + '" onclick="this.classList.toggle(\'expanded\')">';
+        html += '<div class="country-card" onclick="this.classList.toggle(\'expanded\')">';
         html += '<div class="cc-header">';
         html += '<span class="cc-flag">' + flag + '</span>';
         html += '<span class="cc-name">' + esc(name) + '</span>';
         html += '<span class="cc-visits">' + cd.visits + ' visit' + (cd.visits !== 1 ? 's' : '') + '</span>';
-        if (isConn) html += '<span class="cc-connection-badge">Connection</span>';
         html += '</div>';
         html += '<div class="cc-body">';
         html += '<div class="cc-row"><span class="cc-label">First visit:</span> ' + firstDate + '</div>';
