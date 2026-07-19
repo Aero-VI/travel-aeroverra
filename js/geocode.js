@@ -24,7 +24,18 @@ const GEOCODE = {
     MNL:[14.5086,121.0197],MPH:[11.9244,121.9536],MYR:[33.6796,-78.9284],
     NQY:[50.4406,-4.9954],NRT:[35.7647,140.3864],PHL:[39.8744,-75.2424],
     SGN:[10.8185,106.6519],SIN:[1.3644,103.9915],SNN:[52.702,-8.9248],
-    STN:[51.885,0.235],STT:[18.3373,-64.9734],SYD:[-33.9399,151.1753]
+    STN:[51.885,0.235],STT:[18.3373,-64.9734],SYD:[-33.9399,151.1753],
+    ACY:[39.4576,-74.5772],ATH:[37.9364,23.9445],AUS:[30.1945,-97.6699],
+    BEG:[44.8184,20.3091],BNA:[36.1263,-86.6774],BOS:[42.3656,-71.0096],
+    BUD:[47.4369,19.2556],BWI:[39.1754,-76.6684],CHS:[32.8986,-80.0405],
+    CLT:[35.214,-80.9431],DFW:[32.8998,-97.0403],DTW:[42.2124,-83.3534],
+    EWR:[40.6925,-74.1687],FAT:[36.7762,-119.7181],FLL:[26.0726,-80.1527],
+    IAD:[38.9531,-77.4565],ISP:[40.7952,-73.1002],LAX:[33.9425,-118.4081],
+    LGA:[40.7769,-73.874],MDW:[41.786,-87.7524],MHT:[42.9326,-71.4357],
+    MIA:[25.7959,-80.287],MSP:[44.882,-93.2218],MSY:[29.9934,-90.258],
+    ORF:[36.8946,-76.2012],PHX:[33.4373,-112.0078],PVG:[31.1443,121.8083],
+    SEA:[47.4502,-122.3088],SFO:[37.6213,-122.379],SJU:[18.4394,-66.0018],
+    TPA:[27.9756,-82.5333],VIE:[48.1103,16.5697]
   },
   ports: {
     'George Town':[19.2869,-81.3831],'Grand Cayman':[19.2869,-81.3831],
@@ -186,6 +197,16 @@ const GEOCODE = {
     'Himeji Station':[34.8267,134.6889],'Himeji':[34.8267,134.6889],
     'Les Arcs - Draguignan':[43.4607,6.4759],'Les Arcs':[43.4607,6.4759],
     'Marseille Saint-Charles':[43.3028,5.3802],'Marseille':[43.2965,5.3698],
+    'Birmingham New Street':[52.4778,-1.8987],
+    'Dover Priory Station':[51.1268,1.3043],'Dover Priory':[51.1268,1.3043],
+    'Forli Station':[44.2227,12.0408],'Imola Station':[44.3535,11.7141],
+    'London Bridge Station':[51.5054,-0.0863],'London Euston':[51.5282,-0.1337],
+    'Paris Gare De Lyon':[48.8443,2.3739],
+    'Salzburg Stadtbf (Hauptbahnhof)':[47.8133,13.0458],'Salzburg Hauptbahnhof':[47.8133,13.0458],
+    'Salzburg':[47.8095,13.055],
+    'Suzuka Circuit Ino Station':[34.8432,136.5415],
+    'Wien Hauptbahnhof':[48.1853,16.3762],'Vienna':[48.2082,16.3738],
+    'Budapest':[47.4979,19.0402],
     // Cities as fallback
     'Myrtle Beach':[33.6891,-78.8867],'Kyoto':[34.9858,135.7588],
     'Tokyo':[35.6812,139.7671],'Osaka':[34.6937,135.5023],
@@ -242,7 +263,29 @@ const GEOCODE = {
     'Semboku':[39.5922,140.5031],
     'Shannon':[52.703,-8.8641],
     'Steamboat Springs':[40.485,-106.8317],
-    'Dania Beach':[26.0524,-80.1437]
+    'Dania Beach':[26.0524,-80.1437],
+    'Anaheim':[33.8366,-117.9143],
+    'Budapest':[47.4979,19.0402],
+    'Cape Canaveral':[28.3922,-80.6077],
+    'Charlotte':[35.2271,-80.8431],
+    'Himeji':[34.8267,134.6889],
+    'Honolulu':[21.3069,-157.8583],
+    'Les Arcs':[43.4607,6.4759],
+    'Long Beach':[33.7701,-118.1937],
+    'Malta':[35.8997,14.5146],
+    'New Orleans':[29.9511,-90.0715],
+    'Norfolk':[36.8508,-76.2859],
+    'San Juan':[18.4655,-66.1057],
+    'Seoul':[37.5665,126.978],
+    'Sliema':[35.9126,14.5041],
+    "St. Julian's":[35.9186,14.4907],
+    'St. Thomas':[18.3358,-64.9307],
+    'Vienna':[48.2082,16.3738],
+    'Wals-Siezenheim':[47.7933,13.0],
+    'Paris':[48.8566,2.3522],
+    'Bologna':[44.4949,11.3426],
+    'Hiroshima':[34.3853,132.4553],
+    'Niseko':[42.8604,140.6889]
   }
 };
 
@@ -268,5 +311,9 @@ function geocode(type, name, city, code) {
   if (GEOCODE.ports[city]) return GEOCODE.ports[city];
   if (GEOCODE.events[city]) return GEOCODE.events[city];
   if (GEOCODE.events[name]) return GEOCODE.events[name];
+  if (GEOCODE.trains[name]) return GEOCODE.trains[name];
+  if (GEOCODE.trains[city]) return GEOCODE.trains[city];
+  if (GEOCODE.busStations[name]) return GEOCODE.busStations[name];
+  if (GEOCODE.busStations[city]) return GEOCODE.busStations[city];
   return null;
 }
