@@ -777,8 +777,8 @@ function getCountryDetails() {
 
 // Detect countries that are ONLY flight connections (layovers), never actual visits
 function getConnectionOnlyCountries() {
-    const connectionCountriesByTrip = new Map(); // country -> Set of connection airport codes across all trips
-    const realVisitCountries = new Set();
+    // Phase 1: Find all connection airport codes across ALL trips
+    const globalConnectionAirports = new Set(); // airport codes that are connections somewhere
 
     for (const trip of tripsData) {
         const segs = trip.Segments || [];
@@ -787,62 +787,83 @@ function getConnectionOnlyCountries() {
             if (seg.SegmentType === 'Flight') flights.push({ idx, seg });
         });
 
-        const tripConnectionAirports = new Set();
         for (let fi = 0; fi < flights.length - 1; fi++) {
             const f1 = flights[fi];
             const f2 = flights[fi + 1];
             const arr1 = f1.seg.Arrival || f1.seg.ArrivalPort || {};
             const dep2 = f2.seg.Departure || f2.seg.DeparturePort || {};
+            const arr1Code = arr1.Code || arr1.AirportCode;
+            const dep2Code = dep2.Code || dep2.AirportCode;
 
-            if (arr1.Code && arr1.Code === dep2.Code) {
+            if (arr1Code && arr1Code === dep2Code) {
                 const between = segs.slice(f1.idx + 1, f2.idx);
                 const hasStay = between.some(s =>
-                    s.SegmentType === 'Accommodation' || s.SegmentType === 'Cruise' ||
-                    s.SegmentType === 'Train' || s.SegmentType === 'Bus'
+                    s.SegmentType === 'Accommodation' || s.SegmentType === 'Hotel' ||
+                    s.SegmentType === 'Cruise' || s.SegmentType === 'Train' || s.SegmentType === 'Bus'
                 );
                 if (!hasStay) {
-                    const cc = arr1.CountryCode;
-                    if (cc) {
-                        tripConnectionAirports.add(arr1.Code);
-                        if (!connectionCountriesByTrip.has(cc)) connectionCountriesByTrip.set(cc, new Set());
-                        connectionCountriesByTrip.get(cc).add(arr1.Code);
+                    globalConnectionAirports.add(arr1Code);
+                }
+            }
+        }
+    }
+
+    // Phase 2: For each country, check if it ONLY appears via connection airports
+    // A country is "connection-only" if every flight touching it uses a connection airport
+    // AND there are no hotels, cruises, trains, or bus stops in that country
+    const countriesWithRealVisit = new Set();
+    const countriesFromFlights = new Set();
+
+    for (const trip of tripsData) {
+        for (const seg of trip.Segments || []) {
+            const st = seg.SegmentType;
+            if (st === 'Accommodation' || st === 'Hotel') {
+                if (seg.CountryCode) countriesWithRealVisit.add(seg.CountryCode);
+            } else if (st === 'Cruise') {
+                const dep = seg.DeparturePort || {};
+                const arr = seg.ArrivalPort || {};
+                if (dep.CountryCode) countriesWithRealVisit.add(dep.CountryCode);
+                if (arr.CountryCode) countriesWithRealVisit.add(arr.CountryCode);
+                (seg.PortsOfCall || []).forEach(p => { if (p.CountryCode) countriesWithRealVisit.add(p.CountryCode); });
+            } else if (st === 'Train' || st === 'Bus') {
+                const dep = seg.Departure || {};
+                const arr = seg.Arrival || {};
+                if (dep.CountryCode) countriesWithRealVisit.add(dep.CountryCode);
+                if (arr.CountryCode) countriesWithRealVisit.add(arr.CountryCode);
+            } else if (st === 'Flight') {
+                const dep = seg.Departure || seg.DeparturePort || {};
+                const arr = seg.Arrival || seg.ArrivalPort || {};
+                const depCode = dep.Code || dep.AirportCode;
+                const arrCode = arr.Code || arr.AirportCode;
+
+                // If the airport is NOT a known connection airport, this is a real visit
+                if (dep.CountryCode) {
+                    countriesFromFlights.add(dep.CountryCode);
+                    if (!globalConnectionAirports.has(depCode)) {
+                        countriesWithRealVisit.add(dep.CountryCode);
+                    }
+                }
+                if (arr.CountryCode) {
+                    countriesFromFlights.add(arr.CountryCode);
+                    if (!globalConnectionAirports.has(arrCode)) {
+                        countriesWithRealVisit.add(arr.CountryCode);
                     }
                 }
             }
         }
-
-        // Collect real visits
-        for (const seg of segs) {
-            if (seg.SegmentType === 'Accommodation') {
-                if (seg.CountryCode) realVisitCountries.add(seg.CountryCode);
-            } else if (seg.SegmentType === 'Cruise') {
-                const dep = seg.DeparturePort || {};
-                const arr = seg.ArrivalPort || {};
-                if (dep.CountryCode) realVisitCountries.add(dep.CountryCode);
-                if (arr.CountryCode) realVisitCountries.add(arr.CountryCode);
-                (seg.PortsOfCall || []).forEach(p => { if (p.CountryCode) realVisitCountries.add(p.CountryCode); });
-            } else if (seg.SegmentType === 'Train' || seg.SegmentType === 'Bus') {
-                const dep = seg.Departure || {};
-                const arr = seg.Arrival || {};
-                if (dep.CountryCode) realVisitCountries.add(dep.CountryCode);
-                if (arr.CountryCode) realVisitCountries.add(arr.CountryCode);
-            } else if (seg.SegmentType === 'Flight') {
-                const dep = seg.Departure || seg.DeparturePort || {};
-                const arr = seg.Arrival || seg.ArrivalPort || {};
-                // Flight endpoint counts as real UNLESS it was identified as a connection airport in this trip
-                if (dep.CountryCode && !tripConnectionAirports.has(dep.Code)) realVisitCountries.add(dep.CountryCode);
-                if (arr.CountryCode && !tripConnectionAirports.has(arr.Code)) realVisitCountries.add(arr.CountryCode);
-            }
-        }
     }
 
+    // Events also count as real visits
     for (const ev of eventsData) {
-        if (ev.CountryCode) realVisitCountries.add(ev.CountryCode);
+        if (ev.CountryCode) countriesWithRealVisit.add(ev.CountryCode);
     }
 
+    // Connection-only = appeared in flights but never as a real visit
     const connectionOnly = new Set();
-    for (const [cc] of connectionCountriesByTrip) {
-        if (!realVisitCountries.has(cc)) connectionOnly.add(cc);
+    for (const cc of countriesFromFlights) {
+        if (!countriesWithRealVisit.has(cc)) {
+            connectionOnly.add(cc);
+        }
     }
     return connectionOnly;
 }
