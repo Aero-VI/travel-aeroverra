@@ -5417,7 +5417,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
+        "DisplayName": "川どこ べらぼう",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7219,7 +7219,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
+        "DisplayName": "川どこ べらぼう",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7247,7 +7247,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
+        "DisplayName": "川どこ べらぼう",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7708,7 +7708,7 @@
         "CountryCode": "AT",
         "CheckIn": "2026-07-11T15:00:00+02:00",
         "CheckOut": "2026-07-13T11:00:00+02:00",
-        "Cost": "\u20ac326.69",
+        "Cost": "€326.69",
         "BookedVia": "Booking.com",
         "Notes": "Von Trapp family homecoming trip"
       },
@@ -7750,7 +7750,7 @@
         "CheckIn": "2026-07-14T15:00:00+02:00",
         "CheckOut": "2026-07-18T11:00:00+02:00",
         "RoomType": "Standard Double or Twin Room",
-        "Cost": "\u20ac369+",
+        "Cost": "€369+",
         "BookedVia": "Booking.com",
         "Notes": "Originally 3 nights (Jul 14-17), extended +1 day to Jul 18. Breakfast included."
       },
@@ -8056,7 +8056,7 @@
       {
         "SegmentType": "Train",
         "BookingNumber": "4731591852223457",
-        "Operator": "\u00d6BB (Austrian Federal Railways)",
+        "Operator": "ÖBB (Austrian Federal Railways)",
         "TrainNumber": null,
         "SeatClass": "1. Klasse (First Class)",
         "Source": "ticket",
@@ -8074,9 +8074,9 @@
           "CountryCode": "AT",
           "Time": "2026-07-11T00:00:00+02:00"
         },
-        "Route": "via Neulengbach/Tullnerfeld, St. P\u00f6lten, P\u00f6chlarn, Wels, Attnang-Puchheim, Linz",
-        "Price": "\u20ac143.40 + \u20ac13.04 VAT (10%)",
-        "TotalPrice": "\u20ac156.44"
+        "Route": "via Neulengbach/Tullnerfeld, St. Pölten, Pöchlarn, Wels, Attnang-Puchheim, Linz",
+        "Price": "€143.40 + €13.04 VAT (10%)",
+        "TotalPrice": "€156.44"
       },
       {
         "SegmentType": "Accommodation",
@@ -8086,12 +8086,12 @@
         "Province": "Salzburg",
         "PostalCode": "5071",
         "CountryCode": "AT",
-        "Address1": "Himmelreichstra\u00dfe 34",
+        "Address1": "Himmelreichstraße 34",
         "Address2": null,
         "CheckInDate": "2026-07-11",
         "CheckOutDate": "2026-07-13",
         "Source": "email",
-        "Price": "\u20ac326.69",
+        "Price": "€326.69",
         "BookedVia": "Booking.com"
       },
       {
@@ -8154,7 +8154,7 @@
   },
   {
     "TripId": "budapest-july-2026",
-    "TripName": "Budapest Trip",
+    "TripName": "Budapest & Return Home (First Business Class!)",
     "IsActiveTravel": true,
     "HomeAtStart": "Myrtle Beach, SC",
     "HomeAtEnd": "Myrtle Beach, SC",
@@ -8208,6 +8208,32 @@
         },
         "CapitalOneTravelRef": "H-KQPRRR",
         "Note": "Connecting flight leg 2: BEG->BUD. Exact times not extracted."
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "CMZNNB",
+        "Airline": "Swiss International Air Lines",
+        "FlightNumber": "LX 52",
+        "SeatClass": "Business Class",
+        "SeatNumber": "11K",
+        "Source": "email",
+        "Note": "First international business class flight! Redeemed via Air Canada Aeroplan points (free!)",
+        "Departure": {
+          "LocationName": "Zurich Airport",
+          "City": "Zurich",
+          "Province": null,
+          "CountryCode": "CH",
+          "Code": "ZRH",
+          "Time": "2026-08-02T17:35:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Logan International Airport",
+          "City": "Boston",
+          "Province": "MA",
+          "CountryCode": "US",
+          "Code": "BOS",
+          "Time": "2026-08-02T19:55:00-04:00"
+        }
       }
     ]
   }
