@@ -5417,7 +5417,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "川どこ べらぼう",
+        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7219,7 +7219,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "川どこ べらぼう",
+        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7247,7 +7247,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "川どこ べらぼう",
+        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7708,7 +7708,7 @@
         "CountryCode": "AT",
         "CheckIn": "2026-07-11T15:00:00+02:00",
         "CheckOut": "2026-07-13T11:00:00+02:00",
-        "Cost": "€326.69",
+        "Cost": "\u20ac326.69",
         "BookedVia": "Booking.com",
         "Notes": "Von Trapp family homecoming trip"
       },
@@ -7750,7 +7750,7 @@
         "CheckIn": "2026-07-14T15:00:00+02:00",
         "CheckOut": "2026-07-18T11:00:00+02:00",
         "RoomType": "Standard Double or Twin Room",
-        "Cost": "€369+",
+        "Cost": "\u20ac369+",
         "BookedVia": "Booking.com",
         "Notes": "Originally 3 nights (Jul 14-17), extended +1 day to Jul 18. Breakfast included."
       },
@@ -8056,7 +8056,7 @@
       {
         "SegmentType": "Train",
         "BookingNumber": "4731591852223457",
-        "Operator": "ÖBB (Austrian Federal Railways)",
+        "Operator": "\u00d6BB (Austrian Federal Railways)",
         "TrainNumber": null,
         "SeatClass": "1. Klasse (First Class)",
         "Source": "ticket",
@@ -8074,9 +8074,9 @@
           "CountryCode": "AT",
           "Time": "2026-07-11T00:00:00+02:00"
         },
-        "Route": "via Neulengbach/Tullnerfeld, St. Pölten, Pöchlarn, Wels, Attnang-Puchheim, Linz",
-        "Price": "€143.40 + €13.04 VAT (10%)",
-        "TotalPrice": "€156.44"
+        "Route": "via Neulengbach/Tullnerfeld, St. P\u00f6lten, P\u00f6chlarn, Wels, Attnang-Puchheim, Linz",
+        "Price": "\u20ac143.40 + \u20ac13.04 VAT (10%)",
+        "TotalPrice": "\u20ac156.44"
       },
       {
         "SegmentType": "Accommodation",
@@ -8086,12 +8086,12 @@
         "Province": "Salzburg",
         "PostalCode": "5071",
         "CountryCode": "AT",
-        "Address1": "Himmelreichstraße 34",
+        "Address1": "Himmelreichstra\u00dfe 34",
         "Address2": null,
         "CheckInDate": "2026-07-11",
         "CheckOutDate": "2026-07-13",
         "Source": "email",
-        "Price": "€326.69",
+        "Price": "\u20ac326.69",
         "BookedVia": "Booking.com"
       },
       {
@@ -8208,6 +8208,30 @@
         },
         "CapitalOneTravelRef": "H-KQPRRR",
         "Note": "Connecting flight leg 2: BEG->BUD. Exact times not extracted."
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "CYJBT7",
+        "Airline": "Aeroplan / Air Canada",
+        "FlightNumber": null,
+        "Source": "email",
+        "Note": "Budapest to D\u00fcsseldorf, booked via Aeroplan",
+        "Departure": {
+          "LocationName": "Budapest Ferenc Liszt International Airport",
+          "City": "Budapest",
+          "Province": null,
+          "CountryCode": "HU",
+          "Code": "BUD",
+          "Time": "2026-07-27T00:00:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "D\u00fcsseldorf Airport",
+          "City": "D\u00fcsseldorf",
+          "Province": null,
+          "CountryCode": "DE",
+          "Code": "DUS",
+          "Time": null
+        }
       },
       {
         "SegmentType": "Flight",
