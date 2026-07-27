@@ -2901,7 +2901,11 @@
           "Code": "ATL",
           "Time": "2024-09-27T18:34:00-04:00"
         },
-        "Price": "$1,130.43"
+        "Price": "$1130.43",
+        "FlightNumber": "DL 1950",
+        "TicketNumber": "0062206961586",
+        "SeatClass": "Delta Comfort+",
+        "SeatNumber": "15D"
       },
       {
         "SegmentType": "Flight",
@@ -2923,7 +2927,11 @@
           "CountryCode": "JP",
           "Code": "HND",
           "Time": "2024-09-29T13:10:00+09:00"
-        }
+        },
+        "FlightNumber": "DL 295",
+        "SeatClass": "Delta Comfort+",
+        "SeatNumber": "31G",
+        "Note": "Part of same itinerary as GVWQW5. Arrives next day."
       },
       {
         "SegmentType": "Accommodation",
@@ -6883,7 +6891,9 @@
           "Code": "HND",
           "Time": "2026-03-03T18:50:00+09:00"
         },
-        "Source": "email"
+        "Source": "email",
+        "FlightNumber": "DL 181",
+        "CapitalOneTravelRef": "H-YWWTF"
       },
       {
         "SegmentType": "Accommodation",
