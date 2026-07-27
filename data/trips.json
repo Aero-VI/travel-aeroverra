@@ -8212,17 +8212,21 @@
       {
         "SegmentType": "Flight",
         "BookingNumber": "CYJBT7",
-        "Airline": "Aeroplan / Air Canada",
-        "FlightNumber": null,
-        "Source": "email",
-        "Note": "Budapest to D\u00fcsseldorf, booked via Aeroplan",
+        "TicketNumber": "0142332878448",
+        "Airline": "Eurowings Europe",
+        "FlightNumber": "EW 9783",
+        "Aircraft": "Airbus A320 (Sharklets)",
+        "SeatClass": "Economy",
+        "Source": "email-pdf",
+        "Note": "Booked via Air Canada Aeroplan",
         "Departure": {
           "LocationName": "Budapest Ferenc Liszt International Airport",
           "City": "Budapest",
           "Province": null,
           "CountryCode": "HU",
           "Code": "BUD",
-          "Time": "2026-07-27T00:00:00+02:00"
+          "Terminal": "2A",
+          "Time": "2026-07-27T09:05:00+02:00"
         },
         "Arrival": {
           "LocationName": "D\u00fcsseldorf Airport",
@@ -8230,7 +8234,37 @@
           "Province": null,
           "CountryCode": "DE",
           "Code": "DUS",
-          "Time": null
+          "Terminal": null,
+          "Time": "2026-07-27T10:55:00+02:00"
+        }
+      },
+      {
+        "SegmentType": "Flight",
+        "BookingNumber": "CYJBT7",
+        "TicketNumber": "0142332878448",
+        "Airline": "Eurowings",
+        "FlightNumber": "EW 9762",
+        "Aircraft": "Airbus A320",
+        "SeatClass": "Economy",
+        "Source": "email-pdf",
+        "Note": "Booked via Air Canada Aeroplan",
+        "Departure": {
+          "LocationName": "D\u00fcsseldorf Airport",
+          "City": "D\u00fcsseldorf",
+          "Province": null,
+          "CountryCode": "DE",
+          "Code": "DUS",
+          "Terminal": null,
+          "Time": "2026-07-27T13:50:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Zurich Airport",
+          "City": "Zurich",
+          "Province": null,
+          "CountryCode": "CH",
+          "Code": "ZRH",
+          "Terminal": null,
+          "Time": "2026-07-27T14:55:00+02:00"
         }
       },
       {
