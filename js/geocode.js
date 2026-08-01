@@ -198,7 +198,7 @@ const GEOCODE = {
     'Engelberg Station':[46.8189,8.4053],'Engelberg':[46.8189,8.4053],
     'Rümlang Station':[47.4502,8.5324],'Rümlang':[47.4502,8.5324],
     'Luzern':[47.0502,8.3093],'Lucerne':[47.0502,8.3093],
-    'Zurich HB':[47.3769,8.5417],
+    'Zurich HB':[47.3769,8.5417],'Zürich HB':[47.3769,8.5417],
     'Bourg-Saint-Maurice':[45.6195,6.7713],
     'Himeji Station':[34.8267,134.6889],'Himeji':[34.8267,134.6889],
     'Les Arcs - Draguignan':[43.4607,6.4759],'Les Arcs':[43.4607,6.4759],
