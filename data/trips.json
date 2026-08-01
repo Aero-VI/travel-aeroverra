@@ -8298,6 +8298,64 @@
         }
       },
       {
+        "SegmentType": "Train",
+        "Operator": "ZVV (Zurich Transport Network)",
+        "Class": "2nd Class",
+        "Cost": "CHF 7.20",
+        "Source": "ticket-photo",
+        "Note": "Local Zurich transit, Zones 110 & 121",
+        "Departure": {
+          "City": "Zurich",
+          "CountryCode": "CH",
+          "Time": "2026-07-31T11:38:00+02:00"
+        },
+        "Arrival": {
+          "City": "Zurich HB",
+          "CountryCode": "CH",
+          "Time": "2026-07-31T12:38:00+02:00"
+        }
+      },
+      {
+        "SegmentType": "Train",
+        "Operator": "SBB (Swiss Federal Railways)",
+        "Class": "2nd Class",
+        "Cost": "CHF 40.00",
+        "Source": "ticket-photo",
+        "Note": "Day trip to Engelberg / Mount Titlis (summit closed due to thunderstorms)",
+        "Departure": {
+          "LocationName": "Zurich HB",
+          "City": "Zurich",
+          "CountryCode": "CH",
+          "Time": "2026-07-31T12:00:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Engelberg Station",
+          "City": "Engelberg",
+          "CountryCode": "CH",
+          "Time": null
+        }
+      },
+      {
+        "SegmentType": "Train",
+        "Operator": "Zentralbahn (ZB)",
+        "Class": "2nd Class",
+        "Cost": "CHF 42.00",
+        "Source": "ticket-photo",
+        "Note": "Return from Engelberg via Luzern to Rümlang (near Zurich)",
+        "Departure": {
+          "LocationName": "Engelberg Station",
+          "City": "Engelberg",
+          "CountryCode": "CH",
+          "Time": "2026-07-31T17:52:00+02:00"
+        },
+        "Arrival": {
+          "LocationName": "Rümlang Station",
+          "City": "Rümlang",
+          "CountryCode": "CH",
+          "Time": null
+        }
+      },
+      {
         "SegmentType": "Flight",
         "BookingNumber": "CMZNNB",
         "Airline": "Swiss International Air Lines",
