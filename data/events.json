@@ -986,5 +986,31 @@
     "IsFullDay": true,
     "Notes": "Von Trapp family descendant homecoming. Visited: Residenzplatz fountain (I Have Confidence scene), Salzburg Cathedral, Kapitelplatz/Sphaera, Nonnberg Abbey gate (Maria's convent). Staying at Hotel Himmelreich. Tomorrow: Mirabell Gardens (Do-Re-Mi), Fortress Hohensalzburg, Villa Trapp (Traunstrasse 34), Schloss Leopoldskron, Hellbrunn Gazebo.",
     "Source": "manual"
+  },
+  {
+    "EventId": "EVT-ENGELBERG-2026",
+    "TripId": "switzerland-july-2026",
+    "EventType": "Excursion",
+    "Title": "Engelberg & Mount Titlis Day Trip",
+    "City": "Engelberg",
+    "CountryCode": "CH",
+    "StartTime": "2026-07-31T11:38:00+02:00",
+    "EndTime": "2026-07-31T19:30:00+02:00",
+    "IsFullDay": true,
+    "Notes": "Day trip from Rümlang via Zürich HB and Luzern to Engelberg. Summit closed due to thunderstorms - couldn't reach ice caves. Glacial turquoise alpine lake, snow-capped peaks, cable car area. Total train cost: CHF 89.20.",
+    "Source": "ticket"
+  },
+  {
+    "EventId": "EVT-ZVV-ZURICH-2026",
+    "TripId": "switzerland-july-2026",
+    "EventType": "Train",
+    "Title": "ZVV Local: Zürich Central → Kinkelstrasse",
+    "City": "Zürich",
+    "CountryCode": "CH",
+    "StartTime": "2026-08-01T17:42:00+02:00",
+    "EndTime": "2026-08-01T18:42:00+02:00",
+    "IsFullDay": false,
+    "Notes": "ZVV single ticket Zone 110. CHF 4.70. Vollpreis (full fare).",
+    "Source": "ticket"
   }
 ]

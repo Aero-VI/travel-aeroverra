@@ -199,6 +199,7 @@ const GEOCODE = {
     'Rümlang Station':[47.4502,8.5324],'Rümlang':[47.4502,8.5324],
     'Luzern':[47.0502,8.3093],'Lucerne':[47.0502,8.3093],
     'Zurich HB':[47.3769,8.5417],'Zürich HB':[47.3769,8.5417],
+    'Zürich, Central':[47.3769,8.5417],'Zürich, Kinkelstrasse':[47.3900,8.5300],
     'Bourg-Saint-Maurice':[45.6195,6.7713],
     'Himeji Station':[34.8267,134.6889],'Himeji':[34.8267,134.6889],
     'Les Arcs - Draguignan':[43.4607,6.4759],'Les Arcs':[43.4607,6.4759],
@@ -240,6 +241,8 @@ const GEOCODE = {
     'Oga':[39.9471,139.8472],'Salisbury':[51.0688,-1.7945],
     'Suzuka':[34.8843,136.5844],
     'Pflugerville':[30.4393,-97.6200],
+    'Zürich':[47.3769,8.5417],'Engelberg':[46.8186,8.4004],
+    'Rümlang':[47.4508,8.5253],'Luzern':[47.0502,8.3093],
   },
   cities: {
     'Akita':[39.72,140.1025],
