@@ -2484,7 +2484,7 @@
           "Time": "2024-06-05T17:08:00-04:00"
         },
         "Arrival": {
-          "LocationName": "Luis Muñoz Marín International Airport",
+          "LocationName": "Luis Mu\u00f1oz Mar\u00edn International Airport",
           "City": "San Juan",
           "Province": "PR",
           "CountryCode": "PR",
@@ -2500,7 +2500,7 @@
         "Airline": "JetBlue",
         "Source": "email",
         "Departure": {
-          "LocationName": "Luis Muñoz Marín International Airport",
+          "LocationName": "Luis Mu\u00f1oz Mar\u00edn International Airport",
           "City": "San Juan",
           "Province": "PR",
           "CountryCode": "PR",
@@ -5425,7 +5425,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "川どこ べらぼう",
+        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7286,7 +7286,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "川どこ べらぼう",
+        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7314,7 +7314,7 @@
       {
         "SegmentType": "Accommodation",
         "BookingNumber": null,
-        "DisplayName": "川どこ べらぼう",
+        "DisplayName": "\u5ddd\u3069\u3053 \u3079\u3089\u307c\u3046",
         "City": "Noshiro",
         "Province": "Akita",
         "PostalCode": "016-0813",
@@ -7775,7 +7775,7 @@
         "CountryCode": "AT",
         "CheckIn": "2026-07-11T15:00:00+02:00",
         "CheckOut": "2026-07-13T11:00:00+02:00",
-        "Cost": "€326.69",
+        "Cost": "\u20ac326.69",
         "BookedVia": "Booking.com",
         "Notes": "Von Trapp family homecoming trip"
       },
@@ -7799,7 +7799,7 @@
         "CheckIn": "2026-07-14T15:00:00+02:00",
         "CheckOut": "2026-07-17T11:00:00+02:00",
         "RoomType": "Standard Double or Twin Room",
-        "Cost": "€369",
+        "Cost": "\u20ac369",
         "BookedVia": "Booking.com",
         "Notes": "3 nights, Standard Double or Twin Room. Breakfast included. Non-refundable."
       },
@@ -8086,7 +8086,7 @@
       {
         "SegmentType": "Train",
         "BookingNumber": "4731591852223457",
-        "Operator": "ÖBB (Austrian Federal Railways)",
+        "Operator": "\u00d6BB (Austrian Federal Railways)",
         "TrainNumber": null,
         "SeatClass": "1. Klasse (First Class)",
         "Source": "ticket",
@@ -8104,9 +8104,9 @@
           "CountryCode": "AT",
           "Time": "2026-07-11T00:00:00+02:00"
         },
-        "Route": "via Neulengbach/Tullnerfeld, St. Pölten, Pöchlarn, Wels, Attnang-Puchheim, Linz",
-        "Price": "€143.40 + €13.04 VAT (10%)",
-        "TotalPrice": "€156.44"
+        "Route": "via Neulengbach/Tullnerfeld, St. P\u00f6lten, P\u00f6chlarn, Wels, Attnang-Puchheim, Linz",
+        "Price": "\u20ac143.40 + \u20ac13.04 VAT (10%)",
+        "TotalPrice": "\u20ac156.44"
       },
       {
         "SegmentType": "Accommodation",
@@ -8116,12 +8116,12 @@
         "Province": "Salzburg",
         "PostalCode": "5071",
         "CountryCode": "AT",
-        "Address1": "Himmelreichstraße 34",
+        "Address1": "Himmelreichstra\u00dfe 34",
         "Address2": null,
         "CheckInDate": "2026-07-11",
         "CheckOutDate": "2026-07-13",
         "Source": "email",
-        "Price": "€326.69",
+        "Price": "\u20ac326.69",
         "BookedVia": "Booking.com"
       },
       {
@@ -8259,8 +8259,8 @@
           "Time": "2026-07-27T09:05:00+02:00"
         },
         "Arrival": {
-          "LocationName": "Düsseldorf Airport",
-          "City": "Düsseldorf",
+          "LocationName": "D\u00fcsseldorf Airport",
+          "City": "D\u00fcsseldorf",
           "Province": null,
           "CountryCode": "DE",
           "Code": "DUS",
@@ -8279,8 +8279,8 @@
         "Source": "email-pdf",
         "Note": "Booked via Air Canada Aeroplan",
         "Departure": {
-          "LocationName": "Düsseldorf Airport",
-          "City": "Düsseldorf",
+          "LocationName": "D\u00fcsseldorf Airport",
+          "City": "D\u00fcsseldorf",
           "Province": null,
           "CountryCode": "DE",
           "Code": "DUS",
@@ -8303,14 +8303,14 @@
         "Class": "2nd Class",
         "Cost": "CHF 7.20",
         "Source": "ticket-photo",
-        "Note": "Local Rümlang transit, Zones 110 & 121 (bought wrong ticket initially)",
+        "Note": "Local R\u00fcmlang transit, Zones 110 & 121 (bought wrong ticket initially)",
         "Departure": {
-          "City": "Rümlang",
+          "City": "R\u00fcmlang",
           "CountryCode": "CH",
           "Time": "2026-07-31T11:38:00+02:00"
         },
         "Arrival": {
-          "City": "Zürich HB",
+          "City": "Z\u00fcrich HB",
           "CountryCode": "CH",
           "Time": "2026-07-31T12:38:00+02:00"
         }
@@ -8341,7 +8341,7 @@
         "Class": "2nd Class",
         "Cost": "CHF 42.00",
         "Source": "ticket-photo",
-        "Note": "Return from Engelberg via Luzern to Rümlang (near Zurich)",
+        "Note": "Return from Engelberg via Luzern to R\u00fcmlang (near Zurich)",
         "Departure": {
           "LocationName": "Engelberg Station",
           "City": "Engelberg",
@@ -8349,8 +8349,8 @@
           "Time": "2026-07-31T17:52:00+02:00"
         },
         "Arrival": {
-          "LocationName": "Rümlang Station",
-          "City": "Rümlang",
+          "LocationName": "R\u00fcmlang Station",
+          "City": "R\u00fcmlang",
           "CountryCode": "CH",
           "Time": null
         }
@@ -8385,7 +8385,7 @@
   },
   {
     "TripId": "switzerland-july-2026",
-    "TripName": "Switzerland (Zürich, Engelberg, Rümlang)",
+    "TripName": "Switzerland (Z\u00fcrich, Engelberg, R\u00fcmlang)",
     "IsActiveTravel": true,
     "HomeAtStart": "Myrtle Beach, SC",
     "HomeAtEnd": "Myrtle Beach, SC",
@@ -8393,20 +8393,20 @@
       {
         "SegmentType": "Train",
         "BookingNumber": null,
-        "Operator": "ZVV (Zürich Transport Network)",
+        "Operator": "ZVV (Z\u00fcrich Transport Network)",
         "TrainNumber": null,
         "SeatClass": "2nd Class",
         "Source": "ticket",
         "Departure": {
-          "LocationName": "Rümlang Station",
-          "City": "Rümlang",
+          "LocationName": "R\u00fcmlang Station",
+          "City": "R\u00fcmlang",
           "Province": null,
           "CountryCode": "CH",
           "Time": "2026-07-31T11:38:00+02:00"
         },
         "Arrival": {
-          "LocationName": "Zürich HB",
-          "City": "Zürich",
+          "LocationName": "Z\u00fcrich HB",
+          "City": "Z\u00fcrich",
           "Province": null,
           "CountryCode": "CH",
           "Time": "2026-07-31T11:50:00+02:00"
@@ -8422,8 +8422,8 @@
         "SeatClass": "2nd Class",
         "Source": "ticket",
         "Departure": {
-          "LocationName": "Zürich HB",
-          "City": "Zürich",
+          "LocationName": "Z\u00fcrich HB",
+          "City": "Z\u00fcrich",
           "Province": null,
           "CountryCode": "CH",
           "Time": "2026-07-31T11:56:00+02:00"
@@ -8454,33 +8454,33 @@
           "Time": "2026-07-31T17:52:00+02:00"
         },
         "Arrival": {
-          "LocationName": "Rümlang Station",
-          "City": "Rümlang",
+          "LocationName": "R\u00fcmlang Station",
+          "City": "R\u00fcmlang",
           "Province": null,
           "CountryCode": "CH",
           "Time": "2026-07-31T19:30:00+02:00"
         },
-        "Route": "via Luzern - Zürich",
+        "Route": "via Luzern - Z\u00fcrich",
         "Price": "CHF 42.00",
-        "Note": "Point-to-point ticket via Luzern/Zürich"
+        "Note": "Point-to-point ticket via Luzern/Z\u00fcrich"
       },
       {
         "SegmentType": "Train",
         "BookingNumber": null,
-        "Operator": "ZVV (Zürich Transport Network)",
+        "Operator": "ZVV (Z\u00fcrich Transport Network)",
         "TrainNumber": null,
         "SeatClass": "2nd Class",
         "Source": "ticket",
         "Departure": {
-          "LocationName": "Zürich, Central",
-          "City": "Zürich",
+          "LocationName": "Z\u00fcrich, Central",
+          "City": "Z\u00fcrich",
           "Province": null,
           "CountryCode": "CH",
           "Time": "2026-08-01T17:42:00+02:00"
         },
         "Arrival": {
-          "LocationName": "Zürich, Kinkelstrasse",
-          "City": "Zürich",
+          "LocationName": "Z\u00fcrich, Kinkelstrasse",
+          "City": "Z\u00fcrich",
           "Province": null,
           "CountryCode": "CH",
           "Time": "2026-08-01T18:00:00+02:00"
@@ -8497,7 +8497,7 @@
         "Source": "email",
         "Departure": {
           "LocationName": "Zurich Airport",
-          "City": "Zürich",
+          "City": "Z\u00fcrich",
           "Province": null,
           "CountryCode": "CH",
           "Code": "ZRH",
@@ -8513,6 +8513,76 @@
         },
         "Note": "First international business class flight! Aeroplan redemption (free with points). Seat 11K.",
         "Price": "FREE (Aeroplan points)"
+      }
+    ]
+  },
+  {
+    "TripId": "freedom-transatlantic-2026",
+    "TripName": "Carnival Freedom: 14-Day Transatlantic",
+    "IsActiveTravel": true,
+    "HomeAtStart": "Concord, NH",
+    "HomeAtEnd": null,
+    "Segments": [
+      {
+        "SegmentType": "Cruise",
+        "BookingNumber": "CM3P05",
+        "CruiseLine": "Carnival",
+        "Ship": "Carnival Freedom",
+        "RoomType": null,
+        "Stateroom": null,
+        "DeparturePort": {
+          "PortName": "Port Canaveral",
+          "City": "Cape Canaveral",
+          "Province": "FL",
+          "CountryCode": "US",
+          "Time": "2026-08-18T17:30:00-04:00"
+        },
+        "ArrivalPort": {
+          "PortName": "Port of Barcelona",
+          "City": "Barcelona",
+          "Province": null,
+          "CountryCode": "ES",
+          "Time": "2026-09-01T06:00:00+02:00"
+        },
+        "PortsOfCall": [
+          {
+            "PortName": "Celebration Key",
+            "City": "Celebration Key",
+            "Province": null,
+            "CountryCode": "BS",
+            "Date": "2026-08-19",
+            "Arrive": "8:00 AM",
+            "Depart": "4:00 PM"
+          },
+          {
+            "PortName": "Tangier",
+            "City": "Tangier",
+            "Province": null,
+            "CountryCode": "MA",
+            "Date": "2026-08-29",
+            "Arrive": "9:00 AM",
+            "Depart": "6:00 PM"
+          },
+          {
+            "PortName": "M\u00e1laga",
+            "City": "M\u00e1laga",
+            "Province": null,
+            "CountryCode": "ES",
+            "Date": "2026-08-30",
+            "Arrive": "7:00 AM",
+            "Depart": "4:00 PM"
+          },
+          {
+            "PortName": "Alicante",
+            "City": "Alicante",
+            "Province": null,
+            "CountryCode": "ES",
+            "Date": "2026-08-31",
+            "Arrive": "8:00 AM",
+            "Depart": "4:00 PM"
+          }
+        ],
+        "Source": "carnival-booking"
       }
     ]
   }
