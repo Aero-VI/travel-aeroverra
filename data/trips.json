@@ -8303,14 +8303,14 @@
         "Class": "2nd Class",
         "Cost": "CHF 7.20",
         "Source": "ticket-photo",
-        "Note": "Local Zurich transit, Zones 110 & 121",
+        "Note": "Local Rümlang transit, Zones 110 & 121 (bought wrong ticket initially)",
         "Departure": {
-          "City": "Zurich",
+          "City": "Rümlang",
           "CountryCode": "CH",
           "Time": "2026-07-31T11:38:00+02:00"
         },
         "Arrival": {
-          "City": "Zurich HB",
+          "City": "Zürich HB",
           "CountryCode": "CH",
           "Time": "2026-07-31T12:38:00+02:00"
         }
