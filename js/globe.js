@@ -90,17 +90,24 @@ function initMap() {
     container: 'globe-container',
     style: {
       version: 8,
-      glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
+      glyphs: 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf',
       sources: {
-        'carto-dark': {
+        'basemap-dark': {
           type: 'raster',
           tiles: [
-            'https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
-            'https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
-            'https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png'
+            'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'
           ],
           tileSize: 256,
-          attribution: '&copy; <a href="https://carto.com">CARTO</a>'
+          maxzoom: 16,
+          attribution: '&copy; <a href="https://www.esri.com">Esri</a>, HERE, Garmin, &copy; OpenStreetMap contributors'
+        },
+        'basemap-labels': {
+          type: 'raster',
+          tiles: [
+            'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}'
+          ],
+          tileSize: 256,
+          maxzoom: 16
         }
       },
       layers: [
@@ -110,9 +117,15 @@ function initMap() {
           paint: { 'background-color': '#0a0e17' }
         },
         {
-          id: 'carto-dark-layer',
+          id: 'basemap-dark-layer',
           type: 'raster',
-          source: 'carto-dark',
+          source: 'basemap-dark',
+          paint: { 'raster-opacity': 0.9 }
+        },
+        {
+          id: 'basemap-labels-layer',
+          type: 'raster',
+          source: 'basemap-labels',
           paint: { 'raster-opacity': 0.85 }
         }
       ]
