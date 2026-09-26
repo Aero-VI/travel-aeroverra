@@ -81,55 +81,79 @@ function createGeoArc(from, to, numPoints) {
   return coords;
 }
 
+// Basemap: CARTO Dark Matter (vector). CARTO only put an API key in front of the
+// *raster* tiles (dark_all etc) - the GL vector style is still key-free, and it is
+// the original look this site shipped with. Resolve the style JSON to an object
+// BEFORE constructing the map: passing a style URL string races isStyleLoaded()
+// in buildMapData() and renders a blank globe.
+var CARTO_STYLE_URL = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
+var FALLBACK_GLYPHS = 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf';
+var __styleCache = null;
+var __resolvingStyle = false;
+
 function initMap() {
   if (map) return;
   var container = document.getElementById('globe-container');
   if (!container) return;
+  if (__styleCache) { __createMap(__styleCache); return; }
+  if (__resolvingStyle) return;
+  __resolvingStyle = true;
+  fetch(CARTO_STYLE_URL)
+    .then(function (r) {
+      if (!r.ok) throw new Error('style ' + r.status);
+      return r.json();
+    })
+    .then(function (s) {
+      if (!s || !s.sources) throw new Error('bad style');
+      s.glyphs = s.glyphs || FALLBACK_GLYPHS;
+      __styleCache = s;
+      __resolvingStyle = false;
+      __createMap(s);
+      if (window.applyMapFilters) window.applyMapFilters();
+    })
+    .catch(function (err) {
+      // CARTO vector went away too - fall back to Esri Dark Gray raster so the
+      // map still renders instead of going blank.
+      console.warn('basemap: CARTO vector unavailable, using Esri fallback', err);
+      __resolvingStyle = false;
+      __styleCache = __esriFallbackStyle();
+      __createMap(__styleCache);
+      if (window.applyMapFilters) window.applyMapFilters();
+    });
+}
 
+function __esriFallbackStyle() {
+  var E = 'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+  return {
+    version: 8,
+    glyphs: FALLBACK_GLYPHS,
+    sources: {
+      'basemap-dark': {
+        type: 'raster',
+        tiles: [E + 'World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'],
+        tileSize: 256,
+        maxzoom: 16,
+        attribution: '&copy; <a href="https://www.esri.com">Esri</a>, HERE, Garmin, &copy; OpenStreetMap contributors'
+      },
+      'basemap-labels': {
+        type: 'raster',
+        tiles: [E + 'World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}'],
+        tileSize: 256,
+        maxzoom: 16
+      }
+    },
+    layers: [
+      { id: 'background', type: 'background', paint: { 'background-color': '#0a0e17' } },
+      { id: 'basemap-dark-layer', type: 'raster', source: 'basemap-dark', paint: { 'raster-opacity': 0.9 } },
+      { id: 'basemap-labels-layer', type: 'raster', source: 'basemap-labels', paint: { 'raster-opacity': 0.85 } }
+    ]
+  };
+}
+
+function __createMap(styleObj) {
   map = new maplibregl.Map({
     container: 'globe-container',
-    style: {
-      version: 8,
-      glyphs: 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf',
-      sources: {
-        'basemap-dark': {
-          type: 'raster',
-          tiles: [
-            'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'
-          ],
-          tileSize: 256,
-          maxzoom: 16,
-          attribution: '&copy; <a href="https://www.esri.com">Esri</a>, HERE, Garmin, &copy; OpenStreetMap contributors'
-        },
-        'basemap-labels': {
-          type: 'raster',
-          tiles: [
-            'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}'
-          ],
-          tileSize: 256,
-          maxzoom: 16
-        }
-      },
-      layers: [
-        {
-          id: 'background',
-          type: 'background',
-          paint: { 'background-color': '#0a0e17' }
-        },
-        {
-          id: 'basemap-dark-layer',
-          type: 'raster',
-          source: 'basemap-dark',
-          paint: { 'raster-opacity': 0.9 }
-        },
-        {
-          id: 'basemap-labels-layer',
-          type: 'raster',
-          source: 'basemap-labels',
-          paint: { 'raster-opacity': 0.85 }
-        }
-      ]
-    },
+    style: styleObj,
     center: [10, 25],
     zoom: 1.8,
     minZoom: 1,
@@ -192,6 +216,7 @@ function buildPopupHtml(icon, title, subtitle, extra) {
 
 function buildMapData(trips, events, filterShip, filterType) {
   if (!map) initMap();
+  if (!map) return new Set();
 
   if (!map.isStyleLoaded()) {
     map.once('load', function() {
