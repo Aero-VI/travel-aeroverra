@@ -7835,6 +7835,61 @@
         "HomeAtEnd": "Myrtle Beach, SC",
         "Segments": [
             {
+                "SegmentType": "Flight",
+                "BookingNumber": "YYCBKK",
+                "Airline": "American Airlines",
+                "FlightNumber": "AA 5176",
+                "OperatedBy": "PSA Airlines as American Eagle",
+                "Source": "email",
+                "Class": "Economy (B)",
+                "Seat": null,
+                "Departure": {
+                    "LocationName": "Myrtle Beach International Airport",
+                    "City": "Myrtle Beach",
+                    "Province": "SC",
+                    "CountryCode": "US",
+                    "Code": "MYR",
+                    "Time": "2026-09-16T06:30:00-04:00"
+                },
+                "Arrival": {
+                    "LocationName": "Charlotte Douglas International Airport",
+                    "City": "Charlotte",
+                    "Province": "NC",
+                    "CountryCode": "US",
+                    "Code": "CLT",
+                    "Time": "2026-09-16T07:39:00-04:00"
+                },
+                "TicketNumber": "0012376816603",
+                "Notes": "Outbound to the Alaska cruise. Checked bag $50.00 (doc 0014210402653)."
+            },
+            {
+                "SegmentType": "Flight",
+                "BookingNumber": "YYCBKK",
+                "Airline": "American Airlines",
+                "FlightNumber": "AA 2407",
+                "Source": "email",
+                "Class": "Economy (B)",
+                "Seat": "26F",
+                "Departure": {
+                    "LocationName": "Charlotte Douglas International Airport",
+                    "City": "Charlotte",
+                    "Province": "NC",
+                    "CountryCode": "US",
+                    "Code": "CLT",
+                    "Time": "2026-09-16T08:36:00-04:00"
+                },
+                "Arrival": {
+                    "LocationName": "Seattle-Tacoma International Airport",
+                    "City": "Seattle",
+                    "Province": "WA",
+                    "CountryCode": "US",
+                    "Code": "SEA",
+                    "Time": "2026-09-16T11:25:00-07:00"
+                },
+                "TicketNumber": "0012376816603",
+                "Notes": "Seat 26F standard window, purchased $22.33 + $1.67 tax (doc 0010656185949). Food for purchase."
+            },
+            {
                 "SegmentType": "Cruise",
                 "BookingNumber": "JP91J2",
                 "CruiseLine": "Carnival",
@@ -7902,8 +7957,63 @@
                 "Source": "email",
                 "CruiseRate": "$1,918.00",
                 "TotalCharges": "$2,618.00"
+            },
+            {
+                "SegmentType": "Flight",
+                "BookingNumber": "GC4KMP",
+                "Airline": "Delta Air Lines",
+                "FlightNumber": "DL 554",
+                "Source": "email",
+                "Class": "Delta Main Classic (U)",
+                "Seat": "27A",
+                "Departure": {
+                    "LocationName": "Seattle-Tacoma International Airport",
+                    "City": "Seattle",
+                    "Province": "WA",
+                    "CountryCode": "US",
+                    "Code": "SEA",
+                    "Time": "2026-09-26T11:35:00-07:00"
+                },
+                "Arrival": {
+                    "LocationName": "Hartsfield-Jackson Atlanta International Airport",
+                    "City": "Atlanta",
+                    "Province": "GA",
+                    "CountryCode": "US",
+                    "Code": "ATL",
+                    "Time": "2026-09-26T19:24:00-04:00"
+                },
+                "TicketNumber": "0062466477414",
+                "Notes": "Flown the same morning the Carnival Miracle docked in Seattle (07:00). Main cabin exit row seat bought day-of for $74.99 (doc 0064160549630)."
+            },
+            {
+                "SegmentType": "Flight",
+                "BookingNumber": "GC4KMP",
+                "Airline": "Delta Air Lines",
+                "FlightNumber": "DL 3074",
+                "Source": "email",
+                "Class": "Delta Main Classic (U)",
+                "Seat": "14F",
+                "Departure": {
+                    "LocationName": "Hartsfield-Jackson Atlanta International Airport",
+                    "City": "Atlanta",
+                    "Province": "GA",
+                    "CountryCode": "US",
+                    "Code": "ATL",
+                    "Time": "2026-09-26T20:30:00-04:00"
+                },
+                "Arrival": {
+                    "LocationName": "Myrtle Beach International Airport",
+                    "City": "Myrtle Beach",
+                    "Province": "SC",
+                    "CountryCode": "US",
+                    "Code": "MYR",
+                    "Time": "2026-09-26T21:41:00-04:00"
+                },
+                "TicketNumber": "0062466477414",
+                "Notes": "Carry-on + both checked bags free on this ticket."
             }
-        ]
+        ],
+        "Notes": "Outbound MYR→CLT→SEA on American (conf YYCBKK, ticket 0012376816603, $610.41 incl. $89.47 taxes/fees, Visa ...5566, issued 13SEP26) plus $74.00 in bag/seat extras. Return flown on Delta (conf GC4KMP, ticket 0062466477414, $367.20, AMEX ...1008, issued 23SEP26) a day earlier than planned, SEA→ATL→MYR on 26 Sep. The original American return (AA 1833 SEA 07:15 → CLT 15:25, AA 2943 CLT 16:19 → MYR 17:25 on 27 Sep) went unused. No Seattle hotel booking found in email for the 16 Sep pre-cruise night."
     },
     {
         "TripId": "transatlantic-journeys-2026",
