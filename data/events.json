@@ -1012,5 +1012,31 @@
     "IsFullDay": false,
     "Notes": "ZVV single ticket Zone 110. CHF 4.70. Vollpreis (full fare).",
     "Source": "ticket"
+  },
+  {
+    "EventId": "EVT-RF26-01",
+    "TripId": "runefest-uk-oct-2026",
+    "EventType": "Convention",
+    "Title": "RuneFest 2026 — Day 1 (Gold ticket)",
+    "City": "Birmingham",
+    "CountryCode": "GB",
+    "StartTime": "2026-10-03T10:30:00+01:00",
+    "EndTime": "2026-10-03T21:00:00+01:00",
+    "IsFullDay": true,
+    "Notes": "NEC Birmingham, Hall 5. Show starts promptly 10:30; queues and accreditation open 08:30 — join the Gold Queue. Event app for stage schedules + IRL Questing; Gold holders get early access to bookable slots (PC LAN, Dragonwilds console area, Meet & Greet, merch store). Pre-ordered merch collection at Toute Suite in the Piazza, 08:00–14:00 Sat (also 15:00–21:00 Fri 2 Oct).",
+    "Source": "email"
+  },
+  {
+    "EventId": "EVT-RF26-02",
+    "TripId": "runefest-uk-oct-2026",
+    "EventType": "Convention",
+    "Title": "RuneFest 2026 — Day 2 (Gold ticket)",
+    "City": "Birmingham",
+    "CountryCode": "GB",
+    "StartTime": "2026-10-04T10:00:00+01:00",
+    "EndTime": "2026-10-04T18:00:00+01:00",
+    "IsFullDay": true,
+    "Notes": "NEC Birmingham, Hall 5. Second day of RuneFest 2026 (Sat 3 – Sun 4 October).",
+    "Source": "email"
   }
 ]

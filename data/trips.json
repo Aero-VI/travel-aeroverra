@@ -8663,5 +8663,97 @@
                 }
             }
         ]
+    },
+    {
+        "TripId": "runefest-uk-oct-2026",
+        "TripName": "RuneFest 2026 — Birmingham, UK",
+        "IsActiveTravel": true,
+        "HomeAtStart": "Myrtle Beach, SC",
+        "HomeAtEnd": null,
+        "Notes": "Delta confirmation H38833, ticket 0062467949939, $675.20 USD (Visa ...5566), issued 27SEP26. One-way MYR→BHX; return not booked yet. SkyMiles #9500837571. Baggage: carry-on + 1st checked bag free.",
+        "Segments": [
+            {
+                "SegmentType": "Flight",
+                "BookingNumber": "H38833",
+                "Airline": "Delta Air Lines",
+                "FlightNumber": "DL 1093",
+                "Source": "email",
+                "Class": "Delta Main Classic (U)",
+                "Seat": "27D",
+                "Departure": {
+                    "LocationName": "Myrtle Beach International Airport",
+                    "City": "Myrtle Beach",
+                    "Province": "SC",
+                    "CountryCode": "US",
+                    "Code": "MYR",
+                    "Gate": "A3",
+                    "Time": "2026-10-01T18:56:00-04:00"
+                },
+                "Arrival": {
+                    "LocationName": "Hartsfield-Jackson Atlanta International Airport",
+                    "City": "Atlanta",
+                    "Province": "GA",
+                    "CountryCode": "US",
+                    "Code": "ATL",
+                    "Time": "2026-10-01T20:19:00-04:00"
+                },
+                "Notes": "Boarding 18:00, Zone 5, TSA PreCheck. Departed early — Fly Delta app showed actual 18:40 → 19:55."
+            },
+            {
+                "SegmentType": "Flight",
+                "BookingNumber": "H38833",
+                "Airline": "Delta Air Lines",
+                "FlightNumber": "DL 9375",
+                "OperatedBy": "KLM Royal Dutch Airlines",
+                "Source": "email",
+                "Class": "Economy (U)",
+                "Seat": "43H",
+                "Departure": {
+                    "LocationName": "Hartsfield-Jackson Atlanta International Airport",
+                    "City": "Atlanta",
+                    "Province": "GA",
+                    "CountryCode": "US",
+                    "Code": "ATL",
+                    "Time": "2026-10-01T22:40:00-04:00"
+                },
+                "Arrival": {
+                    "LocationName": "Amsterdam Airport Schiphol",
+                    "City": "Amsterdam",
+                    "Province": null,
+                    "CountryCode": "NL",
+                    "Code": "AMS",
+                    "Time": "2026-10-02T13:10:00+02:00"
+                },
+                "Notes": "Transatlantic leg, operated by KLM on the Delta codeshare."
+            },
+            {
+                "SegmentType": "Flight",
+                "BookingNumber": "CCZUUW",
+                "Airline": "KLM Royal Dutch Airlines",
+                "FlightNumber": "KL 1051",
+                "Source": "app",
+                "Class": "Economy",
+                "Seat": null,
+                "Departure": {
+                    "LocationName": "Amsterdam Airport Schiphol",
+                    "City": "Amsterdam",
+                    "Province": null,
+                    "CountryCode": "NL",
+                    "Code": "AMS",
+                    "Terminal": "2",
+                    "Gate": "D31",
+                    "Time": "2026-10-02T21:55:00+02:00"
+                },
+                "Arrival": {
+                    "LocationName": "Birmingham Airport",
+                    "City": "Birmingham",
+                    "Province": null,
+                    "CountryCode": "GB",
+                    "Code": "BHX",
+                    "Time": "2026-10-02T22:10:00+01:00"
+                },
+                "Notes": "REBOOKED. Original leg was DL 9194 / KL 1047 AMS 16:35 → BHX 16:50, cancelled by KLM for a technical aircraft issue. KLM auto-rebooked to KL 1037 AMS → Manchester 19:45/20:05 seat 30F; rebooked again back to Birmingham on KL 1051 (Fly Delta app, 1 Oct 19:20). Times are the published KL1051 schedule for 2 Oct 2026 (FlightStats) — no KLM confirmation email for this leg yet."
+            }
+        ]
     }
 ]
