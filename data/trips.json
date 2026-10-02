@@ -8863,6 +8863,24 @@
                     "Time": "2026-10-02T22:10:00+01:00"
                 },
                 "Notes": "REBOOKED. Original leg was DL 9194 / KL 1047 AMS 16:35 → BHX 16:50, cancelled by KLM for a technical aircraft issue. KLM auto-rebooked to KL 1037 AMS → Manchester 19:45/20:05 seat 30F; rebooked again back to Birmingham on KL 1051 (Fly Delta app, 1 Oct 19:20). Times are the published KL1051 schedule for 2 Oct 2026 (FlightStats) — no KLM confirmation email for this leg yet."
+            },
+            {
+                "SegmentType": "Accommodation",
+                "BookingNumber": "B_61082333",
+                "DisplayName": "Holiday Inn Express Birmingham Airport NEC by IHG",
+                "City": "Bickenhill",
+                "Province": "West Midlands",
+                "PostalCode": "B40 1QA",
+                "CountryCode": "GB",
+                "Address1": "Bickenhill Parkway",
+                "Address2": null,
+                "CheckInDate": "2026-10-02",
+                "CheckOutDate": "2026-10-05",
+                "Source": "email",
+                "Price": "$422 USD (prepaid, Amex ...1008)",
+                "BookedVia": "Super.com",
+                "RoomType": "1 Double Accessible, free hot breakfast",
+                "Notes": "3 nights. Non-refundable. Check-in from 15:00, check-out 11:00. Walking distance to the NEC / RuneFest 2026. Self-parking GBP 15/day."
             }
         ]
     }
