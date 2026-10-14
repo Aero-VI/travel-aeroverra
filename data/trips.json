@@ -8881,6 +8881,130 @@
                 "BookedVia": "Super.com",
                 "RoomType": "1 Double Accessible, free hot breakfast",
                 "Notes": "3 nights. Non-refundable. Check-in from 15:00, check-out 11:00. Walking distance to the NEC / RuneFest 2026. Self-parking GBP 15/day."
+            },
+            {
+                "SegmentType": "Accommodation",
+                "BookingNumber": "241289582",
+                "DisplayName": "Travelodge Gloucester",
+                "City": "Gloucester",
+                "Province": "Gloucestershire",
+                "PostalCode": null,
+                "CountryCode": "GB",
+                "Address1": null,
+                "Address2": null,
+                "CheckInDate": "2026-10-06",
+                "CheckOutDate": "2026-10-08",
+                "Source": "email",
+                "Price": "GBP 152.98",
+                "RoomType": "Double room (Lowest Rate)",
+                "BookedVia": "Travelodge.co.uk",
+                "Notes": "2 nights. Check-in 15:00, check-out 12:00."
+            },
+            {
+                "SegmentType": "Accommodation",
+                "BookingNumber": "241904034",
+                "DisplayName": "Travelodge Gloucester",
+                "City": "Gloucester",
+                "Province": "Gloucestershire",
+                "PostalCode": null,
+                "CountryCode": "GB",
+                "Address1": null,
+                "Address2": null,
+                "CheckInDate": "2026-10-08",
+                "CheckOutDate": "2026-10-09",
+                "Source": "email",
+                "Price": "GBP 59.99",
+                "RoomType": "Double room (Lowest Rate)",
+                "BookedVia": "Travelodge.co.uk",
+                "Notes": "1 extra night, booked separately the night before departure."
+            }
+        ]
+    },
+    {
+        "TripId": "spain-ibiza-oct-2026",
+        "TripName": "Spain & Ibiza (Alicante base, Oct 2026)",
+        "IsActiveTravel": true,
+        "HomeAtStart": null,
+        "HomeAtEnd": null,
+        "Notes": "Flew out of the UK after RuneFest. easyJet BRS->ALC booked through Capital One Travel (itinerary H-Z-B1ULL45S6, easyJet ref KDJ58MX), US$207.21 total, $59.21 out of pocket after a $123 Venture X annual travel credit and $25 in other travel credits. Ryanair ALC<->IBZ weekend (ref G1J1TS, USD 101.73 on Amex ...1008) booked for 3 passengers: Nicholas, Maria Lozano Galvan, Sharon Chiu. NOTE: the IBZ->ALC return lands 18 Oct, one day AFTER the Carnival Freedom transatlantic (QN82J3) sails from Barcelona on 17 Oct; Carnival Guest Admin declined an Alicante/Malaga embarkation on 13 Oct 2026.",
+        "Segments": [
+            {
+                "SegmentType": "Flight",
+                "BookingNumber": "KDJ58MX",
+                "Airline": "easyJet",
+                "FlightNumber": "U2 5528",
+                "Source": "email",
+                "Class": "Inclusive Plus",
+                "Seat": null,
+                "Departure": {
+                    "LocationName": "Bristol Airport",
+                    "City": "Bristol",
+                    "Province": null,
+                    "CountryCode": "GB",
+                    "Code": "BRS",
+                    "Time": "2026-10-09T13:15:00+01:00"
+                },
+                "Arrival": {
+                    "LocationName": "Alicante-Elche Miguel Hernandez Airport",
+                    "City": "Alicante",
+                    "Province": "VC",
+                    "CountryCode": "ES",
+                    "Code": "ALC",
+                    "Time": "2026-10-09T16:45:00+02:00"
+                },
+                "Notes": "Operating flight EJU5528. Bag drop opened 10:15. 2h30m nonstop. Booked via Capital One Travel (H-Z-B1ULL45S6); easyJet charged GBP 155.99."
+            },
+            {
+                "SegmentType": "Flight",
+                "BookingNumber": "G1J1TS",
+                "Airline": "Ryanair",
+                "FlightNumber": "FR 6616",
+                "Source": "email",
+                "Class": "Economy",
+                "Seat": null,
+                "Departure": {
+                    "LocationName": "Alicante-Elche Miguel Hernandez Airport",
+                    "City": "Alicante",
+                    "Province": "VC",
+                    "CountryCode": "ES",
+                    "Code": "ALC",
+                    "Time": "2026-10-17T06:15:00+02:00"
+                },
+                "Arrival": {
+                    "LocationName": "Ibiza Airport",
+                    "City": "Ibiza",
+                    "Province": "IB",
+                    "CountryCode": "ES",
+                    "Code": "IBZ",
+                    "Time": "2026-10-17T07:00:00+02:00"
+                },
+                "Notes": "Domestic Spain. 3 passengers: Nicholas Halka, Maria Lozano Galvan, Sharon Chiu. USD 101.73 total for the round trip, Amex ...1008."
+            },
+            {
+                "SegmentType": "Flight",
+                "BookingNumber": "G1J1TS",
+                "Airline": "Ryanair",
+                "FlightNumber": "FR 6617",
+                "Source": "email",
+                "Class": "Economy",
+                "Seat": null,
+                "Departure": {
+                    "LocationName": "Ibiza Airport",
+                    "City": "Ibiza",
+                    "Province": "IB",
+                    "CountryCode": "ES",
+                    "Code": "IBZ",
+                    "Time": "2026-10-18T07:10:00+02:00"
+                },
+                "Arrival": {
+                    "LocationName": "Alicante-Elche Miguel Hernandez Airport",
+                    "City": "Alicante",
+                    "Province": "VC",
+                    "CountryCode": "ES",
+                    "Code": "ALC",
+                    "Time": "2026-10-18T08:00:00+02:00"
+                },
+                "Notes": "Domestic Spain, return leg of G1J1TS."
             }
         ]
     }
