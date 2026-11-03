@@ -962,6 +962,19 @@
     "Source": "email"
   },
   {
+    "EventId": "EVT-MLT-01",
+    "TripId": "malta-june-2026",
+    "EventType": "Flight",
+    "Title": "Flight to Malta (BA2614)",
+    "City": "Malta",
+    "CountryCode": "MT",
+    "StartTime": "2026-06-27T08:40:00+01:00",
+    "EndTime": "2026-06-27T13:00:00+02:00",
+    "IsFullDay": false,
+    "Notes": "British Airways BA2614 (operated by BA Euroflyer), London Gatwick to Malta. Economy Plus. Nonstop 3h 20m. Capital One Travel ref: H-Z-D14ZUGGOB.",
+    "Source": "email"
+  },
+  {
     "EventId": "EVT-OBB-VIE-SBG-2026",
     "TripId": "vienna-salzburg-2026",
     "EventType": "Train",

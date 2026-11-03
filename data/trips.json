@@ -6858,6 +6858,30 @@
     "Source": "email"
    },
    {
+    "SegmentType": "Flight",
+    "BookingNumber": "CBL85M",
+    "Airline": "Hawaiian Airlines",
+    "Departure": {
+     "LocationName": "Tokyo Haneda Airport",
+     "City": "Tokyo",
+     "Province": null,
+     "CountryCode": "JP",
+     "Code": "HND",
+     "Time": "2026-02-22T20:05:00+09:00"
+    },
+    "Arrival": {
+     "LocationName": "Daniel K. Inouye International Airport",
+     "City": "Honolulu",
+     "Province": "HI",
+     "CountryCode": "US",
+     "Code": "HNL",
+     "Time": "2026-02-22T08:15:00-10:00"
+    },
+    "Source": "email",
+    "FlightNumber": "HA 864",
+    "Note": "Operated by Alaska Airlines, A330-200. Amex Travel trip 7399-4090."
+   },
+   {
     "SegmentType": "Accommodation",
     "BookingNumber": "1701217069",
     "DisplayName": "Shoreline Hotel Waikiki",
@@ -7050,28 +7074,6 @@
     "CheckInDate": "2026-03-26",
     "CheckOutDate": "2026-03-30",
     "Source": "email"
-   },
-   {
-    "SegmentType": "Train",
-    "BookingNumber": null,
-    "Operator": "JR Central (Tokaido Shinkansen)",
-    "TrainNumber": "Nozomi (estimated)",
-    "SeatClass": null,
-    "Source": "maps",
-    "Departure": {
-     "LocationName": "Tokyo Station",
-     "City": "Tokyo",
-     "Province": null,
-     "CountryCode": "JP",
-     "Time": "2026-03-26T12:49:00+09:00"
-    },
-    "Arrival": {
-     "LocationName": "Nagoya Station",
-     "City": "Nagoya",
-     "Province": "Aichi",
-     "CountryCode": "JP",
-     "Time": "2026-03-26T14:24:00+09:00"
-    }
    },
    {
     "SegmentType": "Train",
@@ -8030,11 +8032,11 @@
     "RoomType": null,
     "Stateroom": null,
     "DeparturePort": {
-     "PortName": "Port of Barcelona",
-     "City": "Barcelona",
-     "Province": "CT",
+     "PortName": "Alicante",
+     "City": "Alicante",
+     "Province": "VC",
      "CountryCode": "ES",
-     "Time": "2026-10-17T17:00:00+02:00"
+     "Time": "2026-10-18T16:00:00+02:00"
     },
     "ArrivalPort": {
      "PortName": "Port Canaveral",
@@ -8044,13 +8046,6 @@
      "Time": "2026-10-30T08:00:00-04:00"
     },
     "PortsOfCall": [
-     {
-      "PortName": "Alicante",
-      "City": "Alicante",
-      "Province": "VC",
-      "CountryCode": "ES",
-      "Date": "2026-10-18"
-     },
      {
       "PortName": "Malaga",
       "City": "Malaga",
@@ -8075,7 +8070,8 @@
     ],
     "Source": "email",
     "CruiseRate": "$948.00",
-    "TotalCharges": "$1,308.00"
+    "TotalCharges": "$1,308.00",
+    "Note": "Booked from Barcelona (Oct 17); joined the ship at Alicante on Oct 18 with Carnival approval (incident 261013-003886)."
    },
    {
     "SegmentType": "Flight",
@@ -8380,7 +8376,7 @@
     "SegmentType": "Flight",
     "BookingNumber": "IHYGVU",
     "Airline": "Air Serbia",
-    "FlightNumber": "JU 132",
+    "FlightNumber": "JU 144",
     "Source": "email",
     "Departure": {
      "LocationName": "Nikola Tesla Airport",
@@ -8388,7 +8384,7 @@
      "Province": null,
      "CountryCode": "RS",
      "Code": "BEG",
-     "Time": null
+     "Time": "2026-07-19T17:05:00+02:00"
     },
     "Arrival": {
      "LocationName": "Budapest Ferenc Liszt International Airport",
@@ -8396,10 +8392,10 @@
      "Province": null,
      "CountryCode": "HU",
      "Code": "BUD",
-     "Time": null
+     "Time": "2026-07-19T18:15:00+02:00"
     },
     "CapitalOneTravelRef": "H-KQPRRR",
-    "Note": "Connecting flight leg 2: BEG->BUD. Exact times not extracted."
+    "Note": "Connecting flight leg 2: BEG->BUD (40 min connection)."
    },
    {
     "SegmentType": "Flight",
@@ -8457,90 +8453,6 @@
      "Code": "ZRH",
      "Terminal": null,
      "Time": "2026-07-27T14:55:00+02:00"
-    }
-   },
-   {
-    "SegmentType": "Train",
-    "Operator": "ZVV (Zurich Transport Network)",
-    "Class": "2nd Class",
-    "Cost": "CHF 7.20",
-    "Source": "ticket-photo",
-    "Note": "Local Rümlang transit, Zones 110 & 121 (bought wrong ticket initially)",
-    "Departure": {
-     "City": "Rümlang",
-     "CountryCode": "CH",
-     "Time": "2026-07-31T11:38:00+02:00"
-    },
-    "Arrival": {
-     "City": "Zürich HB",
-     "CountryCode": "CH",
-     "Time": "2026-07-31T12:38:00+02:00"
-    }
-   },
-   {
-    "SegmentType": "Train",
-    "Operator": "SBB (Swiss Federal Railways)",
-    "Class": "2nd Class",
-    "Cost": "CHF 40.00",
-    "Source": "ticket-photo",
-    "Note": "Day trip to Engelberg / Mount Titlis (summit closed due to thunderstorms)",
-    "Departure": {
-     "LocationName": "Zurich HB",
-     "City": "Zurich",
-     "CountryCode": "CH",
-     "Time": "2026-07-31T12:00:00+02:00"
-    },
-    "Arrival": {
-     "LocationName": "Engelberg Station",
-     "City": "Engelberg",
-     "CountryCode": "CH",
-     "Time": null
-    }
-   },
-   {
-    "SegmentType": "Train",
-    "Operator": "Zentralbahn (ZB)",
-    "Class": "2nd Class",
-    "Cost": "CHF 42.00",
-    "Source": "ticket-photo",
-    "Note": "Return from Engelberg via Luzern to Rümlang (near Zurich)",
-    "Departure": {
-     "LocationName": "Engelberg Station",
-     "City": "Engelberg",
-     "CountryCode": "CH",
-     "Time": "2026-07-31T17:52:00+02:00"
-    },
-    "Arrival": {
-     "LocationName": "Rümlang Station",
-     "City": "Rümlang",
-     "CountryCode": "CH",
-     "Time": null
-    }
-   },
-   {
-    "SegmentType": "Flight",
-    "BookingNumber": "CMZNNB",
-    "Airline": "Swiss International Air Lines",
-    "FlightNumber": "LX 52",
-    "SeatClass": "Business Class",
-    "SeatNumber": "11K",
-    "Source": "email",
-    "Note": "First international business class flight! Redeemed via Air Canada Aeroplan points (free!)",
-    "Departure": {
-     "LocationName": "Zurich Airport",
-     "City": "Zurich",
-     "Province": null,
-     "CountryCode": "CH",
-     "Code": "ZRH",
-     "Time": "2026-08-02T17:35:00+02:00"
-    },
-    "Arrival": {
-     "LocationName": "Logan International Airport",
-     "City": "Boston",
-     "Province": "MA",
-     "CountryCode": "US",
-     "Code": "BOS",
-     "Time": "2026-08-02T19:55:00-04:00"
     }
    }
   ]
