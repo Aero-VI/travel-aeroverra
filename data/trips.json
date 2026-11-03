@@ -8978,7 +8978,7 @@
   "IsActiveTravel": true,
   "HomeAtStart": "Myrtle Beach, SC",
   "HomeAtEnd": null,
-  "Notes": "AA confirmation DRWFMT, ticket 0012388111771, $867.00 total ($534.00 fare + $333.00 taxes). AAdvantage #8RY****. 2 checked bags free. SIXT rental car at Barcelona Airport T1: Audi Q3, plate 5570NMD, booking 9740953294 / rental agreement 9616101108, pickup Nov 1 09:27 (T1, Row 1 spot 4), one-way return Nov 3 05:00 at BCN Terminal 2, €245.21 total, €500 deposit. Onward: UK, then Zimbabwe Nov 16.",
+  "Notes": "AA confirmation DRWFMT, ticket 0012388111771, $867.00 total ($534.00 fare + $333.00 taxes). AAdvantage #8RY****. 2 checked bags free. SIXT rental car at Barcelona Airport T1: Audi Q3, plate 5570NMD, booking 9740953294 / rental agreement 9616101108, pickup Nov 1 09:27 (T1, Row 1 spot 4), one-way to BCN Terminal 2 (booked return Nov 3 05:00), used with Michael for the drive to Benidorm. Michael drove it back; SIXT logged the key return at Barcelona Airport T2 on Nov 3 at 06:08. Final SIXT invoice 1066020001637965: €347.26 (rental agreement quote was €245.21), €500 deposit. Onward: UK, then Zimbabwe Nov 16.",
   "Segments": [
    {
     "SegmentType": "Flight",
@@ -9031,6 +9031,40 @@
      "Time": "2026-11-01T09:10:00+01:00"
     },
     "Notes": "Overnight transatlantic. Dinner + breakfast served. Panasonic in-flight Wi-Fi purchased."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": null,
+    "DisplayName": "Apartamentos Maryciel by MC",
+    "City": "Benidorm",
+    "Province": "Alicante",
+    "PostalCode": null,
+    "CountryCode": "ES",
+    "Address1": null,
+    "Address2": null,
+    "CheckInDate": "2026-11-01",
+    "CheckOutDate": "2026-11-03",
+    "Source": "manual",
+    "Notes": "Michael booked and paid, so no confirmation or price in Nicholas's email. Drove down from Barcelona Airport in the SIXT rental (agreement 9616101108); Michael drove the car back to BCN Terminal 2 early Nov 3 while Nicholas moved to the Sant Joan d'Alacant Airbnb."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "HM8F3AEDKN",
+    "DisplayName": "Luxury Mini Loft in the Center (Airbnb)",
+    "City": "Sant Joan d'Alacant",
+    "Province": "Alicante",
+    "PostalCode": "03550",
+    "CountryCode": "ES",
+    "Address1": "C/ Major, 27",
+    "Address2": null,
+    "CheckInDate": "2026-11-03",
+    "CheckOutDate": "2026-11-06",
+    "Source": "email",
+    "Price": "€176.60 (3 nights × €58.87)",
+    "BookedVia": "Airbnb",
+    "PaymentMethod": "Mastercard 7736",
+    "RoomType": "Entire guesthouse, 1 adult",
+    "Notes": "Host Macarena (Casablanca Suites). Booked Nov 2, 2026 22:16 EST. Check-in after 15:00 (host allowed early check-in), checkout by 12:00."
    }
   ]
  }
