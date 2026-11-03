@@ -6721,17 +6721,18 @@
    },
    {
     "SegmentType": "Accommodation",
-    "BookingNumber": null,
+    "BookingNumber": "B_23920069",
     "DisplayName": "Mercure Sunshine Coast Kawana Waters",
     "City": "Birtinya",
     "Province": "QLD",
     "PostalCode": null,
     "CountryCode": "AU",
-    "Address1": null,
+    "Address1": "9 Florey Boulevard",
     "Address2": null,
     "CheckInDate": "2026-02-01",
     "CheckOutDate": "2026-02-03",
-    "Source": "email"
+    "Source": "email",
+    "Notes": "Drove up in a Europcar RAV4 Hybrid (Capital One booking H-1198819225, contract 6512240036, $122.08): picked up at Brisbane Airport Feb 1 22:00, returned there Feb 3 12:00, then Uber to the cruise terminal (12:16-12:34, A$35.88)."
    },
    {
     "SegmentType": "Cruise",
@@ -6802,7 +6803,7 @@
    },
    {
     "SegmentType": "Accommodation",
-    "BookingNumber": null,
+    "BookingNumber": "324036-575450909",
     "DisplayName": "Dream Lodge Farrer Park",
     "City": "Singapore",
     "Province": null,
@@ -6812,7 +6813,9 @@
     "Address2": null,
     "CheckInDate": "2026-02-18",
     "CheckOutDate": "2026-02-22",
-    "Source": "email"
+    "Source": "email",
+    "Price": "SGD 174.44",
+    "BookedVia": "Hostelworld"
    },
    {
     "SegmentType": "Bus",
@@ -7223,8 +7226,8 @@
     "CountryCode": "JP",
     "Address1": null,
     "Address2": null,
-    "CheckInDate": "2026-04-04",
-    "CheckOutDate": "2026-04-05",
+    "CheckInDate": "2026-04-05",
+    "CheckOutDate": "2026-04-06",
     "Source": "email"
    },
    {
@@ -7283,7 +7286,8 @@
     "Address2": null,
     "CheckInDate": "2026-04-09",
     "CheckOutDate": "2026-04-10",
-    "Source": "manual"
+    "Source": "manual",
+    "Notes": "Got around Akita prefecture (Noshiro, Semboku) in a Toyota Rent a Car from Akita Station Shop, reservation 99954689000: out Apr 9 17:30, back Apr 20 16:26, ¥133,184."
    },
    {
     "SegmentType": "Accommodation",
@@ -7389,7 +7393,8 @@
     "Address2": null,
     "CheckInDate": "2026-04-26",
     "CheckOutDate": "2026-05-01",
-    "Source": "email"
+    "Source": "email",
+    "Notes": "Booked from Apr 26 but arrived Apr 27: told the hotel his arrival was delayed; Tokyo DisneySea on Apr 26 (reservation A00565953568)."
    },
    {
     "SegmentType": "Train",
@@ -7824,8 +7829,9 @@
     "CountryCode": "HU",
     "CheckIn": "2026-07-19",
     "Notes": "A Leading Hotel of the World. Booked via AMEX.",
-    "BookingNumber": "AMEX",
-    "BookedVia": "American Express Travel"
+    "BookingNumber": "9102391931345",
+    "BookedVia": "American Express Travel",
+    "CheckOut": "2026-07-21T12:00:00+02:00"
    }
   ]
  },
@@ -8097,7 +8103,7 @@
      "Code": "ATL",
      "Time": "2026-10-30T16:05:00-04:00"
     },
-    "Notes": "Disembarked Carnival Freedom at Port Canaveral 08:00, Uber to MLB. SkyMiles #9500837571."
+    "Notes": "Disembarked Carnival Freedom at Port Canaveral 08:00, Uber to MLB. SkyMiles #9500837571. To the airport by Uber: Port Canaveral 10:28, via Astronaut Blvd and West Melbourne, at MLB 13:09."
    },
    {
     "SegmentType": "Flight",
@@ -8211,7 +8217,7 @@
    },
    {
     "SegmentType": "Flight",
-    "BookingNumber": null,
+    "BookingNumber": "EIRJLI",
     "Airline": "KM Malta Airlines",
     "FlightNumber": "KM 514",
     "Source": "email",
@@ -8230,7 +8236,8 @@
      "CountryCode": "AT",
      "Code": "VIE",
      "Time": "2026-07-09T11:35:00+02:00"
-    }
+    },
+    "Notes": "Booked via Booking.com flights (customer ref 40-1030379267), €138.96."
    }
   ]
  },
@@ -8241,6 +8248,21 @@
   "HomeAtStart": "Myrtle Beach, SC",
   "HomeAtEnd": "Myrtle Beach, SC",
   "Segments": [
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "2LXSRCKN",
+    "DisplayName": "Prize by Radisson, Vienna City",
+    "City": "Vienna",
+    "Province": null,
+    "PostalCode": "1100",
+    "CountryCode": "AT",
+    "Address1": "Karl-Popper-Straße 7",
+    "Address2": null,
+    "CheckInDate": "2026-07-09",
+    "CheckOutDate": "2026-07-11",
+    "Source": "email",
+    "Price": "€153.00"
+   },
    {
     "SegmentType": "Train",
     "BookingNumber": "4731591852223457",
@@ -8295,13 +8317,14 @@
     "CheckInDate": "2026-07-13",
     "CheckOutDate": "2026-07-14",
     "Source": "email",
-    "BookedVia": "Super.com"
+    "BookedVia": "Super.com",
+    "Notes": "Jul 13: Uber from Hotel Himmelreich 10:20 into Salzburg 10:32, then on to Vienna (no train ticket in email)."
    },
    {
     "SegmentType": "Flight",
-    "BookingNumber": null,
+    "BookingNumber": "JMSEFL",
     "Airline": "KM Malta Airlines",
-    "FlightNumber": null,
+    "FlightNumber": "KM 515",
     "Source": "email",
     "Departure": {
      "LocationName": "Vienna International Airport",
@@ -8309,7 +8332,8 @@
      "Province": null,
      "CountryCode": "AT",
      "Code": "VIE",
-     "Time": "2026-07-14T00:00:00+02:00"
+     "Time": "2026-07-14T12:25:00+02:00",
+     "Terminal": "1"
     },
     "Arrival": {
      "LocationName": "Malta International Airport",
@@ -8317,9 +8341,10 @@
      "Province": null,
      "CountryCode": "MT",
      "Code": "MLA",
-     "Time": "2026-07-14T00:00:00+02:00"
+     "Time": "2026-07-14T14:45:00+02:00"
     },
-    "Note": "Exact times not found in email"
+    "OperatedBy": "Avion Express Lithuania",
+    "TicketNumber": "6432166294990"
    },
    {
     "SegmentType": "Accommodation",
@@ -8398,6 +8423,23 @@
     "Note": "Connecting flight leg 2: BEG->BUD (40 min connection)."
    },
    {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "9102391931345",
+    "DisplayName": "Anantara New York Palace Budapest",
+    "City": "Budapest",
+    "Province": null,
+    "PostalCode": null,
+    "CountryCode": "HU",
+    "Address1": null,
+    "Address2": null,
+    "CheckInDate": "2026-07-19",
+    "CheckOutDate": "2026-07-21",
+    "Source": "email",
+    "Price": "$665.80 (2 nights)",
+    "BookedVia": "American Express Travel",
+    "Notes": "Amex trip ZO-AX1068-27572. Room 357."
+   },
+   {
     "SegmentType": "Flight",
     "BookingNumber": "CYJBT7",
     "TicketNumber": "0142332878448",
@@ -8464,6 +8506,39 @@
   "HomeAtStart": "Myrtle Beach, SC",
   "HomeAtEnd": "Myrtle Beach, SC",
   "Segments": [
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "dl8znp9g",
+    "DisplayName": "IntercityHotel Zürich Airport",
+    "City": "Rümlang",
+    "Province": null,
+    "PostalCode": "8153",
+    "CountryCode": "CH",
+    "Address1": "Flughofstrasse 63",
+    "Address2": null,
+    "CheckInDate": "2026-07-27",
+    "CheckOutDate": "2026-07-30",
+    "Source": "email",
+    "Price": "€714.93 for both bookings, 6 nights (€669.82 prepaid + €45.11 city tax at the hotel)",
+    "BookedVia": "Vio",
+    "Notes": "First of two back-to-back bookings (second: 218-3858205)."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "218-3858205",
+    "DisplayName": "IntercityHotel Zürich Airport",
+    "City": "Rümlang",
+    "Province": null,
+    "PostalCode": "8153",
+    "CountryCode": "CH",
+    "Address1": "Flughofstrasse 63",
+    "Address2": null,
+    "CheckInDate": "2026-07-30",
+    "CheckOutDate": "2026-08-02",
+    "Source": "email",
+    "BookedVia": "Vio",
+    "Notes": "Second of two back-to-back bookings (first: dl8znp9g)."
+   },
    {
     "SegmentType": "Train",
     "BookingNumber": null,
@@ -8586,7 +8661,55 @@
      "Time": "2026-08-02T19:55:00-04:00"
     },
     "Note": "First international business class flight! Aeroplan redemption (free with points). Seat 11K.",
-    "Price": "FREE (Aeroplan points)"
+    "Price": "FREE (Aeroplan points)",
+    "Notes": "Night of Aug 2 in Quincy, MA (Uber from Logan to 225 Hancock St, Quincy, 20:36-20:57, $42.08); back to Logan by Uber at 06:18 on Aug 3."
+   },
+   {
+    "SegmentType": "Flight",
+    "BookingNumber": "UPNXJQ",
+    "Airline": "American Airlines",
+    "FlightNumber": "AA 2715",
+    "Source": "email",
+    "Departure": {
+     "LocationName": "Boston Logan International Airport",
+     "City": "Boston",
+     "Province": "MA",
+     "CountryCode": "US",
+     "Code": "BOS",
+     "Time": "2026-08-03T08:05:00-04:00"
+    },
+    "Arrival": {
+     "LocationName": "Charlotte Douglas International Airport",
+     "City": "Charlotte",
+     "Province": "NC",
+     "CountryCode": "US",
+     "Code": "CLT",
+     "Time": "2026-08-03T10:30:00-04:00"
+    },
+    "Notes": "Award ticket: 25,000 AAdvantage miles + $50.60."
+   },
+   {
+    "SegmentType": "Flight",
+    "BookingNumber": "UPNXJQ",
+    "Airline": "American Airlines",
+    "FlightNumber": "AA 5315",
+    "Source": "email",
+    "Departure": {
+     "LocationName": "Charlotte Douglas International Airport",
+     "City": "Charlotte",
+     "Province": "NC",
+     "CountryCode": "US",
+     "Code": "CLT",
+     "Time": "2026-08-03T11:20:00-04:00"
+    },
+    "Arrival": {
+     "LocationName": "Myrtle Beach International Airport",
+     "City": "Myrtle Beach",
+     "Province": "SC",
+     "CountryCode": "US",
+     "Code": "MYR",
+     "Time": "2026-08-03T12:29:00-04:00"
+    }
    }
   ]
  },
@@ -8597,6 +8720,46 @@
   "HomeAtStart": "Concord, NH",
   "HomeAtEnd": "Myrtle Beach, SC",
   "Segments": [
+   {
+    "SegmentType": "Flight",
+    "BookingNumber": "I5ITMP",
+    "Airline": "Breeze Airways",
+    "FlightNumber": "MX 823",
+    "Source": "email",
+    "Departure": {
+     "LocationName": "Myrtle Beach International Airport",
+     "City": "Myrtle Beach",
+     "Province": "SC",
+     "CountryCode": "US",
+     "Code": "MYR",
+     "Time": "2026-08-17T13:13:00-04:00"
+    },
+    "Arrival": {
+     "LocationName": "Orlando International Airport",
+     "City": "Orlando",
+     "Province": "FL",
+     "CountryCode": "US",
+     "Code": "MCO",
+     "Time": "2026-08-17T14:53:00-04:00"
+    },
+    "Notes": "$208.00 total (Amex x1008). Uber MCO Terminal B 15:15 to the hotel, 15:57, $64.97."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "B_58342743",
+    "DisplayName": "Residence Inn by Marriott Cape Canaveral Cocoa Beach",
+    "City": "Cape Canaveral",
+    "Province": "FL",
+    "PostalCode": null,
+    "CountryCode": "US",
+    "Address1": "8959 Astronaut Blvd",
+    "Address2": null,
+    "CheckInDate": "2026-08-17",
+    "CheckOutDate": "2026-08-18",
+    "Source": "email",
+    "BookedVia": "Super.com",
+    "Notes": "1 night before boarding. Uber to Port Canaveral Aug 18 14:27, $17.95."
+   },
    {
     "SegmentType": "Cruise",
     "BookingNumber": "CM3P05",
@@ -8862,7 +9025,7 @@
     "Price": "GBP 152.98",
     "RoomType": "Double room (Lowest Rate)",
     "BookedVia": "Travelodge.co.uk",
-    "Notes": "2 nights. Check-in 15:00, check-out 12:00."
+    "Notes": "2 nights. Check-in 15:00, check-out 12:00. Got there by Uber on Oct 6: Bickenhill Parkway, Birmingham 12:12 to Gloucester Quays 13:24, 63.98 mi, £86.11."
    },
    {
     "SegmentType": "Accommodation",
@@ -8916,7 +9079,23 @@
      "Code": "ALC",
      "Time": "2026-10-09T16:45:00+02:00"
     },
-    "Notes": "Operating flight EJU5528. Bag drop opened 10:15. 2h30m nonstop. Booked via Capital One Travel (H-Z-B1ULL45S6); easyJet charged GBP 155.99."
+    "Notes": "Operating flight EJU5528. Bag drop opened 10:15. 2h30m nonstop. Booked via Capital One Travel (H-Z-B1ULL45S6); easyJet charged GBP 155.99. Uber Gloucester Quays 10:23 to Bristol Airport 11:30, 44.34 mi, £72.34."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "B_61855670",
+    "DisplayName": "Hotel Villa San Juan",
+    "City": "Sant Joan d'Alacant",
+    "Province": "Alicante",
+    "PostalCode": null,
+    "CountryCode": "ES",
+    "Address1": "6 Plaza De La Constitucion",
+    "Address2": null,
+    "CheckInDate": "2026-10-15",
+    "CheckOutDate": "2026-10-17",
+    "Source": "email",
+    "BookedVia": "Super.com",
+    "Notes": "2 nights. Came from Torrevieja by Uber on Oct 15 (Avinguda Sol Naixent 4 15:54 to Alicante 16:51, €63.93)."
    },
    {
     "SegmentType": "Flight",
