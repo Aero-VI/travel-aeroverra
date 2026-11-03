@@ -8077,7 +8077,8 @@
     "Source": "email",
     "CruiseRate": "$948.00",
     "TotalCharges": "$1,308.00",
-    "Note": "Booked from Barcelona (Oct 17); joined the ship at Alicante on Oct 18 with Carnival approval (incident 261013-003886)."
+    "Note": "Booked from Barcelona (Oct 17); joined the ship at Alicante on Oct 18 with Carnival approval (incident 261013-003886).",
+    "Notes": "Uber to the ship Oct 18: Carrer Benimagrell 74, Sant Joan d'Alacant 09:31 to Puerto de Alicante, Muelle 14, 09:48, €16.93."
    },
    {
     "SegmentType": "Flight",
@@ -8286,7 +8287,8 @@
     },
     "Route": "via Neulengbach/Tullnerfeld, St. Pölten, Pöchlarn, Wels, Attnang-Puchheim, Linz",
     "Price": "€143.40 + €13.04 VAT (10%)",
-    "TotalPrice": "€156.44"
+    "TotalPrice": "€156.44",
+    "Notes": "Train times not in email; Uber from Salzburg 16:01 to Hotel Himmelreich 16:17."
    },
    {
     "SegmentType": "Accommodation",
@@ -8438,6 +8440,41 @@
     "Price": "$665.80 (2 nights)",
     "BookedVia": "American Express Travel",
     "Notes": "Amex trip ZO-AX1068-27572. Room 357."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "B_56843921",
+    "DisplayName": "Eurostars Palazzo Zichy",
+    "City": "Budapest",
+    "Province": null,
+    "PostalCode": null,
+    "CountryCode": "HU",
+    "Address1": null,
+    "Address2": null,
+    "CheckInDate": "2026-07-21",
+    "CheckOutDate": "2026-07-26",
+    "Source": "email",
+    "BookedVia": "Super.com",
+    "RoomType": "Room 204",
+    "Notes": "5 nights (hotel reservation 0035447178). City tax €28.49 paid at the hotel, Amex 1008."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "0035520520",
+    "DisplayName": "Eurostars Palazzo Zichy (extension)",
+    "City": "Budapest",
+    "Province": null,
+    "PostalCode": null,
+    "CountryCode": "HU",
+    "Address1": null,
+    "Address2": null,
+    "CheckInDate": "2026-07-26",
+    "CheckOutDate": "2026-07-27",
+    "Source": "email",
+    "Price": "€170.25 (HUF 61,609)",
+    "PaymentMethod": "Visa 3763",
+    "RoomType": "Room 115",
+    "Notes": "One-night extension the hotel offered on Jul 24, booked direct (invoice ZY6O011956)."
    },
    {
     "SegmentType": "Flight",
@@ -8822,6 +8859,22 @@
     "Source": "carnival-booking"
    },
    {
+    "SegmentType": "Accommodation",
+    "BookingNumber": null,
+    "DisplayName": "Airbnb on Carrer de Sepúlveda (booked by Michael)",
+    "City": "Barcelona",
+    "Province": "CT",
+    "PostalCode": "08015",
+    "CountryCode": "ES",
+    "Address1": "Carrer de Sepúlveda 127",
+    "Address2": null,
+    "CheckInDate": "2026-09-01",
+    "CheckOutDate": "2026-09-04",
+    "Source": "email",
+    "Price": "$215.00 paid back to Michael McDonnell by Zelle (memo \"Hotel\")",
+    "Notes": "Michael booked it, so no Airbnb email. Place confirmed by food deliveries (Sep 1 and Sep 3) and Ubers from Sepúlveda 127 (Sep 2, and Sep 4 11:18 to BCN T1)."
+   },
+   {
     "SegmentType": "Flight",
     "BookingNumber": "WONBKP",
     "Airline": "American Airlines",
@@ -9147,7 +9200,7 @@
      "Code": "ALC",
      "Time": "2026-10-18T08:00:00+02:00"
     },
-    "Notes": "Domestic Spain, return leg of G1J1TS."
+    "Notes": "Domestic Spain, return leg of G1J1TS. No bed booked for the night of Oct 17: Uber from Carrer de Salvador Espriu 3, Sant Antoni de Portmany 04:32 to Ibiza airport 04:57, €82.95. Same booking: María Lozano Galván and Sharon Chiu."
    }
   ]
  },
