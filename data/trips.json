@@ -7898,6 +7898,21 @@
     "Notes": "Seat 26F standard window, purchased $22.33 + $1.67 tax (doc 0010656185949). Food for purchase."
    },
    {
+    "SegmentType": "Accommodation",
+    "BookingNumber": null,
+    "DisplayName": "The Paramount Hotel",
+    "City": "Seattle",
+    "Province": "WA",
+    "PostalCode": "98101",
+    "CountryCode": "US",
+    "Address1": "724 Pine St",
+    "Address2": null,
+    "CheckInDate": "2026-09-16",
+    "CheckOutDate": "2026-09-17",
+    "Source": "manual",
+    "Notes": "Confirmed by Nicholas; no booking email. UberXL from SeaTac 11:45 to the hotel 12:09, $81.99."
+   },
+   {
     "SegmentType": "Cruise",
     "BookingNumber": "JP91J2",
     "CruiseLine": "Carnival",
@@ -8217,6 +8232,53 @@
     "PaymentMethod": "Visa *3763"
    },
    {
+    "SegmentType": "Accommodation",
+    "BookingNumber": null,
+    "DisplayName": "Vivaldi Malta (extension)",
+    "City": "St. Julian's",
+    "Province": null,
+    "PostalCode": null,
+    "CountryCode": "MT",
+    "Address1": "Dragonara Road, 46",
+    "Address2": null,
+    "CheckInDate": "2026-07-04",
+    "CheckOutDate": "2026-07-06",
+    "Source": "manual",
+    "Notes": "Extended directly with the hotel; confirmed by Nicholas (no booking email). Vivaldi's \"recent stay\" email came Jul 6."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "B_56044980",
+    "DisplayName": "Number 11 Urban Hotel - Adults Only",
+    "City": "St. Julian's",
+    "Province": null,
+    "PostalCode": null,
+    "CountryCode": "MT",
+    "Address1": "11 Triq Schreiber, Paceville",
+    "Address2": null,
+    "CheckInDate": "2026-07-06",
+    "CheckOutDate": "2026-07-08",
+    "Source": "email",
+    "BookedVia": "Super.com",
+    "RoomType": "Superior Room, 1 Double or 2 Twin Beds",
+    "Notes": "Non-refundable."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": null,
+    "DisplayName": "Number 11 Urban Hotel (extension)",
+    "City": "St. Julian's",
+    "Province": null,
+    "PostalCode": null,
+    "CountryCode": "MT",
+    "Address1": "11 Triq Schreiber, Paceville",
+    "Address2": null,
+    "CheckInDate": "2026-07-08",
+    "CheckOutDate": "2026-07-09",
+    "Source": "manual",
+    "Notes": "Extended directly with the hotel; confirmed by Nicholas (no booking email). Uber to the airport Jul 9 07:35."
+   },
+   {
     "SegmentType": "Flight",
     "BookingNumber": "EIRJLI",
     "Airline": "KM Malta Airlines",
@@ -8364,6 +8426,21 @@
     "Price": 369.0,
     "BookedVia": "Booking.com",
     "PaymentMethod": "Card *3696"
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": null,
+    "DisplayName": "Alexandra Hotel (extension)",
+    "City": "St. Julian's",
+    "Province": null,
+    "PostalCode": "STJ 3081",
+    "CountryCode": "MT",
+    "Address1": "Schreiber Street",
+    "Address2": null,
+    "CheckInDate": "2026-07-17",
+    "CheckOutDate": "2026-07-18",
+    "Source": "manual",
+    "Notes": "Extended directly with the hotel; confirmed by Nicholas (no booking email). Uber to Gżira Jul 18 12:32."
    }
   ]
  },
@@ -8700,6 +8777,21 @@
     "Note": "First international business class flight! Aeroplan redemption (free with points). Seat 11K.",
     "Price": "FREE (Aeroplan points)",
     "Notes": "Night of Aug 2 in Quincy, MA (Uber from Logan to 225 Hancock St, Quincy, 20:36-20:57, $42.08); back to Logan by Uber at 06:18 on Aug 3."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": null,
+    "DisplayName": "Sister's house",
+    "City": "Quincy",
+    "Province": "MA",
+    "PostalCode": "02171",
+    "CountryCode": "US",
+    "Address1": "Hancock St",
+    "Address2": null,
+    "CheckInDate": "2026-08-02",
+    "CheckOutDate": "2026-08-03",
+    "Source": "manual",
+    "Notes": "Nicholas's sister's place, confirmed by Nicholas. Uber from Logan to 225 Hancock St Aug 2 20:36-20:57; picked up at 255 Hancock St 06:18 Aug 3."
    },
    {
     "SegmentType": "Flight",
@@ -9061,6 +9153,21 @@
     "BookedVia": "Super.com",
     "RoomType": "1 Double Accessible, free hot breakfast",
     "Notes": "3 nights. Non-refundable. Check-in from 15:00, check-out 11:00. Walking distance to the NEC / RuneFest 2026. Self-parking GBP 15/day."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": null,
+    "DisplayName": "Holiday Inn Express Birmingham Airport NEC (extension)",
+    "City": "Bickenhill",
+    "Province": "West Midlands",
+    "PostalCode": "B40 1QA",
+    "CountryCode": "GB",
+    "Address1": "Bickenhill Parkway",
+    "Address2": null,
+    "CheckInDate": "2026-10-05",
+    "CheckOutDate": "2026-10-06",
+    "Source": "manual",
+    "Notes": "Extended directly with the hotel; confirmed by Nicholas (no booking email). Food deliveries to the hotel Oct 5 11:58 and 22:28; Uber to Gloucester Oct 6 12:12."
    },
    {
     "SegmentType": "Accommodation",
