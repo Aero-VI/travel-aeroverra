@@ -248,6 +248,7 @@ const GEOCODE = {
     'Rümlang':[47.4508,8.5253],'Luzern':[47.0502,8.3093],
   },
   cities: {
+    'Torrevieja':[37.9787,-0.6822],
     'Quincy':[42.2529,-71.0023],
     'Benidorm':[38.5342,-0.1314],"Sant Joan d'Alacant":[38.4005,-0.4359],
     'Gloucester':[51.8642,-2.2381],'Bristol':[51.4545,-2.5879],'Ibiza':[38.9067,1.4206],

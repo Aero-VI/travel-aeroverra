@@ -7581,6 +7581,21 @@
     }
    },
    {
+    "SegmentType": "Accommodation",
+    "BookingNumber": null,
+    "DisplayName": "AC Hotel Bella Sky Copenhagen",
+    "City": "Copenhagen",
+    "Province": null,
+    "PostalCode": "2300",
+    "CountryCode": "DK",
+    "Address1": null,
+    "Address2": null,
+    "CheckInDate": "2026-06-06",
+    "CheckOutDate": "2026-06-08",
+    "Source": "manual",
+    "Notes": "Booked by Sharon, so no confirmation in Nicholas's email (per Nicholas). Uber from the airport Jun 6 12:24 to the Bella Center area; hotel-room photos there that night; Uber to the cruise port Jun 8 11:51."
+   },
+   {
     "SegmentType": "Cruise",
     "BookingNumber": "DXHVVQ",
     "CruiseLine": "Princess Cruises",
@@ -8786,12 +8801,12 @@
     "Province": "MA",
     "PostalCode": "02171",
     "CountryCode": "US",
-    "Address1": "Hancock St",
+    "Address1": null,
     "Address2": null,
     "CheckInDate": "2026-08-02",
     "CheckOutDate": "2026-08-03",
     "Source": "manual",
-    "Notes": "Nicholas's sister's place, confirmed by Nicholas. Uber from Logan to 225 Hancock St Aug 2 20:36-20:57; picked up at 255 Hancock St 06:18 Aug 3."
+    "Notes": "Nicholas's sister's place, confirmed by Nicholas. Uber from Logan Aug 2 20:36-20:57; back to Logan by Uber 06:18 Aug 3."
    },
    {
     "SegmentType": "Flight",
@@ -9243,6 +9258,21 @@
    },
    {
     "SegmentType": "Accommodation",
+    "BookingNumber": null,
+    "DisplayName": "María's house",
+    "City": "Torrevieja",
+    "Province": "Alicante",
+    "PostalCode": "03183",
+    "CountryCode": "ES",
+    "Address1": null,
+    "Address2": null,
+    "CheckInDate": "2026-10-09",
+    "CheckOutDate": "2026-10-15",
+    "Source": "manual",
+    "Notes": "Stayed with María (confirmed by Nicholas). Left by Uber Oct 15 15:54 for Alicante."
+   },
+   {
+    "SegmentType": "Accommodation",
     "BookingNumber": "B_61855670",
     "DisplayName": "Hotel Villa San Juan",
     "City": "Sant Joan d'Alacant",
@@ -9255,7 +9285,7 @@
     "CheckOutDate": "2026-10-17",
     "Source": "email",
     "BookedVia": "Super.com",
-    "Notes": "2 nights. Came from Torrevieja by Uber on Oct 15 (Avinguda Sol Naixent 4 15:54 to Alicante 16:51, €63.93)."
+    "Notes": "2 nights. Came from María's house in Torrevieja by Uber on Oct 15 (15:54 to Alicante 16:51, €63.93)."
    },
    {
     "SegmentType": "Flight",
