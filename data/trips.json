@@ -7287,7 +7287,7 @@
     "CheckInDate": "2026-04-09",
     "CheckOutDate": "2026-04-10",
     "Source": "manual",
-    "Notes": "Got around Akita prefecture (Noshiro, Semboku) in a Toyota Rent a Car from Akita Station Shop, reservation 99954689000: out Apr 9 17:30, back Apr 20 16:26, ¥133,184."
+    "Notes": "Got around Akita prefecture (Noshiro, Semboku) in a Toyota Rent a Car from Akita Station Shop, reservation 99954689000: out Apr 9 17:30, back Apr 20 16:26, ¥133,184. First night in Noshiro, apartment 2-401 (confirmed by Nicholas from a photo, Apr 10 09:24)."
    },
    {
     "SegmentType": "Accommodation",
@@ -7301,7 +7301,8 @@
     "Address2": null,
     "CheckInDate": "2026-04-10",
     "CheckOutDate": "2026-04-11",
-    "Source": "manual"
+    "Source": "manual",
+    "Notes": "Where he stayed the rest of the time in Noshiro (confirmed by Nicholas from photos, Apr 13-17)."
    },
    {
     "SegmentType": "Accommodation",
@@ -7329,7 +7330,8 @@
     "Address2": null,
     "CheckInDate": "2026-04-12",
     "CheckOutDate": "2026-04-20",
-    "Source": "manual"
+    "Source": "manual",
+    "Notes": "Where he stayed the rest of the time in Noshiro (confirmed by Nicholas from photos, Apr 13-17)."
    },
    {
     "SegmentType": "Accommodation",
