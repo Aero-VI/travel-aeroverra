@@ -9436,6 +9436,66 @@
     "PaymentMethod": "Mastercard 7736",
     "RoomType": "Entire guesthouse, 1 adult",
     "Notes": "Host Macarena (Casablanca Suites). Booked Nov 2, 2026 22:16 EST. Check-in after 15:00 (host allowed early check-in), checkout by 12:00."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "84866401",
+    "DisplayName": "Hampton by Hilton Alicante Airport",
+    "City": "Alicante",
+    "Province": "Alicante",
+    "PostalCode": "03195",
+    "CountryCode": "ES",
+    "Address1": "Calle Garbí 2",
+    "Address2": null,
+    "CheckInDate": "2026-11-06",
+    "CheckOutDate": "2026-11-06",
+    "Source": "email",
+    "Price": "€126.24",
+    "BookedVia": "Hilton",
+    "Notes": "Day room in El Altet after missing Jet2 LS 3108; booked Nov 6-7 but flew out at 21:30, no night slept here."
+   },
+   {
+    "SegmentType": "Flight",
+    "BookingNumber": "KDNN3NB",
+    "Airline": "easyJet",
+    "FlightNumber": "EZY 8112",
+    "Source": "email",
+    "Class": "Economy",
+    "Seat": "11D",
+    "Departure": {
+     "LocationName": "Alicante-Elche Miguel Hernández Airport",
+     "City": "Alicante",
+     "Province": "Alicante",
+     "CountryCode": "ES",
+     "Code": "ALC",
+     "Time": "2026-11-06T21:30:00+01:00"
+    },
+    "Arrival": {
+     "LocationName": "London Gatwick Airport (North Terminal)",
+     "City": "London",
+     "Province": "England",
+     "CountryCode": "GB",
+     "Code": "LGW",
+     "Time": "2026-11-06T23:10:00+00:00"
+    },
+    "Price": "€189.66",
+    "PaymentMethod": "American Express",
+    "Notes": "Rebooked after missing Jet2 LS 3108 ALC 11:05 -> LGW (Booking.com 39MHFE) that morning."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": null,
+    "DisplayName": "Private stay, Langley Green, Crawley",
+    "City": "Crawley",
+    "Province": "England",
+    "PostalCode": "RH11",
+    "CountryCode": "GB",
+    "Address1": null,
+    "Address2": null,
+    "CheckInDate": "2026-11-06",
+    "CheckOutDate": null,
+    "Source": "email",
+    "Notes": "Landed Gatwick 23:10 Nov 6. Location from Uber Eats deliveries (Nov 7)."
    }
   ]
  }
