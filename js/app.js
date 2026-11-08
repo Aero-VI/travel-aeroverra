@@ -1982,7 +1982,7 @@ function setupSearch() {
 async function init() {
     try {
         const [tripsRes, eventsRes] = await Promise.all([
-            fetch('data/trips.json?h=063a903f'),
+            fetch('data/trips.json?h=861eb29d'),
             fetch('data/events.json?h=4b6a9be2')
         ]);
         tripsData = await tripsRes.json();
