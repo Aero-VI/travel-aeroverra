@@ -9498,5 +9498,72 @@
     "Notes": "Landed Gatwick 23:10 Nov 6. Location from Uber Eats deliveries (Nov 7)."
    }
   ]
+ },
+ {
+  "TripId": "zimbabwe-nov-2026",
+  "TripName": "Zimbabwe (Horses Africa ranch + Victoria Falls, Nov 2026)",
+  "IsActiveTravel": true,
+  "HomeAtStart": null,
+  "HomeAtEnd": null,
+  "Notes": "Horses Africa group trip with Katie Daman and Olivia Plath, Nov 16-24: Rocky Glen Ranch (Drummond Ranching, West Nicholson) Nov 16-20, then Victoria Falls Nov 20-24 (BUQ->VFA flight included in the trip). Flying in from England via Johannesburg. Return from VFA Nov 24 not booked yet.",
+  "Segments": [
+   {
+    "SegmentType": "Flight",
+    "BookingNumber": "CIO6ZP",
+    "Airline": "Virgin Atlantic",
+    "FlightNumber": "VS 449",
+    "Source": "email",
+    "Class": "Economy Classic",
+    "Seat": "57C",
+    "Departure": {
+     "LocationName": "London Heathrow Airport",
+     "City": "London",
+     "Province": "England",
+     "CountryCode": "GB",
+     "Code": "LHR",
+     "Time": "2026-11-14T19:35:00+00:00"
+    },
+    "Arrival": {
+     "LocationName": "O. R. Tambo International Airport",
+     "City": "Johannesburg",
+     "Province": "Gauteng",
+     "CountryCode": "ZA",
+     "Code": "JNB",
+     "Time": "2026-11-15T08:40:00+02:00"
+    },
+    "BookedVia": "Capital One Travel (H-LBFAYR)",
+    "Price": "$979.10",
+    "PaymentMethod": "Venture X ...3763",
+    "Notes": "Overnight nonstop. 1st checked bag free. Night of Nov 15 in Johannesburg before the Airlink connection."
+   },
+   {
+    "SegmentType": "Flight",
+    "BookingNumber": "2JUXWQ",
+    "Airline": "Airlink",
+    "FlightNumber": "4Z 110",
+    "Source": "email",
+    "Class": "Economy",
+    "Seat": null,
+    "Departure": {
+     "LocationName": "O. R. Tambo International Airport",
+     "City": "Johannesburg",
+     "Province": "Gauteng",
+     "CountryCode": "ZA",
+     "Code": "JNB",
+     "Time": "2026-11-16T10:30:00+02:00"
+    },
+    "Arrival": {
+     "LocationName": "Joshua Mqabuko Nkomo International Airport",
+     "City": "Bulawayo",
+     "Province": "Bulawayo",
+     "CountryCode": "ZW",
+     "Code": "BUQ",
+     "Time": "2026-11-16T11:50:00+02:00"
+    },
+    "BookedVia": "Booking.com (Gotogate, ref 40-1095487380)",
+    "Price": "$228.04",
+    "Notes": "Group arrival flight; Horses Africa transfer from BUQ. E-ticket 749-9027772464. 30 kg bag + 8 kg carry-on."
+   }
+  ]
  }
 ]
