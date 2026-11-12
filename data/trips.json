@@ -9349,7 +9349,7 @@
   "IsActiveTravel": true,
   "HomeAtStart": "Myrtle Beach, SC",
   "HomeAtEnd": null,
-  "Notes": "AA confirmation DRWFMT, ticket 0012388111771, $867.00 total ($534.00 fare + $333.00 taxes). AAdvantage #8RY****. 2 checked bags free. SIXT rental car at Barcelona Airport T1: Audi Q3, plate 5570NMD, booking 9740953294 / rental agreement 9616101108, pickup Nov 1 09:27 (T1, Row 1 spot 4), one-way to BCN Terminal 2 (booked return Nov 3 05:00), used with Michael for the drive to Benidorm. Michael drove it back; SIXT logged the key return at Barcelona Airport T2 on Nov 3 at 06:08. Final SIXT invoice 1066020001637965: €347.26 (rental agreement quote was €245.21), €500 deposit. Onward: UK, then Zimbabwe Nov 16.",
+  "Notes": "AA confirmation DRWFMT, ticket 0012388111771, $867.00 total ($534.00 fare + $333.00 taxes). AAdvantage #8RY****. 2 checked bags free. SIXT rental car at Barcelona Airport T1: Audi Q3, plate 5570NMD, booking 9740953294 / rental agreement 9616101108, pickup Nov 1 09:27 (T1, Row 1 spot 4), one-way to BCN Terminal 2 (booked return Nov 3 05:00), used with Michael for the drive to Benidorm. Michael drove it back; SIXT logged the key return at Barcelona Airport T2 on Nov 3 at 06:08. Final SIXT invoice 1066020001637965: €347.26 (rental agreement quote was €245.21), €500 deposit. Onward: England (Crawley Nov 6-10, Gloucester Nov 10-14), then Zimbabwe Nov 16.",
   "Segments": [
    {
     "SegmentType": "Flight",
@@ -9493,9 +9493,27 @@
     "Address1": null,
     "Address2": null,
     "CheckInDate": "2026-11-06",
-    "CheckOutDate": null,
+    "CheckOutDate": "2026-11-10",
     "Source": "email",
-    "Notes": "Landed Gatwick 23:10 Nov 6. Location from Uber Eats deliveries (Nov 7)."
+    "Notes": "Landed Gatwick 23:10 Nov 6. Location from Uber Eats deliveries (Nov 7). Left Nov 10 by Uber at 10:25 for Gloucester (130 mi, 2h24m, £197.45 Amex ...1008)."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "6209316737",
+    "DisplayName": "Central Hotel Gloucester",
+    "City": "Gloucester",
+    "Province": "England",
+    "PostalCode": "GL1 1DP",
+    "CountryCode": "GB",
+    "Address1": "14-18 Clarence Street",
+    "Address2": null,
+    "CheckInDate": "2026-11-10",
+    "CheckOutDate": "2026-11-14",
+    "Source": "email",
+    "Price": "US$287.45 (£209.89, 4 nights)",
+    "BookedVia": "Booking.com",
+    "RoomType": "Large Double Room, 1 adult",
+    "Notes": "Non-refundable. Arrived by Uber from Crawley 12:50 Nov 10. Leaves Nov 14 for Heathrow (VS 449 to Johannesburg)."
    }
   ]
  },
@@ -9563,6 +9581,62 @@
     "BookedVia": "Booking.com (Gotogate, ref 40-1095487380)",
     "Price": "$228.04",
     "Notes": "Group arrival flight; Horses Africa transfer from BUQ. E-ticket 749-9027772464. 30 kg bag + 8 kg carry-on."
+   }
+  ]
+ },
+ {
+  "TripId": "florida-dec-2026",
+  "TripName": "Florida (Wildwood / The Villages, Dec 2026)",
+  "IsActiveTravel": true,
+  "HomeAtStart": "Myrtle Beach, SC",
+  "HomeAtEnd": null,
+  "Notes": "Short Florida trip for Sumter County Tax Collector appointments at the Wildwood office (Dec 3). Hertz rental at Orlando MCO: Chevrolet Trax (B4), confirmation L768EBCC490, pickup Dec 2 16:30, drop-off MCO Dec 4 11:00, est. $156.51 ($124.58 prepaid on Amex ...1008). Return flight from MCO on Dec 4 not booked yet.",
+  "Segments": [
+   {
+    "SegmentType": "Flight",
+    "BookingNumber": "OEIKKE",
+    "Airline": "Breeze Airways",
+    "FlightNumber": "MX 1566",
+    "Source": "email",
+    "Class": "Nice",
+    "Seat": null,
+    "Departure": {
+     "LocationName": "Myrtle Beach International Airport",
+     "City": "Myrtle Beach",
+     "Province": "SC",
+     "CountryCode": "US",
+     "Code": "MYR",
+     "Time": "2026-12-02T14:35:00-05:00"
+    },
+    "Arrival": {
+     "LocationName": "Orlando International Airport",
+     "City": "Orlando",
+     "Province": "FL",
+     "CountryCode": "US",
+     "Code": "MCO",
+     "Time": "2026-12-02T16:15:00-05:00"
+    },
+    "Price": "$169.00",
+    "PaymentMethod": "Google Pay (Amex)",
+    "Notes": "Nonstop 1h40m. Carry-on only, no checked bag. Breezy Rewards 2209241036."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "73247916",
+    "DisplayName": "Comfort Inn & Suites Wildwood - The Villages",
+    "City": "Wildwood",
+    "Province": "FL",
+    "PostalCode": "34785",
+    "CountryCode": "US",
+    "Address1": "1224 S. Main Street",
+    "Address2": null,
+    "CheckInDate": "2026-12-02",
+    "CheckOutDate": "2026-12-04",
+    "Source": "email",
+    "Price": "$206.66 est. (2 nights)",
+    "BookedVia": "Choice Hotels",
+    "RoomType": "2 Queen Beds, No Smoking",
+    "Notes": "Choice Privileges NXH74934. Free cancellation until Dec 1 16:00. Drove up from MCO in the Hertz rental."
    }
   ]
  }
