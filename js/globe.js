@@ -107,6 +107,18 @@ function initMap() {
     .then(function (s) {
       if (!s || !s.sources) throw new Error('bad style');
       s.glyphs = s.glyphs || FALLBACK_GLYPHS;
+      // CARTO's 2026-10 tiles draw ocean water on only some low-zoom tiles (gray boxes on a black sea).
+      // Paint water the same as the background so the sea is one even colour.
+      var bg = '#0e0e0e';
+      (s.layers || []).forEach(function (l) {
+        if (l.type === 'background' && l.paint && typeof l.paint['background-color'] === 'string') bg = l.paint['background-color'];
+      });
+      (s.layers || []).forEach(function (l) {
+        if (l.type === 'fill' && (l.id === 'water' || l['source-layer'] === 'water')) {
+          l.paint = l.paint || {};
+          l.paint['fill-color'] = bg;
+        }
+      });
       __styleCache = s;
       __resolvingStyle = false;
       __createMap(s);
@@ -620,8 +632,18 @@ function loadCountryHighlights(visitedCodes) {
         return iso3Set.has(iso3);
       });
 
-      if (visited.length === 0) return;
-      if (!map || !map.isStyleLoaded()) return;
+      if (visited.length === 0 || !map) return;
+      // the outlines can arrive before the style finishes loading: wait instead of skipping
+      if (!map.isStyleLoaded()) {
+        var retry = function () { if (map.isStyleLoaded()) { map.off('idle', retry); addVisited(visited); } };
+        map.on('idle', retry);
+        return;
+      }
+      addVisited(visited);
+    })
+    .catch(function(err) { console.warn('Country highlights failed:', err); });
+
+  function addVisited(visited) {
       if (map.getSource('visited-countries')) return;
 
       map.addSource('visited-countries', {
@@ -639,8 +661,7 @@ function loadCountryHighlights(visitedCodes) {
         id: 'country-border', type: 'line', source: 'visited-countries',
         paint: { 'line-color': '#22d3ee', 'line-width': 1.2, 'line-opacity': 0.4 }
       }, beforeLayer);
-    })
-    .catch(function(err) { console.warn('Country highlights failed:', err); });
+  }
 }
 
 function setupInteractions() {
