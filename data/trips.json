@@ -9644,11 +9644,11 @@
  },
  {
   "TripId": "florida-dec-2026",
-  "TripName": "Florida (Wildwood / The Villages, Dec 2026)",
+  "TripName": "Florida & Austin (Dec 2026)",
   "IsActiveTravel": true,
   "HomeAtStart": "Myrtle Beach, SC",
-  "HomeAtEnd": null,
-  "Notes": "Short Florida trip for Sumter County Tax Collector appointments at the Wildwood office (Dec 3). Hertz rental at Orlando MCO: Chevrolet Trax (B4), confirmation L768EBCC490, pickup Dec 2 16:30, drop-off MCO Dec 4 11:00, est. $156.51 ($124.58 prepaid on Amex ...1008). Return flight from MCO on Dec 4 not booked yet.",
+  "HomeAtEnd": "Myrtle Beach, SC",
+  "Notes": "Short Florida trip for Sumter County Tax Collector appointments at the Wildwood office (Dec 3). Hertz rental at Orlando MCO: Chevrolet Trax (B4), confirmation L768EBCC490, pickup Dec 2 16:30, drop-off MCO Dec 4 11:00, est. $156.51 ($124.58 prepaid on Amex ...1008). Then on to Austin Dec 4-6 on Delta (HA5G5R, one ticket MCO-AUS and AUS-ATL-MYR), Enterprise Hyundai Kona at AUS Dec 4 15:30 to Dec 6 16:00 (81007916COUNT).",
   "Segments": [
    {
     "SegmentType": "Flight",
@@ -9695,6 +9695,84 @@
     "BookedVia": "Choice Hotels",
     "RoomType": "2 Queen Beds, No Smoking",
     "Notes": "Choice Privileges NXH74934. Free cancellation until Dec 1 16:00. Drove up from MCO in the Hertz rental."
+   },
+   {
+    "SegmentType": "Flight",
+    "BookingNumber": "HA5G5R",
+    "Airline": "Delta Air Lines",
+    "FlightNumber": "DL 2259",
+    "Source": "email",
+    "Class": "Main Classic",
+    "Seat": "21C",
+    "Departure": {
+     "LocationName": "Orlando International Airport",
+     "City": "Orlando",
+     "Province": "FL",
+     "CountryCode": "US",
+     "Code": "MCO",
+     "Time": "2026-12-04T13:02:00-05:00"
+    },
+    "Arrival": {
+     "LocationName": "Austin-Bergstrom International Airport",
+     "City": "Austin",
+     "Province": "TX",
+     "CountryCode": "US",
+     "Code": "AUS",
+     "Time": "2026-12-04T15:03:00-06:00"
+    },
+    "Notes": "Ticket 006-7517797597. Carry-on only."
+   },
+   {
+    "SegmentType": "Flight",
+    "BookingNumber": "HA5G5R",
+    "Airline": "Delta Air Lines",
+    "FlightNumber": "DL 1397",
+    "Source": "email",
+    "Class": "Main Classic",
+    "Seat": "20D",
+    "Departure": {
+     "LocationName": "Austin-Bergstrom International Airport",
+     "City": "Austin",
+     "Province": "TX",
+     "CountryCode": "US",
+     "Code": "AUS",
+     "Time": "2026-12-06T17:00:00-06:00"
+    },
+    "Arrival": {
+     "LocationName": "Hartsfield-Jackson Atlanta International Airport",
+     "City": "Atlanta",
+     "Province": "GA",
+     "CountryCode": "US",
+     "Code": "ATL",
+     "Time": "2026-12-06T20:17:00-05:00"
+    },
+    "Notes": "Ticket 006-7517797597. Carry-on only."
+   },
+   {
+    "SegmentType": "Flight",
+    "BookingNumber": "HA5G5R",
+    "Airline": "Delta Air Lines",
+    "FlightNumber": "DL 3074",
+    "Source": "email",
+    "Class": "Main Classic",
+    "Seat": "25B",
+    "Departure": {
+     "LocationName": "Hartsfield-Jackson Atlanta International Airport",
+     "City": "Atlanta",
+     "Province": "GA",
+     "CountryCode": "US",
+     "Code": "ATL",
+     "Time": "2026-12-06T21:35:00-05:00"
+    },
+    "Arrival": {
+     "LocationName": "Myrtle Beach International Airport",
+     "City": "Myrtle Beach",
+     "Province": "SC",
+     "CountryCode": "US",
+     "Code": "MYR",
+     "Time": "2026-12-06T22:47:00-05:00"
+    },
+    "Notes": "Ticket 006-7517797597. Carry-on only."
    }
   ]
  }
