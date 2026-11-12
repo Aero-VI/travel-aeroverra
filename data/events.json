@@ -1051,5 +1051,31 @@
     "IsFullDay": true,
     "Notes": "NEC Birmingham, Hall 5. Second day of RuneFest 2026 (Sat 3 – Sun 4 October).",
     "Source": "email"
+  },
+  {
+    "EventId": "EVT-ZW26-01",
+    "TripId": "zimbabwe-nov-2026",
+    "EventType": "Excursion",
+    "Title": "Victoria Falls, Zambia side (Livingstone)",
+    "City": "Livingstone",
+    "CountryCode": "ZM",
+    "StartTime": "2026-11-22T09:00:00+02:00",
+    "EndTime": "2026-11-22T17:00:00+02:00",
+    "IsFullDay": true,
+    "Notes": "Planned for the group's free day: cross the border to the Zambian side of the falls. Zambia visa about $55 cash at the border.",
+    "Source": "manual"
+  },
+  {
+    "EventId": "EVT-ZW26-02",
+    "TripId": "zimbabwe-nov-2026",
+    "EventType": "Excursion",
+    "Title": "Chobe National Park day trip (Botswana)",
+    "City": "Kasane",
+    "CountryCode": "BW",
+    "StartTime": "2026-11-23T07:00:00+02:00",
+    "EndTime": "2026-11-23T17:00:00+02:00",
+    "IsFullDay": true,
+    "Notes": "Part of the Horses Africa itinerary, out of Victoria Falls. Dinner at 3 Monkeys after.",
+    "Source": "manual"
   }
 ]

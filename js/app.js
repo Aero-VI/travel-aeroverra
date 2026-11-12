@@ -28,7 +28,8 @@ const COUNTRIES = {
     BG:'Bulgaria',LT:'Lithuania',UA:'Ukraine',BY:'Belarus',MD:'Moldova',
     AT:'Austria',CH:'Switzerland',BE:'Belgium',LU:'Luxembourg',MC:'Monaco',
     LI:'Liechtenstein',SM:'San Marino',VA:'Vatican City',AD:'Andorra',
-    NC:'New Caledonia',VU:'Vanuatu'
+    NC:'New Caledonia',VU:'Vanuatu',
+    ZA:'South Africa',ZW:'Zimbabwe',BW:'Botswana',ZM:'Zambia',MA:'Morocco'
 };
 
 // Country flag emoji from ISO code
@@ -750,6 +751,27 @@ function getCountryDetails() {
         }
     }
 
+    // Events (day trips etc.) also count as touching a country
+    for (const ev of eventsData) {
+        const code = ev.CountryCode;
+        if (!code) continue;
+        const trip = tripsData.find(t => t.TripId === ev.TripId);
+        if (trip && isHomeTrip(trip)) continue;
+        const tripName = trip ? trip.TripName : (ev.Title || '');
+        countryTimeline.push({ code, city: ev.City, date: ev.StartTime, tripName });
+        if (!countryData[code]) {
+            countryData[code] = { code, visits: 0, firstVisit: null, lastVisit: null, cities: new Set(), trips: new Set(), totalDays: 0 };
+        }
+        const cd = countryData[code];
+        if (ev.City) cd.cities.add(ev.City);
+        cd.trips.add(tripName);
+        if (ev.StartTime) {
+            const d = new Date(ev.StartTime);
+            if (!cd.firstVisit || d < new Date(cd.firstVisit)) cd.firstVisit = ev.StartTime;
+            if (!cd.lastVisit || d > new Date(cd.lastVisit)) cd.lastVisit = ev.StartTime;
+        }
+    }
+
     // Sort timeline chronologically
     countryTimeline.sort((a, b) => {
         const da = a.date ? new Date(a.date).getTime() : 0;
@@ -908,7 +930,7 @@ function renderCountriesView() {
         'Asia & Pacific': ['JP','KR','CN','TW','HK','TH','VN','SG','MY','ID','PH','GU','AU','NZ','NC','VU','IN'],
         'Europe': ['GB','IE','FR','DE','IT','ES','PT','NL','BE','AT','CH','DK','SE','NO','FI','IS','EE','LV','LT','PL','CZ','SK','HU','HR','ME','AL','GR','TR','MT','CY','GI','MK','RS','BA','SI','RO','BG','UA','BY','MD','MC','LI','SM','VA','AD','LU'],
         'Americas': ['US','CA','MX','CO','CR','PA','PR','VI','BS','KY','DO','SX','TC','JM','HT','CU','BZ','HN','GT','SV','NI','BB','TT','AW','CW','BM','LC','AG','KN','DM','GD','VC','BR','AR','CL','PE','EC'],
-        'Middle East & Africa': ['AE']
+        'Middle East & Africa': ['AE','QA','IL','EG','MA','ZA','ZW','BW','ZM','NA','KE','TZ','MU']
     };
 
     let html = '<div class="countries-header">';
@@ -989,7 +1011,7 @@ function renderCountryCards(codes, countryData, sortMode) {
         'Asia & Pacific': ['JP','KR','CN','TW','HK','TH','VN','SG','MY','ID','PH','GU','AU','NZ','NC','VU','IN'],
         'Europe': ['GB','IE','FR','DE','IT','ES','PT','NL','BE','AT','CH','DK','SE','NO','FI','IS','EE','LV','LT','PL','CZ','SK','HU','HR','ME','AL','GR','TR','MT','CY','GI','MK','RS','BA','SI','RO','BG','UA','BY','MD','MC','LI','SM','VA','AD','LU'],
         'Americas': ['US','CA','MX','CO','CR','PA','PR','VI','BS','KY','DO','SX','TC','JM','HT','CU','BZ','HN','GT','SV','NI','BB','TT','AW','CW','BM','LC','AG','KN','DM','GD','VC','BR','AR','CL','PE','EC'],
-        'Middle East & Africa': ['AE']
+        'Middle East & Africa': ['AE','QA','IL','EG','MA','ZA','ZW','BW','ZM','NA','KE','TZ','MU']
     };
 
     let html = '';

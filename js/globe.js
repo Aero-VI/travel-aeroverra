@@ -36,7 +36,8 @@ const ISO2_TO_ISO3 = {
   MT:'MLT',CY:'CYP',HR:'HRV',ME:'MNE',AL:'ALB',MK:'MKD',RS:'SRB',BA:'BIH',
   SI:'SVN',SK:'SVK',CZ:'CZE',HU:'HUN',RO:'ROU',BG:'BGR',LT:'LTU',UA:'UKR',
   BY:'BLR',MD:'MDA',AT:'AUT',CH:'CHE',BE:'BEL',LU:'LUX',MC:'MCO',LI:'LIE',
-  SM:'SMR',VA:'VAT',AD:'AND',NC:'NCL',VU:'VUT'
+  SM:'SMR',VA:'VAT',AD:'AND',NC:'NCL',VU:'VUT',
+  ZA:'ZAF',ZW:'ZWE',BW:'BWA',ZM:'ZMB',MA:'MAR'
 };
 
 // Great circle arc (returns GeoJSON coordinate pairs [lng, lat])

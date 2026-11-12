@@ -9523,7 +9523,7 @@
   "IsActiveTravel": true,
   "HomeAtStart": null,
   "HomeAtEnd": null,
-  "Notes": "Horses Africa group trip with Katie Daman and Olivia Plath, Nov 16-24: Rocky Glen Ranch (Drummond Ranching, West Nicholson) Nov 16-20, then Victoria Falls Nov 20-24 (BUQ->VFA flight included in the trip). Flying in from England via Johannesburg. Return from VFA Nov 24 not booked yet.",
+  "Notes": "Horses Africa group trip with Katie Daman and Olivia Plath, Nov 16-24: Rocky Glen Ranch (Drummond Ranching, West Nicholson) Nov 16-20, then Victoria Falls Nov 20-24 (BUQ->VFA flight included in the trip). Flying in from England via Johannesburg. Free day Nov 22 (planning to cross to the Zambia side), Chobe (Botswana) day trip Nov 23. Return from VFA Nov 24 not booked yet.",
   "Segments": [
    {
     "SegmentType": "Flight",
@@ -9581,6 +9581,64 @@
     "BookedVia": "Booking.com (Gotogate, ref 40-1095487380)",
     "Price": "$228.04",
     "Notes": "Group arrival flight; Horses Africa transfer from BUQ. E-ticket 749-9027772464. 30 kg bag + 8 kg carry-on."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "10031",
+    "DisplayName": "Rocky Glen Ranch (Drummond Ranching)",
+    "City": "West Nicholson",
+    "Province": "Matabeleland South",
+    "PostalCode": null,
+    "CountryCode": "ZW",
+    "Address1": null,
+    "Address2": null,
+    "CheckInDate": "2026-11-16",
+    "CheckOutDate": "2026-11-20",
+    "Source": "manual",
+    "BookedVia": "Horses Africa (order #10031, paid in full GBP 1,999)",
+    "Notes": "Horseback safari ranch. Group transfer from Bulawayo airport on arrival Nov 16, dinner at HQ."
+   },
+   {
+    "SegmentType": "Flight",
+    "BookingNumber": "10031",
+    "Airline": "Internal group flight (Horses Africa)",
+    "FlightNumber": null,
+    "Source": "manual",
+    "Class": "Economy",
+    "Seat": null,
+    "Departure": {
+     "LocationName": "Joshua Mqabuko Nkomo International Airport",
+     "City": "Bulawayo",
+     "Province": "Bulawayo",
+     "CountryCode": "ZW",
+     "Code": "BUQ",
+     "Time": "2026-11-20T11:00:00+02:00"
+    },
+    "Arrival": {
+     "LocationName": "Victoria Falls International Airport",
+     "City": "Victoria Falls",
+     "Province": "Matabeleland North",
+     "CountryCode": "ZW",
+     "Code": "VFA",
+     "Time": "2026-11-20T12:30:00+02:00"
+    },
+    "Notes": "Included in the Horses Africa trip. Flight number and times not published yet; times here are placeholders (itinerary: breakfast at the ranch, then fly, Boma dinner in Victoria Falls)."
+   },
+   {
+    "SegmentType": "Accommodation",
+    "BookingNumber": "10031",
+    "DisplayName": "Kabakwe Guest Lodge",
+    "City": "Victoria Falls",
+    "Province": "Matabeleland North",
+    "PostalCode": null,
+    "CountryCode": "ZW",
+    "Address1": null,
+    "Address2": null,
+    "CheckInDate": "2026-11-20",
+    "CheckOutDate": "2026-11-24",
+    "Source": "manual",
+    "BookedVia": "Horses Africa (order #10031)",
+    "Notes": "Nov 21 falls visit + sunset cruise, Nov 22 free day, Nov 23 Chobe day trip, depart VFA Nov 24."
    }
   ]
  },
