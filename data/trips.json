@@ -9523,7 +9523,7 @@
   "IsActiveTravel": true,
   "HomeAtStart": null,
   "HomeAtEnd": null,
-  "Notes": "Horses Africa group trip with Katie Daman and Olivia Plath, Nov 16-24: Rocky Glen Ranch (Drummond Ranching, West Nicholson) Nov 16-20, then Victoria Falls Nov 20-24 (BUQ->VFA flight included in the trip). Flying in from England via Johannesburg. Free day Nov 22 (planning to cross to the Zambia side), Chobe (Botswana) day trip Nov 23. Return from VFA Nov 24 not booked yet.",
+  "Notes": "Horses Africa group trip with Katie Daman and Olivia Plath, Nov 16-24: Rocky Glen Ranch (Drummond Ranching, West Nicholson) Nov 16-20, then Victoria Falls Nov 20-24 (fastjet FN 8111 BUQ->VFA on Nov 20, included in the trip). Flying in from England via Johannesburg. Free day Nov 22 (planning to cross to the Zambia side), Chobe (Botswana) day trip Nov 23. Return from VFA Nov 24 not booked yet.",
   "Segments": [
    {
     "SegmentType": "Flight",
@@ -9600,29 +9600,30 @@
    },
    {
     "SegmentType": "Flight",
-    "BookingNumber": "10031",
-    "Airline": "Internal group flight (Horses Africa)",
-    "FlightNumber": null,
-    "Source": "manual",
-    "Class": "Economy",
-    "Seat": null,
+    "BookingNumber": "ABMR3X",
+    "Airline": "fastjet",
+    "FlightNumber": "FN 8111",
+    "Source": "boarding pass",
+    "Class": "Economy (L)",
+    "Seat": "16B",
     "Departure": {
      "LocationName": "Joshua Mqabuko Nkomo International Airport",
      "City": "Bulawayo",
      "Province": "Bulawayo",
      "CountryCode": "ZW",
      "Code": "BUQ",
-     "Time": "2026-11-20T11:00:00+02:00"
+     "Time": "2026-11-20T14:00:00+02:00"
     },
     "Arrival": {
-     "LocationName": "Victoria Falls International Airport",
+     "LocationName": "Victoria Falls Airport",
      "City": "Victoria Falls",
      "Province": "Matabeleland North",
      "CountryCode": "ZW",
      "Code": "VFA",
-     "Time": "2026-11-20T12:30:00+02:00"
+     "Time": "2026-11-20T14:55:00+02:00"
     },
-    "Notes": "Included in the Horses Africa trip. Flight number and times not published yet; times here are placeholders (itinerary: breakfast at the ranch, then fly, Boma dinner in Victoria Falls)."
+    "Notes": "E-ticket 334-2300893452/1. Cabin Y, RBD L, seq 014, gate 02, boarding 13:20, departure 14:00, 1 checked bag 19 kg. Arrival derived from fastjet's published 55-minute BUQ-VFA block (timetable 13:25-14:20); the boarding pass prints only the departure time. Itinerary day: breakfast at Rocky Glen Ranch, fly to Victoria Falls, Boma dinner.",
+    "Price": "Included in the Horses Africa trip package (order #10031)"
    },
    {
     "SegmentType": "Accommodation",
